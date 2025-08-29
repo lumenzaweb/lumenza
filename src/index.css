@@ -1,0 +1,85 @@
+/* Tailwind base imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fafb;
+  color: #1f2937; /* Tailwind gray-800 */
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+nav {
+  backdrop-filter: blur(10px);
+}
+
+/* Buttons & Floating Contact Buttons */
+button,
+a {
+  transition: all 0.3s ease-in-out;
+}
+
+a:hover,
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Floating Contact Buttons */
+.fixed.bottom-6.right-6 a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+}
+
+/* Product Cards */
+.product-card {
+  @apply p-4 bg-white rounded-lg shadow-lg transform transition-transform hover:scale-105;
+}
+
+/* Section Headings */
+h3 {
+  @apply text-3xl font-bold mb-6;
+}
+
+/* Contact Form Inputs */
+input,
+textarea {
+  @apply border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-cyan-400;
+}
+
+button.submit-btn {
+  @apply bg-cyan-500 text-white p-3 rounded hover:bg-cyan-600;
+}
+
+/* Footer Links Hover */
+footer a:hover {
+  @apply opacity-80;
+}
+
+/* Responsive spacing tweaks */
+@media (min-width: 768px) {
+  section {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Hover transition for navbar links */
+nav button {
+  transition: color 0.3s ease-in-out;
+}
+
+/* Mobile menu backdrop */
+nav div.md\\:hidden.bg-white\\90 {
+  backdrop-filter: blur(10px);
+}
