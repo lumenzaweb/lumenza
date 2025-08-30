@@ -87,7 +87,7 @@ const HomeSection = () => {
         </button>
         <button
           className="px-6 py-3 bg-white border-2 border-red-600 text-red-600 font-semibold rounded-lg shadow hover:bg-red-50 transition"
-          onClick={() => scrollToSection("InquirySection")}
+          onClick={() => scrollToSection("inquiry")}
         >
           Contact Us
         </button>
