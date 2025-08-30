@@ -925,68 +925,71 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
     );
   }
 
-  // If product has details (grid layout)
-  if (product && product.details && product.details.length > 0) {
-    return (
-      <main className="py-45 px-15 min-h-screen bg-gray-50 flex flex-col">
-        <button
-          onClick={() => navigate(-1)}
-          className="self-center mt-28 mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
-        >
-          ← Back
-        </button>
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-10xl mx-auto">
-          {product.details.map((item, idx) => (
-            <div
-              key={idx}
-              className="flex flex-row bg-white rounded-lg shadow-lg overflow-hidden min-h-[247px]"
-            >
-              <img
-                src={item.img}
-                alt={`${product.name} detail ${idx + 1}`}
-                className="w-80 h-60 object-cover min-h-full"
-              />
-              <div className="flex-1 flex items-center justify-center px-1 py-1 bg-gray-50 min-h-full">
-                <p className="text-gray-800 text-lg">{item.description}</p>
-              </div>
-            </div>
-          ))}
-        </section>
-
-        {/* PDF Download Box */}
-        <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
-          <h2 className="text-2xl font-semibold mb-4 text-red-900">
-            Download Our Product Catalog
-          </h2>
-          <p className="mb-6 text-red-800">
-            Get all product details and specifications in one handy PDF file.
-          </p>
-          <a
-            href="https://1drv.ms/b/c/787E0745D45C1EC6/EfjLRCDiQsFHo_i176e9iTcBKRdVrpzUGYTxI4GdsSqnvQ?e=24JQyW"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-6 py-3 bg-red-700 text-white font-bold rounded hover:bg-red-800 transition"
-          >
-            Download PDF
-          </a>
-        </section>
-      </main>
-    );
-  }
-
-  // Fallback
+ // If product has details (grid layout)
+if (product && product.details && product.details.length > 0) {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center text-gray-700 bg-gray-100 p-8">
-      <p className="text-2xl mb-6">Product not found.</p>
+    <main className="py-12 px-4 sm:px-8 md:px-15 min-h-screen bg-gray-50 flex flex-col">
       <button
         onClick={() => navigate(-1)}
-        className="px-5 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition"
+        className="self-center mt-20 mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
       >
-        Go Back
+        ← Back
       </button>
-    </div>
+
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto w-full">
+        {product.details.map((item, idx) => (
+          <div
+            key={idx}
+            className="flex flex-col sm:flex-row bg-white rounded-lg shadow-lg overflow-hidden min-h-[250px]"
+          >
+            <img
+              src={item.img}
+              alt={`${product.name} detail ${idx + 1}`}
+              className="w-full sm:w-80 h-60 object-cover"
+            />
+            <div className="flex-1 flex items-center justify-center px-4 py-4 bg-gray-50">
+              <p className="text-gray-800 text-base sm:text-lg text-center sm:text-left">
+                {item.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* PDF Download Box */}
+      <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
+        <h2 className="text-2xl font-semibold mb-4 text-red-900">
+          Download Our Product Catalog
+        </h2>
+        <p className="mb-6 text-red-800">
+          Get all product details and specifications in one handy PDF file.
+        </p>
+        <a
+          href="https://1drv.ms/b/c/787E0745D45C1EC6/EfjLRCDiQsFHo_i176e9iTcBKRdVrpzUGYTxI4GdsSqnvQ?e=24JQyW"
+          download
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-6 py-3 bg-red-700 text-white font-bold rounded hover:bg-red-800 transition"
+        >
+          Download PDF
+        </a>
+      </section>
+    </main>
   );
+}
+
+// Fallback
+return (
+  <div className="min-h-screen flex flex-col justify-center items-center text-gray-700 bg-gray-100 p-8">
+    <p className="text-2xl mb-6">Product not found.</p>
+    <button
+      onClick={() => navigate(-1)}
+      className="px-5 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition"
+    >
+      Go Back
+    </button>
+  </div>
+ );
 };
 
 export default ProductSubDetailPage;
