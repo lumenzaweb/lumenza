@@ -34,14 +34,15 @@ const socialLinks = [
 ];
 
 const SocialBar = () => (
-  <section className="bg-white py-12 px-6 border-t border-gray-300">
+  <section className="bg-white py-8 px-6 border-t border-gray-300">
     <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      
       {/* Follow us text and icons */}
-      <div className="flex items-center gap-6">
+      <div className="flex flex-col items-center md:flex-row md:items-center gap-4 md:gap-6 w-full md:w-auto text-center md:text-left">
         <span className="text-lg font-semibold text-red-600 select-none">
           Follow us on
         </span>
-        <div className="flex gap-5">
+        <div className="flex flex-wrap justify-center md:justify-start gap-4">
           {socialLinks.map(({ href, title, img }) => (
             <a
               key={title}
@@ -49,12 +50,12 @@ const SocialBar = () => (
               target="_blank"
               rel="noopener noreferrer"
               title={title}
-              className="rounded-lg shadow-lg p-1 transition-transform transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-red-600"
+              className="rounded-lg shadow-md p-1 transition-transform transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-red-600"
             >
               <img
                 src={img}
                 alt={title}
-                className="w-9 h-9 object-contain"
+                className="w-11 h-11 md:w-9 md:h-9 object-contain" // bigger on mobile, normal on desktop
                 loading="lazy"
                 draggable={false}
               />
@@ -63,8 +64,11 @@ const SocialBar = () => (
         </div>
       </div>
 
+      {/* Divider on mobile */}
+      <div className="w-full h-px bg-gray-300 md:hidden" />
+
       {/* Copyright */}
-      <p className="text-gray-700 text-sm select-none">
+      <p className="text-gray-700 text-xs md:text-sm text-center md:text-right select-none w-full md:w-auto">
         &copy; {new Date().getFullYear()} LUMENZA. All Rights Reserved.
       </p>
     </div>
