@@ -770,10 +770,11 @@ features: [
 
 // ==================== Component ====================
 const ProductSubDetailPage = () => {
-  const { productName } = useParams();
   const navigate = useNavigate();
- const product = allSubProducts[decodeURIComponent(productName)];
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
+  const { subProductSlug } = useParams();
+const product = allSubProducts[decodeURIComponent(subProductSlug)];
+
 
   if (!product) {
     return (
