@@ -9,7 +9,7 @@ export default function Admin() {
       window.location.href = "/login";
       return;
     }
-    fetch("http://localhost:5000/api/inquiries", {
+    fetch("https://lumenza.onrender.com", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((r) => r.json())
@@ -18,7 +18,7 @@ export default function Admin() {
   }, [token]);
 
   async function remove(id) {
-    await fetch(`http://localhost:5000/api/inquiries/${id}`, {
+    await fetch(`https://lumenza.onrender.com${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

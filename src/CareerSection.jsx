@@ -52,7 +52,7 @@ const CareerSection = () => {
         formData.append("resume", resume);
       }
 
-      const res = await fetch("http://localhost:5000/api/forms", {
+      const res = await fetch("https://lumenza.onrender.com", {
         method: "POST",
         body: formData,
       });
