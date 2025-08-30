@@ -26,16 +26,19 @@ const HomeSection = () => {
   return (
     <section
       id="home"
-      className="relative h-screen flex flex-col justify-center items-center text-center bg-cover bg-center overflow-hidden"
+      className="relative h-[80vh] sm:h-screen flex flex-col justify-center items-center text-center bg-black overflow-hidden"
     >
       {/* Background Slider */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0"
             style={{
               backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${images[current]}')`,
+              backgroundSize: "cover", // ✅ responsive fitting
+              backgroundPosition: "center", // ✅ keeps center focus
+              backgroundRepeat: "no-repeat",
             }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -47,13 +50,12 @@ const HomeSection = () => {
 
       {/* LUMENZA with red box behind */}
       <motion.h1
-        className="relative z-10 text-5xl md:text-6xl font-bold mb-4"
+        className="relative z-10 text-4xl sm:text-5xl md:text-6xl font-bold mb-4 px-4"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, type: "spring", stiffness: 120 }}
       >
-        <span className="relative inline-block px-6 py-2">
-          {/* Red box background */}
+        <span className="relative inline-block px-4 py-2 sm:px-6">
           <span className="absolute inset-0 bg-red-600 rounded-lg -z-10 shadow-lg"></span>
           <span className="text-white tracking-wide">LUMENZA</span>
         </span>
@@ -61,7 +63,7 @@ const HomeSection = () => {
 
       {/* Tagline */}
       <motion.p
-        className="relative z-10 text-lg md:text-xl text-white mb-8 max-w-2xl"
+        className="relative z-10 text-base sm:text-lg md:text-xl text-white mb-8 max-w-md sm:max-w-2xl px-4"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 120 }}
@@ -72,7 +74,7 @@ const HomeSection = () => {
 
       {/* Buttons */}
       <motion.div
-        className="relative z-10 flex gap-6"
+        className="relative z-10 flex flex-col sm:flex-row gap-4 sm:gap-6 px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 1 }}
@@ -85,7 +87,7 @@ const HomeSection = () => {
         </button>
         <button
           className="px-6 py-3 bg-white border-2 border-red-600 text-red-600 font-semibold rounded-lg shadow hover:bg-red-50 transition"
-          onClick={() => scrollToSection("contact us")}
+          onClick={() => scrollToSection("contact")}
         >
           Contact Us
         </button>
