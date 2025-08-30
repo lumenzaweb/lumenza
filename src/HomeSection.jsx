@@ -27,7 +27,7 @@ const HomeSection = () => {
     <section
       id="home"
       className="relative flex flex-col justify-center items-center text-center bg-cover bg-center overflow-hidden
-      h-[40vh] md:h-[80vh] pt-25" // ✅ smaller on mobile, navbar-safe padding
+      h-[40vh] md:h-[80vh] pt-20" // ✅ smaller on mobile, navbar-safe padding
     >
       {/* Background Slider */}
       <div className="absolute inset-0 z-0">
@@ -73,7 +73,7 @@ const HomeSection = () => {
 
       {/* Buttons */}
       <motion.div
-        className="relative z-10 flex flex-col sm:flex-row gap-5 md:gap-6"
+        className="relative z-10 flex flex-col sm:flex-row gap-2 md:gap-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 1 }}
