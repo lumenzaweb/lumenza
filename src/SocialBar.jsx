@@ -6,11 +6,7 @@ const socialLinks = [
     title: "Facebook",
     img: "https://img.icons8.com/fluency/48/fa314a/facebook-new.png",
   },
-  {
-    href: "https://twitter.com",
-    title: "Twitter",
-    img: "https://img.icons8.com/fluency/48/fa314a/twitter.png",
-  },
+  
   {
     href: "https://linkedin.com",
     title: "LinkedIn",
