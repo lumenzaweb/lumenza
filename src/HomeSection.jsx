@@ -25,20 +25,19 @@ const HomeSection = () => {
 
   return (
     <section
-  id="home"
-  className="relative h-[50vh] md:h-[80vh] flex flex-col justify-center items-center text-center bg-cover bg-center overflow-hidden pt-18 md:pt-0"
+      id="home"
+      className="relative flex flex-col justify-center items-center text-center bg-cover bg-center overflow-hidden
+      h-[40vh] md:h-[80vh] pt-16" // ✅ smaller on mobile, navbar-safe padding
     >
       {/* Background Slider */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            className="absolute inset-0"
+            className="absolute inset-0 bg-cover 
+              bg-top md:bg-center" // ✅ top on mobile, center on desktop
             style={{
               backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${images[current]}')`,
-              backgroundSize: "cover", // ✅ responsive fitting
-              backgroundPosition: "center", // ✅ keeps center focus
-              backgroundRepeat: "no-repeat",
             }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -48,14 +47,14 @@ const HomeSection = () => {
         </AnimatePresence>
       </div>
 
-      {/* LUMENZA with red box behind */}
+      {/* LUMENZA with red box */}
       <motion.h1
-        className="relative z-10 text-4xl sm:text-5xl md:text-6xl font-bold mb-4 px-4"
+        className="relative z-10 text-4xl md:text-6xl font-bold mb-4"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, type: "spring", stiffness: 120 }}
       >
-        <span className="relative inline-block px-4 py-2 sm:px-6">
+        <span className="relative inline-block px-4 md:px-6 py-2">
           <span className="absolute inset-0 bg-red-600 rounded-lg -z-10 shadow-lg"></span>
           <span className="text-white tracking-wide">LUMENZA</span>
         </span>
@@ -63,7 +62,7 @@ const HomeSection = () => {
 
       {/* Tagline */}
       <motion.p
-        className="relative z-10 text-base sm:text-lg md:text-xl text-white mb-8 max-w-md sm:max-w-2xl px-4"
+        className="relative z-10 text-sm md:text-xl text-white mb-6 max-w-lg md:max-w-2xl px-3"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 120 }}
@@ -74,32 +73,32 @@ const HomeSection = () => {
 
       {/* Buttons */}
       <motion.div
-        className="relative z-10 flex flex-col sm:flex-row gap-4 sm:gap-6 px-4"
+        className="relative z-10 flex flex-col sm:flex-row gap-4 md:gap-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 1 }}
       >
         <button
-          className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition"
+          className="px-5 py-2 md:px-6 md:py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition text-sm md:text-base"
           onClick={() => scrollToSection("products")}
         >
           Explore Products
         </button>
         <button
-          className="px-6 py-3 bg-white border-2 border-red-600 text-red-600 font-semibold rounded-lg shadow hover:bg-red-50 transition"
-          onClick={() => scrollToSection("inquiry")}
+          className="px-5 py-2 md:px-6 md:py-3 bg-white border-2 border-red-600 text-red-600 font-semibold rounded-lg shadow hover:bg-red-50 transition text-sm md:text-base"
+          onClick={() => scrollToSection("contact us")}
         >
           Contact Us
         </button>
       </motion.div>
 
       {/* Slider Dots */}
-      <div className="absolute bottom-6 flex gap-3 z-10">
+      <div className="absolute bottom-4 md:bottom-6 flex gap-2 md:gap-3 z-10">
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`w-3 h-3 rounded-full transition cursor-pointer ${
+            className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition cursor-pointer ${
               current === index ? "bg-red-600 scale-110" : "bg-white/70"
             }`}
             aria-label={`Slide ${index + 1}`}
