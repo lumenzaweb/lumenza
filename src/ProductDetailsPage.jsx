@@ -66,37 +66,19 @@ const allProducts = {
       img: "https://i.pinimg.com/1200x/ac/b7/81/acb7811d09d259daa26b5e77470395ba.jpg",
     },
   ],
-   "sealants-and-adhesives": [
+  "sealants-and-adhesives": [
     {
       slug: "Silicone",
       name: "Silicone",
       img: "https://i.pinimg.com/736x/87/f4/92/87f49227a0c3fd69502837ad63de622c.jpg",
     },
-    {
-      slug: "Rubber adhesive",
-      name: "Rubber adhesive",
-      img: "https://i.pinimg.com/736x/38/7f/9c/387f9cb14f449a93f98a389d7f45cc50.jpg",
-    },
-    {
-      slug: "Wood adhesive",
-      name: "Wood adhesive",
-      img: "https://i.pinimg.com/736x/38/7f/9c/387f9cb14f449a93f98a389d7f45cc50.jpg",
-    },
   ],
-  "ply": [
-    {
-      slug: "Ply",
-      name: "Ply",
-      img: "https://i.pinimg.com/736x/38/7f/9c/387f9cb14f449a93f98a389d7f45cc50.jpg",
-    },
-  ],
-  // Add more categories if needed
 };
 
 const gridConfig = {
-  "security-solution": "grid-cols-3 justify-center",
-  "door-controls": "grid-cols-2 justify-center",
-  default: "grid-cols-3 justify-center",
+  "security-solution": "sm:grid-cols-2 md:grid-cols-3",
+  "door-controls": "sm:grid-cols-2",
+  default: "sm:grid-cols-2 md:grid-cols-3",
 };
 
 const ProductDetailsPage = () => {
@@ -107,21 +89,21 @@ const ProductDetailsPage = () => {
   const gridColsClass = gridConfig[productName] || gridConfig.default;
 
   return (
-    <section className="py-40 px-12 bg-gray-50 text-center max-w-6xl mx-auto">
+    <section className="py-20 sm:py-40 px-4 sm:px-12 bg-gray-50 text-center max-w-6xl mx-auto">
       <button
         onClick={() => navigate(-1)}
         className="mb-6 px-3 py-2 bg-red-500 text-white rounded hover:bg-black transition"
       >
         ← back
       </button>
-      <h2 className="text-4xl font-bold mb-10 capitalize">
+      <h2 className="text-2xl sm:text-4xl font-bold mb-8 sm:mb-10 capitalize">
         {productName.replace(/-/g, " ")}
       </h2>
       {products.length === 0 ? (
         <p className="text-gray-600">No product details found.</p>
       ) : (
         <motion.div
-          className={`grid gap-10 mt-8 ${gridColsClass} mx-auto max-w-5xl`}
+          className={`grid grid-cols-1 ${gridColsClass} gap-6 sm:gap-10 mt-8 mx-auto max-w-5xl justify-center`}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -130,10 +112,14 @@ const ProductDetailsPage = () => {
             hidden: {},
           }}
         >
-          {products.map(({ name, description, img, slug }, idx) => (
-            <Link key={slug} to={`/product/${productName}/${slug}`} className="block">
+          {products.map(({ name, description, img, slug }) => (
+            <Link
+              key={slug}
+              to={`/product/${productName}/${slug}`}
+              className="block max-w-xs mx-auto"
+            >
               <motion.div
-                className="p-2 bg-white rounded-lg shadow-lg cursor-pointer"
+                className="p-3 sm:p-4 bg-white rounded-lg shadow-lg cursor-pointer h-full flex flex-col"
                 whileHover={{
                   scale: 1.05,
                   y: -5,
@@ -143,9 +129,15 @@ const ProductDetailsPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, type: "spring", stiffness: 120 }}
               >
-                <img src={img} alt={name} className="h-90 w-full object-cover rounded mb-2" />
-                <h3 className="font-bold text-xl mb-2">{name}</h3>
-                <p className="text-gray-700 text-base">{description}</p>
+                <img
+                  src={img}
+                  alt={name}
+                  className="h-48 sm:h-64 w-full object-cover rounded mb-3"
+                />
+                <h3 className="font-bold text-lg sm:text-xl mb-2">{name}</h3>
+                <p className="text-gray-700 text-sm sm:text-base flex-grow">
+                  {description}
+                </p>
               </motion.div>
             </Link>
           ))}

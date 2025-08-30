@@ -23,10 +23,7 @@ const products = [
     name: "Sealants And Adhesives",
     img: "https://i.pinimg.com/736x/8d/d8/92/8dd89271f30a3c925ae72e0265450503.jpg",
   },
-  {
-    name: "Ply",
-    img: "https://i.pinimg.com/1200x/40/72/5b/40725b0e4209f3eaf03a07cd0704bcc9.jpg",
-  },
+  
 ];
 
 const ProductsSection = () => (
