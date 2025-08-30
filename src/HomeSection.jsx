@@ -25,8 +25,8 @@ const HomeSection = () => {
 
   return (
     <section
-      id="home"
-      className="relative h-[80vh] sm:h-screen flex flex-col justify-center items-center text-center bg-black overflow-hidden"
+  id="home"
+  className="relative h-[40vh] md:h-[80vh] flex flex-col justify-center items-center text-center bg-cover bg-center overflow-hidden"
     >
       {/* Background Slider */}
       <div className="absolute inset-0 z-0">
