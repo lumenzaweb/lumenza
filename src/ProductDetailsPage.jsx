@@ -92,7 +92,7 @@ const ProductDetailsPage = () => {
     <section className="py-20 sm:py-40 px-4 sm:px-12 bg-gray-50 text-center max-w-6xl mx-auto">
       <button
         onClick={() => navigate(-1)}
-        className="mb-6 px-3 py-2 bg-red-500 text-white rounded hover:bg-black transition"
+        className="mb-4 px-3 py-2 bg-red-500 text-white rounded hover:bg-black transition"
       >
         ← back
       </button>
