@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const allProducts = {
-  "security-solution": [
+  "Security Solution": [
     {
       slug: "Secure Lite",
       name: "Secure Lite",
