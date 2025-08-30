@@ -772,7 +772,7 @@ features: [
 const ProductSubDetailPage = () => {
   const { productName } = useParams();
   const navigate = useNavigate();
-  const product = productData[decodeURIComponent(productName)];
+ const product = allSubProducts[decodeURIComponent(productName)];
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
   if (!product) {
