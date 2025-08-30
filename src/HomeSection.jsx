@@ -73,7 +73,7 @@ const HomeSection = () => {
 
       {/* Buttons */}
       <motion.div
-        className="relative z-10 flex flex-col sm:flex-row gap-4 md:gap-6"
+        className="relative z-10 flex flex-col sm:flex-row gap-2 md:gap-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 1 }}
