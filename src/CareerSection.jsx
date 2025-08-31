@@ -52,7 +52,7 @@ const CareerSection = () => {
         formData.append("resume", resume);
       }
 
-      const res = await fetch("https://lumenza.onrender.com", {
+      const res = await fetch("https://lumenza.onrender.com/api/forms", {
         method: "POST",
         body: formData,
       });
@@ -187,11 +187,11 @@ const CareerSection = () => {
 
         <div className="bg-white/80 border-l-4 border-red-600 p-6 rounded-xl shadow-sm">
           <p className="text-gray-700 text-lg leading-relaxed">
-            At <span className="font-semibold text-red-700">Lumenza</span>, we’re
+            At <span className="font-semibold text-red-700">Lumenza</span>, we're
             on a mission to redefine how homes and workspaces look and feel — with
             hardware that blends style, innovation, and performance. Behind every
-            flawless handle, smooth trolley, or secure locker, there’s a team of
-            passionate individuals committed to quality and excellence. We’re
+            flawless handle, smooth trolley, or secure locker, there's a team of
+            passionate individuals committed to quality and excellence. We're
             looking for{" "}
             <span className="font-medium">
               visionaries, team players, and problem-solvers
@@ -229,7 +229,7 @@ const CareerSection = () => {
 
         {submitted && (
           <div className="mb-6 text-green-700 font-semibold text-center bg-green-100 py-3 rounded-lg shadow-inner">
-            ✅ Thank you for your submission! We’ll get back to you soon.
+            ✅ Thank you for your submission! We'll get back to you soon.
           </div>
         )}
 
