@@ -58,7 +58,7 @@ const InquirySection = () => {
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-4xl font-extrabold mb-4">Get in Touch</h2>
         <p className="text-lg text-red-100 mb-12">
-          Have questions or ideas? We’d love to hear from you. Fill out the form
+          Have questions or ideas? We'd love to hear from you. Fill out the form
           below and our team will get back to you.
         </p>
 
