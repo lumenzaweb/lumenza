@@ -807,7 +807,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
               <img
                 src={product.images[currentImageIdx]}
                 alt={`${product.name} variant ${currentImageIdx + 1}`}
-                className="w-full h-full object-cover transition-transform duration-300"
+                className="w-full h-full object-contain transition-transform duration-300"
               />
             </div>
             <div className="flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400 w-full">
