@@ -1,34 +1,46 @@
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
+const fetch = require("node-fetch"); // If Node <18, install: npm i node-fetch
 
 // POST /api/inquiry
 router.post("/", async (req, res) => {
   try {
-    const { name, email, message } = req.body;
+    const { name, email, message, captchaToken } = req.body;
 
-    // Save to DB (optional)
-    // const newInquiry = new Inquiry({ name, email, message });
-    // await newInquiry.save();
+    // ✅ Verify reCAPTCHA
+    const recaptchaRes = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
+      { method: "POST" }
+    );
+    const recaptchaData = await recaptchaRes.json();
 
-    // Send email
+    if (!recaptchaData.success) {
+      return res.status(400).json({ success: false, message: "Captcha verification failed" });
+    }
+
+    // ✅ Setup transporter for GoDaddy (your custom domain email)
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: process.env.EMAIL_HOST, // smtpout.secureserver.net
+      port: process.env.EMAIL_PORT, // 465 or 587
+      secure: process.env.EMAIL_PORT == 465, // true if 465
       auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
+        user: process.env.EMAIL_USER, // support@lumenza.co.in
+        pass: process.env.EMAIL_PASS, // your mailbox password
       },
     });
 
+    // ✅ Send email
     await transporter.sendMail({
-      from: email,
-      to: process.env.MAIL_USER,
-      subject: "New Inquiry",
+      from: `"Lumenza Website" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      subject: "📩 New Inquiry from Website",
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     });
 
     res.json({ success: true, message: "Inquiry submitted successfully!" });
   } catch (error) {
+    console.error("❌ Error in /api/inquiry:", error);
     res.status(500).json({ success: false, message: "Error submitting inquiry" });
   }
 });
