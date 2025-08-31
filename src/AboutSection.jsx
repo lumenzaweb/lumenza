@@ -104,38 +104,38 @@ const AboutSection = () => (
     >
       <div className="grid grid-cols-2 grid-rows-3 gap-4">
         <img
-          src="https://southcentralus1-mediap.svc.ms/transform/thumbnail?provider=spo&farmid=201522&inputFormat=png&cs=fFNQTw&docid=https%3A%2F%2Fmy.microsoftpersonalcontent.com%2F_api%2Fv2.0%2Fdrives%2Fb!SVfUsTzZGku0mUSMi0h8B4sbsyp9xp1FptOXiSN-HCozgLrzSELYSKF9JaII7PYQ%2Fitems%2F01PDS6Q4LWHC3UQWYUVVHLYWFTPJ3JTV3I%3Ftempauth%3Dv1e.eyJzaXRlaWQiOiJiMWQ0NTc0OS1kOTNjLTRiMWEtYjQ5OS00NDhjOGI0ODdjMDciLCJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvbXkubWljcm9zb2Z0cGVyc29uYWxjb250ZW50LmNvbUA5MTg4MDQwZC02YzY3LTRjNWItYjExMi0zNmEzMDRiNjZkYWQiLCJleHAiOiIxNzU1NzEyODAwIn0.Bzb4zOiI8HKR0owGNQboLS4G4DF65vVf4TuWFj5lAC_xgptayuqIREbjx-HdWmqXV4ZuW47w84O8UwS5eqtg69KfHFQ-SkcqBdK6NKtIKmTHJtQf2U3MS0SoYxUUP9l2kBsu6Kqsd7MsAjLerxiVk1i_yXPB31kKYOoTLjDkhwQnbQf7RvytL_y2SmF0nn5h5Bp4VdTfyrJglAefqj3aXXmUoamU2UBZM9OgZ5qXOtKnyml_XF6wfLokgETKW5Koq_Nk_muc2kC1yEhTykcCr-bqSGhCDYo_UDPjLz4ZB-oiDCaSUMwRF9yg5QLP3C-33MgqNcRfsnZgUsSkkgLhWvcOlrI8LrWUWh7GqkM4tSirVh-YM9ZJus--Tcajp7CfKlG4VkNoGuHwd_pI_ImQkgPvfdz_q92GbisMwerXqDGNorD3LpkXH5Nd1C1mJf0jwjnwRjgF7cdURaFK_03T0I6cIkGbgTFaj3bgxUv3NyA.dZ_GtuYHtuI0ZboMreeSrVimq6XpyiHhRwtloEB0RKg%26version%3DPublished&width=1024&height=1024&cb=63891288078"
-          alt="Gold hardware display on dark matte"
+          src="https://i.pinimg.com/736x/53/b7/af/53b7afd69efce011dacdd658a7454293.jpg"
+          alt="kitchen profile"
           className="rounded-xl shadow-lg object-cover w-full h-52"
           loading="lazy"
         />
         <img
-          src="https://lh4.googleusercontent.com/rJ5Whwy78oApZ17bW_qVQDIHiiMz-qjLx38eBuiZt0BYTbr_K0F4nMv0RGadIW7-gGaiVIFeSZSMHs5MwqbL6bdMyXZvaKrh9Um_n0RSFJaowIJwKN58GGAo3WnRaKxGNZ2WuBN-3PRS3uxuDix3ncLVnzxUmXBrAn5TyX5WIgGSCsZRrMNvsQ=w1280"
-          alt="Modern cabinet handle closeup"
+          src="https://i.pinimg.com/736x/5f/53/e0/5f53e07e9ec563358c7a444670af04a7.jpg"
+          alt="Door closer satin"
           className="rounded-xl shadow-lg object-cover w-full h-52"
           loading="lazy"
         />
         <img
-          src="https://i.pinimg.com/1200x/e6/6c/e8/e66ce87210ef3205f3a10b7049a64c92.jpg"
-          alt="Premium door locking system"
+          src="https://i.pinimg.com/736x/32/40/b6/3240b6dc2aaaff124a746c207fa75796.jpg"
+          alt="Premium door mortise"
           className="rounded-xl shadow-lg object-cover w-full h-52"
           loading="lazy"
         />
         <img
-          src="https://i.pinimg.com/1200x/80/7f/02/807f0212c92eac3dfa0f5930f1231a45.jpg"
-          alt="Luxury kitchen hardware display"
+          src="https://i.pinimg.com/736x/e3/a4/dc/e3a4dcf73e7d489470ad29af8a25f126.jpg"
+          alt="golden handle"
           className="rounded-xl shadow-lg object-cover w-full h-52"
           loading="lazy"
         />
         <img
-          src="https://i.pinimg.com/736x/10/87/9c/10879c726439408e548d19d5a15152ed.jpg"
-          alt="Locker product by LUMENZA"
+          src="https://i.pinimg.com/736x/8b/28/c0/8b28c0f5f6edd45fc7c4b29a99cb03f3.jpg"
+          alt="Kitchen baskets"
           className="rounded-xl shadow-lg object-cover w-full h-52"
           loading="lazy"
         />
         <img
-          src="https://i.pinimg.com/1200x/11/da/ac/11daac7b47791f9d67a79ae9fac1392e.jpg"
-          alt="High-strength door control piece"
+          src="https://i.pinimg.com/736x/04/e4/b8/04e4b8ab3904b2643707ece3ca93350c.jpg"
+          alt="cabinet handle"
           className="rounded-xl shadow-lg object-cover w-full h-52"
           loading="lazy"
         />
