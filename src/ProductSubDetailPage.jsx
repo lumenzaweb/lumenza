@@ -940,13 +940,18 @@ if (product && product.details && product.details.length > 0) {
         {product.details.map((item, idx) => (
           <div
             key={idx}
-            className="flex flex-col sm:flex-row bg-white rounded-lg shadow-lg overflow-hidden min-h-[250px]"
+            className="flex flex-col sm:flex-row bg-white rounded-lg shadow-lg overflow-hidden"
           >
-            <img
-              src={item.img}
-              alt={`${product.name} detail ${idx + 1}`}
-              className="w-full sm:w-80 h-60 object-cover"
-            />
+            {/* Image wrapper to control aspect ratio */}
+            <div className="flex-shrink-0 flex items-center justify-center w-full sm:w-80 bg-gray-100">
+              <img
+                src={item.img}
+                alt={`${product.name} detail ${idx + 1}`}
+                className="w-full h-60 sm:h-72 object-contain"
+              />
+            </div>
+
+            {/* Description */}
             <div className="flex-1 flex items-center justify-center px-4 py-4 bg-gray-50">
               <p className="text-gray-800 text-base sm:text-lg text-center sm:text-left">
                 {item.description}
