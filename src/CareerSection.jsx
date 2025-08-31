@@ -165,11 +165,10 @@ const CareerSection = () => {
         </span>
       </h1>
       <p className="text-lg mb-12 text-center text-gray-600 max-w-2xl mx-auto">
-        Join our team and shape the future of{" "}
-        <span className="font-semibold">security hardware innovation</span>. Be
-        part of a culture that thrives on{" "}
+        Careers at Lumenza mean{" "}
+        <span className="font-semibold">more than just a job</span>. They're about building futures with a trusted brand in{" "}
         <span className="text-red-700 font-semibold">
-          creativity, collaboration, and impact
+          security, hardware, and lifestyle accessories
         </span>
         .
       </p>
