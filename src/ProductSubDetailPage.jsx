@@ -928,7 +928,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
  // If product has details (grid layout)
 if (product && product.details && product.details.length > 0) {
   return (
-    <main className="py-12 px-4 sm:px-8 md:px-15 min-h-screen bg-white flex flex-col">
+    <main className="py-12 px-4 sm:px-8 md:px-15 min-h-screen bg-gray-50 flex flex-col">
       <button
         onClick={() => navigate(-1)}
         className="self-center mt-20 mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
@@ -943,7 +943,7 @@ if (product && product.details && product.details.length > 0) {
             className="flex flex-col sm:flex-row bg-white rounded-lg shadow-lg overflow-hidden"
           >
             {/* Image wrapper to control aspect ratio */}
-            <div className="flex-shrink-0 flex items-center justify-center w-full sm:w-80 bg-gray-100">
+            <div className="flex-shrink-0 flex items-center justify-center w-full sm:w-80 bg-white">
               <img
                 src={item.img}
                 alt={`${product.name} detail ${idx + 1}`}
