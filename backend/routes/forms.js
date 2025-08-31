@@ -15,10 +15,12 @@ router.post("/", upload.single("resume"), async (req, res) => {
     const file = req.file;
 
     // ✅ Verify reCAPTCHA with native fetch (Node.js v22+)
-    const recaptchaRes = await fetch(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
-      { method: "POST" }
-    );
+    const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+  method: "POST",
+  headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  body: `secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
+});
+
 
     const recaptchaData = await recaptchaRes.json();
     if (!recaptchaData.success) {
@@ -27,14 +29,18 @@ router.post("/", upload.single("resume"), async (req, res) => {
 
     // ✅ Nodemailer transporter
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
-      secure: process.env.EMAIL_PORT == 465, // true for SSL
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+  host: "smtpout.secureserver.net",
+  port: 465,
+  secure: true, // 465 = SSL
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+  tls: {
+    rejectUnauthorized: false, // sometimes needed on GoDaddy
+  },
+});
+
 
     // ✅ Email content
     const mailOptions = {
