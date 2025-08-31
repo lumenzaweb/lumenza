@@ -4,58 +4,68 @@ import nodemailer from "nodemailer";
 
 const router = express.Router();
 
-// ✅ Multer setup for file upload
+// 🔹 Multer setup for file upload (career form)
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// ✅ POST /api/forms
+// 🔹 POST /api/forms
 router.post("/", upload.single("resume"), async (req, res) => {
   try {
-    const { name, email, message, captchaToken } = req.body;
+    const { name, email, message, mobile, position, formType, captchaToken } = req.body;
     const file = req.file;
 
-    // ✅ Verify reCAPTCHA with native fetch (Node.js v22+)
+    // 🔹 Verify reCAPTCHA v2
     const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
-  method: "POST",
-  headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  body: `secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
-});
-
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
+    });
 
     const recaptchaData = await recaptchaRes.json();
+    console.log("🔍 reCAPTCHA response:", recaptchaData);
+
     if (!recaptchaData.success) {
-      return res.status(400).json({ error: "Invalid reCAPTCHA" });
+      return res.status(400).json({ error: "Captcha verification failed", details: recaptchaData });
     }
 
-    // ✅ Nodemailer transporter
+    // 🔹 Configure GoDaddy SMTP
     const transporter = nodemailer.createTransport({
-  host: "smtpout.secureserver.net",
-  port: 465,
-  secure: true, // 465 = SSL
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false, // sometimes needed on GoDaddy
-  },
-});
+      host: "smtpout.secureserver.net",
+      port: 465,
+      secure: true, // SSL for GoDaddy
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false, // sometimes needed for GoDaddy SSL
+      },
+    });
 
+    // 🔹 Email subject based on form type
+    const subject =
+      formType === "career" ? "📄 New Career Application" : "📩 New Website Inquiry";
 
-    // ✅ Email content
+    // 🔹 Email body
+    let htmlContent = `
+      <div style="font-family: Arial, sans-serif; color: #333;">
+        <h2>${subject}</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+    `;
+
+    if (mobile) htmlContent += `<p><strong>Mobile:</strong> ${mobile}</p>`;
+    if (position) htmlContent += `<p><strong>Position:</strong> ${position}</p>`;
+    if (message) htmlContent += `<p><strong>Message:</strong><br/>${message}</p>`;
+
+    htmlContent += `</div>`;
+
+    // 🔹 Email options
     const mailOptions = {
       from: `"Lumenza Website" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER, // Send to company inbox
-      subject: "New Inquiry from Website",
-      html: `
-        <div style="font-family: Arial, sans-serif; color: #333;">
-          <img src="${process.env.COMPANY_LOGO}" alt="Company Logo" style="max-height: 60px; margin-bottom: 20px;" />
-          <h2>📩 New Inquiry Received</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong><br/>${message}</p>
-        </div>
-      `,
+      to: process.env.EMAIL_USER,
+      subject,
+      html: htmlContent,
       attachments: file
         ? [
             {
@@ -66,13 +76,13 @@ router.post("/", upload.single("resume"), async (req, res) => {
         : [],
     };
 
-    // ✅ Send Email
+    // 🔹 Send email
     await transporter.sendMail(mailOptions);
 
-    res.json({ success: true, message: "Message sent successfully!" });
+    res.json({ success: true, message: "✅ Message sent successfully!" });
   } catch (err) {
     console.error("❌ Error in /api/forms:", err);
-    res.status(500).json({ error: "Failed to send message" });
+    res.status(500).json({ error: "Server error. Failed to send message." });
   }
 });
 
