@@ -99,7 +99,7 @@ const InquirySection = () => {
           {/* Google reCAPTCHA */}
           <div className="flex justify-center">
             <ReCAPTCHA
-              sitekey="6LfW4bYrAAAAANbBvQfP06grjhNUbGgurJwNWFI-" // ✅ your site key
+              sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" // ✅ your site key
               onChange={handleCaptcha}
             />
           </div>
