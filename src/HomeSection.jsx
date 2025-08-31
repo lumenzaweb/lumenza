@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
-  "https://i.pinimg.com/1200x/22/4c/03/224c03712887a792fd744343e455ce1a.jpg",
-  "https://i.pinimg.com/1200x/b3/45/4d/b3454d1fb84119732c7aba5dd8ecc423.jpg",
+  "https://i.pinimg.com/736x/63/e7/a0/63e7a0097f11692010d4952dc9858e23.jpg",
+  "https://i.pinimg.com/736x/1c/2b/4b/1c2b4b815df08d7c7a28537e01826026.jpg",
   "https://i.pinimg.com/736x/cd/eb/8b/cdeb8bf6dc72ac7c58a4d215083672c9.jpg",
-  "https://i.pinimg.com/1200x/14/ed/7f/14ed7f9210ca4e0b7aeb8539fc312e5c.jpg",
+  "https://i.pinimg.com/736x/44/47/d5/4447d5bc8d8119d0f8d836745a10ef78.jpg",
 ];
 
 function scrollToSection(id) {
