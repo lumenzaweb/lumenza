@@ -928,7 +928,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
  // If product has details (grid layout)
 if (product && product.details && product.details.length > 0) {
   return (
-    <main className="py-12 px-4 sm:px-8 md:px-15 min-h-screen bg-gray-50 flex flex-col">
+    <main className="py-12 px-4 sm:px-8 md:px-15 min-h-screen bg-white flex flex-col">
       <button
         onClick={() => navigate(-1)}
         className="self-center mt-20 mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
