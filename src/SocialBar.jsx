@@ -8,7 +8,7 @@ const socialLinks = [
   },
   
   {
-    href: "www.linkedin.com/in/lumenza-the-art-of-smooth-living-a8194637b",
+    href: "https://www.linkedin.com/in/lumenza",
     title: "LinkedIn",
     img: "https://img.icons8.com/fluency/48/fa314a/linkedin.png",
   },
