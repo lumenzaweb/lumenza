@@ -18,11 +18,6 @@ const socialLinks = [
     img: "https://img.icons8.com/fluency/48/fa314a/instagram-new.png",
   },
   {
-    href: "https://youtube.com",
-    title: "YouTube",
-    img: "https://img.icons8.com/fluency/48/fa314a/youtube-play.png",
-  },
-  {
     href: "https://wa.me/+918989142281",
     title: "WhatsApp",
     img: "https://img.icons8.com/fluency/48/fa314a/whatsapp.png",

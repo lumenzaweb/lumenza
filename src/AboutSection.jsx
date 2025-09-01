@@ -22,7 +22,7 @@ const AboutSection = () => (
         LUMENZA is a leading name in premium home hardware, known for delivering a wide range of high-quality products Supply to elevate every home. From functional kitchen accessories to sophisticated door handles, handles, stylish bathroom accessories, and advanced safe locks, LUMENZA offers a variety of hardware solutions that bring both style and security to your space.
       </p>
 
-      <h3 className="text-3xl font-bold text-red-600 mb-6">Who We Are ?</h3>
+      <h3 className="text-3xl font-bold text-red-600 mb-6">Who We Are !</h3>
       <p className="text-gray-800 text-lg mb-4">
         At LUMENZA - " The art of smooth living " we curate and supply premium architectural hardware that transforms everyday spaces into expressions of elegance and strength. We partner with trusted manufacturers to bring you a carefully selected range of  "door handles, Safes/Lockers, kitchen accessories, and bathroom accessories" — all chosen for their style, durability, and performance.
       </p>
@@ -75,7 +75,7 @@ const AboutSection = () => (
         Because at LUMENZA, " quality isn't optional — it's the foundation of everything we offer."
       </p>
 
-      <h3 className="text-3xl font-bold text-red-600 mb-6">Why Choose LUMENZA?</h3>
+      <h3 className="text-3xl font-bold text-red-600 mb-6">Why Choose LUMENZA!</h3>
       <p className="text-gray-800 text-lg mb-4">
         At LUMENZA, we go beyond just supplying hardware — we deliver confidence, style, and performance you can trust. Here's why customers, architects, and interior designers choose us:
       </p>
