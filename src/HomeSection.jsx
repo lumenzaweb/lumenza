@@ -213,4 +213,4 @@ const HomeSection = () => {
   );
 };
 
-export { Navbar, HomeSection };
+export default HomeSection;
