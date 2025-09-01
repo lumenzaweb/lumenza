@@ -27,8 +27,12 @@ const HomeSection = () => {
     <section
       id="home"
       className="relative flex flex-col justify-center items-center text-center bg-cover bg-center overflow-hidden
-      h-[45vh] md:h-[80vh] pt-20 px-4 sm:px-6"
-      // ✅ small on mobile, larger on desktop, safe top padding
+      min-h-[420px] md:min-h-[70vh] pt-20 pb-20 px-4 sm:px-6"
+      style={{
+        // ✅ iOS notch safe-area support
+        paddingTop: "calc(5rem + env(safe-area-inset-top))",
+        paddingBottom: "calc(5rem + env(safe-area-inset-bottom))",
+      }}
     >
       {/* Background Slider */}
       <div className="absolute inset-0 z-0">
@@ -47,53 +51,61 @@ const HomeSection = () => {
         </AnimatePresence>
       </div>
 
-      {/* LUMENZA Title */}
-      <motion.h1
-        className="relative z-10 text-3xl sm:text-4xl md:text-6xl font-bold mb-3 leading-snug"
-        initial={{ opacity: 0, y: -40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, type: "spring", stiffness: 120 }}
-      >
-        <span className="relative inline-block px-4 md:px-6 py-1.5">
-          <span className="absolute inset-0 bg-red-600 rounded-lg -z-10 shadow-lg"></span>
-          <span className="text-white tracking-wide">LUMENZA</span>
-        </span>
-      </motion.h1>
-
-      {/* Tagline */}
-      <motion.p
-        className="relative z-10 text-xs sm:text-base md:text-lg text-white mb-5 max-w-md sm:max-w-xl md:max-w-2xl"
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 120 }}
-      >
-        Premium hardware solutions for your home and business – Mortise handles,
-        lockers, cabinet handles, and stylish kitchen accessories.
-      </motion.p>
-
-      {/* Buttons */}
-      <motion.div
-        className="relative z-10 flex flex-col sm:flex-row gap-2 md:gap-4 w-full sm:w-auto justify-center items-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 1 }}
-      >
-        <button
-          className="w-full sm:w-auto px-5 py-2 md:px-6 md:py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition text-sm md:text-base"
-          onClick={() => scrollToSection("products")}
+      {/* Content Wrapper */}
+      <div className="relative z-10 flex flex-col justify-center items-center flex-grow">
+        {/* Title */}
+        <motion.h1
+          className="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 leading-snug"
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, type: "spring", stiffness: 120 }}
         >
-          Explore Products
-        </button>
-        <button
-          className="w-full sm:w-auto px-5 py-2 md:px-6 md:py-3 bg-white border-2 border-red-600 text-red-600 font-semibold rounded-lg shadow hover:bg-red-50 transition text-sm md:text-base"
-          onClick={() => scrollToSection("inquiry")}
+          <span className="relative inline-block px-4 md:px-6 py-1.5">
+            <span className="absolute inset-0 bg-red-600 rounded-lg -z-10 shadow-lg"></span>
+            <span className="text-white tracking-wide">LUMENZA</span>
+          </span>
+        </motion.h1>
+
+        {/* Tagline */}
+        <motion.p
+          className="text-xs sm:text-base md:text-lg text-white mb-6 max-w-md sm:max-w-xl md:max-w-2xl"
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 120 }}
         >
-          Contact Us
-        </button>
-      </motion.div>
+          Premium hardware solutions for your home and business – Mortise handles,
+          lockers, cabinet handles, and stylish kitchen accessories.
+        </motion.p>
+
+        {/* Buttons */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-2 md:gap-4 w-full sm:w-auto justify-center items-center mt-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 1 }}
+        >
+          <button
+            className="w-full sm:w-auto px-5 py-2 md:px-6 md:py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition text-sm md:text-base"
+            onClick={() => scrollToSection("products")}
+          >
+            Explore Products
+          </button>
+          <button
+            className="w-full sm:w-auto px-5 py-2 md:px-6 md:py-3 bg-white border-2 border-red-600 text-red-600 font-semibold rounded-lg shadow hover:bg-red-50 transition text-sm md:text-base"
+            onClick={() => scrollToSection("inquiry")}
+          >
+            Contact Us
+          </button>
+        </motion.div>
+      </div>
 
       {/* Slider Dots */}
-      <div className="absolute bottom-3 sm:bottom-5 flex gap-2 md:gap-3 z-10">
+      <div
+        className="absolute left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-10"
+        style={{
+          bottom: "calc(1.5rem + env(safe-area-inset-bottom))", // ✅ safe from iOS home bar
+        }}
+      >
         {images.map((_, index) => (
           <button
             key={index}
