@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
@@ -15,6 +15,21 @@ function scrollToSection(id) {
 
 const HomeSection = () => {
   const [current, setCurrent] = useState(0);
+  const [navHeight, setNavHeight] = useState(64); // default guess
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    // Grab navbar height dynamically
+    const nav = document.querySelector("nav");
+    if (nav) setNavHeight(nav.offsetHeight);
+
+    const handleResize = () => {
+      if (nav) setNavHeight(nav.offsetHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,14 +42,13 @@ const HomeSection = () => {
     <section
       id="home"
       className="
-        relative flex flex-col justify-center items-center text-center
+        relative flex justify-center items-center text-center
         bg-cover bg-center overflow-hidden
         min-h-[420px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px]
         px-4 sm:px-6
       "
       style={{
-        paddingTop: "calc(4rem + env(safe-area-inset-top))", // ✅ navbar + iOS notch
-        paddingBottom: "calc(5rem + env(safe-area-inset-bottom))", // ✅ safe bottom
+        paddingBottom: "calc(5rem + env(safe-area-inset-bottom))", // safe bottom
       }}
     >
       {/* Background Slider */}
@@ -54,56 +68,69 @@ const HomeSection = () => {
         </AnimatePresence>
       </div>
 
-      {/* LUMENZA with red box */}
-      <motion.h1
-        className="relative z-10 text-4xl md:text-6xl font-bold mb-4"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, type: 'spring', stiffness: 120 }}
+      {/* ✅ Content wrapper pushed down dynamically */}
+      <div
+        className="relative z-10 flex flex-col items-center"
+        style={{
+          marginTop: `calc(${navHeight}px + 1rem + env(safe-area-inset-top))`,
+        }}
       >
-        <span className="relative inline-block px-4 md:px-6 py-2">
-          <span className="absolute inset-0 bg-red-600 rounded-lg -z-10 shadow-lg"></span>
-          <span className="text-white tracking-wide">LUMENZA</span>
-        </span>
-      </motion.h1>
-
-      {/* Tagline */}
-      <motion.p
-        className="relative z-10 text-sm md:text-xl text-white mb-6 max-w-lg md:max-w-2xl px-3"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.3, type: 'spring', stiffness: 120 }}
-      >
-        Premium hardware solutions for your home and business – Mortise handles,
-        lockers, cabinet handles, and stylish kitchen accessories.
-      </motion.p>
-
-      {/* Buttons */}
-      <motion.div
-        className="relative z-10 flex flex-col sm:flex-row gap-2 md:gap-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 1 }}
-      >
-        <button
-          className="px-5 py-2 md:px-6 md:py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition text-sm md:text-base"
-          onClick={() => scrollToSection("products")}
+        {/* LUMENZA with red box */}
+        <motion.h1
+          className="text-4xl md:text-6xl font-bold mb-4"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, type: "spring", stiffness: 120 }}
         >
-          Explore Products
-        </button>
-        <button
-          className="px-5 py-2 md:px-6 md:py-3 bg-white border-2 border-red-600 text-red-600 font-semibold rounded-lg shadow hover:bg-red-50 transition text-sm md:text-base"
-          onClick={() => scrollToSection("inquiry")}
+          <span className="relative inline-block px-4 md:px-6 py-2">
+            <span className="absolute inset-0 bg-red-600 rounded-lg -z-10 shadow-lg"></span>
+            <span className="text-white tracking-wide">LUMENZA</span>
+          </span>
+        </motion.h1>
+
+        {/* Tagline */}
+        <motion.p
+          className="text-sm md:text-xl text-white mb-6 max-w-lg md:max-w-2xl px-3"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1,
+            delay: 0.3,
+            type: "spring",
+            stiffness: 120,
+          }}
         >
-          Contact Us
-        </button>
-      </motion.div>
+          Premium hardware solutions for your home and business – Mortise
+          handles, lockers, cabinet handles, and stylish kitchen accessories.
+        </motion.p>
+
+        {/* Buttons */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-2 md:gap-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 1 }}
+        >
+          <button
+            className="px-5 py-2 md:px-6 md:py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition text-sm md:text-base"
+            onClick={() => scrollToSection("products")}
+          >
+            Explore Products
+          </button>
+          <button
+            className="px-5 py-2 md:px-6 md:py-3 bg-white border-2 border-red-600 text-red-600 font-semibold rounded-lg shadow hover:bg-red-50 transition text-sm md:text-base"
+            onClick={() => scrollToSection("inquiry")}
+          >
+            Contact Us
+          </button>
+        </motion.div>
+      </div>
 
       {/* Slider Dots */}
       <div
         className="absolute left-1/2 transform -translate-x-1/2 flex gap-2 md:gap-3 z-10"
         style={{
-          bottom: "calc(1rem + env(safe-area-inset-bottom))", // ✅ lifted above iOS home bar
+          bottom: "calc(1rem + env(safe-area-inset-bottom))",
         }}
       >
         {images.map((_, index) => (
