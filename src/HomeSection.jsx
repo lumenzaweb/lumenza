@@ -27,10 +27,10 @@ const HomeSection = () => {
     <section
       id="home"
       className="relative flex flex-col justify-center items-center text-center bg-cover bg-center overflow-hidden
-      min-h-[420px] md:min-h-[70vh] pt-20 pb-20 px-4 sm:px-6"
+      min-h-[420px] md:min-h-[70vh] px-4 sm:px-6"
       style={{
-        // ✅ iOS notch safe-area support
-        paddingTop: "calc(5rem + env(safe-area-inset-top))",
+        // ✅ exact match for your navbar height (64px = h-16) + safe areas
+        paddingTop: "calc(4rem + env(safe-area-inset-top))",
         paddingBottom: "calc(5rem + env(safe-area-inset-bottom))",
       }}
     >
@@ -71,7 +71,12 @@ const HomeSection = () => {
           className="text-xs sm:text-base md:text-lg text-white mb-6 max-w-md sm:max-w-xl md:max-w-2xl"
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 120 }}
+          transition={{
+            duration: 1,
+            delay: 0.3,
+            type: "spring",
+            stiffness: 120,
+          }}
         >
           Premium hardware solutions for your home and business – Mortise handles,
           lockers, cabinet handles, and stylish kitchen accessories.
@@ -103,7 +108,7 @@ const HomeSection = () => {
       <div
         className="absolute left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-10"
         style={{
-          bottom: "calc(1.5rem + env(safe-area-inset-bottom))", // ✅ safe from iOS home bar
+          bottom: "calc(1.5rem + env(safe-area-inset-bottom))", // ✅ clear iOS home bar
         }}
       >
         {images.map((_, index) => (
