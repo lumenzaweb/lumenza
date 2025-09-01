@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react"; // ✅ for hamburger icons
 
+/* ---------------- Images ---------------- */
 const images = [
   "https://i.pinimg.com/736x/63/e7/a0/63e7a0097f11692010d4952dc9858e23.jpg",
   "https://i.pinimg.com/736x/1c/2b/4b/1c2b4b815df08d7c7a28537e01826026.jpg",
@@ -8,11 +10,97 @@ const images = [
   "https://i.pinimg.com/736x/44/47/d5/4447d5bc8d8119d0f8d836745a10ef78.jpg",
 ];
 
+/* ---------------- Smooth Scroll ---------------- */
 function scrollToSection(id) {
   const section = document.getElementById(id);
   if (section) section.scrollIntoView({ behavior: "smooth" });
 }
 
+/* ---------------- Navbar ---------------- */
+const Navbar = ({ handleNavClick }) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLinks = [
+    { label: "Products", id: "products" },
+    { label: "Contact", id: "inquiry" },
+  ];
+
+  return (
+    <nav
+      className="fixed top-0 left-0 w-full z-50 bg-white shadow"
+      style={{
+        paddingTop: "env(safe-area-inset-top)", // ✅ notch safe
+      }}
+    >
+      <div className="max-w-6xl mx-auto flex justify-between items-center px-4 py-3 md:py-4">
+        {/* Logo */}
+        <div
+          className="w-32 md:w-40 cursor-pointer"
+          onClick={() => handleNavClick("home")}
+        >
+          <img
+            src="/logo.png" // replace with your logo
+            alt="Logo"
+            className="w-full h-auto"
+          />
+        </div>
+
+        {/* Desktop Nav */}
+        <div className="hidden md:flex gap-6 font-medium text-gray-700">
+          {navLinks.map((link) => (
+            <button
+              key={link.id}
+              onClick={() => handleNavClick(link.id)}
+              className="hover:text-red-600 transition"
+            >
+              {link.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Mobile Hamburger */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="text-gray-700"
+          >
+            {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            className="md:hidden bg-white border-t border-gray-200 shadow-inner"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex flex-col px-4 py-3 space-y-3">
+              {navLinks.map((link) => (
+                <button
+                  key={link.id}
+                  onClick={() => {
+                    handleNavClick(link.id);
+                    setMobileOpen(false);
+                  }}
+                  className="text-gray-700 font-medium text-lg hover:text-red-600 transition"
+                >
+                  {link.label}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
+
+/* ---------------- Home Section ---------------- */
 const HomeSection = () => {
   const [current, setCurrent] = useState(0);
 
@@ -26,12 +114,11 @@ const HomeSection = () => {
   return (
     <section
       id="home"
-      className="relative flex flex-col justify-center items-center text-center bg-cover bg-center overflow-hidden
-      min-h-[420px] md:min-h-[70vh] px-4 sm:px-6"
+      className="relative flex flex-col justify-center items-center text-center bg-cover bg-center overflow-hidden w-full"
       style={{
-        // ✅ exact match for your navbar height (64px = h-16) + safe areas
-        paddingTop: "calc(4rem + env(safe-area-inset-top))",
-        paddingBottom: "calc(5rem + env(safe-area-inset-bottom))",
+        paddingTop: "calc(4rem + env(safe-area-inset-top))", // ✅ safe for navbar + notch
+        paddingBottom: "calc(5rem + env(safe-area-inset-bottom))", // ✅ safe for iOS home bar
+        minHeight: "calc(100vh - 4rem)", // ✅ always visible area
       }}
     >
       {/* Background Slider */}
@@ -51,8 +138,8 @@ const HomeSection = () => {
         </AnimatePresence>
       </div>
 
-      {/* Content Wrapper */}
-      <div className="relative z-10 flex flex-col justify-center items-center flex-grow">
+      {/* Content */}
+      <div className="relative z-10 flex flex-col justify-center items-center flex-grow px-4">
         {/* Title */}
         <motion.h1
           className="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 leading-snug"
@@ -68,7 +155,7 @@ const HomeSection = () => {
 
         {/* Tagline */}
         <motion.p
-          className="text-xs sm:text-base md:text-lg text-white mb-6 max-w-md sm:max-w-xl md:max-w-2xl"
+          className="text-sm sm:text-base md:text-lg text-white mb-6 max-w-md sm:max-w-xl md:max-w-2xl"
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
@@ -108,7 +195,7 @@ const HomeSection = () => {
       <div
         className="absolute left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-10"
         style={{
-          bottom: "calc(1.5rem + env(safe-area-inset-bottom))", // ✅ clear iOS home bar
+          bottom: "calc(1.5rem + env(safe-area-inset-bottom))", // ✅ safe on iOS
         }}
       >
         {images.map((_, index) => (
@@ -126,4 +213,4 @@ const HomeSection = () => {
   );
 };
 
-export default HomeSection;
+export { Navbar, HomeSection };
