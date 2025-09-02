@@ -1,20 +1,20 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Lumenza",
+  "name": "LUMENZA",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "https://i.pinimg.com/736x/01/50/3c/01503cb1e4e7f2dfcd37080e111dba37.jpg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
+      "src": "https://i.pinimg.com/736x/01/50/3c/01503cb1e4e7f2dfcd37080e111dba37.jpg",
+      "type": "image/jpg",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
+      "src": "https://i.pinimg.com/736x/01/50/3c/01503cb1e4e7f2dfcd37080e111dba37.jpg",
+      "type": "image/jpg",
       "sizes": "512x512"
     }
   ],
