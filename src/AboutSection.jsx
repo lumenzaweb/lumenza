@@ -75,7 +75,7 @@ const AboutSection = () => (
         Because at LUMENZA, " quality isn't optional — it's the foundation of everything we offer."
       </p>
 
-      <h3 className="text-3xl font-bold text-red-600 mb-6">Why Choose LUMENZA!</h3>
+      <h3 className="text-3xl font-bold text-red-600 mb-6">Why LUMENZA !</h3>
       <p className="text-gray-800 text-lg mb-4">
         At LUMENZA, we go beyond just supplying hardware — we deliver confidence, style, and performance you can trust. Here's why customers, architects, and interior designers choose us:
       </p>
@@ -90,7 +90,7 @@ const AboutSection = () => (
       </ul>
 
       <p className="text-gray-800 text-lg mb-4">
-        "Choose LUMENZA — where every detail is built with purpose, and designed to impress."
+        "LUMENZA — where every detail is built with purpose, and designed to impress."
       </p>
     </motion.div>
 
@@ -143,7 +143,7 @@ const AboutSection = () => (
 
       {/* Join the Family block */}
       <div className="mt-8 bg-white rounded-xl shadow-lg p-6">
-        <h4 className="text-2xl font-bold text-red-600 mb-4">Join the LUMENZA Family</h4>
+        <h4 className="text-2xl font-bold text-red-600 mb-4">Join LUMENZA Family</h4>
         <p className="text-gray-800 text-lg mb-4">
           At LUMENZA, we don't just supply products — we build lasting relationships. Whether you're a homeowner transforming your space, an interior designer chasing perfection, or a builder in search of reliability, there's a place for you in the Lumenza family.
         </p>
@@ -156,18 +156,18 @@ const AboutSection = () => (
           <li>Be part of a community that values craftsmanship and innovation</li>
         </ul>
         <p className="text-gray-800 text-lg mb-4">
-          "Join the LUMENZA Family — and let’s create beautiful, secure, and functional spaces together."
+          "Join LUMENZA Family — and let's create beautiful, secure, and functional spaces together."
         </p>
       </div>
 
       {/* The Promise block */}
       <div className="mt-8 bg-white rounded-xl shadow-lg p-6">
-        <h4 className="text-2xl font-bold text-red-600 mb-4">The LUMENZA Promise</h4>
+        <h4 className="text-2xl font-bold text-red-600 mb-4">LUMENZA Promise</h4>
         <p className="text-gray-700 text-lg mb-2">
           Our commitment is reflected in every detail. Whether it's the smooth finish of a luxury handle or the silent precision of our kitchen fittings, we deliver products that set the standard for craftsmanship.
         </p>
         <p className="text-gray-700 text-lg mb-2">
-          Every image above shows our real products in use—refined, robust, and ready to elevate your next project. From stunning door hardware to modern bathroom accessories, our catalogue is curated for those who want spaces that impress.
+          Every image above shows our real products in use—refined, robust, and ready to elevate your next project. From Stunning Door Hardware, Security Solution to Modern Bathroom Accessories, our catalogue is curated for those who want spaces that impress.
         </p>
         <ul className="list-disc list-inside text-gray-700 text-lg mb-2">
           <li>Each piece is rigorously tested for durability and safety</li>
@@ -175,7 +175,7 @@ const AboutSection = () => (
           <li>Delivered with expert guidance and customer care</li>
         </ul>
         <p className="text-gray-700 text-[17px]">
-          With LUMENZA, you don’t just get hardware—you join a family dedicated to beauty, strength and trust.
+          With LUMENZA, you don't just get hardware—you join a family dedicated to beauty, strength and trust.
         </p>
       </div>
     </motion.div>
