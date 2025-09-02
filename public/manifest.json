@@ -4,11 +4,6 @@
   "icons": [
     {
       "src": "https://i.pinimg.com/736x/01/50/3c/01503cb1e4e7f2dfcd37080e111dba37.jpg",
-      "sizes": "16x16 24x24 32x32 64x64",
-      "type": "image/png"
-    },
-    {
-      "src": "https://i.pinimg.com/736x/01/50/3c/01503cb1e4e7f2dfcd37080e111dba37.jpg",
       "sizes": "192x192",
       "type": "image/png"
     },
