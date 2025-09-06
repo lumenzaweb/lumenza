@@ -163,8 +163,8 @@ app.post("/api/forms", upload.single("resume"), async (req, res) => {
 
     res.status(200).json({ success: true, message: "Form submitted successfully" });
   } catch (err) {
-    console.error("❌ Form submit error:", err);
-    res.status(500).json({ error: "Server error" });
+    console.error("❌ Form submit error:", err.message, err.stack);
+    res.status(500).json({ error: err.message });
   }
 });
 
