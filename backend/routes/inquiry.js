@@ -16,24 +16,27 @@ router.post("/", async (req, res) => {
     const recaptchaData = await recaptchaRes.json();
 
     if (!recaptchaData.success) {
-      return res.status(400).json({ success: false, message: "Captcha verification failed" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Captcha verification failed" });
     }
 
-    // ✅ Setup transporter for GoDaddy (your custom domain email)
+    // ✅ Setup transporter for Zoho Mail
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST, // smtpout.secureserver.net
-      port: process.env.EMAIL_PORT, // 465 or 587
-      secure: process.env.EMAIL_PORT == 465, // true if 465
+      host: process.env.EMAIL_HOST || "smtp.zoho.in",
+      port: process.env.EMAIL_PORT || 465,
+      secure: true, // Zoho requires SSL on 465
       auth: {
         user: process.env.EMAIL_USER, // support@lumenza.co.in
-        pass: process.env.EMAIL_PASS, // your mailbox password
+        pass: process.env.EMAIL_PASS, // ⚠️ Use App Password if 2FA enabled
       },
     });
 
     // ✅ Send email
     await transporter.sendMail({
       from: `"Lumenza Website" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, // you receive inquiries
+      replyTo: email, // makes it easy to reply to the customer
       subject: "📩 New Inquiry from Website",
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     });
@@ -41,7 +44,9 @@ router.post("/", async (req, res) => {
     res.json({ success: true, message: "Inquiry submitted successfully!" });
   } catch (error) {
     console.error("❌ Error in /api/inquiry:", error);
-    res.status(500).json({ success: false, message: "Error submitting inquiry" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error submitting inquiry" });
   }
 });
 
