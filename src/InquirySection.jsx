@@ -33,7 +33,7 @@ const InquirySection = () => {
       const res = await fetch("https://lumenza.onrender.com/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: "Inquiry", ...formData, recaptchaToken }),
+        body: JSON.stringify({ formType: "Inquiry", ...formData, captchaToken: recaptchaToken }),
       });
 
       const data = await res.json();

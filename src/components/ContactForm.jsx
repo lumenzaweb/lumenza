@@ -15,10 +15,10 @@ const ContactForm = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://lumenza.onrender.com/api/inquiry", {
+      const res = await fetch("https://lumenza.onrender.com/api/forms", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ formType: "Contact", ...formData }),
       });
 
       const data = await res.json();
