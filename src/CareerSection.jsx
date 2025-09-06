@@ -52,14 +52,14 @@ const CareerSection = () => {
         formData.append("resume", resume);
       }
 
-      const res = await fetch("https://lumenza.onrender.com/api/forms", {
+      const res = await fetch("https://lumenza.onrender.com/api/inquiry", {
         method: "POST",
         body: formData,
       });
 
       const data = await res.json();
 
-      if (res.ok) {
+      if (res.ok && data.success) {
         setSubmitted(true);
         setStatus("✅ Application submitted successfully!");
         setForm({
@@ -72,7 +72,7 @@ const CareerSection = () => {
         setResume(null);
         setCaptchaToken(null);
       } else {
-        setStatus(`❌ Error: ${data.error}`);
+        setStatus(`❌ Error: ${data.message || "Submission failed"}`);
       }
     } catch (err) {
       console.error("❌ Career form error:", err);

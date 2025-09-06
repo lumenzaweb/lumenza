@@ -15,21 +15,23 @@ const ContactForm = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://lumenza.onrender.com", {
+      const res = await fetch("https://lumenza.onrender.com/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
-        alert("Message sent successfully!");
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        alert("✅ Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        alert("Failed to send. Please try again.");
+        alert("❌ Failed to send: " + (data.message || "Please try again."));
       }
     } catch (err) {
-      console.error(err);
-      alert("Error sending form.");
+      console.error("❌ Error:", err);
+      alert("Error sending form. Please try again later.");
     }
   };
 

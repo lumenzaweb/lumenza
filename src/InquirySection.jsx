@@ -30,23 +30,24 @@ const InquirySection = () => {
     setStatus("Sending...");
 
     try {
-      const res = await fetch("https://lumenza.onrender.com/api/forms", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ formType: "Inquiry", ...formData, recaptchaToken }),
-   });
-   
+      const res = await fetch("https://lumenza.onrender.com/api/inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formType: "Inquiry", ...formData, recaptchaToken }),
+      });
+
       const data = await res.json();
 
-      if (res.ok) {
+      if (res.ok && data.success) {
         setStatus("✅ Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
         setRecaptchaToken(null);
       } else {
-        setStatus(`❌ Error: ${data.error}`);
+        setStatus(`❌ Error: ${data.message || "Submission failed"}`);
       }
     } catch (err) {
       setStatus("❌ Failed to send message");
+      console.error("Inquiry form error:", err);
     }
   };
 

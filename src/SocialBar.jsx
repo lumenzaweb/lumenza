@@ -2,12 +2,6 @@ import React from "react";
 
 const socialLinks = [
   {
-    href: "https://www.facebook.com/share/1BWp1jTTC7/",
-    title: "Facebook",
-    img: "https://img.icons8.com/fluency/48/fa314a/facebook-new.png",
-  },
-  
-  {
     href: "https://www.linkedin.com/in/lumenza",
     title: "LinkedIn",
     img: "https://img.icons8.com/fluency/48/fa314a/linkedin.png",

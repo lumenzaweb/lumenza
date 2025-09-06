@@ -1,89 +1,107 @@
-import express from "express";
-import multer from "multer";
-import nodemailer from "nodemailer";
-
+const express = require("express");
 const router = express.Router();
+const nodemailer = require("nodemailer");
+const fetch = require("node-fetch");
+const multer = require("multer");
+const path = require("path");
 
-// 🔹 Multer setup for file upload (career form)
-const storage = multer.memoryStorage();
+// File upload config (for resumes)
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "uploads/"),
+  filename: (req, file, cb) =>
+    cb(null, Date.now() + path.extname(file.originalname)),
+});
 const upload = multer({ storage });
 
-// 🔹 POST /api/forms
+// POST /api/forms
 router.post("/", upload.single("resume"), async (req, res) => {
   try {
-    const { name, email, message, mobile, position, formType, captchaToken } = req.body;
-    const file = req.file;
+    const {
+      formType,
+      name,
+      email,
+      message,
+      mobile,
+      position,
+      captchaToken,
+      recaptchaToken,
+    } = req.body;
 
-    // 🔹 Verify reCAPTCHA v2
-    const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
-    });
+    const token = captchaToken || recaptchaToken;
 
-    const recaptchaData = await recaptchaRes.json();
-    console.log("🔍 reCAPTCHA response:", recaptchaData);
-
-    if (!recaptchaData.success) {
-      return res.status(400).json({ error: "Captcha verification failed", details: recaptchaData });
+    // ✅ Verify reCAPTCHA if token exists (for Inquiry & Career)
+    if (token) {
+      const recaptchaRes = await fetch(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${token}`,
+        { method: "POST" }
+      );
+      const recaptchaData = await recaptchaRes.json();
+      if (!recaptchaData.success) {
+        return res
+          .status(400)
+          .json({ success: false, message: "Captcha verification failed" });
+      }
     }
 
-    // 🔹 Configure GoDaddy SMTP
+    // ✅ Setup transporter for Zoho
     const transporter = nodemailer.createTransport({
-      host: "smtpout.secureserver.net",
-      port: 587,
-      secure: false, // SSL for GoDaddy
+      host: process.env.EMAIL_HOST || "smtp.zoho.in",
+      port: process.env.EMAIL_PORT || 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
-      tls: {
-        rejectUnauthorized: false, // sometimes needed for GoDaddy SSL
-      },
     });
 
-    // 🔹 Email subject based on form type
-    const subject =
-      formType === "career" ? "📄 New Career Application" : "📩 New Website Inquiry";
+    // ✅ Email subject & body
+    let subject = "📩 New Form Submission";
+    let textBody = `Form Type: ${formType || "Unknown"}\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
 
-    // 🔹 Email body
-    let htmlContent = `
-      <div style="font-family: Arial, sans-serif; color: #333;">
-        <h2>${subject}</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-    `;
+    if (formType === "Inquiry") {
+      subject = "📩 New Inquiry from Website";
+      textBody = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
+    }
 
-    if (mobile) htmlContent += `<p><strong>Mobile:</strong> ${mobile}</p>`;
-    if (position) htmlContent += `<p><strong>Position:</strong> ${position}</p>`;
-    if (message) htmlContent += `<p><strong>Message:</strong><br/>${message}</p>`;
+    if (formType === "Contact") {
+      subject = "📩 New Contact Form Submission";
+      textBody = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
+    }
 
-    htmlContent += `</div>`;
+    if (formType === "career") {
+      subject = "📩 New Career Application";
+      textBody = `Name: ${name}\nEmail: ${email}\nMobile: ${mobile}\nPosition: ${position}\nMessage: ${message}`;
+    }
 
-    // 🔹 Email options
+    // ✅ Mail options
     const mailOptions = {
       from: `"Lumenza Website" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
+      replyTo: email,
       subject,
-      html: htmlContent,
-      attachments: file
-        ? [
-            {
-              filename: file.originalname,
-              content: file.buffer,
-            },
-          ]
-        : [],
+      text: textBody,
     };
 
-    // 🔹 Send email
+    // ✅ If career form & resume attached → add attachment
+    if (req.file) {
+      mailOptions.attachments = [
+        {
+          filename: req.file.originalname,
+          path: req.file.path,
+        },
+      ];
+    }
+
+    // ✅ Send email
     await transporter.sendMail(mailOptions);
 
-    res.json({ success: true, message: "✅ Message sent successfully!" });
-  } catch (err) {
-    console.error("❌ Error in /api/forms:", err);
-    res.status(500).json({ error: "Server error. Failed to send message." });
+    res.json({ success: true, message: "Form submitted successfully!" });
+  } catch (error) {
+    console.error("❌ Error in /api/forms:", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Error submitting form" });
   }
 });
 
-export default router;
+module.exports = router;
