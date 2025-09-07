@@ -46,15 +46,15 @@ const CareerSection = () => {
       formData.append("mobile", form.mobile);
       formData.append("position", form.position);
       formData.append("message", form.message);
-      formData.append("formType", "career");
+      formData.append("formType", "Career");
       formData.append("captchaToken", captchaToken);
       if (resume) {
         formData.append("resume", resume);
       }
 
-      const res = await fetch("https://lumenza.onrender.com/api/inquiry", {
-        method: "POST",
-        body: formData,
+      const res = await fetch("https://lumenza.onrender.com/api/forms", {
+      method: "POST",
+      body: formData,
       });
 
       const data = await res.json();

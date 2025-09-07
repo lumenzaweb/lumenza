@@ -97,10 +97,8 @@ router.post("/", upload.single("resume"), async (req, res) => {
 
     res.json({ success: true, message: "Form submitted successfully!" });
   } catch (error) {
-    console.error("❌ Error in /api/forms:", error);
-    res
-      .status(500)
-      .json({ success: false, message: "Error submitting form" });
+    console.error("❌ Form submit error:", err.message, err.stack);
+res.status(500).json({ error: err.message });
   }
 });
 
