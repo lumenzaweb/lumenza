@@ -27,13 +27,17 @@ const InquirySection = () => {
       return;
     }
 
-    setStatus("Sending...");
+    setStatus("⏳ Sending...");
 
     try {
-      const res = await fetch("https://lumenza.onrender.com/api/inquiry", {
+      const res = await fetch("https://lumenza.onrender.com/api/forms", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: "Inquiry", ...formData, captchaToken: recaptchaToken }),
+        body: JSON.stringify({
+          formType: "Inquiry",
+          ...formData,
+          captchaToken: recaptchaToken,
+        }),
       });
 
       const data = await res.json();

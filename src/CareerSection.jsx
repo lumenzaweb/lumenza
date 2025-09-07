@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { CheckCircle } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -15,6 +15,8 @@ const CareerSection = () => {
   const [submitted, setSubmitted] = useState(false);
   const [status, setStatus] = useState("");
   const [captchaToken, setCaptchaToken] = useState(null);
+
+  const fileInputRef = useRef(null); // ✅ to reset file input
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -53,8 +55,8 @@ const CareerSection = () => {
       }
 
       const res = await fetch("https://lumenza.onrender.com/api/forms", {
-      method: "POST",
-      body: formData,
+        method: "POST",
+        body: formData,
       });
 
       const data = await res.json();
@@ -70,7 +72,9 @@ const CareerSection = () => {
           message: "",
         });
         setResume(null);
+        if (fileInputRef.current) fileInputRef.current.value = ""; // ✅ reset file input
         setCaptchaToken(null);
+        window.grecaptcha?.reset(); // ✅ reset captcha widget
       } else {
         setStatus(`❌ Error: ${data.message || "Submission failed"}`);
       }
@@ -257,6 +261,8 @@ const CareerSection = () => {
             name="mobile"
             value={form.mobile}
             onChange={handleChange}
+            pattern="[0-9]{10}"
+            title="Enter a valid 10-digit mobile number"
             required
             placeholder="Mobile Number"
             className="p-3 border rounded-xl focus:ring-2 focus:ring-red-400 focus:outline-none shadow-sm"
@@ -286,6 +292,7 @@ const CareerSection = () => {
               Upload Resume (PDF/DOC)
             </label>
             <input
+              ref={fileInputRef}
               type="file"
               accept=".pdf,.doc,.docx"
               onChange={handleFileChange}
@@ -296,7 +303,7 @@ const CareerSection = () => {
           {/* Google reCAPTCHA */}
           <div className="flex justify-center md:col-span-2">
             <ReCAPTCHA
-              sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" // your site key
+              sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt"
               onChange={handleCaptcha}
             />
           </div>
