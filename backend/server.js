@@ -67,19 +67,32 @@ const upload = multer({
   },
 });
 
-// ✅ Email transporter (Outlook / Office365 with TLS)
+// ✅ Email transporter
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
   port: process.env.EMAIL_PORT,
-  secure: process.env.EMAIL_PORT === "465", // must be false for port 587
+  secure: true, // true for 465, false for 587
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  tls: {
-    ciphers: "SSLv3",
-  },
 });
+
+export const sendMail = async ({ to, subject, html }) => {
+  try {
+    const info = await transporter.sendMail({
+      from: `"Lumenza Support" <${process.env.EMAIL_USER}>`,
+      to,
+      subject,
+      html,
+    });
+    console.log("✅ Email sent:", info.messageId);
+    return true;
+  } catch (err) {
+    console.error("❌ Email sending failed:", err);
+    return false;
+  }
+};
 
 // ✅ Route: handle ALL forms (with optional file upload)
 app.post("/api/forms", upload.single("resume"), async (req, res) => {
