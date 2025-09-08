@@ -8,13 +8,13 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import testEmailRoute from "./routes/testEmail.js";
-app.use("/", testEmailRoute);
+
 
 dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+app.use("/", testEmailRoute);
 // ✅ ENV check
 console.log("✅ ENV check:", {
   PORT: process.env.PORT,
