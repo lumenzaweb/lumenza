@@ -104,8 +104,8 @@ const AboutSection = () => (
     >
       <div className="grid grid-cols-2 grid-rows-3 gap-4">
         <img
-          src="https://i.pinimg.com/736x/53/b7/af/53b7afd69efce011dacdd658a7454293.jpg"
-          alt="kitchen profile"
+          src="https://i.pinimg.com/736x/97/06/52/970652e99fc7b6f1802451016ed78511.jpg"
+          alt="locker"
           className="rounded-xl shadow-lg object-cover w-full h-52"
           loading="lazy"
         />
@@ -122,8 +122,8 @@ const AboutSection = () => (
           loading="lazy"
         />
         <img
-          src="https://i.pinimg.com/736x/e3/a4/dc/e3a4dcf73e7d489470ad29af8a25f126.jpg"
-          alt="golden handle"
+          src="https://i.pinimg.com/736x/fc/7a/42/fc7a4246426601ed91fffd1fd4813931.jpg"
+          alt="lockbody"
           className="rounded-xl shadow-lg object-cover w-full h-52"
           loading="lazy"
         />
@@ -134,8 +134,8 @@ const AboutSection = () => (
           loading="lazy"
         />
         <img
-          src="https://i.pinimg.com/736x/04/e4/b8/04e4b8ab3904b2643707ece3ca93350c.jpg"
-          alt="cabinet handle"
+          src="https://i.pinimg.com/736x/43/0f/19/430f199700551bdfc39c4ec1a0771016.jpg"
+          alt="designer knob"
           className="rounded-xl shadow-lg object-cover w-full h-52"
           loading="lazy"
         />
