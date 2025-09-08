@@ -6,6 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 
+import Celebration from "./Celebration";
 import Navbar from "./Navbar";
 import HomeSection from "./HomeSection";
 import AboutSection from "./AboutSection";
@@ -174,5 +175,12 @@ const App = () => {
     </Router>
   );
 };
-
+function App() {
+  return (
+    <div>
+      <Celebration /> {/* 🎆 Fireworks animation */}
+      <h1>🚀 Your Website is Live! 🎉</h1>
+    </div>
+  );
+}
 export default App;
