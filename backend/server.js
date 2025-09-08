@@ -162,7 +162,7 @@ app.post("/api/forms", upload.single("resume"), async (req, res) => {
     // ✅ Auto-reply to user
     if (email) {
       await transporter.sendMail({
-        from: `"Your Company" <${process.env.EMAIL_USER}>`,
+        from: `"LUMENZA" <${process.env.EMAIL_USER}>`,
         to: email,
         subject: "✅ We received your submission",
         html: `
@@ -170,7 +170,7 @@ app.post("/api/forms", upload.single("resume"), async (req, res) => {
             <img src="${process.env.COMPANY_LOGO}" alt="Logo" style="width:100px;margin-bottom:20px;" />
             <h3>Thank you for contacting us!</h3>
             <p>Your ${formType} has been received. Our team will get back to you soon.</p>
-            <p style="color:#555;">Best regards,<br/>Team</p>
+            <p style="color:#555;">Best regards,<br/>Lumenza Team</p>
           </div>
         `,
       });
