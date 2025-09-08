@@ -6,7 +6,6 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import Celebration from "./Celebration";
 import Navbar from "./Navbar";
 import HomeSection from "./HomeSection";
 import AboutSection from "./AboutSection";
