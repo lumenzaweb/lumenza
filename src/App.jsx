@@ -41,14 +41,6 @@ const ScrollHandler = ({ children }) => {
 };
 
 const App = () => {
-  
-  return (
-    <div>
-      <Celebration /> {/* 🎆 Fireworks animation */}
-      <h1>🚀 Your Website is Live! 🎉</h1>
-    </div>
-  );
-
   const [showQuery, setShowQuery] = React.useState(false);
   const [queryForm, setQueryForm] = React.useState({
     name: "",
