@@ -7,6 +7,8 @@ import cors from "cors";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import testEmailRoute from "./routes/testEmail.js";
+app.use("/", testEmailRoute);
 
 dotenv.config();
 const app = express();
