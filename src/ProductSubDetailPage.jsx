@@ -28,8 +28,7 @@ productDetails: [
 title: "Secure Lite: 12L-MatteBlack",
 image: "https://i.pinimg.com/736x/fd/77/ad/fd77ad13a43235ec28369ecb661ed956.jpg",
 specs: [
-"Dimensions(DxWxH):",
-"20 x 31 x 20cm",
+"(DxWxH): 20 x 31 x 20cm",
 "Weight(approx): 5.60 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital Keypad",
@@ -39,7 +38,7 @@ specs: [
 title: "Secure Lite: 20L-MatteBlack",
 image: "https://i.pinimg.com/736x/cf/96/ec/cf96ec61d847273cff0640074cd56cb2.jpg",
 specs: [
-"Dimensions(DxWxH): 25 x 35 x 25cm",
+"(DxWxH): 25 x 35 x 25cm",
 "Weight(approx): 6.31 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital keypad",
@@ -49,7 +48,7 @@ specs: [
 title: "Secure Lite: 32L-MatteBlack",
 image: "https://i.pinimg.com/736x/cf/96/ec/cf96ec61d847273cff0640074cd56cb2.jpg",
 specs: [
-"Dimensions(DxWxH): 30 x 38 x 30cm",
+"(DxWxH): 30 x 38 x 30cm",
 "Weight(approx): 9.78 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital Keypad",
@@ -59,7 +58,7 @@ specs: [
 title: "Secure Lite: 48L-MatteBlack",
 image: "https://i.pinimg.com/736x/ef/b6/94/efb6949a53dc9375da5bef960c9b209c.jpg",
 specs: [
-"Dimensions(DxWxH): 35 x 35 x 42cm",
+"(DxWxH): 35 x 35 x 42cm",
 "Weight(approx): 12.55 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital Keypad",
@@ -69,7 +68,7 @@ specs: [
 title: "Secure Lite: 55L-MatteBlack",
 image: "https://i.pinimg.com/736x/99/fe/98/99fe9800e25b7da267979ec436a39675.jpg",
 specs: [
-"Dimensions(DxWxH): 33 x 35 x 50cm",
+"(DxWxH): 33 x 35 x 50cm",
 "Weight(approx): 13.88 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital Keypad",
@@ -103,7 +102,7 @@ productDetails: [
 title: "Secure X: 20L-MatteBlack",
 image: "https://i.pinimg.com/736x/22/36/19/223619dc2f0e70764b41c9da5c70bfe5.jpg",
 specs: [
-"Dimensions(DxWxH): 25 x 35 x 25cm",
+"(DxWxH): 25 x 35 x 25cm",
 "Weight(approx): 11.9 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital Keypad",
@@ -113,7 +112,7 @@ specs: [
 title: "Secure X: 20L-MatteGrey",
 image: "https://i.pinimg.com/736x/a8/4b/3e/a84b3e1e0a52ba6d75e31b14e88a06f7.jpg",
 specs: [
-"Dimensions(DxWxH): 25 x 35 x 25cm",
+"(DxWxH): 25 x 35 x 25cm",
 "Weight(approx): 11.9 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital keypad",
@@ -123,7 +122,7 @@ specs: [
 title: "Secure X: 48L-MatteBlack",
 image: "https://i.pinimg.com/736x/d2/8c/be/d28cbe5137058a687ac82760a8b0843b.jpg",
 specs: [
-"Dimensions(DxWxH): 35 x 35 x 42cm",
+"(DxWxH): 35 x 35 x 42cm",
 "Weight(approx): 19.4 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital Keypad",
@@ -133,7 +132,7 @@ specs: [
 title: "Secure X: 48L-MatteGrey",
 image: "https://i.pinimg.com/736x/62/e0/0d/62e00d3025aa43e3150aaadcc86c1d3a.jpg",
 specs: [
-"Dimensions(DxWxH): 35 x 35 x 42cm",
+"(DxWxH): 35 x 35 x 42cm",
 "Weight(approx): 19.4 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital Keypad",
@@ -143,7 +142,7 @@ specs: [
 title: "Secure X: 55L-MatteBlack",
 image: "https://i.pinimg.com/736x/23/77/a7/2377a7cc903d158c683374da5ab6a856.jpg",
 specs: [
-"Dimensions(DxWxH): 33 x 35 x 50cm",
+"(DxWxH): 33 x 35 x 50cm",
 "Weight(approx): 21 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital Keypad",
@@ -153,7 +152,7 @@ specs: [
 title: "Secure X: 55L-MatteGrey",
 image: "https://i.pinimg.com/736x/17/b3/d0/17b3d070a541925ad80d7cc8aad63f6f.jpg",
 specs: [
-"Dimensions(DxWxH): 33 x 35 x 50cm",
+"(DxWxH): 33 x 35 x 50cm",
 "Weight(approx): 21 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital Keypad",
@@ -186,7 +185,7 @@ productDetails: [
 title: "Secure ECO: 9L-MatteBlack",
 image: "https://i.pinimg.com/736x/aa/3f/09/aa3f09fbe27bf57b152a8d6343442286.jpg",
 specs: [
-"Dimensions(DxWxH): 7.87 x 13.78 x 7.87cm",
+"(DxWxH): 7.87 x 13.78 x 7.87cm",
 "Weight(approx): 5.9 kg",
 "Capacity (Ltr):9.2",
 "Material: Heavy-duty Steel",
@@ -197,7 +196,7 @@ specs: [
 title: "Secure ECO: 26L-Black",
 image: "https://i.pinimg.com/736x/aa/3f/09/aa3f09fbe27bf57b152a8d6343442286.jpg",
 specs: [
-"Dimensions(DxWxH): 14.96 x 16.93 x 7.87cm",
+"(DxWxH): 14.96 x 16.93 x 7.87cm",
 "Weight(approx): 10.7 kg",
 "Capacity (Ltr): 26.4",
 "Material: Heavy-duty Steel",
@@ -208,7 +207,7 @@ specs: [
 title: "Secure ECO: 34L-Black",
 image: "https://i.pinimg.com/736x/aa/3f/09/aa3f09fbe27bf57b152a8d6343442286.jpg",
 specs: [
-"Dimensions(DxWxH): 14.76 x 17.91 x 9.84cm",
+"(DxWxH): 14.76 x 17.91 x 9.84cm",
 "Weight(approx): 12.4 kg",
 "Capacity (Ltr): 34.94",
 "Material: Heavy-duty Steel",
@@ -750,8 +749,10 @@ features: [
 },
 "Silicone": {
 name: "Silicone",
-description:
-"GP300 is one part acetic cure silicone sealant. A strong, fast curing, general purpose & is unaffected by rain, sunlight, snow etc. It is formulated with years if experience on a wide range of applications. It is a silicone sealant with high UV & water resistance.",
+description: 
+<li>
+<strong>GP300</strong> is one part acetic cure silicone sealant. A strong, fast curing, general purpose & is unaffected by rain, sunlight, snow etc. It is formulated with years if experience on a wide range of applications. It is a silicone sealant with high UV & water resistance.
+</li>,
 images: [
 "https://i.pinimg.com/736x/7f/f1/7b/7ff17ba1c6f90e1951735e879e28b434.jpg",
 "https://i.pinimg.com/736x/eb/ea/33/ebea3372d29a5132e10c988e3f6bfb2a.jpg",

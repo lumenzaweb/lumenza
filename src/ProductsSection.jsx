@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 const products = [
   {
     name: "Security Solution",
-    img: "https://i.pinimg.com/736x/c6/96/9e/c6969e8a5ad1a8c358e333a7242cc30a.jpg",
+    img: "https://i.pinimg.com/736x/8a/11/80/8a118042d769d824337062254afb1dc5.jpg",
   },
   {
     name: "Door Controls",
-    img: "https://i.pinimg.com/1200x/96/e2/17/96e2179247234868837e6df7527e78c6.jpg",
+    img: "https://i.pinimg.com/736x/e1/46/aa/e146aa101dcb45b59fd1ab772f0e070b.jpg",
   },
   {
     name: "Kitchen Accessories",
@@ -17,11 +17,11 @@ const products = [
   },
   {
     name: "Cabinet Fittings",
-    img: "https://i.pinimg.com/736x/9b/f1/30/9bf1302d7cdad79a819482c7819e4f38.jpg",
+    img: "https://i.pinimg.com/736x/3b/1b/c1/3b1bc1ad75a6f5fa5d7ebc49f6aa9171.jpg",
   },
    {
     name: "Sealants And Adhesives",
-    img: "https://i.pinimg.com/736x/8d/d8/92/8dd89271f30a3c925ae72e0265450503.jpg",
+    img: "https://i.pinimg.com/736x/87/f4/92/87f49227a0c3fd69502837ad63de622c.jpg",
   },
   
 ];
