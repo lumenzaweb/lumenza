@@ -19,25 +19,25 @@ const AboutSection = () => (
       </h3>
 
       <p className="text-gray-800 text-lg mb-4">
-        LUMENZA is a leading name in premium home hardware, known for delivering a wide range of high-quality products Supply to elevate every home. From functional kitchen accessories to sophisticated door handles, handles, stylish bathroom accessories, and advanced safe locks, LUMENZA offers a variety of hardware solutions that bring both style and security to your space.
+        <strong>LUMENZA</strong> is a leading name in premium home hardware, known for delivering a wide range of high-quality products Supply to elevate every home. From functional kitchen accessories to sophisticated Door Handles, Handles, Stylish Bathroom Accessories, and Advanced Safe Locks,<strong>LUMENZA</strong> offers a variety of hardware solutions that bring both style and security to your space.
       </p>
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Who We Are !</h3>
       <p className="text-gray-800 text-lg mb-4">
-        At LUMENZA - " The art of smooth living " we curate and supply premium architectural hardware that transforms everyday spaces into expressions of elegance and strength. We partner with trusted manufacturers to bring you a carefully selected range of  "door handles, Safes/Lockers, kitchen accessories, and bathroom accessories" — all chosen for their style, durability, and performance.
+        At <strong>LUMENZA - </strong>" The art of smooth living " we curate and supply premium architectural hardware that transforms everyday spaces into expressions of elegance and strength. We partner with trusted manufacturers to bring you a carefully selected range of  "Door Handles, Safes/Lockers, Kitchen Accessories, and Bathroom Accessories" — all chosen for their Style, Durability, and Performance.
       </p>
 
       <p className="text-gray-800 text-lg mb-4">
-        Our goal is simple: to deliver high-quality products that meet modern design standards and real-world functionality. Whether you're designing a home, upgrading a workspace, or building from the ground up, Lumenza is your reliable source for hardware that blends aesthetics with assurance .
+        Our goal is simple: to deliver high-quality products that meet modern design standards and real-world functionality. Whether you're designing a home, upgrading a workspace, or building from the ground up, <strong>LUMENZA</strong> is your reliable source for hardware that blends aesthetics with assurance .
       </p>
 
       <p className="text-gray-800 text-lg mb-4">
-        We're not just suppliers — we're collaborators in your design journey. Backed by deep industry knowledge and a passion for excellence, Lumenza ensures you get the right products, the right finish, and the right experience — every time.
+        We're not just suppliers — we're collaborators in your design journey. Backed by deep industry knowledge and a passion for excellence, <strong>LUMENZA</strong> ensures you get the right products, the right finish, and the right experience — every time.
       </p>
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Our Philosophy :</h3>
       <p className="text-gray-800 text-lg mb-4">
-        At LUMENZA, we believe that hardware should do more than serve a purpose — it should inspire, perform, and enhance. Every product we supply is chosen with a commitment to three core principles:
+        At <strong>LUMENZA</strong>, we believe that hardware should do more than serve a purpose — it should inspire, perform, and enhance. Every product we supply is chosen with a commitment to three core principles:
       </p>
 
       <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
@@ -48,7 +48,7 @@ const AboutSection = () => (
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Our Product Range :</h3>
       <p className="text-gray-800 text-lg mb-4">
-        At LUMENZA, we offer a thoughtfully curated selection of premium hardware and accessories designed to enhance both form and function in modern interiors. Our range includes :
+        At <strong>LUMENZA</strong>, we offer a thoughtfully curated selection of premium hardware and accessories designed to enhance both form and function in modern interiors. Our range includes :
       </p>
 
       <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
@@ -60,7 +60,7 @@ const AboutSection = () => (
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Our Commitment to Quality :</h3>
       <p className="text-gray-800 text-lg mb-4">
-        At LUMENZA, quality isn't a feature — it's a promise. Every product we supply is carefully selected to meet the highest standards of "durability, functionality, and design excellence".
+        At <strong>LUMENZA</strong>, quality isn't a feature — it's a promise. Every product we supply is carefully selected to meet the highest standards of "durability, functionality, and design excellence".
       </p>
 
       <p className="text-gray-800 text-lg mb-4">
@@ -68,16 +68,16 @@ const AboutSection = () => (
       </p>
 
       <p className="text-gray-800 text-lg mb-4">
-        What sets Lumenza apart is our attention to the details others overlook — rust resistance, smooth finishes, silent operation, and aesthetic harmony. Whether for homes, offices, or commercial projects, our products are built to perform beautifully, every day.
+        What sets <strong>LUMENZA</strong> apart is our attention to the details others overlook — Rust Resistance, Smooth Finishes, Silent Operation, and Aesthetic Harmony. Whether for homes, offices, or commercial projects, our products are built to perform beautifully, every day.
       </p>
 
       <p className="text-gray-800 text-lg mb-4">
-        Because at LUMENZA, " quality isn't optional — it's the foundation of everything we offer."
+        Because at <strong>LUMENZA</strong>, " quality isn't optional — it's the foundation of everything we offer."
       </p>
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Why LUMENZA !</h3>
       <p className="text-gray-800 text-lg mb-4">
-        At LUMENZA, we go beyond just supplying hardware — we deliver confidence, style, and performance you can trust. Here's why customers, architects, and interior designers choose us:
+        At<strong>LUMENZA</strong>, we go beyond just supplying hardware — we deliver confidence, style, and performance you can trust. Here's why customers, architects, and interior designers choose us:
       </p>
 
       <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
@@ -90,7 +90,7 @@ const AboutSection = () => (
       </ul>
 
       <p className="text-gray-800 text-lg mb-4">
-        "LUMENZA — where every detail is built with purpose, and designed to impress."
+        "<strong>LUMENZA — </strong>where every detail is built with purpose, and designed to impress."
       </p>
     </motion.div>
 
@@ -145,7 +145,7 @@ const AboutSection = () => (
       <div className="mt-8 bg-white rounded-xl shadow-lg p-6">
         <h4 className="text-2xl font-bold text-red-600 mb-4">Join LUMENZA Family</h4>
         <p className="text-gray-800 text-lg mb-4">
-          At LUMENZA, we don't just supply products — we build lasting relationships. Whether you're a homeowner transforming your space, an interior designer chasing perfection, or a builder in search of reliability, there's a place for you in the Lumenza family.
+          At <strong>LUMENZA</strong>, we don't just supply products — we build lasting relationships. Whether you're a homeowner transforming your space, an interior designer chasing perfection, or a builder in search of reliability, there's a place for you in the <strong>LUMENZA</strong> family.
         </p>
         <p className="text-gray-800 text-lg mb-4">
           When you choose us, you're choosing more than quality hardware — you're choosing a partner committed to "style, trust, and long-term value."
@@ -156,7 +156,7 @@ const AboutSection = () => (
           <li>Be part of a community that values craftsmanship and innovation</li>
         </ul>
         <p className="text-gray-800 text-lg mb-4">
-          "Join LUMENZA Family — and let's create beautiful, secure, and functional spaces together."
+          "Join <strong>LUMENZA</strong> Family — and let's create beautiful, secure, and functional spaces together."
         </p>
       </div>
 
@@ -175,7 +175,7 @@ const AboutSection = () => (
           <li>Delivered with expert guidance and customer care</li>
         </ul>
         <p className="text-gray-700 text-[17px]">
-          With LUMENZA, you don't just get hardware—you join a family dedicated to beauty, strength and trust.
+          With <strong>LUMENZA</strong>, you don't just get hardware—you join a family dedicated to beauty, strength and trust.
         </p>
       </div>
     </motion.div>
