@@ -40,10 +40,10 @@ const AboutSection = () => (
         At LUMENZA, we believe that hardware should do more than serve a purpose — it should inspire, perform, and enhance. Every product we supply is chosen with a commitment to three core principles:
       </p>
 
-      <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4">
+      <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
         <li><strong>Innovation:</strong> We stay ahead of trends and technology to bring you smart, forward-thinking hardware solutions that meet the needs of modern living and design.</li>
-        <li>Functionality :  Our products are built to work — smoothly, silently, and reliably. Every hinge, handle, or lock we offer is engineered for real-life performance and lasting comfort.</li>
-        <li>Aesthetic Excellence : Beauty is never an afterthought. From sleek minimalist handles to refined bathroom accessories, we select designs that elevate the feel of every room.</li>
+        <li><strong>Functionality :</strong>  Our products are built to work — smoothly, silently, and reliably. Every hinge, handle, or lock we offer is engineered for real-life performance and lasting comfort.</li>
+        <li><strong>Aesthetic Excellence :</strong> Beauty is never an afterthought. From sleek minimalist handles to refined bathroom accessories, we select designs that elevate the feel of every room.</li>
       </ul>
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Our Product Range :</h3>
