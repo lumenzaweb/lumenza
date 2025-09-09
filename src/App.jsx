@@ -117,7 +117,7 @@ const App = () => {
               </div>
             }
           />
-          <Route path="/products" element={<ProductsPage />} /> {/* ✅ New route */}
+          <Route path="/products" element={<ProductsPage />} /> 
           <Route path="/product/:productName" element={<ProductDetailsPage />} />
           <Route path="/product/:productName/:subProductSlug" element={<ProductSubDetailPage />} />
           <Route path="/career" element={<CareerSection />} />
