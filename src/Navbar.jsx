@@ -15,17 +15,24 @@ const Navbar = () => {
   const location = useLocation();
 
   const handleNavClick = (section) => {
-    if (section === "career") {
-      navigate("/career");
-      setOpen(false);
+    if (section === "products") {
+      navigate("/products");
+      setOpen(false); // ✅ close mobile menu
       return;
     }
+
+    if (section === "career") {
+      navigate("/career");
+      setOpen(false); // ✅ close mobile menu
+      return;
+    }
+
     if (location.pathname === "/") {
       scrollToSection(section);
     } else {
       navigate("/", { state: { scrollTarget: section } });
     }
-    setOpen(false);
+    setOpen(false); // ✅ close mobile menu
   };
 
   return (
@@ -41,6 +48,8 @@ const Navbar = () => {
             className="w-full object-contain"
           />
         </div>
+
+        {/* Desktop menu */}
         <div className="hidden md:flex gap-8 font-medium">
           {SECTIONS.map((section, idx) => (
             <button
@@ -54,6 +63,8 @@ const Navbar = () => {
             </button>
           ))}
         </div>
+
+        {/* Mobile menu toggle */}
         <div className="md:hidden">
           <button
             onClick={() => setOpen(!open)}
@@ -66,6 +77,8 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+
+      {/* Mobile dropdown */}
       {open && (
         <div
           id="mobile-menu"
@@ -74,10 +87,7 @@ const Navbar = () => {
           {SECTIONS.map((section, idx) => (
             <button
               key={idx}
-              onClick={() => {
-                handleNavClick(section);
-                setOpen(false);
-              }}
+              onClick={() => handleNavClick(section)} // ✅ closes after click
               className="py-2 hover:text-red-600 font-medium transition-colors"
             >
               {section === "inquiry"

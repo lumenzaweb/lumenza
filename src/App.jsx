@@ -9,7 +9,6 @@ import {
 import Navbar from "./Navbar";
 import HomeSection from "./HomeSection";
 import AboutSection from "./AboutSection";
-import ProductsSection from "./ProductsSection";
 import InquirySection from "./InquirySection";
 import FloatingContactButtons from "./FloatingContactButtons";
 import SocialBar from "./SocialBar";
@@ -19,6 +18,7 @@ import CareerSection from "./CareerSection";
 import Login from "./Login";
 import Admin from "./Admin";
 import ContactForm from "./components/ContactForm";
+import ProductsPage from "./pages/ProductsPage"; // ✅ use new page
 
 const scrollToSection = (id) => {
   const section = document.getElementById(id);
@@ -32,7 +32,7 @@ const ScrollHandler = ({ children }) => {
     if (location.state?.scrollTarget) {
       setTimeout(() => {
         scrollToSection(location.state.scrollTarget);
-      }, 400); // delay for route change rendering
+      }, 400);
     }
   }, [location]);
 
@@ -52,25 +52,22 @@ const App = () => {
     setQueryForm({ ...queryForm, [e.target.name]: e.target.value });
   };
 
-  // ✅ fixed handler name
   const handleQuerySubmit = async (e) => {
     e.preventDefault();
-
     try {
       const res = await fetch("https://lumenza.onrender.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...queryForm,
-          formType: "query", // 👈 flag to identify this form
+          formType: "query",
         }),
       });
-
       const data = await res.json();
       console.log("✅ Query form submitted:", data);
       alert("Query submitted successfully!");
       setShowQuery(false);
-      setQueryForm({ name: "", mobile: "", email: "", message: "" }); // reset form
+      setQueryForm({ name: "", mobile: "", email: "", message: "" });
     } catch (err) {
       console.error("❌ Query form error:", err);
       alert("Something went wrong.");
@@ -96,49 +93,12 @@ const App = () => {
               <h3 className="text-lg font-bold mb-3 text-center">
                 Send Your Query
               </h3>
-              {/* ✅ fixed here */}
               <form className="flex flex-col gap-2" onSubmit={handleQuerySubmit}>
-                <input
-                  type="text"
-                  name="name"
-                  value={queryForm.name}
-                  onChange={handleQueryChange}
-                  placeholder="Name"
-                  className="p-2 border rounded"
-                  required
-                />
-                <input
-                  type="tel"
-                  name="mobile"
-                  value={queryForm.mobile}
-                  onChange={handleQueryChange}
-                  placeholder="Mobile"
-                  className="p-2 border rounded"
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  value={queryForm.email}
-                  onChange={handleQueryChange}
-                  placeholder="Email"
-                  className="p-2 border rounded"
-                  required
-                />
-                <textarea
-                  name="message"
-                  value={queryForm.message}
-                  onChange={handleQueryChange}
-                  placeholder="Message"
-                  className="p-2 border rounded"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="bg-yellow-500 text-white py-2 rounded font-semibold mt-2 hover:bg-yellow-600"
-                >
-                  Submit
-                </button>
+                <input type="text" name="name" value={queryForm.name} onChange={handleQueryChange} placeholder="Name" className="p-2 border rounded" required />
+                <input type="tel" name="mobile" value={queryForm.mobile} onChange={handleQueryChange} placeholder="Mobile" className="p-2 border rounded" required />
+                <input type="email" name="email" value={queryForm.email} onChange={handleQueryChange} placeholder="Email" className="p-2 border rounded" required />
+                <textarea name="message" value={queryForm.message} onChange={handleQueryChange} placeholder="Message" className="p-2 border rounded" required />
+                <button type="submit" className="bg-yellow-500 text-white py-2 rounded font-semibold mt-2 hover:bg-yellow-600">Submit</button>
               </form>
             </div>
           </div>
@@ -151,20 +111,15 @@ const App = () => {
               <div className="font-sans text-gray-800">
                 <HomeSection />
                 <AboutSection />
-                <ProductsSection />
+                {/* ❌ Removed ProductsSection */}
                 <InquirySection />
                 <SocialBar />
               </div>
             }
           />
-          <Route
-            path="/product/:productName"
-            element={<ProductDetailsPage />}
-          />
-          <Route
-            path="/product/:productName/:subProductSlug"
-            element={<ProductSubDetailPage />}
-          />
+          <Route path="/products" element={<ProductsPage />} /> {/* ✅ New route */}
+          <Route path="/product/:productName" element={<ProductDetailsPage />} />
+          <Route path="/product/:productName/:subProductSlug" element={<ProductSubDetailPage />} />
           <Route path="/career" element={<CareerSection />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
