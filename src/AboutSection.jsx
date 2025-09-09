@@ -51,7 +51,7 @@ const AboutSection = () => (
         At LUMENZA, we offer a thoughtfully curated selection of premium hardware and accessories designed to enhance both form and function in modern interiors. Our range includes :
       </p>
 
-      <ul className="list-disc list-inside text-gray-800 text-lg mb-4">
+      <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
         <li>Kitchen Trolleys Maximize space and efficiency with smart, durable pull-out trolleys — crafted for convenience, smooth operation, and stylish integration into modular kitchens.</li>
         <li>Door Handles/Handles From sleek cabinet handles to bold main door handles, our collection combines ergonomic design with striking finishes for a flawless grip and a lasting impression.</li>
         <li>Bathroom Accessories Refined fixtures like towel racks, robe hooks, and soap trays — made from rust-resistant materials and designed to bring elegance and order to your daily routines.</li>
@@ -80,7 +80,7 @@ const AboutSection = () => (
         At LUMENZA, we go beyond just supplying hardware — we deliver confidence, style, and performance you can trust. Here's why customers, architects, and interior designers choose us:
       </p>
 
-      <ul className="list-disc list-inside text-gray-800 text-lg mb-4">
+      <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
         <li>Curated Quality We handpick every product from reliable manufacturers, ensuring it meets our standards for durability, precision, and design excellence.</li>
         <li>Modern Aesthetics From minimalist to bold finishes, our hardware is designed to complement contemporary interiors and elevate every space.</li>
         <li>Function Meets Style Our range blends smart functionality with visual appeal — smooth slides, strong locks, ergonomic handles, and elegant fittings.</li>
@@ -150,7 +150,7 @@ const AboutSection = () => (
         <p className="text-gray-800 text-lg mb-4">
           When you choose us, you're choosing more than quality hardware — you're choosing a partner committed to "style, trust, and long-term value."
         </p>
-        <ul className="list-disc list-inside text-gray-800 text-lg mb-4">
+        <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
           <li>Stay inspired with new designs</li>
           <li>Get personalized support and recommendations</li>
           <li>Be part of a community that values craftsmanship and innovation</li>
@@ -169,7 +169,7 @@ const AboutSection = () => (
         <p className="text-gray-700 text-lg mb-2">
           Every image above shows our real products in use—refined, robust, and ready to elevate your next project. From Stunning Door Hardware, Security Solution to Modern Bathroom Accessories, our catalogue is curated for those who want spaces that impress.
         </p>
-        <ul className="list-disc list-inside text-gray-700 text-lg mb-2">
+        <ul className="list-disc list-outside pl-6 text-gray-700 text-lg mb-2 space-y-4 leading-relaxed">
           <li>Each piece is rigorously tested for durability and safety</li>
           <li>Stylish finishes to match every interior concept</li>
           <li>Delivered with expert guidance and customer care</li>
