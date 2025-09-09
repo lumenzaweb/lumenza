@@ -798,7 +798,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
           onClick={() => navigate(-1)}
           className="self-center mt-28 mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
         >
-          ← Back
+          Back
         </button>
         <section className="flex flex-col md:flex-row flex-1 gap-8 max-w-full overflow-hidden px-4">
           {/* Image Gallery Section */}
@@ -933,7 +933,7 @@ if (product && product.details && product.details.length > 0) {
         onClick={() => navigate(-1)}
         className="self-center mt-20 mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
       >
-        ← Back
+         Back
       </button>
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto w-full">
