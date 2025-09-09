@@ -28,7 +28,8 @@ productDetails: [
 title: "Secure Lite: 12L-MatteBlack",
 image: "https://i.pinimg.com/736x/fd/77/ad/fd77ad13a43235ec28369ecb661ed956.jpg",
 specs: [
-"Dimensions(DxWxH): 20 x 31 x 20cm",
+"Dimensions(DxWxH):",
+"20 x 31 x 20cm",
 "Weight(approx): 5.60 kg",
 "Material: Heavy-duty Steel",
 "Lock Type: Digital Keypad",
