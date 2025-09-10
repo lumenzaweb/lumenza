@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 const products = [
   {
@@ -26,57 +25,42 @@ const products = [
 ];
 
 const ProductsSection = () => (
-  <section id="products" className="py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
-    <h3 className="text-4xl font-extrabold text-center text-gray-800 mb-12 tracking-wide">
-      Our Products
-    </h3>
+  <section id="products" className="py-16 px-4 sm:px-6 lg:px-10 bg-gray-50">
+    <div className="max-w-7xl mx-auto">
+      {/* Heading */}
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center tracking-widest uppercase mb-12">
+        Product Catalogue
+      </h2>
 
-    <motion.div
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={{
-        visible: { transition: { staggerChildren: 0.2 } },
-        hidden: {},
-      }}
-    >
-      {products.map((item, idx) => (
-        <motion.div
-          key={idx}
-          className="relative group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
-          whileHover={{ scale: 1.05, y: -5 }}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, type: "spring", stiffness: 120 }}
-        >
+      {/* Responsive Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        {products.map((item, idx) => (
           <Link
+            key={idx}
             to={`/product/${encodeURIComponent(
               item.name.toLowerCase().replace(/ /g, "-")
             )}`}
+            className="group flex flex-col bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300"
           >
             {/* Image */}
-            <div className="overflow-hidden">
+            <div className="h-56 sm:h-64 md:h-72 overflow-hidden rounded-t-xl">
               <img
                 src={item.img}
                 alt={`${item.name} by LUMENZA`}
-                className="h-56 w-full object-cover transform group-hover:scale-110 transition duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
             {/* Title */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
-              <h4 className="text-white text-lg font-semibold bg-black/50 px-4 py-1 rounded-lg group-hover:bg-red-600 transition">
+            <div className="flex-1 flex items-center justify-center px-4 py-5 border-t border-gray-200">
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 uppercase tracking-wide text-center group-hover:text-red-600 transition">
                 {item.name}
-              </h4>
+              </h3>
             </div>
           </Link>
-        </motion.div>
-      ))}
-    </motion.div>
+        ))}
+      </div>
+    </div>
   </section>
 );
 
