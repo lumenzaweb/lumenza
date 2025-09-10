@@ -29,7 +29,7 @@ const ProductsSection = () => (
     <div className="max-w-7xl mx-auto">
       {/* Heading */}
       <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center tracking-widest uppercase mb-12">
-        Product Catalogue
+        OUR PRODUCT
       </h2>
 
       {/* Responsive Grid */}
