@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const products = [
   {
     name: "Security Solution",
-    img: "https://i.pinimg.com/736x/8a/11/80/8a118042d769d824337062254afb1dc5.jpg",
+    img: "https://i.pinimg.com/736x/b6/15/e5/b615e58f04770c42b44e0ecde1318595.jpg",
   },
   {
     name: "Door Controls",
@@ -20,7 +20,7 @@ const products = [
   },
   {
     name: "Sealants And Adhesives",
-    img: "https://i.pinimg.com/736x/87/f4/92/87f49227a0c3fd69502837ad63de622c.jpg",
+    img: "https://i.pinimg.com/736x/58/a6/11/58a611f3875b621c8b84796e4c802b66.jpg",
   },
 ];
 
