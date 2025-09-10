@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const products = [
   {
     name: "Security Solution",
-    img: "https://i.pinimg.com/736x/b6/15/e5/b615e58f04770c42b44e0ecde1318595.jpg",
+    img: "https://i.pinimg.com/736x/fe/7a/ca/fe7aca1e867cb56a59cae237d72c591c.jpg",
   },
   {
     name: "Door Controls",
@@ -20,7 +20,7 @@ const products = [
   },
   {
     name: "Sealants And Adhesives",
-    img: "https://i.pinimg.com/736x/58/a6/11/58a611f3875b621c8b84796e4c802b66.jpg",
+    img: "https://i.pinimg.com/736x/59/cd/f7/59cdf7db5d3f53706935203f059ce9b6.jpg",
   },
 ];
 
@@ -29,7 +29,7 @@ const ProductsSection = () => (
     <div className="max-w-7xl mx-auto">
       {/* Heading */}
       <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center tracking-widest uppercase mb-12">
-        OUR PRODUCT
+        OUR PRODUCTS
       </h2>
 
       {/* Responsive Grid */}
@@ -53,7 +53,7 @@ const ProductsSection = () => (
 
             {/* Title */}
             <div className="flex-1 flex items-center justify-center px-4 py-5 border-t border-gray-200">
-              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 uppercase tracking-wide text-center group-hover:text-red-600 transition">
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 uppercase tracking-wide text-center group-hover:text-red-600 transition">
                 {item.name}
               </h3>
             </div>

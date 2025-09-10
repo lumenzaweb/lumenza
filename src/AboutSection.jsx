@@ -116,7 +116,7 @@ const AboutSection = () => (
           loading="lazy"
         />
         <img
-          src="https://i.pinimg.com/736x/32/40/b6/3240b6dc2aaaff124a746c207fa75796.jpg"
+          src="https://i.pinimg.com/736x/5c/7c/be/5c7cbe3dcaf990c3cf3ec47967c1b2f0.jpg"
           alt="Premium door mortise"
           className="rounded-xl shadow-lg object-cover w-full h-52"
           loading="lazy"
