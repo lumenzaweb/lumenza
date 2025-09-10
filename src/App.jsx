@@ -18,7 +18,7 @@ import CareerSection from "./CareerSection";
 import Login from "./Login";
 import Admin from "./Admin";
 import ContactForm from "./components/ContactForm";
-import ProductsPage from "./pages/ProductsPage"; // ✅ use new page
+import ProductsPage from "./pages/ProductsPage.jsx"; // ✅ use new page
 
 const scrollToSection = (id) => {
   const section = document.getElementById(id);
