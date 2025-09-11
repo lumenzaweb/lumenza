@@ -104,7 +104,7 @@ const AboutSection = () => (
       transition={{ duration: 1, type: "spring", stiffness: 120 }}
     >
       <div className="grid grid-cols-2 grid-rows-3 gap-4">
-        <Link to="/pages:ProductsPage">
+        <Link to="/products">
           <img
             src="https://i.pinimg.com/736x/97/06/52/970652e99fc7b6f1802451016ed78511.jpg"
             alt="locker"
@@ -113,7 +113,7 @@ const AboutSection = () => (
           />
         </Link>
 
-        <Link to="./pages/ProductsPage.jsx">
+        <Link to="/products">
           <img
             src="https://i.pinimg.com/736x/5f/53/e0/5f53e07e9ec563358c7a444670af04a7.jpg"
             alt="Door closer satin"
@@ -122,7 +122,7 @@ const AboutSection = () => (
           />
         </Link>
 
-        <Link to="./pages/ProductsPage.jsx">
+        <Link to="/products">
           <img
             src="https://i.pinimg.com/736x/5c/7c/be/5c7cbe3dcaf990c3cf3ec47967c1b2f0.jpg"
             alt="Premium door mortise"
@@ -131,7 +131,7 @@ const AboutSection = () => (
           />
         </Link>
 
-        <Link to="./pages/ProductsPage.jsx">
+        <Link to="/products">
           <img
             src="https://i.pinimg.com/736x/fc/7a/42/fc7a4246426601ed91fffd1fd4813931.jpg"
             alt="lockbody"
@@ -140,7 +140,7 @@ const AboutSection = () => (
           />
         </Link>
 
-        <Link to="./pages/ProductsPage.jsx">
+        <Link to="/products">
           <img
             src="https://i.pinimg.com/736x/8b/28/c0/8b28c0f5f6edd45fc7c4b29a99cb03f3.jpg"
             alt="Kitchen baskets"
@@ -149,7 +149,7 @@ const AboutSection = () => (
           />
         </Link>
 
-        <Link to="./pages/ProductsPage.jsx">
+        <Link to="/products">
           <img
             src="https://i.pinimg.com/736x/43/0f/19/430f199700551bdfc39c4ec1a0771016.jpg"
             alt="designer knob"
