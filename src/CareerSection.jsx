@@ -117,7 +117,7 @@ const CareerSection = () => {
         "Work with digital & offline marketing channels",
         "Plan exhibitions and trade shows",
         "Coordinate with designers and content creators",
-        "Open Roles :",
+        <strong>Open Roles :</strong>,
         "Marketing Executive",
         "Digital Marketing Specialist",
       ],
@@ -172,7 +172,7 @@ const CareerSection = () => {
         Careers at Lumenza mean{" "}
         <span className="font-semibold">more than just a job</span>. They're about building futures with a trusted brand in{" "}
         <span className="text-red-700 font-semibold">
-          security, hardware, and lifestyle accessories
+          Security, Hardware, and Lifestyle Accessories
         </span>
         .
       </p>
