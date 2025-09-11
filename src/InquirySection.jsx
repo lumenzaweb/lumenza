@@ -25,14 +25,14 @@ const InquirySection = () => {
     setPopup({ show: true, type, message });
     setTimeout(() => {
       setPopup({ show: false, type: "", message: "" });
-    }, 4000);
+    }, 3000);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!recaptchaToken) {
-      showPopup("error", "❌ Please verify the captcha.");
+      showPopup("error", "Please verify the captcha.");
       return;
     }
 
@@ -52,16 +52,16 @@ const InquirySection = () => {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        showPopup("success", "✅ Message sent successfully!");
+        showPopup("success", "Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
         setRecaptchaToken(null);
         window.grecaptcha?.reset();
       } else {
-        showPopup("error", `❌ Error: ${data.message || "Submission failed"}`);
+        showPopup("error", data.message || "Submission failed");
       }
     } catch (err) {
       console.error("Inquiry form error:", err);
-      showPopup("error", "❌ Failed to send message");
+      showPopup("error", "Failed to send message");
     } finally {
       setLoading(false);
     }
@@ -72,19 +72,21 @@ const InquirySection = () => {
       id="inquiry"
       className="py-20 px-6 bg-gradient-to-r from-red-600 via-red-500 to-red-700 text-white scroll-mt-20 relative"
     >
-      {/* Popup Notification */}
+      {/* Centered Popup */}
       {popup.show && (
-        <div
-          className={`fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 text-white transition-transform duration-300 ${
-            popup.type === "success" ? "bg-green-600" : "bg-red-600"
-          }`}
-        >
-          {popup.type === "success" ? (
-            <CheckCircle className="w-6 h-6" />
-          ) : (
-            <XCircle className="w-6 h-6" />
-          )}
-          <span className="font-medium">{popup.message}</span>
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div
+            className={`flex flex-col items-center gap-4 p-8 rounded-2xl shadow-2xl text-center w-[90%] max-w-md transition-all ${
+              popup.type === "success" ? "bg-white text-green-700" : "bg-white text-red-700"
+            }`}
+          >
+            {popup.type === "success" ? (
+              <CheckCircle className="w-16 h-16 text-green-600" />
+            ) : (
+              <XCircle className="w-16 h-16 text-red-600" />
+            )}
+            <p className="text-lg font-semibold">{popup.message}</p>
+          </div>
         </div>
       )}
 
