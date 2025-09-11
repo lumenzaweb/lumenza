@@ -3,7 +3,7 @@ import ProductsSection from "../ProductsSection";
 
 const ProductsPage = () => {
   return (
-    <div className="pt-20">
+    <div className="font-bold pt-20">
       <ProductsSection />
     </div>
   );
