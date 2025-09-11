@@ -169,7 +169,7 @@ app.post("/api/forms", upload.single("resume"), async (req, res) => {
           <div style="font-family:Arial,sans-serif;padding:20px;">
             <img src="${process.env.COMPANY_LOGO}" alt="Logo" style="width:100px;margin-bottom:20px;" />
             <h3>Thank you for contacting us!</h3>
-            <p>Your ${formType} has been received. Our team will get back to you soon.</p>
+            <p>Your ${formType} details has been received. Our team will get back to you soon.</p>
             <p style="color:#555;">Best regards,<br/>Lumenza Team</p>
           </div>
         `,

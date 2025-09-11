@@ -9,8 +9,8 @@ const InquirySection = () => {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState({ show: false, type: "", message: "" });
+  const [loading, setLoading] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState(null);
 
   const handleChange = (e) => {
@@ -61,7 +61,7 @@ const InquirySection = () => {
       }
     } catch (err) {
       console.error("Inquiry form error:", err);
-      showPopup("error", "Failed to send message");
+      showPopup("error", "Failed to send message.");
     } finally {
       setLoading(false);
     }
@@ -72,20 +72,18 @@ const InquirySection = () => {
       id="inquiry"
       className="py-20 px-6 bg-gradient-to-r from-red-600 via-red-500 to-red-700 text-white scroll-mt-20 relative"
     >
-      {/* Centered Popup */}
+      {/* Center Popup */}
       {popup.show && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div
-            className={`flex flex-col items-center gap-4 p-8 rounded-2xl shadow-2xl text-center w-[90%] max-w-md transition-all ${
-              popup.type === "success" ? "bg-white text-green-700" : "bg-white text-red-700"
-            }`}
-          >
+          <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn">
             {popup.type === "success" ? (
-              <CheckCircle className="w-16 h-16 text-green-600" />
+              <CheckCircle className="w-12 h-12 text-green-600" />
             ) : (
-              <XCircle className="w-16 h-16 text-red-600" />
+              <XCircle className="w-12 h-12 text-red-600" />
             )}
-            <p className="text-lg font-semibold">{popup.message}</p>
+            <p className="text-lg font-semibold text-gray-800">
+              {popup.message}
+            </p>
           </div>
         </div>
       )}
@@ -143,13 +141,17 @@ const InquirySection = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full flex items-center justify-center gap-2 bg-red-600 text-white py-4 rounded-xl text-lg font-semibold shadow-lg transition-all
-              ${loading ? "opacity-80 cursor-not-allowed" : "hover:bg-red-700 hover:scale-105"}
+            className={`relative flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-800 text-white py-4 px-6 rounded-xl text-lg font-semibold shadow-md transition-all w-full
+              ${
+                loading
+                  ? "opacity-80 cursor-not-allowed"
+                  : "hover:shadow-lg hover:scale-105"
+              }
             `}
           >
             {loading ? (
               <svg
-                className="w-6 h-6 animate-spin text-white"
+                className="w-5 h-5 animate-spin text-white"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
