@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, XCircle } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const CareerSection = () => {
@@ -13,7 +13,8 @@ const CareerSection = () => {
 
   const [resume, setResume] = useState(null);
   const [submitted, setSubmitted] = useState(false);
-  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [popup, setPopup] = useState({ show: false, type: "", message: "" });
   const [captchaToken, setCaptchaToken] = useState(null);
 
   const fileInputRef = useRef(null);
@@ -30,16 +31,23 @@ const CareerSection = () => {
     setCaptchaToken(token);
   };
 
+  const showPopup = (type, message) => {
+    setPopup({ show: true, type, message });
+    setTimeout(() => {
+      setPopup({ show: false, type: "", message: "" });
+    }, 4000);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!captchaToken) {
-      setStatus("❌ Please verify the captcha.");
+      showPopup("error", "❌ Please verify the captcha.");
       return;
     }
 
     try {
-      setStatus("⏳ Submitting...");
+      setLoading(true);
 
       const formData = new FormData();
       formData.append("name", form.name);
@@ -62,7 +70,7 @@ const CareerSection = () => {
 
       if (res.ok && data.success) {
         setSubmitted(true);
-        setStatus("✅ Application submitted successfully!");
+        showPopup("success", "✅ Application submitted successfully!");
         setForm({
           name: "",
           email: "",
@@ -75,11 +83,13 @@ const CareerSection = () => {
         setCaptchaToken(null);
         window.grecaptcha?.reset();
       } else {
-        setStatus(`❌ Error: ${data.message || "Submission failed"}`);
+        showPopup("error", `❌ Error: ${data.message || "Submission failed"}`);
       }
     } catch (err) {
       console.error("❌ Career form error:", err);
-      setStatus("❌ Something went wrong.");
+      showPopup("error", "❌ Something went wrong.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -156,7 +166,23 @@ const CareerSection = () => {
   ];
 
   return (
-    <section className="max-w-6xl mx-auto px-6 py-16 my-12 bg-gradient-to-br from-white via-red-50 to-red-100 rounded-3xl shadow-xl">
+    <section className="max-w-6xl mx-auto px-6 py-16 my-12 bg-gradient-to-br from-white via-red-50 to-red-100 rounded-3xl shadow-xl relative">
+      {/* Popup Notification */}
+      {popup.show && (
+        <div
+          className={`fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 text-white transition-transform duration-300 ${
+            popup.type === "success" ? "bg-green-600" : "bg-red-600"
+          }`}
+        >
+          {popup.type === "success" ? (
+            <CheckCircle className="w-6 h-6" />
+          ) : (
+            <XCircle className="w-6 h-6" />
+          )}
+          <span className="font-medium">{popup.message}</span>
+        </div>
+      )}
+
       {/* Header */}
       <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-center text-red-900 tracking-tight">
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-800">
@@ -243,12 +269,6 @@ const CareerSection = () => {
           Apply Now or Send Inquiry
         </h3>
 
-        {submitted && (
-          <div className="mb-6 text-green-700 font-semibold text-center bg-green-100 py-3 rounded-lg shadow-inner">
-            ✅ Thank you for your submission! We'll get back to you soon.
-          </div>
-        )}
-
         <form className="grid md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -320,15 +340,40 @@ const CareerSection = () => {
             />
           </div>
 
+          {/* Modern Button */}
           <button
             type="submit"
-            className="bg-gradient-to-r from-red-600 to-red-800 text-white py-3 px-6 rounded-xl font-semibold shadow-md hover:shadow-lg hover:scale-105 transition md:col-span-2"
+            disabled={loading}
+            className={`relative flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-800 text-white py-3 px-6 rounded-xl font-semibold shadow-md transition md:col-span-2
+              ${loading ? "opacity-80 cursor-not-allowed" : "hover:shadow-lg hover:scale-105"}
+            `}
           >
-            Submit Application
+            {loading ? (
+              <svg
+                className="w-5 h-5 animate-spin text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+            ) : (
+              "Submit Application"
+            )}
           </button>
         </form>
-
-        {status && <p className="mt-4 text-center text-lg">{status}</p>}
       </div>
     </section>
   );
