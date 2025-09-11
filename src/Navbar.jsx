@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const SECTIONS = ["home", "about", "products", "inquiry", "career"];
+const SECTIONS = ["home", "about", "products", "career", "inquiry"];
 
 const scrollToSection = (id) => {
   const section = document.getElementById(id);

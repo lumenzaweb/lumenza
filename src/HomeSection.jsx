@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom"; // 👈 added
 
 const images = [
   "https://i.pinimg.com/736x/97/06/52/970652e99fc7b6f1802451016ed78511.jpg",
@@ -15,11 +16,11 @@ function scrollToSection(id) {
 
 const HomeSection = () => {
   const [current, setCurrent] = useState(0);
-  const [navHeight, setNavHeight] = useState(64); // default guess
+  const [navHeight, setNavHeight] = useState(64);
   const navRef = useRef(null);
+  const navigate = useNavigate(); // 👈 initialize
 
   useEffect(() => {
-    // Grab navbar height dynamically
     const nav = document.querySelector("nav");
     if (nav) setNavHeight(nav.offsetHeight);
 
@@ -48,7 +49,7 @@ const HomeSection = () => {
         px-4 sm:px-6
       "
       style={{
-        paddingBottom: "calc(5rem + env(safe-area-inset-bottom))", // safe bottom
+        paddingBottom: "calc(5rem + env(safe-area-inset-bottom))",
       }}
     >
       {/* Background Slider */}
@@ -113,7 +114,7 @@ const HomeSection = () => {
         >
           <button
             className="px-5 py-2 md:px-6 md:py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition text-sm md:text-base"
-            onClick={() => scrollToSection("products")}
+            onClick={() => navigate("/products")} // 👈 now opens Products page
           >
             Explore Products
           </button>
