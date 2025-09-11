@@ -20,19 +20,25 @@ import Admin from "./Admin";
 import ContactForm from "./components/ContactForm";
 import ProductsPage from "./pages/ProductsPage.jsx"; // ✅ use new page
 
+// Helper: smooth scroll to specific section
 const scrollToSection = (id) => {
   const section = document.getElementById(id);
   if (section) section.scrollIntoView({ behavior: "smooth" });
 };
 
+// Component: Handles both section scrolling and scroll-to-top
 const ScrollHandler = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
     if (location.state?.scrollTarget) {
+      // Smooth scroll to a specific section if requested
       setTimeout(() => {
         scrollToSection(location.state.scrollTarget);
       }, 400);
+    } else {
+      // Otherwise scroll smoothly to top on route change
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
   }, [location]);
 
@@ -94,11 +100,47 @@ const App = () => {
                 Send Your Query
               </h3>
               <form className="flex flex-col gap-2" onSubmit={handleQuerySubmit}>
-                <input type="text" name="name" value={queryForm.name} onChange={handleQueryChange} placeholder="Name" className="p-2 border rounded" required />
-                <input type="tel" name="mobile" value={queryForm.mobile} onChange={handleQueryChange} placeholder="Mobile" className="p-2 border rounded" required />
-                <input type="email" name="email" value={queryForm.email} onChange={handleQueryChange} placeholder="Email" className="p-2 border rounded" required />
-                <textarea name="message" value={queryForm.message} onChange={handleQueryChange} placeholder="Message" className="p-2 border rounded" required />
-                <button type="submit" className="bg-yellow-500 text-white py-2 rounded font-semibold mt-2 hover:bg-yellow-600">Submit</button>
+                <input
+                  type="text"
+                  name="name"
+                  value={queryForm.name}
+                  onChange={handleQueryChange}
+                  placeholder="Name"
+                  className="p-2 border rounded"
+                  required
+                />
+                <input
+                  type="tel"
+                  name="mobile"
+                  value={queryForm.mobile}
+                  onChange={handleQueryChange}
+                  placeholder="Mobile"
+                  className="p-2 border rounded"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={queryForm.email}
+                  onChange={handleQueryChange}
+                  placeholder="Email"
+                  className="p-2 border rounded"
+                  required
+                />
+                <textarea
+                  name="message"
+                  value={queryForm.message}
+                  onChange={handleQueryChange}
+                  placeholder="Message"
+                  className="p-2 border rounded"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="bg-yellow-500 text-white py-2 rounded font-semibold mt-2 hover:bg-yellow-600"
+                >
+                  Submit
+                </button>
               </form>
             </div>
           </div>
@@ -111,15 +153,17 @@ const App = () => {
               <div className="font-sans text-gray-800">
                 <HomeSection />
                 <AboutSection />
-                {/* ❌ Removed ProductsSection */}
                 <InquirySection />
                 <SocialBar />
               </div>
             }
           />
-          <Route path="/products" element={<ProductsPage />} /> 
+          <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:productName" element={<ProductDetailsPage />} />
-          <Route path="/product/:productName/:subProductSlug" element={<ProductSubDetailPage />} />
+          <Route
+            path="/product/:productName/:subProductSlug"
+            element={<ProductSubDetailPage />}
+          />
           <Route path="/career" element={<CareerSection />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
