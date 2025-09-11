@@ -52,10 +52,10 @@ const AboutSection = () => (
       </p>
 
       <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
-        <li>Kitchen Trolleys Maximize space and efficiency with smart, durable pull-out trolleys — crafted for convenience, smooth operation, and stylish integration into modular kitchens.</li>
-        <li>Door Handles/Handles From sleek cabinet handles to bold main door handles, our collection combines ergonomic design with striking finishes for a flawless grip and a lasting impression.</li>
-        <li>Bathroom Accessories Refined fixtures like towel racks, robe hooks, and soap trays — made from rust-resistant materials and designed to bring elegance and order to your daily routines.</li>
         <li>Safes / Locker Secure your valuables in style. Our safes and lockers are compact, robust, and thoughtfully designed for both home and commercial use.</li>
+        <li>Door Handles/Handles From sleek cabinet handles to bold main door handles, our collection combines ergonomic design with striking finishes for a flawless grip and a lasting impression.</li>
+        <li>Kitchen Trolleys Maximize space and efficiency with smart, durable pull-out trolleys — crafted for convenience, smooth operation, and stylish integration into modular kitchens.</li>
+        <li>Bathroom Accessories Refined fixtures like towel racks, robe hooks, and soap trays — made from rust-resistant materials and designed to bring elegance and order to your daily routines.</li>
       </ul>
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Our Commitment to Quality :</h3>
@@ -77,7 +77,7 @@ const AboutSection = () => (
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Why LUMENZA !</h3>
       <p className="text-gray-800 text-lg mb-4">
-        At<strong>LUMENZA</strong>, we go beyond just supplying hardware — we deliver confidence, style, and performance you can trust. Here's why customers, architects, and interior designers choose us:
+        At <strong>LUMENZA</strong>, we go beyond just supplying hardware — we deliver confidence, style, and performance you can trust. Here's why customers, architects, and interior designers choose us:
       </p>
 
       <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
