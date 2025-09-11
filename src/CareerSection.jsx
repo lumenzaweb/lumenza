@@ -85,21 +85,23 @@ const CareerSection = () => {
   };
 
   const sections = [
-    {
-      title: "Sales & Business Development",
-      points: [
+  {
+    title: "Sales & Business Development",
+    subtitle: "Open Roles:",
+    points: {
+      responsibilities: [
         "Build relationships with dealers, architects, builders, and retailers",
         "Product presentations and market visits",
         "Area-wise target setting and achievement",
         "Competitive market analysis",
       ],
-      subtitle: "Open Roles :",
-      points:  [
+      roles: [
         "Field Sales Executive",
         "Business Development Officer",
         "Area Sales Manager",
       ],
     },
+  },
     {
       title: "Customer Support & Service",
       points: [
