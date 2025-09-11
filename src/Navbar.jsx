@@ -43,7 +43,7 @@ const Navbar = () => {
           onClick={() => handleNavClick("home")}
         >
           <img
-            src="https://i.pinimg.com/736x/01/50/3c/01503cb1e4e7f2dfcd37080e111dba37.jpg"
+            src="https://i.pinimg.com/736x/a0/c8/0f/a0c80fe0d242fb3ea7ec08b691c16c11.jpg"
             alt="LUMENZA Logo"
             className="w-full object-contain"
           />
