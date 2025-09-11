@@ -36,8 +36,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-20 bg-white">
-      <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white">
+      <div className="max-w-6xl mx-auto flex justify-between font-bold items-center p-4">
         <div
           className="w-32 md:w-40 cursor-pointer"
           onClick={() => handleNavClick("home")}
@@ -50,7 +50,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop menu */}
-        <div className="hidden md:flex gap-8 font-medium">
+        <div className="hidden md:flex gap-8 font-bold">
           {SECTIONS.map((section, idx) => (
             <button
               key={idx}

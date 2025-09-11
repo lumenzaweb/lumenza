@@ -28,7 +28,7 @@ const ProductsSection = () => (
   <section id="products" className="py-16 px-4 sm:px-6 lg:px-10 bg-gray-50">
     <div className="max-w-7xl mx-auto">
       {/* Heading */}
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center tracking-widest uppercase mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold text-black text-center tracking-widest uppercase mb-12">
         OUR PRODUCTS
       </h2>
 
@@ -53,11 +53,11 @@ const ProductsSection = () => (
 
             {/* Title */}
             <div className="flex-1 flex items-center justify-center px-4 py-5 border-t border-gray-200">
-              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 uppercase tracking-wide text-center group-hover:text-red-600 transition">
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-black uppercase tracking-wide text-center group-hover:text-red-700 transition">
                 {item.name}
               </h3>
             </div>
-          </Link>
+          </Link> 
         ))}
       </div>
     </div>

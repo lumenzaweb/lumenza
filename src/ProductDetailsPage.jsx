@@ -100,7 +100,7 @@ const ProductDetailsPage = () => {
         {productName.replace(/-/g, " ")}
       </h2>
       {products.length === 0 ? (
-        <p className="text-gray-600">No product details found.</p>
+        <p className="text-black">No product details found.</p>
       ) : (
         <motion.div
           className={`grid grid-cols-1 ${gridColsClass} gap-6 sm:gap-10 mt-8 mx-auto max-w-5xl justify-center`}
@@ -135,7 +135,7 @@ const ProductDetailsPage = () => {
                   className="h-48 sm:h-64 w-full object-cover rounded mb-3"
                 />
                 <h3 className="font-bold text-lg sm:text-xl mb-2">{name}</h3>
-                <p className="text-gray-700 text-sm sm:text-base flex-grow">
+                <p className="text-black text-sm sm:text-base flex-grow">
                   {description}
                 </p>
               </motion.div>

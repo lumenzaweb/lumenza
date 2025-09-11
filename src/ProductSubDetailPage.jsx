@@ -224,7 +224,7 @@ img: "https://i.pinimg.com/736x/ff/6c/1f/ff6c1fce0616e237c733c8cd3edc9909.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3101</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin Finish</li>
 <li>B.Antik Finish</li>
 <li>Z.Black Finish</li>
@@ -238,7 +238,7 @@ img: "https://i.pinimg.com/736x/6e/eb/4a/6eeb4a72e94f1adc55416a2479e9e2c3.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3102</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin Finish</li>
 <li>B.Antik Finish</li>
 <li>Z.Black Finish</li>
@@ -252,7 +252,7 @@ img: "https://i.pinimg.com/736x/44/47/d5/4447d5bc8d8119d0f8d836745a10ef78.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3103</h3>
-<ul className="list-disc list-inside text-gray-800 ml-1 mt-1">
+<ul className="list-disc list-inside text-black ml-1 mt-1">
 <li>Satin + CP Finish</li>
 <li>B.Antik + BL Finish</li>
 <li>Z.Black + Coca Finish</li>
@@ -267,7 +267,7 @@ img: "https://i.pinimg.com/736x/ba/91/34/ba913428bff40c7cc2e0e90d7b59c702.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3104</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>BL + GL Finish</li>
 <li>Antik + GL Finish</li>
@@ -281,7 +281,7 @@ img: "https://i.pinimg.com/736x/c2/b8/6d/c2b86d17e5d38a3584a635fd7af9ce21.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3105</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>Antik + BL Finish</li>
 <li>PVD RG + BL Finish</li>
@@ -295,7 +295,7 @@ img: "https://i.pinimg.com/736x/73/fd/e1/73fde11da192c3eb1d1489b4b6a16d78.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3106</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>PVD GL + BL Finish</li>
 <li>BL + BL Finish</li>
@@ -309,7 +309,7 @@ img: "https://i.pinimg.com/736x/57/82/7f/57827f0568fd5820024f192b804b718b.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3111</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>B.Antik + Z.Black Finish</li>
 <li>PVD Gold + Z.Black Finish</li>
@@ -323,7 +323,7 @@ img: "https://i.pinimg.com/736x/29/1e/b5/291eb55cfb401276bae74c19a57c9961.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3112</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>B.Antik + PVD Gold Finish</li>
 <li>PVD Gold + Z.Black Finish</li>
@@ -337,7 +337,7 @@ img: "https://i.pinimg.com/736x/76/dc/e7/76dce7d2c1848f7ce875408a9dc5b2c8.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3113</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin Finish</li>
 <li>B.Antik Finish</li>
 <li>Z.Black Finish</li>
@@ -351,7 +351,7 @@ img: "https://i.pinimg.com/736x/89/79/4c/89794c54efd6e2e5dcac08c7f97fc0f9.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3114</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>BL + BL Finish</li>
 <li>Coca + BL Finish</li>
@@ -365,7 +365,7 @@ img: "https://i.pinimg.com/736x/49/f8/8a/49f88a2caf420f8adb5d6f28242dfd6a.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3115</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>BL + RG Finish</li>
 <li>Coca + Coca Finish</li>
@@ -379,7 +379,7 @@ img: "https://i.pinimg.com/736x/9d/97/59/9d9759a2db5f8fa8d4314780b38c4b17.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3116</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin Finish</li>
 <li>B.Satin Matt Finish</li>
 <li>Z.Black Finish</li>
@@ -393,7 +393,7 @@ img: "https://i.pinimg.com/736x/b5/7f/6e/b57f6e5f2f3a3d5ce77cb9c1b8d15784.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3121</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin Finish</li>
 <li>B.Antik Finish</li>
 <li>Z.Black Finish</li>
@@ -407,7 +407,7 @@ img: "https://i.pinimg.com/736x/ef/28/49/ef28493098503b9dc643c5e717fd1325.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3122</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>BL Satin + BL Nickel Finish</li>
 <li>PVD Gold + Z.Black Finish</li>
@@ -420,7 +420,7 @@ img: "https://i.pinimg.com/736x/8a/f3/b9/8af3b90b5b9d7aafc1a8de7096b97d86.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3123</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin Finish</li>
 <li>B.Antik Finish</li>
 <li>Z.Black Finish</li>
@@ -434,7 +434,7 @@ img: "https://i.pinimg.com/736x/4d/0c/d1/4d0cd1b52fc50a92b9202703b700ca02.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3124</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>BL + PVD GL Finish</li>
 <li>Rembo + BL Satin Finish</li>
@@ -448,7 +448,7 @@ img: "https://i.pinimg.com/736x/e8/e9/55/e8e9552eff617b10713b47378349461d.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3125</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>Coca + BL Finish</li>
 <li>Gold + BL Finish</li>
@@ -462,7 +462,7 @@ img: "https://i.pinimg.com/736x/4d/ae/0b/4dae0b9d09968a01a49b63211e78e49e.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3126</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>Coca + BL Finish</li>
 <li>BL + BL Finish</li>
@@ -477,7 +477,7 @@ img: "https://i.pinimg.com/736x/6a/a2/4a/6aa24ab31736353996cfd181ed7d640a.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3131</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>Coca + Black Finish</li>
 <li> GL + BL Finish</li>
@@ -491,7 +491,7 @@ img: "https://i.pinimg.com/736x/53/86/24/5386242b9a2729e7b5259669d05002c4.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3132</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>Antik + Black Finish</li>
 <li>BL Satin + Coca Finish</li>
@@ -504,7 +504,7 @@ img: "https://i.pinimg.com/736x/c3/f9/2d/c3f92d39bdc46442de58766ec004cd6a.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3133</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>Coca + Black Finish</li>
 <li>Antik + BL Finish</li>
@@ -518,7 +518,7 @@ img: "https://i.pinimg.com/736x/66/7b/9a/667b9a6c2813304c4e938602fa0a65ed.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3134</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>Coca + Black Finish</li>
 <li>PVD GL + BL Finish</li>
@@ -532,7 +532,7 @@ img: "https://i.pinimg.com/736x/e1/46/aa/e146aa101dcb45b59fd1ab772f0e070b.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3135</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>PVD GL + Black Finish</li>
 <li>BL + PVD RG Finish</li>
@@ -546,7 +546,7 @@ img: "https://i.pinimg.com/736x/85/d2/b6/85d2b6e8ddab9ca36d6c33764af280d4.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3136</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin + CP Finish</li>
 <li>PVD RG + Black Finish</li>
 <li>BL + PVD GL Finish</li>
@@ -560,7 +560,7 @@ img: "https://i.pinimg.com/736x/cb/dd/b4/cbddb421e5ffefd5859f8c62b7459de6.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LOCKBODY 45X45</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>S.S. MATT Finish</li>
 <li>B. ANTIK Finish</li>
 <li>Z BLACK Finish</li>
@@ -576,7 +576,7 @@ img: "https://i.pinimg.com/736x/fc/7a/42/fc7a4246426601ed91fffd1fd4813931.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LOCKBODY 45X85</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>S.S. MATT Finish</li>
 <li>B. ANTIK Finish</li>
 <li>Z BLACK Finish</li>
@@ -592,7 +592,7 @@ img: "https://i.pinimg.com/736x/a8/d7/a5/a8d7a517f73b18aec13c16b48b3f78f6.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">CYLINDER</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>S.S. MATT Finish</li>
 <li>B. ANTIK Finish</li>
 <li>Z BLACK Finish</li>
@@ -631,7 +631,7 @@ img: "https://i.pinimg.com/736x/bb/7e/8b/bb7e8b7e57267e3647ba6324bf91f106.jpg",
 description: (
 <>
 <h3 className="font-semibold text-center text-2xl">LM - 3101</h3>
-<ul className="list-disc list-inside text-gray-800 ml-2 mt-1">
+<ul className="list-disc list-inside text-black ml-2 mt-1">
 <li>Satin Finish</li>
 <li>B.Antik Finish</li>
 <li>Z.Black Finish</li>
@@ -780,7 +780,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
 
   if (!product) {
     return (
-      <div className="min-h-screen flex flex-col justify-center items-center text-gray-700 bg-gray-100 p-8">
+      <div className="min-h-screen flex flex-col justify-center items-center text-black bg-gray-100 p-8">
         <p className="text-2xl mb-6">Product not found.</p>
         <button
           onClick={() => navigate(-1)}
@@ -836,17 +836,17 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
 
           {/* Product Info Section */}
           <div className="flex-1 max-w-3xl flex flex-col overflow-auto">
-            <h1 className="text-2xl md:text-5xl font-extrabold mb-6 text-gray-900">
+            <h1 className="text-2xl md:text-5xl font-extrabold mb-6 text-black">
               {product.name}
             </h1>
-            <p className="text-base md:text-lg text-gray-700 mb-8 leading-relaxed">
+            <p className="text-base md:text-lg text-black mb-8 leading-relaxed">
               {product.description}
             </p>
 
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+            <h2 className="text-2xl font-semibold mb-4 text-black">
               Features
             </h2>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-gray-600 list-disc list-inside">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-black list-disc list-inside">
               {product.features.map((feature, idx) => (
                 <li key={idx} className="text-base">
                   {feature}
@@ -856,10 +856,10 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
 
             {product.finishes && product.finishes.length > 0 && (
               <>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+                <h2 className="text-2xl font-semibold mb-4 text-black">
                   Finishes
                 </h2>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 text-gray-600 list-disc list-inside">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 text-black list-disc list-inside">
                   {product.finishes.map((finish, idx) => (
                     <li key={idx} className="text-base">
                       {finish}
@@ -871,7 +871,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
 
             {product.productDetails && product.productDetails.length > 0 && (
               <>
-                <h2 className="text-2xl font-semibold mt-5 mb-3 text-gray-800">
+                <h2 className="text-2xl font-semibold mt-5 mb-3 text-black">
                   Available Variants & Specifications
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-96 overflow-y-auto">
@@ -890,7 +890,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
                         <h3 className="font-bold text-lg mb-2">
                           {productDetail.title}
                         </h3>
-                        <ul className="list-disc list-inside text-gray-600 space-y-1">
+                        <ul className="list-disc list-inside text-black space-y-1">
                           {productDetail.specs.map((spec, sIdx) => (
                             <li key={sIdx} className="text-sm">
                               {spec}
@@ -955,7 +955,7 @@ if (product && product.details && product.details.length > 0) {
 
             {/* Description */}
             <div className="flex-1 flex items-center justify-center px-4 py-4 bg-gray-50">
-              <p className="text-gray-800 text-base sm:text-lg text-center sm:text-left">
+              <p className="text-black text-base sm:text-lg text-center sm:text-left">
                 {item.description}
               </p>
             </div>
@@ -987,7 +987,7 @@ if (product && product.details && product.details.length > 0) {
 
 // Fallback
 return (
-  <div className="min-h-screen flex flex-col justify-center items-center text-gray-700 bg-gray-100 p-8">
+  <div className="min-h-screen flex flex-col justify-center items-center text-black bg-gray-100 p-8">
     <p className="text-2xl mb-6">Product not found.</p>
     <button
       onClick={() => navigate(-1)}
