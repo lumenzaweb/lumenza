@@ -92,7 +92,9 @@ const CareerSection = () => {
         "Product presentations and market visits",
         "Area-wise target setting and achievement",
         "Competitive market analysis",
-        "Open Roles :",
+      ],
+      subtitle: "Open Roles :",
+      points:  [
         "Field Sales Executive",
         "Business Development Officer",
         "Area Sales Manager",
@@ -105,7 +107,7 @@ const CareerSection = () => {
         "Ensure timely resolution of issues",
         "Assist sales team with client support",
         "Build long-term client relationships",
-        "Open Roles :",
+        <strong>Open Roles :</strong>,
         "Customer Support Executive",
         "Service Coordinator",
       ],
@@ -129,7 +131,7 @@ const CareerSection = () => {
         "Dispatch coordination",
         "Supply chain optimization",
         "Vendor and transport management",
-        "Open Roles :",
+        <strong>Open Roles :</strong>,
         "Warehouse Supervisor",
         "Dispatch Coordinator",
       ],
@@ -141,7 +143,7 @@ const CareerSection = () => {
         "Vendor coordination",
         "Documentation and compliance",
         "Assist management with reports",
-        "Open Roles :",
+        <strong>Open Roles :</strong>,
         "Operations Executive",
         "Admin Officer",
       ],
@@ -152,7 +154,7 @@ const CareerSection = () => {
         "Exciting internship opportunities in sales, marketing, and operations",
         "Gain hands-on experience with India’s growing brand",
         "Mentorship and career development",
-        "Open Roles :",
+        <strong>Open Roles :</strong>,
         "Sales Intern",
         "Marketing Intern",
         "Operations Intern",
@@ -168,7 +170,7 @@ const CareerSection = () => {
           Careers at Lumenza
         </span>
       </h1>
-      <p className="text-lg mb-12 text-center text-gray-600 max-w-2xl mx-auto">
+      <p className="text-lg mb-12 text-center text-black max-w-2xl mx-auto">
         Careers at Lumenza mean{" "}
         <span className="font-semibold">more than just a job</span>. They're about building futures with a trusted brand in{" "}
         <span className="text-red-700 font-semibold">
@@ -180,7 +182,7 @@ const CareerSection = () => {
       {/* Intro paragraphs */}
       <div className="mb-16 space-y-10">
         <div className="bg-white/80 border-l-4 border-red-600 p-6 rounded-xl shadow-sm">
-          <p className="text-gray-700 text-lg leading-relaxed">
+          <p className="text-black text-lg leading-relaxed">
             At <span className="font-semibold text-red-700">Lumenza</span>, we
             create an environment where professionals can thrive, innovate, and
             make a lasting impact. Our culture encourages{" "}
@@ -190,7 +192,7 @@ const CareerSection = () => {
         </div>
 
         <div className="bg-white/80 border-l-4 border-red-600 p-6 rounded-xl shadow-sm">
-          <p className="text-gray-700 text-lg leading-relaxed">
+          <p className="text-black text-lg leading-relaxed">
             At <span className="font-semibold text-red-700">Lumenza</span>, we're
             on a mission to redefine how homes and workspaces look and feel — with
             hardware that blends style, innovation, and performance. Behind every
@@ -213,9 +215,12 @@ const CareerSection = () => {
             <h2 className="text-2xl font-bold text-red-800 mb-5">
               {section.title}
             </h2>
+            <h3 className="text-xl font-bold text-red-800 mb-4">
+              {section.subtitle}
+            </h3>
             <ul className="space-y-4">
               {section.points.map((point, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-700">
+                <li key={i} className="flex items-start gap-3 text-black">
                   <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-1" />
                   <span>{point}</span>
                 </li>
