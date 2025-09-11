@@ -104,7 +104,7 @@ const AboutSection = () => (
       transition={{ duration: 1, type: "spring", stiffness: 120 }}
     >
       <div className="grid grid-cols-2 grid-rows-3 gap-4">
-        <Link to="./pages/ProductsPage.jsx">
+        <Link to="/ProductsSection.jsx">
           <img
             src="https://i.pinimg.com/736x/97/06/52/970652e99fc7b6f1802451016ed78511.jpg"
             alt="locker"
