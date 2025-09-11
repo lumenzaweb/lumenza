@@ -11,12 +11,12 @@ const CareerSection = () => {
     message: "",
   });
 
-  const [resume, setResume] = useState(null); // file upload
+  const [resume, setResume] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [status, setStatus] = useState("");
   const [captchaToken, setCaptchaToken] = useState(null);
 
-  const fileInputRef = useRef(null); // ✅ to reset file input
+  const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -41,7 +41,6 @@ const CareerSection = () => {
     try {
       setStatus("⏳ Submitting...");
 
-      // Prepare form data with file
       const formData = new FormData();
       formData.append("name", form.name);
       formData.append("email", form.email);
@@ -72,9 +71,9 @@ const CareerSection = () => {
           message: "",
         });
         setResume(null);
-        if (fileInputRef.current) fileInputRef.current.value = ""; // ✅ reset file input
+        if (fileInputRef.current) fileInputRef.current.value = "";
         setCaptchaToken(null);
-        window.grecaptcha?.reset(); // ✅ reset captcha widget
+        window.grecaptcha?.reset();
       } else {
         setStatus(`❌ Error: ${data.message || "Submission failed"}`);
       }
@@ -85,10 +84,9 @@ const CareerSection = () => {
   };
 
   const sections = [
-  {
-    title: "Sales & Business Development",
-    subtitle: "Open Roles:",
-    points: {
+    {
+      title: "Sales & Business Development",
+      subtitle: "Open Roles:",
       responsibilities: [
         "Build relationships with dealers, architects, builders, and retailers",
         "Product presentations and market visits",
@@ -101,66 +99,59 @@ const CareerSection = () => {
         "Area Sales Manager",
       ],
     },
-  },
     {
       title: "Customer Support & Service",
-      points: [
+      subtitle: "Open Roles:",
+      responsibilities: [
         "Handle customer inquiries and complaints",
         "Ensure timely resolution of issues",
         "Assist sales team with client support",
         "Build long-term client relationships",
-        <strong>Open Roles :</strong>,
-        "Customer Support Executive",
-        "Service Coordinator",
       ],
+      roles: ["Customer Support Executive", "Service Coordinator"],
     },
     {
       title: "Marketing & Brand Development",
-      points: [
+      subtitle: "Open Roles:",
+      responsibilities: [
         "Develop creative campaigns to strengthen brand visibility",
         "Work with digital & offline marketing channels",
         "Plan exhibitions and trade shows",
         "Coordinate with designers and content creators",
-        <strong>Open Roles :</strong>,
-        "Marketing Executive",
-        "Digital Marketing Specialist",
       ],
+      roles: ["Marketing Executive", "Digital Marketing Specialist"],
     },
     {
       title: "Warehouse & Logistics",
-      points: [
+      subtitle: "Open Roles:",
+      responsibilities: [
         "Inventory management and stock audits",
         "Dispatch coordination",
         "Supply chain optimization",
         "Vendor and transport management",
-        <strong>Open Roles :</strong>,
-        "Warehouse Supervisor",
-        "Dispatch Coordinator",
       ],
+      roles: ["Warehouse Supervisor", "Dispatch Coordinator"],
     },
     {
       title: "Operations & Administration",
-      points: [
+      subtitle: "Open Roles:",
+      responsibilities: [
         "Support daily business operations",
         "Vendor coordination",
         "Documentation and compliance",
         "Assist management with reports",
-        <strong>Open Roles :</strong>,
-        "Operations Executive",
-        "Admin Officer",
       ],
+      roles: ["Operations Executive", "Admin Officer"],
     },
     {
       title: "Internships",
-      points: [
+      subtitle: "Open Roles:",
+      responsibilities: [
         "Exciting internship opportunities in sales, marketing, and operations",
         "Gain hands-on experience with India’s growing brand",
         "Mentorship and career development",
-        <strong>Open Roles :</strong>,
-        "Sales Intern",
-        "Marketing Intern",
-        "Operations Intern",
       ],
+      roles: ["Sales Intern", "Marketing Intern", "Operations Intern"],
     },
   ];
 
@@ -174,7 +165,8 @@ const CareerSection = () => {
       </h1>
       <p className="text-lg mb-12 text-center text-black max-w-2xl mx-auto">
         Careers at Lumenza mean{" "}
-        <span className="font-semibold">more than just a job</span>. They're about building futures with a trusted brand in{" "}
+        <span className="font-semibold">more than just a job</span>. They're
+        about building futures with a trusted brand in{" "}
         <span className="text-red-700 font-semibold">
           Security, Hardware, and Lifestyle Accessories
         </span>
@@ -188,8 +180,8 @@ const CareerSection = () => {
             At <span className="font-semibold text-red-700">Lumenza</span>, we
             create an environment where professionals can thrive, innovate, and
             make a lasting impact. Our culture encourages{" "}
-            <span className="font-medium">teamwork, flexibility, and growth</span>,
-            empowering every individual to do their best work.
+            <span className="font-medium">teamwork, flexibility, and growth</span>
+            , empowering every individual to do their best work.
           </p>
         </div>
 
@@ -217,14 +209,27 @@ const CareerSection = () => {
             <h2 className="text-2xl font-bold text-red-800 mb-5">
               {section.title}
             </h2>
+
+            <h3 className="text-xl font-bold text-red-800 mb-4">
+              Responsibilities
+            </h3>
+            <ul className="space-y-4 mb-6">
+              {section.responsibilities.map((point, i) => (
+                <li key={i} className="flex items-start gap-3 text-black">
+                  <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-1" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+
             <h3 className="text-xl font-bold text-red-800 mb-4">
               {section.subtitle}
             </h3>
             <ul className="space-y-4">
-              {section.points.map((point, i) => (
+              {section.roles.map((role, i) => (
                 <li key={i} className="flex items-start gap-3 text-black">
                   <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-1" />
-                  <span>{point}</span>
+                  <span>{role}</span>
                 </li>
               ))}
             </ul>
