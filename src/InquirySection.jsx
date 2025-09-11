@@ -75,7 +75,7 @@ const InquirySection = () => {
       {/* Center Popup */}
       {popup.show && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white-400 rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn">
+          <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn">
             {popup.type === "success" ? (
               <CheckCircle className="w-12 h-12 text-green-600" />
             ) : (

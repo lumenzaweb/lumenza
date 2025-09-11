@@ -171,7 +171,7 @@ const CareerSection = () => {
       {popup.show && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div
-            className={`bg-white-400 rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn`}
+            className={`bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn`}
           >
             {popup.type === "success" ? (
               <CheckCircle className="w-12 h-12 text-green-600" />
@@ -238,7 +238,7 @@ const CareerSection = () => {
               {section.title}
             </h2>
 
-            <h3 className="text-xl font-bold text-red-800 mb-4">
+            <h3 className="text-xl font-bold text-black mb-4">
               Responsibilities
             </h3>
             <ul className="space-y-4 mb-6">
@@ -250,7 +250,7 @@ const CareerSection = () => {
               ))}
             </ul>
 
-            <h3 className="text-xl font-bold text-red-800 mb-4">
+            <h3 className="text-xl font-bold text-black mb-4">
               {section.subtitle}
             </h3>
             <ul className="space-y-4">
