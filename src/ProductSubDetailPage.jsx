@@ -874,35 +874,35 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
     <h2 className="text-2xl font-semibold mt-5 mb-3 text-black">
       Available Variants & Specifications
     </h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+    {/* Horizontal scroll container */}
+    <div className="flex space-x-4 overflow-x-auto pb-3">
       {product.productDetails.map((productDetail, idx) => (
         <div
           key={idx}
-          className="p-3 bg-white rounded-lg shadow-md border border-gray-200 flex items-start space-x-3 min-h-[140px]"
+          className="min-w-[260px] sm:min-w-[300px] p-4 bg-white rounded-lg shadow-md border border-gray-200 flex-shrink-0"
           tabIndex={0}
         >
           {/* Image */}
           <img
             src={productDetail.image}
             alt={productDetail.title}
-            className="h-28 w-auto object-contain rounded-lg flex-shrink-0"
+            className="h-28 w-auto object-contain rounded-lg mx-auto mb-3"
           />
 
           {/* Content */}
-          <div className="flex-1">
-            <h3 className="font-bold text-lg mb-2">
-              {productDetail.title}
-            </h3>
+          <h3 className="font-bold text-lg mb-2 text-center">
+            {productDetail.title}
+          </h3>
 
-            {/* Specs: vertical list, each spec stays in one line */}
-            <ul className="list-disc list-inside text-black space-y-1">
-              {productDetail.specs.map((spec, sIdx) => (
-                <li key={sIdx} className="text-sm whitespace-nowrap">
-                  {spec}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Specs: vertical list, each spec stays in one line */}
+          <ul className="list-disc list-inside text-black space-y-1">
+            {productDetail.specs.map((spec, sIdx) => (
+              <li key={sIdx} className="text-sm whitespace-nowrap">
+                {spec}
+              </li>
+            ))}
+          </ul>
         </div>
       ))}
     </div>
@@ -910,8 +910,6 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
 )}
 </div>
 </section>
-
-
 
         {/* PDF Download Box for ALL products */}
         <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
