@@ -41,7 +41,7 @@ const ProductVariants = ({ product }) => {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mt-5 mb-3 text-black">
+      <h2 className="text-2xl font-bold mt-5 mb-3 text-black">
         Available Variants & Specifications
       </h2>
 
@@ -58,13 +58,24 @@ const ProductVariants = ({ product }) => {
             >
               {/* Image */}
               <img
-                src={productDetail.img}
-                alt={`Variant ${idx + 1}`}
+                src={productDetail.image}
+                alt={productDetail.title}
                 className="h-28 w-auto object-contain rounded-lg mx-auto mb-3"
               />
 
-              {/* Description (React node from your data) */}
-              <div className="text-black text-sm">{productDetail.description}</div>
+              {/* Title */}
+              <h3 className="font-bold text-lg mb-2 text-center">
+                {productDetail.title}
+              </h3>
+
+              {/* Specs */}
+              <ul className="list-disc list-inside text-black space-y-1">
+                {productDetail.specs.map((spec, sIdx) => (
+                  <li key={sIdx} className="text-sm whitespace-nowrap">
+                    {spec}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
