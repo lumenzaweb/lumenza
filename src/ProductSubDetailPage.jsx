@@ -807,37 +807,40 @@ if (product.images) {
 
       <section className="flex flex-col md:flex-row flex-1 gap-8 max-w-full overflow-hidden px-4">
         {/* Image Gallery Section */}
-        <div className="flex flex-col items-center w-full md:w-1/3 max-w-md mx-auto">
-          <div className="w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg mb-4 border border-gray-300">
-            <img
-              src={product.images[currentImageIdx]}
-              alt={`${product.name} variant ${currentImageIdx + 1}`}
-              className="w-full h-full object-contain transition-transform duration-300"
-            />
-          </div>
-          <div className="flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400 w-full">
-            {product.images.map((img, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentImageIdx(idx)}
-                className={`flex-shrink-0 w-20 h-24 rounded-lg overflow-hidden border-4 ${
-                  idx === currentImageIdx
-                    ? "border-white-700"
-                    : "border-transparent hover:border-green-400"
-                } transition-colors duration-300 focus:outline-none`}
-                aria-label={`View variant ${idx + 1}`}
-              >
-                <img
-                  src={img}
-                  alt={`${product.name} thumbnail ${idx + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </button>
-            ))}
-          </div>
-        </div>
-        {/* Variants Section */}
-<ProductVariants product={product} />
+{product.images && product.images.length > 0 && (
+  <div className="flex flex-col items-center w-full md:w-1/3 max-w-md mx-auto">
+    {/* Main Image */}
+    <div className="w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg mb-4 border border-gray-300">
+      <img
+        src={product.images[currentImageIdx]}
+        alt={`${product.name} variant ${currentImageIdx + 1}`}
+        className="w-full h-full object-contain transition-transform duration-300"
+      />
+    </div>
+
+    {/* Thumbnails */}
+    <div className="flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400 w-full">
+      {product.images.map((img, idx) => (
+        <button
+          key={idx}
+          onClick={() => setCurrentImageIdx(idx)}
+          className={`flex-shrink-0 w-20 h-24 rounded-lg overflow-hidden border-4 ${
+            idx === currentImageIdx
+              ? "border-red-500"
+              : "border-transparent hover:border-green-400"
+          } transition-colors duration-300 focus:outline-none`}
+          aria-label={`View variant ${idx + 1}`}
+        >
+          <img
+            src={img}
+            alt={`${product.name} thumbnail ${idx + 1}`}
+            className="w-full h-full object-cover"
+          />
+        </button>
+      ))}
+    </div>
+  </div>
+)}
 
 
         {/* Product Info Section */}
@@ -857,6 +860,9 @@ if (product.images) {
               </li>
             ))}
           </ul>
+
+          {/* Variants Section */}
+<ProductVariants product={product} />
 
           {product.finishes && product.finishes.length > 0 && (
             <>

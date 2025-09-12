@@ -41,7 +41,7 @@ const ProductVariants = ({ product }) => {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mt-5 mb-3 text-black">
+      <h2 className="text-2xl font-bold mt-5 mb-3 text-black">
         Available Variants & Specifications
       </h2>
 
