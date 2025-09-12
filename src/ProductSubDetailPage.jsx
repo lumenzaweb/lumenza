@@ -561,12 +561,8 @@ const ProductSubDetailPage = () => {
                             </div>
                         ))}
                     </div>
-                </div>
-            </main>
-        );
-    }
-     
-    {/* === PDF BOX ADDED HERE === */}
+                
+   {/* === PDF BOX ADDED HERE === */}
                     <section className="mt-16 sm:mt-24 max-w-4xl mx-auto">
                       <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 md:flex">
                         <div className="bg-red-50 md:w-1/3 p-8 flex items-center justify-center">
@@ -586,6 +582,10 @@ const ProductSubDetailPage = () => {
                         </div>
                       </div>
                     </section>
+                </div>
+            </main>
+        );
+    }
 
     // Fallback for any other data structure
     return (
