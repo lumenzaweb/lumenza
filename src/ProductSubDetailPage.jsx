@@ -225,11 +225,11 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3101</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inline text-black ml-2 mt-1 text-base">
                             <li>Satin Finish</li>
-                            <li>B.Antik Finish</li>
+                            <li>Antique Finish</li>
                             <li>Z.Black Finish</li>
-                            <li>BL Satin Finish</li>
+                            <li>Bl Satin Finish</li>
                         </ul>
                     </>
                 ),
