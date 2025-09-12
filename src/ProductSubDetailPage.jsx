@@ -608,7 +608,6 @@ description: (
 ],
 },
 
-// Merged both Door Closer entries into one to remove duplicate key.
 "Door Closer": {
 name: "Door Closer",
 description:
@@ -626,7 +625,6 @@ features: [
 "Door width - 950 mm",
 ],
 finishes: ["Satin", "Gold", "Black"],
-// Preserve original details array from the first Door Closer block.
 details: [
 {
 img: "https://i.pinimg.com/736x/bb/7e/8b/bb7e8b7e57267e3647ba6324bf91f106.jpg",
@@ -751,10 +749,11 @@ features: [
 },
 "Silicone": {
 name: "Silicone",
-description: 
+description: (
 <li>
 <strong>GP300</strong> is one part acetic cure silicone sealant. A strong, fast curing, general purpose & is unaffected by rain, sunlight, snow etc. It is formulated with years if experience on a wide range of applications. It is a silicone sealant with high UV & water resistance.
-</li>,
+</li>
+),
 images: [
 "https://i.pinimg.com/736x/7f/f1/7b/7ff17ba1c6f90e1951735e879e28b434.jpg",
 "https://i.pinimg.com/736x/eb/ea/33/ebea3372d29a5132e10c988e3f6bfb2a.jpg",
@@ -769,7 +768,6 @@ features: [
 "For any info fill query form and submit",
 ],
 },
-// Add other sub products as needed
 };
 
 // ==================== Component ====================
@@ -777,9 +775,9 @@ const ProductSubDetailPage = () => {
   const navigate = useNavigate();
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
   const { subProductSlug } = useParams();
-const product = allSubProducts[decodeURIComponent(subProductSlug)];
+  const product = allSubProducts[decodeURIComponent(subProductSlug)];
 
-
+  // STEP 1: Check if the product exists at all. This part is correct and stays.
   if (!product) {
     return (
       <div className="min-h-screen flex flex-col justify-center items-center text-black bg-gray-100 p-8">
@@ -794,128 +792,148 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
     );
   }
 
-  // If product has images (gallery layout)
-if (product.images) {
-  return (
-    <main className="py-20 px-10 min-h-screen bg-gray-50 flex flex-col">
-      <button
-        onClick={() => navigate(-1)}
-        className="self-center mt-28 mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
-      >
-        Back
-      </button>
-
-      <section className="flex flex-col md:flex-row flex-1 gap-8 max-w-full overflow-hidden px-4">
-       
-        {/* Image Gallery Section */}
-{product.images && product.images.length > 0 && (
-  <div className="flex flex-col items-center w-full md:w-1/3 max-w-md mx-auto">
-    {/* Main Image */}
-    <div className="w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg mb-4 border border-gray-300">
-      <img
-        src={product.images[currentImageIdx]}
-        alt={`${product.name} variant ${currentImageIdx + 1}`}
-        className="w-full h-full object-contain transition-transform duration-300"
-      />
-    </div>
-
-    {/* Thumbnails */}
-    <div className="flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400 w-full">
-      {product.images.map((img, idx) => (
+  // LAYOUT 1: For products with a main image gallery (e.g., "Secure Lite")
+  if (product.images) {
+    return (
+      <main className="py-20 px-10 min-h-screen bg-gray-50 flex flex-col">
         <button
-          key={idx}
-          onClick={() => setCurrentImageIdx(idx)}
-          className={`flex-shrink-0 w-20 h-24 rounded-lg overflow-hidden border-4 ${
-            idx === currentImageIdx
-              ? "border-red-500"
-              : "border-transparent hover:border-green-400"
-          } transition-colors duration-300 focus:outline-none`}
-          aria-label={`View variant ${idx + 1}`}
+          onClick={() => navigate(-1)}
+          className="self-center mt-28 mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
         >
-          <img
-            src={img}
-            alt={`${product.name} thumbnail ${idx + 1}`}
-            className="w-full h-full object-cover"
-          />
+          Back
         </button>
-      ))}
-    </div>
-  </div>
-)}
 
+        <section className="flex flex-col md:flex-row flex-1 gap-8 max-w-full overflow-hidden px-4">
+          {/* Image Gallery Section */}
+          <div className="flex flex-col items-center w-full md:w-1/3 max-w-md mx-auto">
+            {/* Main Image */}
+            <div className="w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg mb-4 border border-gray-300">
+              <img
+                src={product.images[currentImageIdx]}
+                alt={`${product.name} variant ${currentImageIdx + 1}`}
+                className="w-full h-full object-contain transition-transform duration-300"
+              />
+            </div>
+            {/* Thumbnails */}
+            <div className="flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400 w-full">
+              {product.images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentImageIdx(idx)}
+                  className={`flex-shrink-0 w-20 h-24 rounded-lg overflow-hidden border-4 ${
+                    idx === currentImageIdx
+                      ? "border-red-500"
+                      : "border-transparent hover:border-green-400"
+                  } transition-colors duration-300 focus:outline-none`}
+                >
+                  <img
+                    src={img}
+                    alt={`${product.name} thumbnail ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
 
-        {/* Product Info Section */}
-        <div className="flex-1 max-w-3xl flex flex-col overflow-auto">
-          <h1 className="text-2xl md:text-5xl font-extrabold mb-6 text-black">
+          {/* Product Info Section */}
+          <div className="flex-1 max-w-3xl flex flex-col overflow-auto">
+            <h1 className="text-2xl md:text-5xl font-extrabold mb-6 text-black">
+              {product.name}
+            </h1>
+            <div className="text-base md:text-lg text-black mb-8 leading-relaxed">
+              {product.description}
+            </div>
+            <h2 className="text-2xl font-semibold mb-4 text-black">Features</h2>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-black list-disc list-inside">
+              {product.features && product.features.map((feature, idx) => (
+                <li key={idx} className="text-base">{feature}</li>
+              ))}
+            </ul>
+            {product.productDetails && <ProductVariants product={product} />}
+            {product.finishes && (
+              <>
+                <h2 className="text-2xl font-semibold mt-6 mb-4 text-black">Finishes</h2>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 text-black list-disc list-inside">
+                  {product.finishes.map((finish, idx) => (
+                    <li key={idx} className="text-base">{finish}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
+        </section>
+
+        {/* PDF Download Box */}
+        <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
+          <h2 className="text-2xl font-semibold mb-4 text-red-900">
+            Download Our Product Catalog
+          </h2>
+          <p className="mb-6 text-red-800">
+            Get all product details and specifications in one handy PDF file.
+          </p>
+          <a
+            href="https://1drv.ms/b/c/787E0745D45C1EC6/EfjLRCDiQsFHo_i176e9iTcBKRdVrpzUGYTxI4GdsSqnvQ?e=24JQyW"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full md:inline-block md:w-auto px-6 py-3 bg-red-700 text-white font-bold rounded hover:bg-red-800 transition"
+          >
+            Download PDF
+          </a>
+        </section>
+      </main>
+    );
+  }
+
+  // LAYOUT 2: For products with a 'details' array (e.g., "Mortise")
+  else if (product.details) {
+    return (
+      <main className="py-20 px-4 md:px-10 min-h-screen bg-gray-50">
+        <div className="text-center">
+          <button
+            onClick={() => navigate(-1)}
+            className="mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
+          >
+            Back
+          </button>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-12 text-black">
             {product.name}
           </h1>
-          <p className="text-base md:text-lg text-black mb-8 leading-relaxed">
-            {product.description}
-          </p>
-
-          <h2 className="text-2xl font-semibold mb-4 text-black">Features</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-black list-disc list-inside">
-            {product.features.map((feature, idx) => (
-              <li key={idx} className="text-base">
-                {feature}
-              </li>
-            ))}
-          </ul>
-
-          {/* Variants Section */}
-<ProductVariants product={product} />
-
-          {product.finishes && product.finishes.length > 0 && (
-            <>
-              <h2 className="text-2xl font-semibold mb-4 text-black">
-                Finishes
-              </h2>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 text-black list-disc list-inside">
-                {product.finishes.map((finish, idx) => (
-                  <li key={idx} className="text-base">
-                    {finish}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
         </div>
-      </section>
-      
-      {/* PDF Download Box for ALL products */}
-      <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
-        <h2 className="text-2xl font-semibold mb-4 text-red-900">
-          Download Our Product Catalog
-        </h2>
-        <p className="mb-6 text-red-800">
-          Get all product details and specifications in one handy PDF file.
-        </p>
-        <a
-          href="https://1drv.ms/b/c/787E0745D45C1EC6/EfjLRCDiQsFHo_i176e9iTcBKRdVrpzUGYTxI4GdsSqnvQ?e=24JQyW"
-          download
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block w-full md:inline-block md:w-auto px-6 py-3 bg-red-700 text-white font-bold rounded hover:bg-red-800 transition"
-        >
-          Download PDF
-        </a>
-      </section>
-    </main>
-  );
-}
 
-// Fallback
-return (
-  <div className="min-h-screen flex flex-col justify-center items-center text-black bg-gray-100 p-8">
-    <p className="text-2xl mb-6">Product not found.</p>
-    <button
-      onClick={() => navigate(-1)}
-      className="px-5 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition"
-    >
-      Go Back
-    </button>
-  </div>
-);
-}
+        {/* Grid layout for product details */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          {product.details.map((item, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 flex flex-col text-center">
+              <img 
+                src={item.img} 
+                alt={`${product.name} detail ${index + 1}`} 
+                className="w-full h-64 object-cover" 
+              />
+              <div className="p-4 flex-grow flex items-center justify-center">
+                {item.description}
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+    );
+  }
+
+  // Fallback for any other case (optional, but good practice)
+  return (
+    <div className="min-h-screen flex flex-col justify-center items-center">
+      <h1 className="text-3xl font-bold">{product.name}</h1>
+      <p className="mt-4">Product data is available, but a layout has not been configured.</p>
+      <button
+        onClick={() => navigate(-1)}
+        className="mt-6 px-5 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition"
+      >
+        Go Back
+      </button>
+    </div>
+  );
+};
 
 export default ProductSubDetailPage;
