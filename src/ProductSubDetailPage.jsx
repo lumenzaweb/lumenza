@@ -494,7 +494,7 @@ const ProductSubDetailPage = () => {
                                     <button
                                         key={idx}
                                         onClick={() => setCurrentImageIdx(idx)}
-                                        className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 transition-all duration-300 ${idx === currentImageIdx ? "border-red-600 scale-110" : "border-transparent hover:border-gray-400"}`}
+                                        className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 transition-all duration-300 ${idx === currentImageIdx ? "border-gray-200 scale-100" : "border-transparent hover:border-gray-400"}`}
                                     >
                                         <img
                                             src={img}
@@ -513,7 +513,7 @@ const ProductSubDetailPage = () => {
                                 {product.description}
                             </div>
                             <h2 className="text-2xl sm:text-3xl font-semibold mb-4 border-b pb-2">Features</h2>
-                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-gray-800 list-disc list-inside mb-8">
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-gray-800 list-disc list-outside pt-6 mb-8">
                                 {product.features && product.features.map((feature, idx) => (
                                     <li key={idx}>{feature}</li>
                                 ))}
