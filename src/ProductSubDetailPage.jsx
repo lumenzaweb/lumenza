@@ -887,7 +887,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
                         className="w-25 h-24 object-cover rounded-lg flex-shrink-1"
                       />
                       <div>
-                        <h3 className="font-bold text-lg mb-2">
+                        <h3 className="font-bold text-lg mb-1">
                           {productDetail.title}
                         </h3>
                         <ul className="list-disc list-inside text-black space-y-1">
