@@ -881,12 +881,7 @@ if (product.images) {
           )}
         </div>
       </section>
-
-      {/* ✅ Variants Section (mortise part) */}
-{product.productDetails && product.productDetails.length > 0 && (
-  <ProductVariants product={product} />
-)}
-
+      
       {/* PDF Download Box for ALL products */}
       <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
         <h2 className="text-2xl font-semibold mb-4 text-red-900">
