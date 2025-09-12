@@ -5,7 +5,10 @@ const ProductVariants = ({ product }) => {
   const cardRefs = useRef([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Track active card
+  // --- NEW: A ref to hold the interval ID for auto-sliding ---
+  const intervalRef = useRef(null);
+
+  // Track active card using IntersectionObserver
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -24,9 +27,9 @@ const ProductVariants = ({ product }) => {
     return () => {
       cardRefs.current.forEach((card) => card && observer.unobserve(card));
     };
-  }, []);
+  }, [product.productDetails]); // Dependency added to re-observe if products change
 
-  // Scroll to card when dot clicked
+  // Scroll to a card when a dot is clicked
   const handleDotClick = (idx) => {
     cardRefs.current[idx]?.scrollIntoView({
       behavior: "smooth",
@@ -34,6 +37,34 @@ const ProductVariants = ({ product }) => {
       block: "nearest",
     });
   };
+
+  // --- NEW: Functions to control the auto-slide ---
+  const stopAutoSlide = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  const startAutoSlide = () => {
+    stopAutoSlide(); // Ensure no multiple intervals are running
+    intervalRef.current = setInterval(() => {
+      // Calculate the next index, looping back to 0 at the end
+      const nextIndex = (activeIndex + 1) % product.productDetails.length;
+      handleDotClick(nextIndex);
+    }, 2000); // Slide every 2 seconds (2000ms)
+  };
+
+  // --- NEW: useEffect to manage the auto-slide lifecycle ---
+  useEffect(() => {
+    // Only start auto-sliding if there's more than one variant
+    if (product.productDetails.length > 1) {
+      startAutoSlide();
+    }
+    // This is a cleanup function that runs when the component unmounts
+    // or when the activeIndex changes, to reset the timer.
+    return () => stopAutoSlide();
+  }, [activeIndex, product.productDetails.length]); // Restart the timer logic when the slide changes
 
   if (!product.productDetails || product.productDetails.length === 0) {
     return null;
@@ -48,6 +79,9 @@ const ProductVariants = ({ product }) => {
       <div className="relative">
         <div
           ref={scrollRef}
+          // --- NEW: Event handlers to pause/resume on hover ---
+          onMouseEnter={stopAutoSlide}
+          onMouseLeave={startAutoSlide}
           className="flex space-x-4 overflow-x-auto scrollbar-hide scroll-smooth px-1 pb-4"
         >
           {product.productDetails.map((productDetail, idx) => (
