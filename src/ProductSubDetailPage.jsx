@@ -13,16 +13,7 @@ const allSubProducts = {
             "https://i.pinimg.com/736x/ad/f6/f3/adf6f3a8672d5e6974623ba82a5dd204.jpg",
         ],
         features: [
-            "Digital Lock",
-            "Door : 3mm, Body: 1.5mm",
-            "Compact Design",
-            "Multiple Sizes",
-            "Fire Resistant",
-            "Strong Hinges",
-            "Key Override",
-            "Anti-Theft Bolts",
-            "Battery Operated",
-            "Durable Finish",
+            "Digital Lock", "Door : 3mm, Body: 1.5mm", "Compact Design", "Multiple Sizes", "Fire Resistant", "Strong Hinges", "Key Override", "Anti-Theft Bolts", "Battery Operated", "Durable Finish",
         ],
         productDetails: [
             {
@@ -220,390 +211,33 @@ const allSubProducts = {
     "Mortise": {
         name: "Mortise",
         details: [
-            {
-                img: "https://i.pinimg.com/736x/ff/6c/1f/ff6c1fce0616e237c733c8cd3edc9909.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3101</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin Finish</li>
-                            <li>B.Antik Finish</li>
-                            <li>Z.Black Finish</li>
-                            <li>BL Satin Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/6e/eb/4a/6eeb4a72e94f1adc55416a2479e9-e2c3.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3102</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin Finish</li>
-                            <li>B.Antik Finish</li>
-                            <li>Z.Black Finish</li>
-                            <li>BL Satin Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/44/47/d5/4447d5bc8d8119d0f8d836745a10ef78.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3103</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>B.Antik + BL Finish</li>
-                            <li>Z.Black + Coca Finish</li>
-                            <li>BL Satin + BL Nickel Finish</li>
-                            <li>PVD RG + BL Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/ba/91/34/ba913428bff40c7cc2e0e90d7b59c702.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3104</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>BL + GL Finish</li>
-                            <li>Antik + GL Finish</li>
-                            <li>BL Satin + BL Nickel Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/c2/b8/6d/c2b86d17e5d38a3584a635fd7af9ce21.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3105</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>Antik + BL Finish</li>
-                            <li>PVD RG + BL Finish</li>
-                            <li>PVD GL + BL Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/73/fd/e1/73fde11da192c3eb1d1489b4b6a16d78.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3106</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>PVD GL + BL Finish</li>
-                            <li>BL + BL Finish</li>
-                            <li>PVD RG + BL Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/57/82/7f/57827f0568fd5820024f192b804b718b.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3111</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>B.Antik + Z.Black Finish</li>
-                            <li>PVD Gold + Z.Black Finish</li>
-                            <li>BL Satin + BL Nickel Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/29/1e/b5/291eb55cfb401276bae74c19a57c9961.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3112</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>B.Antik + PVD Gold Finish</li>
-                            <li>PVD Gold + Z.Black Finish</li>
-                            <li>BL Satin + BL Nickel Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/76/dc/e7/76dce7d2c1848f7ce875408a9dc5b2c8.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3113</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin Finish</li>
-                            <li>B.Antik Finish</li>
-                            <li>Z.Black Finish</li>
-                            <li>BL Satin Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/89/79/4c/89794c54efd6e2e5dcac08c7f97fc0f9.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3114</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>BL + BL Finish</li>
-                            <li>Coca + BL Finish</li>
-                            <li>BL + PVD GL Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/49/f8/8a/49f88a2caf420f8adb5d6f28242dfd6a.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3115</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>BL + RG Finish</li>
-                            <li>Coca + Coca Finish</li>
-                            <li>BL Satin + BL Nickel Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/9d/97/59/9d9759a2db5f8fa8d4314780b38c4b17.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3116</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin Finish</li>
-                            <li>B.Satin Matt Finish</li>
-                            <li>Z.Black Finish</li>
-                            <li>PVD R.Gold Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/b5/7f/6e/b57f6e5f2f3a3d5ce77cb9c1b8d15784.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3121</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin Finish</li>
-                            <li>B.Antik Finish</li>
-                            <li>Z.Black Finish</li>
-                            <li>BL Satin Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/ef/28/49/ef28493098503b9dc643c5e717fd1325.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3122</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>BL Satin + BL Nickel Finish</li>
-                            <li>PVD Gold + Z.Black Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/8a/f3/b9/8af3b90b5b9d7aafc1a8de7096b97d86.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3123</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin Finish</li>
-                            <li>B.Antik Finish</li>
-                            <li>Z.Black Finish</li>
-                            <li>BL Satin Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/4d/0c/d1/4d0cd1b52fc50a92b9202703b700ca02.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3124</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>BL + PVD GL Finish</li>
-                            <li>Rembo + BL Satin Finish</li>
-                            <li>Coca + Coca Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/e8/e9/55/e8e9552eff617b10713b47378349461d.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3125</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>Coca + BL Finish</li>
-                            <li>Gold + BL Finish</li>
-                            <li>BL + BL Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/4d/ae/0b/4dae0b9d09968a01a49b63211e78e49e.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3126</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>Coca + BL Finish</li>
-                            <li>BL + BL Finish</li>
-                            <li>PVD Gold + Antik Finish</li>
-                            <li>BL Satin + BL Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/6a/a2/4a/6aa24ab31736353996cfd181ed7d640a.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3131</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>Coca + Black Finish</li>
-                            <li> GL + BL Finish</li>
-                            <li>BL Satin + GL Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/53/86/24/5386242b9a2729e7b5259669d05002c4.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3132</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>Antik + Black Finish</li>
-                            <li>BL Satin + Coca Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/c3/f9/2d/c3f92d39bdc46442de58766ec004cd6a.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3133</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>Coca + Black Finish</li>
-                            <li>Antik + BL Finish</li>
-                            <li>BL + BL Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/66/7b/9a/667b9a6c2813304c4e938602fa0a65ed.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3134</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>Coca + Black Finish</li>
-                            <li>PVD GL + BL Finish</li>
-                            <li>BL + BL Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/e1/46/aa/e146aa101dcb45b59fd1ab772f0e070b.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3135</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>PVD GL + Black Finish</li>
-                            <li>BL + PVD RG Finish</li>
-                            <li>BL Satin + BL Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/85/d2/b6/85d2b6e8ddab9ca36d6c33764af280d4.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LM - 3136</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>Satin + CP Finish</li>
-                            <li>PVD RG + Black Finish</li>
-                            <li>BL + PVD GL Finish</li>
-                            <li>BL Satin + Coca Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/cb/dd/b4/cbddb421e5ffefd5859f8c62b7459de6.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LOCKBODY 45X45</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>S.S. MATT Finish</li>
-                            <li>B. ANTIK Finish</li>
-                            <li>Z BLACK Finish</li>
-                            <li>BL SATIN Finish</li>
-                            <li>PVD GL Finish</li>
-                            <li>PVD RG Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/fc/7a/42/fc7a4246426601ed91fffd1fd4813931.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">LOCKBODY 45X85</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>S.S. MATT Finish</li>
-                            <li>B. ANTIK Finish</li>
-                            <li>Z BLACK Finish</li>
-                            <li>BL SATIN Finish</li>
-                            <li>PVD GL Finish</li>
-                            <li>PVD RG Finish</li>
-                        </ul>
-                    </>
-                ),
-            },
-            {
-                img: "https://i.pinimg.com/736x/a8/d7/a5/a8d7a517f73b18aec13c16b48b3f78f6.jpg",
-                description: (
-                    <>
-                        <h3 className="font-semibold text-center text-xl mb-2">CYLINDER</h3>
-                        <ul className="list-disc list-inside text-gray-700 text-sm">
-                            <li>S.S. MATT Finish</li>
-                            <li>B. ANTIK Finish</li>
-                            <li>Z BLACK Finish</li>
-                            <li>BL SATIN Finish</li>
-                            <li>PVD GL Finish</li>
-                            <li>CYLINDER SIZES(mm) - 60,70,80,90</li>
-                        </ul>
-                    </>
-                ),
-            },
+            { img: "https://i.pinimg.com/736x/ff/6c/1f/ff6c1fce0616e237c733c8cd3edc9909.jpg", title: "LM - 3101", finishes: ["Satin Finish", "B.Antik Finish", "Z.Black Finish", "BL Satin Finish"] },
+            { img: "https://i.pinimg.com/736x/6e/eb/4a/6eeb4a72e94f1adc55416a2479e9-e2c3.jpg", title: "LM - 3102", finishes: ["Satin Finish", "B.Antik Finish", "Z.Black Finish", "BL Satin Finish"] },
+            { img: "https://i.pinimg.com/736x/44/47/d5/4447d5bc8d8119d0f8d836745a10ef78.jpg", title: "LM - 3103", finishes: ["Satin + CP Finish", "B.Antik + BL Finish", "Z.Black + Coca Finish", "BL Satin + BL Nickel Finish", "PVD RG + BL Finish"] },
+            { img: "https://i.pinimg.com/736x/ba/91/34/ba913428bff40c7cc2e0e90d7b59c702.jpg", title: "LM - 3104", finishes: ["Satin + CP Finish", "BL + GL Finish", "Antik + GL Finish", "BL Satin + BL Nickel Finish"] },
+            { img: "https://i.pinimg.com/736x/c2/b8/6d/c2b86d17e5d38a3584a635fd7af9ce21.jpg", title: "LM - 3105", finishes: ["Satin + CP Finish", "Antik + BL Finish", "PVD RG + BL Finish", "PVD GL + BL Finish"] },
+            { img: "https://i.pinimg.com/736x/73/fd/e1/73fde11da192c3eb1d1489b4b6a16d78.jpg", title: "LM - 3106", finishes: ["Satin + CP Finish", "PVD GL + BL Finish", "BL + BL Finish", "PVD RG + BL Finish"] },
+            { img: "https://i.pinimg.com/736x/57/82/7f/57827f0568fd5820024f192b804b718b.jpg", title: "LM - 3111", finishes: ["Satin + CP Finish", "B.Antik + Z.Black Finish", "PVD Gold + Z.Black Finish", "BL Satin + BL Nickel Finish"] },
+            { img: "https://i.pinimg.com/736x/29/1e/b5/291eb55cfb401276bae74c19a57c9961.jpg", title: "LM - 3112", finishes: ["Satin + CP Finish", "B.Antik + PVD Gold Finish", "PVD Gold + Z.Black Finish", "BL Satin + BL Nickel Finish"] },
+            { img: "https://i.pinimg.com/736x/76/dc/e7/76dce7d2c1848f7ce875408a9dc5b2c8.jpg", title: "LM - 3113", finishes: ["Satin Finish", "B.Antik Finish", "Z.Black Finish", "BL Satin Finish"] },
+            { img: "https://i.pinimg.com/736x/89/79/4c/89794c54efd6e2e5dcac08c7f97fc0f9.jpg", title: "LM - 3114", finishes: ["Satin + CP Finish", "BL + BL Finish", "Coca + BL Finish", "BL + PVD GL Finish"] },
+            { img: "https://i.pinimg.com/736x/49/f8/8a/49f88a2caf420f8adb5d6f28242dfd6a.jpg", title: "LM - 3115", finishes: ["Satin + CP Finish", "BL + RG Finish", "Coca + Coca Finish", "BL Satin + BL Nickel Finish"] },
+            { img: "https://i.pinimg.com/736x/9d/97/59/9d9759a2db5f8fa8d4314780b38c4b17.jpg", title: "LM - 3116", finishes: ["Satin Finish", "B.Satin Matt Finish", "Z.Black Finish", "PVD R.Gold Finish"] },
+            { img: "https://i.pinimg.com/736x/b5/7f/6e/b57f6e5f2f3a3d5ce77cb9c1b8d15784.jpg", title: "LM - 3121", finishes: ["Satin Finish", "B.Antik Finish", "Z.Black Finish", "BL Satin Finish"] },
+            { img: "https://i.pinimg.com/736x/ef/28/49/ef28493098503b9dc643c5e717fd1325.jpg", title: "LM - 3122", finishes: ["Satin + CP Finish", "BL Satin + BL Nickel Finish", "PVD Gold + Z.Black Finish"] },
+            { img: "https://i.pinimg.com/736x/8a/f3/b9/8af3b90b5b9d7aafc1a8de7096b97d86.jpg", title: "LM - 3123", finishes: ["Satin Finish", "B.Antik Finish", "Z.Black Finish", "BL Satin Finish"] },
+            { img: "https://i.pinimg.com/736x/4d/0c/d1/4d0cd1b52fc50a92b9202703b700ca02.jpg", title: "LM - 3124", finishes: ["Satin + CP Finish", "BL + PVD GL Finish", "Rembo + BL Satin Finish", "Coca + Coca Finish"] },
+            { img: "https://i.pinimg.com/736x/e8/e9/55/e8e9552eff617b10713b47378349461d.jpg", title: "LM - 3125", finishes: ["Satin + CP Finish", "Coca + BL Finish", "Gold + BL Finish", "BL + BL Finish"] },
+            { img: "https://i.pinimg.com/736x/4d/ae/0b/4dae0b9d09968a01a49b63211e78e49e.jpg", title: "LM - 3126", finishes: ["Satin + CP Finish", "Coca + BL Finish", "BL + BL Finish", "PVD Gold + Antik Finish", "BL Satin + BL Finish"] },
+            { img: "https://i.pinimg.com/736x/6a/a2/4a/6aa24ab31736353996cfd181ed7d640a.jpg", title: "LM - 3131", finishes: ["Satin + CP Finish", "Coca + Black Finish", "GL + BL Finish", "BL Satin + GL Finish"] },
+            { img: "https://i.pinimg.com/736x/53/86/24/5386242b9a2729e7b5259669d05002c4.jpg", title: "LM - 3132", finishes: ["Satin + CP Finish", "Antik + Black Finish", "BL Satin + Coca Finish"] },
+            { img: "https://i.pinimg.com/736x/c3/f9/2d/c3f92d39bdc46442de58766ec004cd6a.jpg", title: "LM - 3133", finishes: ["Satin + CP Finish", "Coca + Black Finish", "Antik + BL Finish", "BL + BL Finish"] },
+            { img: "https://i.pinimg.com/736x/66/7b/9a/667b9a6c2813304c4e938602fa0a65ed.jpg", title: "LM - 3134", finishes: ["Satin + CP Finish", "Coca + Black Finish", "PVD GL + BL Finish", "BL + BL Finish"] },
+            { img: "https://i.pinimg.com/736x/e1/46/aa/e146aa101dcb45b59fd1ab772f0e070b.jpg", title: "LM - 3135", finishes: ["Satin + CP Finish", "PVD GL + Black Finish", "BL + PVD RG Finish", "BL Satin + BL Finish"] },
+            { img: "https://i.pinimg.com/736x/85/d2/b6/85d2b6e8ddab9ca36d6c33764af280d4.jpg", title: "LM - 3136", finishes: ["Satin + CP Finish", "PVD RG + Black Finish", "BL + PVD GL Finish", "BL Satin + Coca Finish"] },
+            { img: "https://i.pinimg.com/736x/cb/dd/b4/cbddb421e5ffefd5859f8c62b7459de6.jpg", title: "LOCKBODY 45X45", finishes: ["S.S. MATT Finish", "B. ANTIK Finish", "Z BLACK Finish", "BL SATIN Finish", "PVD GL Finish", "PVD RG Finish"] },
+            { img: "https://i.pinimg.com/736x/fc/7a/42/fc7a4246426601ed91fffd1fd4813931.jpg", title: "LOCKBODY 45X85", finishes: ["S.S. MATT Finish", "B. ANTIK Finish", "Z BLACK Finish", "BL SATIN Finish", "PVD GL Finish", "PVD RG Finish"] },
+            { img: "https://i.pinimg.com/736x/a8/d7/a5/a8d7a517f73b18aec13c16b48b3f78f6.jpg", title: "CYLINDER", finishes: ["S.S. MATT Finish", "B. ANTIK Finish", "Z BLACK Finish", "BL SATIN Finish", "PVD GL Finish", "CYLINDER SIZES(mm) - 60,70,80,90"] },
         ],
     },
     "Door Closer": {
@@ -615,16 +249,135 @@ const allSubProducts = {
             "https://i.pinimg.com/736x/5f/53/e0/5f53e07e9ec563358c7a444670af04a7.jpg",
         ],
         features: [
-            "Smooth Closing Action",
-            "Adjustable Speed",
-            "Durable Steel Build",
-            "Sleek Design",
-            "Capacity - 60 kg",
-            "Door width - 950 mm",
+            "Smooth Closing Action", "Adjustable Speed", "Durable Steel Build", "Sleek Design", "Capacity - 60 kg", "Door width - 950 mm",
         ],
         finishes: ["Satin", "Gold", "Black"],
     },
-    //... (rest of the data)
+    "Wire basket": {
+        name: "Wire basket",
+        description:
+            "LUMENZA wire basket and a pullout are essential kitchen accessories designed for organized storage and efficient space utilization. Both are made of durable wire—often chrome-plated—for strength and corrosion resistance, providing modern convenience and aesthetic appeal.",
+        images: [
+            "https://i.pinimg.com/736x/11/ea/87/11ea87b9141ca0545a03ce7ffb0cc290.jpg",
+            "https://i.pinimg.com/736x/5a/20/26/5a2026d40c37c25f460303697ba21452.jpg",
+            "https://i.pinimg.com/736x/69/3b/6f/693b6f9856c3627aeb099cbdae8e5b10.jpg",
+        ],
+        features: [
+            "Made of high-quality stainless steel or chrome-plated wire for durability and rust resistance.",
+            "Smooth polished finish with mirror-like shine for attractive look and ease of cleaning.",
+            "Suitable for kitchen storage, pantry organization, and multipurpose household use.",
+            "Easy to install, maintain, and clean with just a wipe.",
+            "Rails and secure sides to prevent items from falling when sliding out.",
+            "Download PDF for the detailed products catalogue.",
+        ],
+    },
+    "Sheet basket": {
+        name: "Sheet basket",
+        description:
+            "LUMENZA sheet basket for the kitchen is typically a flat, sturdy basket made from stainless steel sheet or metal sheet with fine thickness. It is designed for versatile usage such as storing cutlery, utensils, or small kitchen items and can also be used as a pullout basket inside kitchen cabinets for better organization.",
+        images: [
+            "https://i.pinimg.com/736x/8b/28/c0/8b28c0f5f6edd45fc7c4b29a99cb03f3.jpg",
+            "https://i.pinimg.com/736x/d9/78/8c/d9788c5c5a2d401d84899d274c6bb221.jpg",
+            "https://i.pinimg.com/736x/57/cd/2d/57cd2d853d0f18ab3761c00cce3149e1.jpg",
+        ],
+        features: [
+            "Modular design to fit standard kitchen cabinet sizes.",
+            "Easy access and convenient storage of kitchen utensils, bottles, or cutlery.",
+            "Suitable for home, hotel, and restaurant kitchen use.",
+            "Easy to clean, hygienic, and durable against regular kitchen wear.",
+            "Available in variations like plain sheet baskets, perforated baskets, and multi-tiered pullouts.",
+            "Download PDF for the detailed products catalogue.",
+        ],
+    },
+    "Profile handle": {
+        name: "Profile handle",
+        description:
+            "LUMENZA profile handle is typically made from materials like aluminum, stainless steel, or zinc alloy. Designed to be fitted along the edge of cabinet fronts, it allows for easy grip and operation while maintaining a streamlined, unobtrusive appearance.",
+        images: [
+            "https://i.pinimg.com/736x/74/cb/79/74cb794c6fc1688a9f5e7d1266897427.jpg",
+            "https://i.pinimg.com/736x/82/b3/4c/82b34c9ba5107be979a804e4954218ca.jpg",
+            "https://i.pinimg.com/736x/77/79/c7/7779c75b55aab3badff5a165ce526073.jpg",
+        ],
+        features: [
+            "Minimalist Design: Profile handles offer a contemporary, handle-less aesthetic well-suited for modern kitchens and furniture.",
+            "Easy Installation: Most profile handles are designed for surface mounting or edge fitting, making them simple to install.",
+            "Ergonomic Grip: The recessed or angled shape allows for comfortable opening and closing of cabinets.",
+            "Hygienic Surface: Their simple shape makes cleaning easy, minimizing dust and grime accumulation.",
+            "Available in multiple sizes and finishes.",
+            "Download PDF for the detailed products catalogue.",
+        ],
+    },
+    "Cabinet handle": {
+        name: "Cabinet handle",
+        description:
+            "Lumenza provides a diverse range of cabinet handles that suit various décor styles, from sleek minimalist bars to more decorative and geometric designs. These handles are crafted to provide a sturdy grip and elevate the visual appeal of cabinets while ensuring easy operation.",
+        images: [
+            "https://i.pinimg.com/736x/3b/1b/c1/3b1bc1ad75a6f5fa5d7ebc49f6aa9171.jpg",
+            "https://i.pinimg.com/736x/e1/8d/1c/e18d1c5e683cc3fea1938976d70ccd79.jpg",
+            "https://i.pinimg.com/736x/e2/87/ee/e287ee3a55788039abd5c7823f62ce00.jpg",
+        ],
+        features: [
+            "Variety of Designs: Available as bar handles, recessed pulls, and integrated pulls, catering to modern, classic, and transitional decor preferences.",
+            "Multiple Finishes: Finishes such as chrome, matte black, brushed nickel, copper, gold, and dual-tone styles ensure aesthetic versatility to complement cabinetry and hardware.",
+            "Size Choices: Handles are offered in different lengths and thicknesses to fit various cabinet sizes and functions, from small drawers to large doors.",
+            "Easy Installation: Most cabinet handles feature standard screw spacings and mounting styles for straightforward installation and replacement.",
+            "Functional Durability: High-quality handles are resistant to wear, scratches, and tarnishing, supporting long-term performance.",
+            "Download PDF for the detailed products catalogue.",
+        ],
+    },
+    "Wardrobe Lock": {
+        name: "Wardrobe Lock",
+        description:
+            "Lumenza sources high-quality wardrobe locks known for their sturdy construction, smooth locking mechanism, and aesthetic appeal. These locks are designed to fit various wardrobe types and ensure enhanced security alongside elegant finishes. These locks are widely used in office furniture, residential storage cabinets, and retail fixtures to prevent unauthorized access.",
+        images: ["https://i.pinimg.com/736x/1f/b9/83/1fb983f1b894c1714751c60d47f49c82.jpg"],
+        features: [
+            "Secure Key Operation: Provides reliable access control via a uniquely cut key and cylinder mechanism, reducing unauthorized opening.",
+            "Simple Installation: Mounts easily with screws and a single hole in most cabinet or drawer faces, accommodating various thicknesses.",
+            "Multiple Cam Styles: Available with straight or offset cams for compatibility with different cabinet designs.",
+            "Versatile Applications: Suitable for wood, metal, or plastic cabinets and frequently used in office, kitchen, and retail environments.",
+            "Spare Keys Provided: Usually supplied with at least two keys for convenience and backup access.",
+            "Download PDF for the detailed products catalogue.",
+        ],
+    },
+    "Knob": {
+        name: "Knob",
+        description:
+            "Lumenza company recognized for its premium, design-forward cabinet knobs that combine functionality with modern aesthetics. Our knob collection offers a refined touch for contemporary and classic interiors, ensuring quality and versatility for every space.",
+        images: [
+            "https://i.pinimg.com/736x/43/0f/19/430f199700551bdfc39c4ec1a0771016.jpg",
+            "https://i.pinimg.com/736x/01/ab/d6/01abd6678c77d43200a8ff869b9f2822.jpg",
+            "https://i.pinimg.com/736x/44/1e/09/441e09a0cfa6cc5f6d7f87b47b3302a3.jpg",
+        ],
+        features: [
+            "Designer Styles: Lumenza's knob portfolio includes geometric, minimalist, and decorative designs, available in round, rectangular, and artistic shapes.",
+            "Wide Range of Finishes: Options include chrome, gold, matte black, copper, and multi-tone combos, ensuring compatibility with any cabinetry style",
+            "Ergonomic Handling: Designs feature smooth edges and comfortable contours for easy, everyday use.",
+            "Easy Installation: Each knob is engineered for quick installation, with standard fittings that are compatible with most cabinet types.",
+            "Customization: Lumenza can offer bespoke designs and finishes to meet specific project needs, bringing unique character to living or working spaces.",
+            "Download PDF for the detailed products catalogue.",
+        ],
+    },
+    "Silicone": {
+        name: "Silicone",
+        description: (
+            <li>
+                <strong>GP300</strong> is one part acetic cure silicone sealant. A strong, fast curing, general purpose & is unaffected by rain, sunlight, snow etc. It is formulated with years if experience on a wide range of applications. It is a silicone sealant with high UV & water resistance.
+            </li>
+        ),
+        images: [
+            "https://i.pinimg.com/736x/7f/f1/7b/7ff17ba1c6f90e1951735e879e28b434.jpg",
+            "https://i.pinimg.com/736x/eb/ea/33/ebea3372d29a5132e10c988e3f6bfb2a.jpg",
+        ],
+        features: [
+            "GP-300",
+            "Premium Grade Acetoxy Silicone Sealant",
+            "Superior Adhesion On Glass",
+            "Durable Sealing",
+            "Good Elasticity",
+            "Excellent UV Resistance",
+            "For any info fill query form and submit",
+        ],
+    },
 };
 
 
