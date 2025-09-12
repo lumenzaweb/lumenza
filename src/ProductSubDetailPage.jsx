@@ -795,140 +795,84 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
   }
 
   // If product has images (gallery layout)
-  if (product.images) {
-    return (
-      <main className="py-20 px-10 min-h-screen bg-gray-50 flex flex-col">
-        <button
-          onClick={() => navigate(-1)}
-          className="self-center mt-28 mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
-        >
-          Back
-        </button>
-        <section className="flex flex-col md:flex-row flex-1 gap-8 max-w-full overflow-hidden px-4">
-          {/* Image Gallery Section */}
-          <div className="flex flex-col items-center w-full md:w-1/3 max-w-md mx-auto">
-            <div className="w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg mb-4 border border-gray-300">
-              <img
-                src={product.images[currentImageIdx]}
-                alt={`${product.name} variant ${currentImageIdx + 1}`}
-                className="w-full h-full object-contain transition-transform duration-300"
-              />
-            </div>
-            <div className="flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400 w-full">
-              {product.images.map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentImageIdx(idx)}
-                  className={`flex-shrink-0 w-20 h-24 rounded-lg overflow-hidden border-4 ${
-                    idx === currentImageIdx
-                      ? "border-white-700"
-                      : "border-transparent hover:border-green-400"
-                  } transition-colors duration-300 focus:outline-none`}
-                  aria-label={`View variant ${idx + 1}`}
-                >
-                  <img
-                    src={img}
-                    alt={`${product.name} thumbnail ${idx + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Product Info Section */}
-          <div className="flex-1 max-w-3xl flex flex-col overflow-auto">
-            <h1 className="text-2xl md:text-5xl font-extrabold mb-6 text-black">
-              {product.name}
-            </h1>
-            <p className="text-base md:text-lg text-black mb-8 leading-relaxed">
-              {product.description}
-            </p>
-
-            <h2 className="text-2xl font-semibold mb-4 text-black">
-              Features
-            </h2>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-black list-disc list-inside">
-              {product.features.map((feature, idx) => (
-                <li key={idx} className="text-base">
-                  {feature}
-                </li>
-              ))}
-            </ul>
-
-            {product.finishes && product.finishes.length > 0 && (
-              <>
-                <h2 className="text-2xl font-semibold mb-4 text-black">
-                  Finishes
-                </h2>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 text-black list-disc list-inside">
-                  {product.finishes.map((finish, idx) => (
-                    <li key={idx} className="text-base">
-                      {finish}
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-
-        {/* PDF Download Box for ALL products */}
-        <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
-          <h2 className="text-2xl font-semibold mb-4 text-red-900">
-            Download Our Product Catalog
-          </h2>
-          <p className="mb-6 text-red-800">
-            Get all product details and specifications in one handy PDF file.
-          </p>
-          <a
-            href="https://1drv.ms/b/c/787E0745D45C1EC6/EfjLRCDiQsFHo_i176e9iTcBKRdVrpzUGYTxI4GdsSqnvQ?e=24JQyW"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full md:inline-block md:w-auto px-6 py-3 bg-red-700 text-white font-bold rounded hover:bg-red-800 transition">
-            Download PDF
-          </a>
-        </section>
-      </main>
-    );
-  };
-
- // If product has details (grid layout)
-if (product && product.details && product.details.length > 0) {
+if (product.images) {
   return (
-    <main className="py-12 px-4 sm:px-8 md:px-15 min-h-screen bg-gray-50 flex flex-col">
+    <main className="py-20 px-10 min-h-screen bg-gray-50 flex flex-col">
       <button
         onClick={() => navigate(-1)}
-        className="self-center mt-20 mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
+        className="self-center mt-28 mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition shadow-md"
       >
-         Back
+        Back
       </button>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto w-full">
-        {product.details.map((item, idx) => (
-          <div
-            key={idx}
-            className="flex flex-col sm:flex-row bg-white rounded-lg shadow-lg overflow-hidden"
-          >
-            {/* Image wrapper to control aspect ratio */}
-            <div className="flex-shrink-0 flex items-center justify-center w-full sm:w-80 bg-white">
-              <img
-                src={item.img}
-                alt={`${product.name} detail ${idx + 1}`}
-                className="w-full h-60 sm:h-72 object-contain"
-              />
-            </div>
-
-            {/* Description */}
-            <div className="flex-1 flex items-center justify-center px-4 py-4 bg-gray-50">
-              <p className="text-black text-base sm:text-lg text-center sm:text-left">
-                {item.description}
-              </p>
-            </div>
+      <section className="flex flex-col md:flex-row flex-1 gap-8 max-w-full overflow-hidden px-4">
+        {/* Image Gallery Section */}
+        <div className="flex flex-col items-center w-full md:w-1/3 max-w-md mx-auto">
+          <div className="w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg mb-4 border border-gray-300">
+            <img
+              src={product.images[currentImageIdx]}
+              alt={`${product.name} variant ${currentImageIdx + 1}`}
+              className="w-full h-full object-contain transition-transform duration-300"
+            />
           </div>
-        ))}
+          <div className="flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400 w-full">
+            {product.images.map((img, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentImageIdx(idx)}
+                className={`flex-shrink-0 w-20 h-24 rounded-lg overflow-hidden border-4 ${
+                  idx === currentImageIdx
+                    ? "border-white-700"
+                    : "border-transparent hover:border-green-400"
+                } transition-colors duration-300 focus:outline-none`}
+                aria-label={`View variant ${idx + 1}`}
+              >
+                <img
+                  src={img}
+                  alt={`${product.name} thumbnail ${idx + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Product Info Section */}
+        <div className="flex-1 max-w-3xl flex flex-col overflow-auto">
+          <h1 className="text-2xl md:text-5xl font-extrabold mb-6 text-black">
+            {product.name}
+          </h1>
+          <p className="text-base md:text-lg text-black mb-8 leading-relaxed">
+            {product.description}
+          </p>
+
+          <h2 className="text-2xl font-semibold mb-4 text-black">Features</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-black list-disc list-inside">
+            {product.features.map((feature, idx) => (
+              <li key={idx} className="text-base">
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          {product.finishes && product.finishes.length > 0 && (
+            <>
+              <h2 className="text-2xl font-semibold mb-4 text-black">
+                Finishes
+              </h2>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 text-black list-disc list-inside">
+                {product.finishes.map((finish, idx) => (
+                  <li key={idx} className="text-base">
+                    {finish}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
       </section>
 
-      {/* PDF Download Box */}
+      {/* PDF Download Box for ALL products */}
       <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
         <h2 className="text-2xl font-semibold mb-4 text-red-900">
           Download Our Product Catalog
@@ -941,7 +885,7 @@ if (product && product.details && product.details.length > 0) {
           download
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-6 py-3 bg-red-700 text-white font-bold rounded hover:bg-red-800 transition"
+          className="block w-full md:inline-block md:w-auto px-6 py-3 bg-red-700 text-white font-bold rounded hover:bg-red-800 transition"
         >
           Download PDF
         </a>
@@ -961,7 +905,7 @@ return (
       Go Back
     </button>
   </div>
- );
-};
+);
+}
 
 export default ProductSubDetailPage;
