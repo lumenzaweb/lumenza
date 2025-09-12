@@ -869,19 +869,20 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
               </>
             )}
 
-          {product.productDetails && product.productDetails.length > 0 && (
+
+         {product.productDetails && product.productDetails.length > 0 && (
   <>
     <h2 className="text-2xl font-semibold mt-5 mb-3 text-black">
       Available Variants & Specifications
     </h2>
 
+    {/* Scrollable container */}
     <div className="relative">
-      {/* Horizontal scroll container */}
-      <div className="flex space-x-4 overflow-x-auto pb-3 pr-6 -mr-6 scrollbar-hide scroll-smooth">
+      <div className="flex space-x-4 overflow-x-auto scrollbar-hide scroll-smooth px-1 pb-4">
         {product.productDetails.map((productDetail, idx) => (
           <div
             key={idx}
-            className="min-w-[260px] sm:min-w-[300px] p-4 bg-white rounded-lg shadow-md border border-gray-200 flex-shrink-0"
+            className="min-w-[220px] sm:min-w-[260px] p-4 bg-white rounded-lg shadow-md border border-gray-200 flex-shrink-0"
           >
             {/* Image */}
             <img
@@ -895,7 +896,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
               {productDetail.title}
             </h3>
 
-            {/* Specs: vertical list, each spec stays in one line */}
+            {/* Specs */}
             <ul className="list-disc list-inside text-black space-y-1">
               {productDetail.specs.map((spec, sIdx) => (
                 <li key={sIdx} className="text-sm whitespace-nowrap">
@@ -907,17 +908,20 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
         ))}
       </div>
 
-      {/* Right gradient fade */}
-      <div className="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
-
-      {/* Left gradient fade (shows after scroll if you want to make dynamic later) */}
-      <div className="absolute top-0 left-0 h-full w-12 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
+      {/* Scroll indicator dots */}
+      <div className="flex justify-center mt-1 space-x-2">
+        {product.productDetails.map((_, idx) => (
+          <span
+            key={idx}
+            className="h-1.5 w-1.5 rounded-full bg-gray-400 inline-block"
+          ></span>
+        ))}
+      </div>
     </div>
   </>
 )}
 </div>
 </section>
-
 
         {/* PDF Download Box for ALL products */}
         <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
