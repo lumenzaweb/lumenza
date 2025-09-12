@@ -89,7 +89,7 @@ const ProductDetailsPage = () => {
   const gridColsClass = gridConfig[productName] || gridConfig.default;
 
   return (
-    <section className="py-30 sm:py-40 px-4 sm:px-12 bg-gray-50 text-center max-w-6xl mx-auto">
+    <section className="py-20 sm:py-40 px-6 sm:px-14 bg-gray-50 text-center max-w-6xl mx-auto">
     <button
         onClick={() => navigate(-1)}
         aria-label="Go back"
