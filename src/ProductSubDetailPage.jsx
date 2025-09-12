@@ -388,6 +388,34 @@ const ProductSubDetailPage = () => {
     const { subProductSlug } = useParams();
     const product = allSubProducts[decodeURIComponent(subProductSlug)];
 
+    // --- NEW: A ref to hold the interval for the image gallery auto-slide ---
+    const slideIntervalRef = useRef(null);
+
+    // --- NEW: Functions to control the image gallery auto-slide ---
+    const stopAutoSlide = () => {
+        if (slideIntervalRef.current) {
+            clearInterval(slideIntervalRef.current);
+        }
+    };
+
+    const startAutoSlide = () => {
+        stopAutoSlide(); // Prevent multiple intervals
+        slideIntervalRef.current = setInterval(() => {
+            setCurrentImageIdx(prevIndex => (prevIndex + 1) % product.images.length);
+        }, 2000); // Change image every 2 seconds
+    };
+
+    // --- NEW: useEffect to manage the auto-slide lifecycle ---
+    useEffect(() => {
+        // Only start auto-sliding if the product exists and has more than one image
+        if (product && product.images && product.images.length > 1) {
+            startAutoSlide();
+        }
+        // Cleanup function: stop the interval when the component unmounts or dependencies change
+        return () => stopAutoSlide();
+    }, [currentImageIdx, product]); // Reset timer on manual click (changes currentImageIdx) or when product changes
+
+
     if (!product) {
         return (
             <div className="min-h-screen flex flex-col justify-center items-center text-center text-black bg-gray-100 p-4">
@@ -419,7 +447,12 @@ const ProductSubDetailPage = () => {
 
                     <section className="flex flex-col lg:flex-row gap-8 lg:gap-12">
                         {/* Image Gallery Section */}
-                        <div className="flex flex-col items-center w-full lg:w-2/5 lg:sticky top-28 self-start">
+                        <div
+                            className="flex flex-col items-center w-full lg:w-2/5 lg:sticky top-28 self-start"
+                            // --- NEW: Pause and resume auto-slide on hover ---
+                            onMouseEnter={stopAutoSlide}
+                            onMouseLeave={startAutoSlide}
+                        >
                             <div className="w-full aspect-1 rounded-lg overflow-hidden shadow-lg mb-4 border border-gray-200">
                                 <img
                                     src={product.images[currentImageIdx]}
@@ -461,7 +494,6 @@ const ProductSubDetailPage = () => {
 
                             {product.productDetails && <ProductVariants product={product} />}
 
-                            {/* STYLED FINISHES LIST */}
                             {product.finishes && (
                                 <>
                                     <h2 className="text-2xl sm:text-3xl font-semibold mb-4 mt-8 border-b pb-2">Finishes</h2>
@@ -469,7 +501,7 @@ const ProductSubDetailPage = () => {
                                         {product.finishes.map((finish, idx) => (
                                             <div key={idx} className="flex items-center">
                                                 <span className="w-4 h-2 bg-gray-800 rounded-full mr-4 flex-shrink-0"></span>
-                                                <span className="text-black">{finish}</span>
+                                                <span className="text-gray-800">{finish}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -482,51 +514,57 @@ const ProductSubDetailPage = () => {
         );
     }
 
-   // LAYOUT 2: For products with a 'details' array (grid layout)
-else if (product.details) {
-    return (
-        <main className="min-h-screen bg-gray-50 text-black pt-28 lg:pt-32">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                 <button
-                    onClick={() => navigate(-1)}
-                    aria-label="Go back"
-                    className="mb-8 w-12 h-12 flex items-center justify-center bg-white text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-300 shadow-md"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                </button>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-12 text-center">
-                    {product.name}
-                </h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
-                    {product.details.map((item, index) => (
-                        <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 flex flex-col text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                            <div className="aspect-1 w-full overflow-hidden">
-                                <img
-                                    src={item.img}
-                                    alt={item.title}
-                                    className="w-full h-full object-cover"
-                                />
+    // LAYOUT 2: For products with a 'details' array (grid layout)
+    else if (product.details) {
+        return (
+            <main className="min-h-screen bg-gray-50 text-black pt-28 lg:pt-32">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                     <button
+                        onClick={() => navigate(-1)}
+                        aria-label="Go back"
+                        className="mb-8 w-12 h-12 flex items-center justify-center bg-white text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-300 shadow-md"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                    </button>
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-12 text-center">
+                        {product.name}
+                    </h1>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+                        {product.details.map((item, index) => (
+                            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 flex flex-col text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                                <div className="aspect-1 w-full overflow-hidden">
+                                    <img
+                                        src={item.img}
+                                        alt={item.title || `${product.name} detail ${index + 1}`}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="p-4 flex-grow flex flex-col items-center justify-center">
+                                    {item.finishes ? (
+                                        <>
+                                            <h3 className="font-semibold text-center text-xl mb-3">{item.title}</h3>
+                                            <div className="space-y-2 w-full text-left pl-4">
+                                                {item.finishes.map((finish, fIndex) => (
+                                                    <div key={fIndex} className="flex items-center">
+                                                        <span className="w-4 h-2 bg-gray-800 rounded-full mr-3 flex-shrink-0"></span>
+                                                        <span className="text-gray-700 text-sm">{finish}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </>
+                                    ) : (
+                                        item.description
+                                    )}
+                                </div>
                             </div>
-                            <div className="p-4 flex-grow flex flex-col items-center justify-center">
-                                <h3 className="font-semibold text-center text-xl mb-2">{item.title}</h3>
-                                
-                                {/* CHANGE THE CLASSNAME HERE TO STYLE ALL LISTS AT ONCE */}
-                                <ul className="list-disc list-left text-black text-left text-sm">
-                                    {item.finishes.map((finish, fIndex) => (
-                                        <li key={fIndex}>{finish}</li>
-                                    ))}
-                                </ul>
-
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            </div>
-        </main>
-    );
-}
+            </main>
+        );
+    }
 
     // Fallback for any other data structure
     return (
