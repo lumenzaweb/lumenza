@@ -523,7 +523,7 @@ const ProductSubDetailPage = () => {
 
                             {product.finishes && (
                                 <>
-                                    <h2 className="text-2xl sm:text-3xl font-semibold mb-4 mt-8 border-b pb-2">Finishes</h2>
+                                    <h2 className="text-2xl sm:text-3xl font-semibold mb-4 mt-8 pb-2">Finishes</h2>
                                     <div className="space-y-4">
                                         {product.finishes.map((finish, idx) => (
                                             <div key={idx} className="flex items-center">
