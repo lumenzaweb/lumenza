@@ -469,7 +469,7 @@ const ProductSubDetailPage = () => {
                                         {product.finishes.map((finish, idx) => (
                                             <div key={idx} className="flex items-center">
                                                 <span className="w-4 h-2 bg-gray-800 rounded-full mr-4 flex-shrink-0"></span>
-                                                <span className="text-gray-800">{finish}</span>
+                                                <span className="text-black">{finish}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -513,7 +513,7 @@ else if (product.details) {
                                 <h3 className="font-semibold text-center text-xl mb-2">{item.title}</h3>
                                 
                                 {/* CHANGE THE CLASSNAME HERE TO STYLE ALL LISTS AT ONCE */}
-                                <ul className="list-disc list-outside text-black text-left text-sm">
+                                <ul className="list-disc list-left text-black text-left text-sm">
                                     {item.finishes.map((finish, fIndex) => (
                                         <li key={fIndex}>{finish}</li>
                                     ))}
