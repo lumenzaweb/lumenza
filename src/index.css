@@ -83,3 +83,12 @@ nav button {
 nav div.md\\:hidden.bg-white\\90 {
   backdrop-filter: blur(10px);
 }
+
+/* Hide scrollbar but allow scroll */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
+}
