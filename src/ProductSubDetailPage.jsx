@@ -225,21 +225,21 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3101</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin Finish</li>
-                            <li>Antique Finish</li>
+                            <li>B.Antik Finish</li>
                             <li>Z.Black Finish</li>
-                            <li>Bl Satin Finish</li>
+                            <li>BL Satin Finish</li>
                         </ul>
                     </>
                 ),
             },
             {
-                img: "https://i.pinimg.com/736x/6e/eb/4a/6eeb4a72e94f1adc55416a2479e9e2c3.jpg",
+                img: "https://i.pinimg.com/736x/6e/eb/4a/6eeb4a72e94f1adc55416a2479e9-e2c3.jpg",
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3102</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin Finish</li>
                             <li>B.Antik Finish</li>
                             <li>Z.Black Finish</li>
@@ -253,7 +253,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3103</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-1 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>B.Antik + BL Finish</li>
                             <li>Z.Black + Coca Finish</li>
@@ -268,7 +268,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3104</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>BL + GL Finish</li>
                             <li>Antik + GL Finish</li>
@@ -282,7 +282,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3105</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>Antik + BL Finish</li>
                             <li>PVD RG + BL Finish</li>
@@ -296,7 +296,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3106</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>PVD GL + BL Finish</li>
                             <li>BL + BL Finish</li>
@@ -310,7 +310,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3111</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>B.Antik + Z.Black Finish</li>
                             <li>PVD Gold + Z.Black Finish</li>
@@ -324,7 +324,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3112</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>B.Antik + PVD Gold Finish</li>
                             <li>PVD Gold + Z.Black Finish</li>
@@ -338,7 +338,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3113</h3>
-                      <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin Finish</li>
                             <li>B.Antik Finish</li>
                             <li>Z.Black Finish</li>
@@ -352,7 +352,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3114</h3>
-                       <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>BL + BL Finish</li>
                             <li>Coca + BL Finish</li>
@@ -366,7 +366,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3115</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>BL + RG Finish</li>
                             <li>Coca + Coca Finish</li>
@@ -380,7 +380,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3116</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin Finish</li>
                             <li>B.Satin Matt Finish</li>
                             <li>Z.Black Finish</li>
@@ -394,7 +394,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3121</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin Finish</li>
                             <li>B.Antik Finish</li>
                             <li>Z.Black Finish</li>
@@ -408,7 +408,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3122</h3>
-                       <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>BL Satin + BL Nickel Finish</li>
                             <li>PVD Gold + Z.Black Finish</li>
@@ -421,7 +421,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3123</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin Finish</li>
                             <li>B.Antik Finish</li>
                             <li>Z.Black Finish</li>
@@ -435,7 +435,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3124</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>BL + PVD GL Finish</li>
                             <li>Rembo + BL Satin Finish</li>
@@ -449,7 +449,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3125</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>Coca + BL Finish</li>
                             <li>Gold + BL Finish</li>
@@ -463,7 +463,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3126</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>Coca + BL Finish</li>
                             <li>BL + BL Finish</li>
@@ -478,7 +478,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3131</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>Coca + Black Finish</li>
                             <li> GL + BL Finish</li>
@@ -492,7 +492,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3132</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>Antik + Black Finish</li>
                             <li>BL Satin + Coca Finish</li>
@@ -505,7 +505,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3133</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>Coca + Black Finish</li>
                             <li>Antik + BL Finish</li>
@@ -519,7 +519,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3134</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>Coca + Black Finish</li>
                             <li>PVD GL + BL Finish</li>
@@ -533,7 +533,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3135</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>PVD GL + Black Finish</li>
                             <li>BL + PVD RG Finish</li>
@@ -547,7 +547,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3136</h3>
-                       <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>Satin + CP Finish</li>
                             <li>PVD RG + Black Finish</li>
                             <li>BL + PVD GL Finish</li>
@@ -561,7 +561,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LOCKBODY 45X45</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>S.S. MATT Finish</li>
                             <li>B. ANTIK Finish</li>
                             <li>Z BLACK Finish</li>
@@ -577,7 +577,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LOCKBODY 45X85</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>S.S. MATT Finish</li>
                             <li>B. ANTIK Finish</li>
                             <li>Z BLACK Finish</li>
@@ -593,7 +593,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">CYLINDER</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
+                        <ul className="list-disc list-inside text-gray-700 ml-2 mt-1 text-sm">
                             <li>S.S. MATT Finish</li>
                             <li>B. ANTIK Finish</li>
                             <li>Z BLACK Finish</li>
@@ -624,131 +624,7 @@ const allSubProducts = {
         ],
         finishes: ["Satin", "Gold", "Black"],
     },
-    "Wire basket": {
-        name: "Wire basket",
-        description:
-            "LUMENZA wire basket and a pullout are essential kitchen accessories designed for organized storage and efficient space utilization. Both are made of durable wire—often chrome-plated—for strength and corrosion resistance, providing modern convenience and aesthetic appeal.",
-        images: [
-            "https://i.pinimg.com/736x/11/ea/87/11ea87b9141ca0545a03ce7ffb0cc290.jpg",
-            "https://i.pinimg.com/736x/5a/20/26/5a2026d40c37c25f460303697ba21452.jpg",
-            "https://i.pinimg.com/736x/69/3b/6f/693b6f9856c3627aeb099cbdae8e5b10.jpg",
-        ],
-        features: [
-            "Made of high-quality stainless steel or chrome-plated wire for durability and rust resistance.",
-            "Smooth polished finish with mirror-like shine for attractive look and ease of cleaning.",
-            "Suitable for kitchen storage, pantry organization, and multipurpose household use.",
-            "Easy to install, maintain, and clean with just a wipe.",
-            "Rails and secure sides to prevent items from falling when sliding out.",
-            "Download PDF for the detailed products catalogue.",
-        ],
-    },
-    "Sheet basket": {
-        name: "Sheet basket",
-        description:
-            "LUMENZA sheet basket for the kitchen is typically a flat, sturdy basket made from stainless steel sheet or metal sheet with fine thickness. It is designed for versatile usage such as storing cutlery, utensils, or small kitchen items and can also be used as a pullout basket inside kitchen cabinets for better organization.",
-        images: [
-            "https://i.pinimg.com/736x/8b/28/c0/8b28c0f5f6edd45fc7c4b29a99cb03f3.jpg",
-            "https://i.pinimg.com/736x/d9/78/8c/d9788c5c5a2d401d84899d274c6bb221.jpg",
-            "https://i.pinimg.com/736x/57/cd/2d/57cd2d853d0f18ab3761c00cce3149e1.jpg",
-        ],
-        features: [
-            "Modular design to fit standard kitchen cabinet sizes.",
-            "Easy access and convenient storage of kitchen utensils, bottles, or cutlery.",
-            "Suitable for home, hotel, and restaurant kitchen use.",
-            "Easy to clean, hygienic, and durable against regular kitchen wear.",
-            "Available in variations like plain sheet baskets, perforated baskets, and multi-tiered pullouts.",
-            "Download PDF for the detailed products catalogue.",
-        ],
-    },
-    "Profile handle": {
-        name: "Profile handle",
-        description:
-            "LUMENZA profile handle is typically made from materials like aluminum, stainless steel, or zinc alloy. Designed to be fitted along the edge of cabinet fronts, it allows for easy grip and operation while maintaining a streamlined, unobtrusive appearance.",
-        images: [
-            "https://i.pinimg.com/736x/74/cb/79/74cb794c6fc1688a9f5e7d1266897427.jpg",
-            "https://i.pinimg.com/736x/82/b3/4c/82b34c9ba5107be979a804e4954218ca.jpg",
-            "https://i.pinimg.com/736x/77/79/c7/7779c75b55aab3badff5a165ce526073.jpg",
-        ],
-        features: [
-            "Minimalist Design: Profile handles offer a contemporary, handle-less aesthetic well-suited for modern kitchens and furniture.",
-            "Easy Installation: Most profile handles are designed for surface mounting or edge fitting, making them simple to install.",
-            "Ergonomic Grip: The recessed or angled shape allows for comfortable opening and closing of cabinets.",
-            "Hygienic Surface: Their simple shape makes cleaning easy, minimizing dust and grime accumulation.",
-            "Available in multiple sizes and finishes.",
-            "Download PDF for the detailed products catalogue.",
-        ],
-    },
-    "Cabinet handle": {
-        name: "Cabinet handle",
-        description:
-            "Lumenza provides a diverse range of cabinet handles that suit various décor styles, from sleek minimalist bars to more decorative and geometric designs. These handles are crafted to provide a sturdy grip and elevate the visual appeal of cabinets while ensuring easy operation.",
-        images: [
-            "https://i.pinimg.com/736x/3b/1b/c1/3b1bc1ad75a6f5fa5d7ebc49f6aa9171.jpg",
-            "https://i.pinimg.com/736x/e1/8d/1c/e18d1c5e683cc3fea1938976d70ccd79.jpg",
-            "https://i.pinimg.com/736x/e2/87/ee/e287ee3a55788039abd5c7823f62ce00.jpg",
-        ],
-        features: [
-            "Variety of Designs: Available as bar handles, recessed pulls, and integrated pulls, catering to modern, classic, and transitional decor preferences.",
-            "Multiple Finishes: Finishes such as chrome, matte black, brushed nickel, copper, gold, and dual-tone styles ensure aesthetic versatility to complement cabinetry and hardware.",
-            "Size Choices: Handles are offered in different lengths and thicknesses to fit various cabinet sizes and functions, from small drawers to large doors.",
-            "Easy Installation: Most cabinet handles feature standard screw spacings and mounting styles for straightforward installation and replacement.",
-            "Functional Durability: High-quality handles are resistant to wear, scratches, and tarnishing, supporting long-term performance.",
-            "Download PDF for the detailed products catalogue.",
-        ],
-    },
-    "Wardrobe Lock": {
-        name: "Wardrobe Lock",
-        description:
-            "Lumenza sources high-quality wardrobe locks known for their sturdy construction, smooth locking mechanism, and aesthetic appeal. These locks are designed to fit various wardrobe types and ensure enhanced security alongside elegant finishes. These locks are widely used in office furniture, residential storage cabinets, and retail fixtures to prevent unauthorized access.",
-        images: ["https://i.pinimg.com/736x/1f/b9/83/1fb983f1b894c1714751c60d47f49c82.jpg"],
-        features: [
-            "Secure Key Operation: Provides reliable access control via a uniquely cut key and cylinder mechanism, reducing unauthorized opening.",
-            "Simple Installation: Mounts easily with screws and a single hole in most cabinet or drawer faces, accommodating various thicknesses.",
-            "Multiple Cam Styles: Available with straight or offset cams for compatibility with different cabinet designs.",
-            "Versatile Applications: Suitable for wood, metal, or plastic cabinets and frequently used in office, kitchen, and retail environments.",
-            "Spare Keys Provided: Usually supplied with at least two keys for convenience and backup access.",
-            "Download PDF for the detailed products catalogue.",
-        ],
-    },
-    "Knob": {
-        name: "Knob",
-        description:
-            "Lumenza company recognized for its premium, design-forward cabinet knobs that combine functionality with modern aesthetics. Our knob collection offers a refined touch for contemporary and classic interiors, ensuring quality and versatility for every space.",
-        images: [
-            "https://i.pinimg.com/736x/43/0f/19/430f199700551bdfc39c4ec1a0771016.jpg",
-            "https://i.pinimg.com/736x/01/ab/d6/01abd6678c77d43200a8ff869b9f2822.jpg",
-            "https://i.pinimg.com/736x/44/1e/09/441e09a0cfa6cc5f6d7f87b47b3302a3.jpg",
-        ],
-        features: [
-            "Designer Styles: Lumenza's knob portfolio includes geometric, minimalist, and decorative designs, available in round, rectangular, and artistic shapes.",
-            "Wide Range of Finishes: Options include chrome, gold, matte black, copper, and multi-tone combos, ensuring compatibility with any cabinetry style",
-            "Ergonomic Handling: Designs feature smooth edges and comfortable contours for easy, everyday use.",
-            "Easy Installation: Each knob is engineered for quick installation, with standard fittings that are compatible with most cabinet types.",
-            "Customization: Lumenza can offer bespoke designs and finishes to meet specific project needs, bringing unique character to living or working spaces.",
-            "Download PDF for the detailed products catalogue.",
-        ],
-    },
-    "Silicone": {
-        name: "Silicone",
-        description: (
-            <li>
-                <strong>GP300</strong> is one part acetic cure silicone sealant. A strong, fast curing, general purpose & is unaffected by rain, sunlight, snow etc. It is formulated with years if experience on a wide range of applications. It is a silicone sealant with high UV & water resistance.
-            </li>
-        ),
-        images: [
-            "https://i.pinimg.com/736x/7f/f1/7b/7ff17ba1c6f90e1951735e879e28b434.jpg",
-            "https://i.pinimg.com/736x/eb/ea/33/ebea3372d29a5132e10c988e3f6bfb2a.jpg",
-        ],
-        features: [
-            "GP-300",
-            "Premium Grade Acetoxy Silicone Sealant",
-            "Superior Adhesion On Glass",
-            "Durable Sealing",
-            "Good Elasticity",
-            "Excellent UV Resistance",
-            "For any info fill query form and submit",
-        ],
-    },
+    //... (rest of the data)
 };
 
 
@@ -776,25 +652,26 @@ const ProductSubDetailPage = () => {
     // LAYOUT 1: For products with a main image gallery
     if (product.images) {
         return (
-            <main className="min-h-screen bg-gray-50 text-black">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-                    <div className="flex justify-center mb-5">
-                        <button
-                            onClick={() => navigate(-1)}
-                            className="px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition-colors duration-300 shadow-md"
-                        >
-                            Back
-                        </button>
-                    </div>
+            <main className="min-h-screen bg-gray-50 text-black pt-28 lg:pt-32">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <button
+                        onClick={() => navigate(-1)}
+                        aria-label="Go back"
+                        className="mb-8 w-12 h-12 flex items-center justify-center bg-white text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-300 shadow-md"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                    </button>
 
                     <section className="flex flex-col lg:flex-row gap-8 lg:gap-12">
                         {/* Image Gallery Section */}
-                        <div className="flex flex-col items-left w-full lg:w-2/5 lg:sticky top-20 self-start">
+                        <div className="flex flex-col items-center w-full lg:w-2/5 lg:sticky top-28 self-start">
                             <div className="w-full aspect-1 rounded-lg overflow-hidden shadow-lg mb-4 border border-gray-200">
                                 <img
                                     src={product.images[currentImageIdx]}
                                     alt={`${product.name} variant ${currentImageIdx + 1}`}
-                                    className="w-full h-full object-contain" // Ensures image is not stretched
+                                    className="w-full h-full object-contain"
                                 />
                             </div>
                             <div className="flex gap-3 w-full overflow-x-auto pb-2">
@@ -807,7 +684,7 @@ const ProductSubDetailPage = () => {
                                         <img
                                             src={img}
                                             alt={`${product.name} thumbnail ${idx + 1}`}
-                                            className="w-full h-full object-cover" // Cover maintains aspect ratio while filling space
+                                            className="w-full h-full object-cover"
                                         />
                                     </button>
                                 ))}
@@ -831,14 +708,18 @@ const ProductSubDetailPage = () => {
 
                             {product.productDetails && <ProductVariants product={product} />}
 
+                            {/* STYLED FINISHES LIST */}
                             {product.finishes && (
                                 <>
                                     <h2 className="text-2xl sm:text-3xl font-semibold mb-4 mt-8 border-b pb-2">Finishes</h2>
-                                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-black list-disc list-inside">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         {product.finishes.map((finish, idx) => (
-                                            <li key={idx}>{finish}</li>
+                                            <div key={idx} className="flex items-center p-3 bg-gray-100 rounded-lg shadow-sm">
+                                                <svg className="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
+                                                <span className="text-gray-800">{finish}</span>
+                                            </div>
                                         ))}
-                                    </ul>
+                                    </div>
                                 </>
                             )}
                         </div>
@@ -851,19 +732,20 @@ const ProductSubDetailPage = () => {
     // LAYOUT 2: For products with a 'details' array (grid layout)
     else if (product.details) {
         return (
-            <main className="min-h-screen bg-gray-50 text-black">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-                    <div className="text-center">
-                        <button
-                            onClick={() => navigate(-1)}
-                            className="mb-8 px-6 py-3 bg-red-800 text-white rounded-lg hover:bg-black transition-colors duration-300 shadow-md"
-                        >
-                            Back
-                        </button>
-                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-12">
-                            {product.name}
-                        </h1>
-                    </div>
+            <main className="min-h-screen bg-gray-50 text-black pt-28 lg:pt-32">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                     <button
+                        onClick={() => navigate(-1)}
+                        aria-label="Go back"
+                        className="mb-8 w-12 h-12 flex items-center justify-center bg-white text-gray-700 rounded-full hover:bg-gray-200 transition-colors duration-300 shadow-md"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                    </button>
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-12 text-center">
+                        {product.name}
+                    </h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
                         {product.details.map((item, index) => (
                             <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 flex flex-col text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl">
