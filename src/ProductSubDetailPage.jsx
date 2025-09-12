@@ -869,7 +869,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
               </>
             )}
 
-           {product.productDetails && product.productDetails.length > 0 && (
+          {product.productDetails && product.productDetails.length > 0 && (
   <>
     <h2 className="text-2xl font-semibold mt-5 mb-3 text-black">
       Available Variants & Specifications
@@ -891,16 +891,14 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
               {productDetail.title}
             </h3>
 
-            {/* Specs updated for one-line scrollable layout */}
-            <div className="overflow-x-auto">
-              <ul className="flex space-x-4 text-sm sm:text-base text-black">
-                {productDetail.specs.map((spec, sIdx) => (
-                  <li key={sIdx} className="whitespace-nowrap">
-                    • {spec}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* Specs updated: vertical list, but each spec stays in one line */}
+            <ul className="list-disc list-inside text-black space-y-1">
+              {productDetail.specs.map((spec, sIdx) => (
+                <li key={sIdx} className="text-sm whitespace-nowrap">
+                  {spec}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       ))}
