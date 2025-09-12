@@ -874,25 +874,27 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
     <h2 className="text-2xl font-semibold mt-5 mb-3 text-black">
       Available Variants & Specifications
     </h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-96 overflow-y-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {product.productDetails.map((productDetail, idx) => (
         <div
           key={idx}
-          className="p-1 bg-white rounded-lg shadow-md border border-gray-200 flex items-center space-x-2"
+          className="p-3 bg-white rounded-lg shadow-md border border-gray-200 flex items-start space-x-3 min-h-[140px]"
           tabIndex={0}
         >
+          {/* Image */}
           <img
-  src={productDetail.image}
-  alt={productDetail.title}
-  className="h-24 w-auto object-contain rounded-lg flex-shrink-0 mx-auto"
-/>
+            src={productDetail.image}
+            alt={productDetail.title}
+            className="h-28 w-auto object-contain rounded-lg flex-shrink-0"
+          />
 
-          <div>
-            <h3 className="font-bold text-lg mb-1">
+          {/* Content */}
+          <div className="flex-1">
+            <h3 className="font-bold text-lg mb-2">
               {productDetail.title}
             </h3>
 
-            {/* Specs updated: vertical list, but each spec stays in one line */}
+            {/* Specs: vertical list, each spec stays in one line */}
             <ul className="list-disc list-inside text-black space-y-1">
               {productDetail.specs.map((spec, sIdx) => (
                 <li key={sIdx} className="text-sm whitespace-nowrap">
@@ -908,6 +910,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
 )}
 </div>
 </section>
+
 
 
         {/* PDF Download Box for ALL products */}
