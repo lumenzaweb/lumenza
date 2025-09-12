@@ -836,6 +836,9 @@ if (product.images) {
             ))}
           </div>
         </div>
+        {/* Variants Section */}
+<ProductVariants product={product} />
+
 
         {/* Product Info Section */}
         <div className="flex-1 max-w-3xl flex flex-col overflow-auto">
