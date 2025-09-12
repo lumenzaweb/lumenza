@@ -528,7 +528,7 @@ const ProductSubDetailPage = () => {
                                         {product.finishes.map((finish, idx) => (
                                             <div key={idx} className="flex items-center">
                                                 <span className="w-4 h-2 bg-gray-800 rounded-full mr-4 flex-shrink-0"></span>
-                                                <span className="text-gray-800">{finish}</span>
+                                                <span className="text-black">{finish}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -568,8 +568,8 @@ const ProductSubDetailPage = () => {
                                             <div className="space-y-2 w-full text-left pl-4">
                                                 {item.finishes.map((finish, fIndex) => (
                                                     <div key={fIndex} className="flex items-center">
-                                                        <span className="w-4 h-2 bg-gray-800 rounded-full mr-3 flex-shrink-0"></span>
-                                                        <span className="text-gray-700 text-sm">{finish}</span>
+                                                        <span className="w-4 h-2 bg-black rounded-full mr-3 flex-shrink-0"></span>
+                                                        <span className="text-black text-sm">{finish}</span>
                                                     </div>
                                                 ))}
                                             </div>
