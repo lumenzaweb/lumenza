@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import ProductVariants from "./ProductVariants";
+
 
 // ==================== Product Data ====================
 const allSubProducts = {
@@ -869,60 +871,6 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
               </>
             )}
 
-
-         {product.productDetails && product.productDetails.length > 0 && (
-  <>
-    <h2 className="text-2xl font-semibold mt-5 mb-3 text-black">
-      Available Variants & Specifications
-    </h2>
-
-    {/* Scrollable container */}
-    <div className="relative">
-      <div className="flex space-x-4 overflow-x-auto scrollbar-hide scroll-smooth px-1 pb-4">
-        {product.productDetails.map((productDetail, idx) => (
-          <div
-            key={idx}
-            className="min-w-[220px] sm:min-w-[260px] p-4 bg-white rounded-lg shadow-md border border-gray-200 flex-shrink-0"
-          >
-            {/* Image */}
-            <img
-              src={productDetail.image}
-              alt={productDetail.title}
-              className="h-28 w-auto object-contain rounded-lg mx-auto mb-3"
-            />
-
-            {/* Title */}
-            <h3 className="font-bold text-lg mb-2 text-center">
-              {productDetail.title}
-            </h3>
-
-            {/* Specs */}
-            <ul className="list-disc list-inside text-black space-y-1">
-              {productDetail.specs.map((spec, sIdx) => (
-                <li key={sIdx} className="text-sm whitespace-nowrap">
-                  {spec}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      {/* Scroll indicator dots */}
-      <div className="flex justify-center mt-1 space-x-2">
-        {product.productDetails.map((_, idx) => (
-          <span
-            key={idx}
-            className="h-1.5 w-1.5 rounded-full bg-gray-400 inline-block"
-          ></span>
-        ))}
-      </div>
-    </div>
-  </>
-)}
-</div>
-</section>
-
         {/* PDF Download Box for ALL products */}
         <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
           <h2 className="text-2xl font-semibold mb-4 text-red-900">
@@ -942,7 +890,7 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
         </section>
       </main>
     );
-  }
+  };
 
  // If product has details (grid layout)
 if (product && product.details && product.details.length > 0) {
