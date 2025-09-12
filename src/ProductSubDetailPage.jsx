@@ -409,7 +409,6 @@ const ProductSubDetailPage = () => {
         return () => stopAutoSlide();
     }, [currentImageIdx, product]);
 
-    // Reusable Back Button Component
     const BackButton = (
         <button
             onClick={() => navigate(-1)}
@@ -422,7 +421,6 @@ const ProductSubDetailPage = () => {
         </button>
     );
     
-    // Reusable PDF Download Box Component
     const PdfBox = (
         <section className="mt-16 sm:mt-24 max-w-4xl mx-auto">
           <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 md:flex">
@@ -470,13 +468,27 @@ const ProductSubDetailPage = () => {
                             onMouseEnter={stopAutoSlide}
                             onMouseLeave={startAutoSlide}
                         >
+                            {/* === NEW SLIDING GALLERY STRUCTURE === */}
+                            {/* 1. The container hides the overflow */}
                             <div className="w-full aspect-1 rounded-lg overflow-hidden shadow-lg mb-4 border border-gray-200">
-                                <img
-                                    src={product.images[currentImageIdx]}
-                                    alt={`${product.name} variant ${currentImageIdx + 1}`}
-                                    className="w-full h-full object-contain"
-                                />
+                                {/* 2. The "film strip" slides horizontally using the transform style */}
+                                <div
+                                    className="flex transition-transform duration-500 ease-in-out"
+                                    style={{ transform: `translateX(-${currentImageIdx * 100}%)` }}
+                                >
+                                    {/* 3. All images are rendered side-by-side */}
+                                    {product.images.map((img, idx) => (
+                                        <div key={idx} className="w-full flex-shrink-0">
+                                            <img
+                                                src={img}
+                                                alt={`${product.name} variant ${idx + 1}`}
+                                                className="w-full h-full object-contain"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
+                            
                             <div className="flex gap-3 w-full overflow-x-auto pb-2">
                                 {product.images.map((img, idx) => (
                                     <button
@@ -531,6 +543,7 @@ const ProductSubDetailPage = () => {
     }
 
     else if (product.details) {
+        // ... Layout 2 for Mortise, which remains unchanged ...
         return (
             <main className="min-h-screen bg-gray-50 text-black pt-28 lg:pt-32">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
