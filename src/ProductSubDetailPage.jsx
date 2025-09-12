@@ -465,7 +465,7 @@ const ProductSubDetailPage = () => {
                                     <button
                                         key={idx}
                                         onClick={() => setCurrentImageIdx(idx)}
-                                        className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 transition-all duration-300 ${idx === currentImageIdx ? "border-red-600 scale-110" : "border-transparent hover:border-gray-400"}`}
+                                        className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 transition-all duration-300 ${idx === currentImageIdx ? "border-gray-200 scale-100" : "border-transparent hover:border-gray-400"}`}
                                     >
                                         <img
                                             src={img}
