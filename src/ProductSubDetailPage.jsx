@@ -882,10 +882,11 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
           tabIndex={0}
         >
           <img
-            src={productDetail.image}
-            alt={productDetail.title}
-            className="w-25 h-24 object-cover rounded-lg flex-shrink-1"
-          />
+  src={productDetail.image}
+  alt={productDetail.title}
+  className="h-24 w-auto object-contain rounded-lg flex-shrink-0 mx-auto"
+/>
+
           <div>
             <h3 className="font-bold text-lg mb-1">
               {productDetail.title}
