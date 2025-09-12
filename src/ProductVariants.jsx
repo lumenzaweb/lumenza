@@ -4,9 +4,10 @@ const ProductVariants = ({ product }) => {
   const scrollRef = useRef(null);
   const cardRefs = useRef([]);
   const [activeIndex, setActiveIndex] = useState(0);
-
-  // --- NEW: A ref to hold the interval ID for auto-sliding ---
   const intervalRef = useRef(null);
+  
+  // --- NEW: A ref to track if the carousel is currently visible on screen ---
+  const isVisibleRef = useRef(false);
 
   // Track active card using IntersectionObserver
   useEffect(() => {
@@ -22,12 +23,13 @@ const ProductVariants = ({ product }) => {
       { root: scrollRef.current, threshold: 0.6 }
     );
 
-    cardRefs.current.forEach((card) => card && observer.observe(card));
+    const currentCardRefs = cardRefs.current;
+    currentCardRefs.forEach((card) => card && observer.observe(card));
 
     return () => {
-      cardRefs.current.forEach((card) => card && observer.unobserve(card));
+      currentCardRefs.forEach((card) => card && observer.unobserve(card));
     };
-  }, [product.productDetails]); // Dependency added to re-observe if products change
+  }, [product.productDetails]);
 
   // Scroll to a card when a dot is clicked
   const handleDotClick = (idx) => {
@@ -38,7 +40,7 @@ const ProductVariants = ({ product }) => {
     });
   };
 
-  // --- NEW: Functions to control the auto-slide ---
+  // Functions to control the auto-slide
   const stopAutoSlide = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -47,24 +49,50 @@ const ProductVariants = ({ product }) => {
   };
 
   const startAutoSlide = () => {
-    stopAutoSlide(); // Ensure no multiple intervals are running
+    stopAutoSlide(); 
     intervalRef.current = setInterval(() => {
-      // Calculate the next index, looping back to 0 at the end
-      const nextIndex = (activeIndex + 1) % product.productDetails.length;
+      const nextIndex = (cardRefs.current.length > 0 && activeIndex < cardRefs.current.length - 1) ? activeIndex + 1 : 0;
       handleDotClick(nextIndex);
-    }, 2000); // Slide every 2 seconds (2000ms)
+    }, 2000); 
   };
 
-  // --- NEW: useEffect to manage the auto-slide lifecycle ---
+  // This useEffect RESETS the timer whenever the user manually interacts (by scrolling or clicking dots)
   useEffect(() => {
-    // Only start auto-sliding if there's more than one variant
-    if (product.productDetails.length > 1) {
+    // Only restart the timer if the carousel is visible on the screen
+    if (isVisibleRef.current && product.productDetails.length > 1) {
       startAutoSlide();
     }
-    // This is a cleanup function that runs when the component unmounts
-    // or when the activeIndex changes, to reset the timer.
     return () => stopAutoSlide();
-  }, [activeIndex, product.productDetails.length]); // Restart the timer logic when the slide changes
+  }, [activeIndex]); 
+
+  // --- NEW: This useEffect STARTS or STOPS the auto-slide based on viewport visibility ---
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting; // Update our ref
+        if (entry.isIntersecting) {
+          if (product.productDetails.length > 1) {
+            startAutoSlide(); // Start sliding when it becomes visible
+          }
+        } else {
+          stopAutoSlide(); // Stop sliding when it goes out of view
+        }
+      },
+      { threshold: 0.1 } // Trigger when 10% of the carousel is visible
+    );
+
+    visibilityObserver.observe(container);
+
+    return () => {
+      if (container) {
+        visibilityObserver.unobserve(container);
+      }
+      stopAutoSlide(); // Also stop on unmount
+    };
+  }, [product.productDetails.length]); // Re-run this setup if the number of products changes
 
   if (!product.productDetails || product.productDetails.length === 0) {
     return null;
@@ -79,9 +107,13 @@ const ProductVariants = ({ product }) => {
       <div className="relative">
         <div
           ref={scrollRef}
-          // --- NEW: Event handlers to pause/resume on hover ---
           onMouseEnter={stopAutoSlide}
-          onMouseLeave={startAutoSlide}
+          onMouseLeave={() => {
+            // Only resume auto-slide if the component is still visible
+            if (isVisibleRef.current) {
+              startAutoSlide();
+            }
+          }}
           className="flex space-x-4 overflow-x-auto scrollbar-hide scroll-smooth px-1 pb-4"
         >
           {product.productDetails.map((productDetail, idx) => (
@@ -96,12 +128,10 @@ const ProductVariants = ({ product }) => {
                 alt={productDetail.title}
                 className="h-28 w-auto object-contain rounded-lg mx-auto mb-3"
               />
-
               {/* Title */}
               <h3 className="font-bold text-lg mb-2 text-center">
                 {productDetail.title}
               </h3>
-
               {/* Specs */}
               <ul className="list-disc list-inside text-black space-y-1">
                 {productDetail.specs.map((spec, sIdx) => (
