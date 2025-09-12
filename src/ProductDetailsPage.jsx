@@ -107,7 +107,7 @@ const ProductDetailsPage = () => {
         <p className="text-black">No product details found.</p>
       ) : (
         <motion.div
-          className={`grid grid-cols-1 ${gridColsClass} gap-6 sm:gap-10 mt-8 mx-auto max-w-5xl justify-center`}
+          className={`grid grid-cols-2 ${gridColsClass} gap-6 sm:gap-10 mt-8 mx-auto max-w-5xl justify-center`}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}

@@ -531,7 +531,7 @@ const ProductSubDetailPage = () => {
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-12 text-center">
                         {product.name}
                     </h1>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 lg:gap-8">
                         {product.details.map((item, index) => (
                             <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 flex flex-col text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl">
                                 <div className="aspect-1 w-full overflow-hidden">
