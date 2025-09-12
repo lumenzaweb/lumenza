@@ -806,6 +806,7 @@ if (product.images) {
       </button>
 
       <section className="flex flex-col md:flex-row flex-1 gap-8 max-w-full overflow-hidden px-4">
+       
         {/* Image Gallery Section */}
 {product.images && product.images.length > 0 && (
   <div className="flex flex-col items-center w-full md:w-1/3 max-w-md mx-auto">
@@ -880,6 +881,11 @@ if (product.images) {
           )}
         </div>
       </section>
+
+      {/* ✅ Variants Section (mortise part) */}
+{product.productDetails && product.productDetails.length > 0 && (
+  <ProductVariants product={product} />
+)}
 
       {/* PDF Download Box for ALL products */}
       <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
