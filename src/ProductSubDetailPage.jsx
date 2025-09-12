@@ -225,7 +225,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3101</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin Finish</li>
                             <li>B.Antik Finish</li>
                             <li>Z.Black Finish</li>
@@ -239,7 +239,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3102</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin Finish</li>
                             <li>B.Antik Finish</li>
                             <li>Z.Black Finish</li>
@@ -253,7 +253,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3103</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>B.Antik + BL Finish</li>
                             <li>Z.Black + Coca Finish</li>
@@ -268,7 +268,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3104</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>BL + GL Finish</li>
                             <li>Antik + GL Finish</li>
@@ -282,7 +282,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3105</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>Antik + BL Finish</li>
                             <li>PVD RG + BL Finish</li>
@@ -296,7 +296,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3106</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>PVD GL + BL Finish</li>
                             <li>BL + BL Finish</li>
@@ -310,7 +310,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3111</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>B.Antik + Z.Black Finish</li>
                             <li>PVD Gold + Z.Black Finish</li>
@@ -324,7 +324,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3112</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>B.Antik + PVD Gold Finish</li>
                             <li>PVD Gold + Z.Black Finish</li>
@@ -338,7 +338,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3113</h3>
-                      <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                      <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin Finish</li>
                             <li>B.Antik Finish</li>
                             <li>Z.Black Finish</li>
@@ -352,7 +352,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3114</h3>
-                       <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                       <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>BL + BL Finish</li>
                             <li>Coca + BL Finish</li>
@@ -366,7 +366,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3115</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>BL + RG Finish</li>
                             <li>Coca + Coca Finish</li>
@@ -380,7 +380,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3116</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin Finish</li>
                             <li>B.Satin Matt Finish</li>
                             <li>Z.Black Finish</li>
@@ -394,7 +394,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3121</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin Finish</li>
                             <li>B.Antik Finish</li>
                             <li>Z.Black Finish</li>
@@ -408,7 +408,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3122</h3>
-                       <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                       <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>BL Satin + BL Nickel Finish</li>
                             <li>PVD Gold + Z.Black Finish</li>
@@ -421,7 +421,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3123</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin Finish</li>
                             <li>B.Antik Finish</li>
                             <li>Z.Black Finish</li>
@@ -435,7 +435,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3124</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>BL + PVD GL Finish</li>
                             <li>Rembo + BL Satin Finish</li>
@@ -449,7 +449,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3125</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>Coca + BL Finish</li>
                             <li>Gold + BL Finish</li>
@@ -463,7 +463,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3126</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>Coca + BL Finish</li>
                             <li>BL + BL Finish</li>
@@ -478,7 +478,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3131</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>Coca + Black Finish</li>
                             <li> GL + BL Finish</li>
@@ -492,7 +492,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3132</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>Antik + Black Finish</li>
                             <li>BL Satin + Coca Finish</li>
@@ -505,7 +505,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3133</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>Coca + Black Finish</li>
                             <li>Antik + BL Finish</li>
@@ -519,7 +519,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3134</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>Coca + Black Finish</li>
                             <li>PVD GL + BL Finish</li>
@@ -533,7 +533,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3135</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>PVD GL + Black Finish</li>
                             <li>BL + PVD RG Finish</li>
@@ -547,7 +547,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LM - 3136</h3>
-                       <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                       <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>Satin + CP Finish</li>
                             <li>PVD RG + Black Finish</li>
                             <li>BL + PVD GL Finish</li>
@@ -561,7 +561,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LOCKBODY 45X45</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>S.S. MATT Finish</li>
                             <li>B. ANTIK Finish</li>
                             <li>Z BLACK Finish</li>
@@ -577,7 +577,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">LOCKBODY 45X85</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>S.S. MATT Finish</li>
                             <li>B. ANTIK Finish</li>
                             <li>Z BLACK Finish</li>
@@ -593,7 +593,7 @@ const allSubProducts = {
                 description: (
                     <>
                         <h3 className="font-semibold text-center text-xl">CYLINDER</h3>
-                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-lg">
+                        <ul className="list-disc list-inside text-black ml-2 mt-1 text-base">
                             <li>S.S. MATT Finish</li>
                             <li>B. ANTIK Finish</li>
                             <li>Z BLACK Finish</li>
