@@ -869,42 +869,47 @@ const product = allSubProducts[decodeURIComponent(subProductSlug)];
               </>
             )}
 
-            {product.productDetails && product.productDetails.length > 0 && (
-              <>
-                <h2 className="text-2xl font-semibold mt-5 mb-3 text-black">
-                  Available Variants & Specifications
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-96 overflow-y-auto">
-                  {product.productDetails.map((productDetail, idx) => (
-                    <div
-                      key={idx}
-                      className="p-1 bg-white rounded-lg shadow-md border border-gray-200 flex items-center space-x-2"
-                      tabIndex={0}
-                    >
-                      <img
-                        src={productDetail.image}
-                        alt={productDetail.title}
-                        className="w-25 h-24 object-cover rounded-lg flex-shrink-1"
-                      />
-                      <div>
-                        <h3 className="font-bold text-lg mb-1">
-                          {productDetail.title}
-                        </h3>
-                        <ul className="list-disc list-inside text-black space-y-1">
-                          {productDetail.specs.map((spec, sIdx) => (
-                            <li key={sIdx} className="text-sm">
-                              {spec}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+           {product.productDetails && product.productDetails.length > 0 && (
+  <>
+    <h2 className="text-2xl font-semibold mt-5 mb-3 text-black">
+      Available Variants & Specifications
+    </h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-96 overflow-y-auto">
+      {product.productDetails.map((productDetail, idx) => (
+        <div
+          key={idx}
+          className="p-1 bg-white rounded-lg shadow-md border border-gray-200 flex items-center space-x-2"
+          tabIndex={0}
+        >
+          <img
+            src={productDetail.image}
+            alt={productDetail.title}
+            className="w-25 h-24 object-cover rounded-lg flex-shrink-1"
+          />
+          <div>
+            <h3 className="font-bold text-lg mb-1">
+              {productDetail.title}
+            </h3>
+
+            {/* Specs updated for one-line scrollable layout */}
+            <div className="overflow-x-auto">
+              <ul className="flex space-x-4 text-sm sm:text-base text-black">
+                {productDetail.specs.map((spec, sIdx) => (
+                  <li key={sIdx} className="whitespace-nowrap">
+                    • {spec}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+  </>
+)}
+</div>
+</section>
+
 
         {/* PDF Download Box for ALL products */}
         <section className="mt-16 max-w-4xl mx-auto p-6 bg-red-100 border-2 border-red-700 rounded-lg shadow-lg text-center">
