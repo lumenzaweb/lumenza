@@ -85,7 +85,7 @@ const HomeSection = () => {
         >
           <span className="relative inline-block px-4 md:px-6 py-2">
             <span className="absolute inset-0 bg-red-600 rounded-lg -z-10 shadow-lg"></span>
-            <span className="text-white tracking-wide">LUMENZA</span>
+            <span className="text-white text-bold tracking-wide">LUMENZA</span>
           </span>
         </motion.h1>
 
