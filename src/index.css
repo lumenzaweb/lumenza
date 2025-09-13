@@ -1,11 +1,12 @@
-/* Tailwind base imports */
+/* 1. Font import MUST be first */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* 2. Tailwind base imports */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-/* Global styles */
+/* 3. Global styles */
 html {
   scroll-behavior: smooth;
 }
@@ -16,6 +17,8 @@ body {
   color: #1f2937; /* Tailwind gray-800 */
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased; /* Makes text look smoother on Mac */
+  -moz-osx-font-smoothing: grayscale; /* Makes text look smoother on Firefox */
 }
 
 /* Navbar */
@@ -23,14 +26,7 @@ nav {
   backdrop-filter: blur(10px);
 }
 
-/* Font */
-body {
-    font-family: 'Montserrat', sans-serif;
-    -webkit-font-smoothing: antialiased; /* Makes text look smoother on Mac */
-    -moz-osx-font-smoothing: grayscale; /* Makes text look smoother on Firefox */
-}
-
-/* 3. Set the correct weights for headings and text */
+/* Set the correct weights for headings and text */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700; /* Bold */
 }
@@ -39,7 +35,7 @@ p, li, span, a, div {
     font-weight: 400; /* Regular */
 }
 
-/* Buttons & Floating Contact Buttons */
+/* Buttons & Links Transitions */
 button,
 a {
   transition: all 0.3s ease-in-out;
@@ -59,17 +55,15 @@ button:hover {
   height: 56px;
 }
 
-/* Product Cards */
+/* Custom Components using @apply */
 .product-card {
   @apply p-4 bg-white rounded-lg shadow-lg transform transition-transform hover:scale-105;
 }
 
-/* Section Headings */
 h3 {
   @apply text-3xl font-bold mb-6;
 }
 
-/* Contact Form Inputs */
 input,
 textarea {
   @apply border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-cyan-400;
@@ -79,7 +73,6 @@ button.submit-btn {
   @apply bg-cyan-500 text-white p-3 rounded hover:bg-cyan-600;
 }
 
-/* Footer Links Hover */
 footer a:hover {
   @apply opacity-80;
 }
@@ -92,17 +85,12 @@ footer a:hover {
   }
 }
 
-/* Hover transition for navbar links */
-nav button {
-  transition: color 0.3s ease-in-out;
-}
-
 /* Mobile menu backdrop */
 nav div.md\\:hidden.bg-white\\90 {
   backdrop-filter: blur(10px);
 }
 
-/* Hide scrollbar but allow scroll */
+/* Utility to hide scrollbar but allow scrolling */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }

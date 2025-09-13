@@ -33,7 +33,7 @@ const AboutSection = () => (
       </p>
 
       <p className="text-gray-800 text-lg mb-4">
-        We're not just suppliers — we're collaborators in your design journey. Backed by deep industry knowledge and a passion for excellence, <strong>LUMENZA</strong> ensures you get the right products, the right finish, and the right experience — every time.
+       <strong>LUMENZA</strong> ensures you get the right products, the right finish, and the right experience — every time.
       </p>
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Our Philosophy :</h3>
