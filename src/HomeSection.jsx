@@ -118,12 +118,14 @@ const HomeSection = () => {
           >
             Explore Products
           </button>
-          <button
+
+          {/*<button
             className="px-5 py-2 md:px-6 md:py-3 bg-white border-2 border-red-600 text-red-600 font-semibold rounded-lg shadow hover:bg-red-50 transition text-sm md:text-base"
             onClick={() => scrollToSection("inquiry")}
           >
             Contact Us
-          </button>
+          </button> */}
+          
         </motion.div>
       </div>
 
