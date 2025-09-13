@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Red Hat Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 /* Global styles */
 html {
@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  font-family: 'Red Hat Display', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background-color: #f9fafb;
   color: #1f2937; /* Tailwind gray-800 */
   margin: 0;
@@ -25,7 +25,18 @@ nav {
 
 /* Font */
 body {
-    font-family: 'Red Hat Display', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased; /* Makes text look smoother on Mac */
+    -moz-osx-font-smoothing: grayscale; /* Makes text look smoother on Firefox */
+}
+
+/* 3. Set the correct weights for headings and text */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700; /* Bold */
+}
+
+p, li, span, a, div {
+    font-weight: 400; /* Regular */
 }
 
 /* Buttons & Floating Contact Buttons */
