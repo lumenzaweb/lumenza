@@ -20,12 +20,12 @@ const AboutSection = () => (
       </h3>
 
       <p className="text-gray-800 text-lg mb-4">
-        <strong>LUMENZA</strong> is a leading name in premium home hardware, known for delivering a wide range of high-quality products Supply to elevate every home. From functional kitchen accessories to sophisticated Door Handles, Handles, Stylish Bathroom Accessories, and Advanced Safe Locks,<strong>LUMENZA</strong> offers a variety of hardware solutions that bring both style and security to your space.
+        <strong>LUMENZA</strong> is a leading name in premium home hardware, known for delivering a wide range of high-quality products Supply to elevate every home. From functional kitchen accessories to sophisticated Door Handles, Handles, Stylish Bathroom Accessories, and Advanced Safe Locks, <strong>LUMENZA</strong> offers a variety of hardware solutions that bring both style and security to your space.
       </p>
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Who We Are !</h3>
       <p className="text-gray-800 text-lg mb-4">
-        At <strong>LUMENZA - </strong>" The art of smooth living " we curate and supply premium architectural hardware that transforms everyday spaces into expressions of elegance and strength. We partner with trusted manufacturers to bring you a carefully selected range of  "Door Handles, Safes/Lockers, Kitchen Accessories, and Bathroom Accessories" — all chosen for their Style, Durability, and Performance.
+        At <strong>LUMENZA - </strong>" The art of smooth living " we curate and supply premium architectural hardware that transforms everyday spaces into expressions of Elegance and Strength. We bring you a several range of "Door Handles, Safes/Lockers, Kitchen Accessories, and Bathroom Accessories" — all chosen for their Style, Durability, and Performance.
       </p>
 
       <p className="text-gray-800 text-lg mb-4">
@@ -43,8 +43,8 @@ const AboutSection = () => (
 
       <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
         <li><strong>Innovation:</strong> We stay ahead of trends and technology to bring you smart, forward-thinking hardware solutions that meet the needs of modern living and design.</li>
-        <li><strong>Functionality :</strong>  Our products are built to work — smoothly, silently, and reliably. Every hinge, handle, or lock we offer is engineered for real-life performance and lasting comfort.</li>
-        <li><strong>Aesthetic Excellence :</strong> Beauty is never an afterthought. From sleek minimalist handles to refined bathroom accessories, we select designs that elevate the feel of every room.</li>
+        <li><strong>Functionality :</strong>  Our products are built to work — smoothly, silently, and reliably. Every product we offer is engineered for real-life performance and lasting comfort.</li>
+        <li><strong>Aesthetic Excellence :</strong> Beauty is never an afterthought. We select designs that elevate the feel of every room.</li>
       </ul>
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Our Product Range :</h3>
@@ -61,11 +61,11 @@ const AboutSection = () => (
 
       <h3 className="text-3xl font-bold text-red-600 mb-6">Our Commitment to Quality :</h3>
       <p className="text-gray-800 text-lg mb-4">
-        At <strong>LUMENZA</strong>, quality isn't a feature — it's a promise. Every product we supply is carefully selected to meet the highest standards of "durability, functionality, and design excellence".
+        At <strong>LUMENZA</strong>, quality isn't a feature — it's a promise. Every product we supply is carefully selected to meet the highest standards of " Durability, Functionality, and Design excellence".
       </p>
 
       <p className="text-gray-800 text-lg mb-4">
-        We collaborate only with trusted manufacturers who share our vision for " precision engineering and premium craftsmanship". From the strength of our door and cabinet handles to the smooth performance of our kitchen trolleys, each item undergoes rigorous quality checks to ensure long-lasting reliability.
+      " precision engineering and premium craftsmanship". From the strength of our Locker, Door and Cabinet Handles to the smooth performance of our Kitchen Accessories, each item undergoes rigorous quality checks to ensure long-lasting reliability.
       </p>
 
       <p className="text-gray-800 text-lg mb-4">
@@ -82,11 +82,10 @@ const AboutSection = () => (
       </p>
 
       <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
-        <li>Curated Quality We handpick every product from reliable manufacturers, ensuring it meets our standards for durability, precision, and design excellence.</li>
         <li>Modern Aesthetics From minimalist to bold finishes, our hardware is designed to complement contemporary interiors and elevate every space.</li>
         <li>Function Meets Style Our range blends smart functionality with visual appeal — smooth slides, strong locks, ergonomic handles, and elegant fittings.</li>
-        <li>Wide Product Range One destination for all your hardware needs — including kitchen trolleys, door handles, bathroom accessories, and lockers.</li>
-        <li>Trusted by Professionals Preferred by architects, designers, and contractors who rely on Lumenza for dependable products and consistent service.</li>
+        <li>Wide Product Range One destination for all your hardware needs — including Lockers, Door Controls, Kitchen Accessories, Cabinet Fittings , Sealant & Adhesives.</li>
+        <li>Trusted by Professionals Preferred by architects, designers, and contractors who rely on LUMENZA for dependable products and consistent service.</li>
         <li>Customer-Centric Support We're committed to guiding you from selection to installation, with expert advice and responsive after-sales support.</li>
       </ul>
 
@@ -166,7 +165,7 @@ const AboutSection = () => (
           At <strong>LUMENZA</strong>, we don't just supply products — we build lasting relationships. Whether you're a homeowner transforming your space, an interior designer chasing perfection, or a builder in search of reliability, there's a place for you in the <strong>LUMENZA</strong> family.
         </p>
         <p className="text-gray-800 text-lg mb-4">
-          When you choose us, you're choosing more than quality hardware — you're choosing a partner committed to "style, trust, and long-term value."
+          When you choose us, you're choosing more than quality hardware — you're choosing a partner committed to " Style, Trust, and Long-term value."
         </p>
         <ul className="list-disc list-outside pl-6 text-gray-800 text-lg mb-4 space-y-4 leading-relaxed">
           <li>Stay inspired with new designs</li>
@@ -185,7 +184,7 @@ const AboutSection = () => (
           Our commitment is reflected in every detail. Whether it's the smooth finish of a luxury handle or the silent precision of our kitchen fittings, we deliver products that set the standard for craftsmanship.
         </p>
         <p className="text-gray-700 text-lg mb-2">
-          Every image above shows our real products in use—refined, robust, and ready to elevate your next project. From Stunning Door Hardware, Security Solution to Modern Bathroom Accessories, our catalogue is curated for those who want spaces that impress.
+          Every image above shows our real products in use—refined, robust, and ready to elevate your next project. From Security Solution, Stunning Door Controls to Modern Kitchen Accessories, our catalogue is curated for those who want spaces that impress.
         </p>
         <ul className="list-disc list-outside pl-6 text-gray-700 text-lg mb-2 space-y-4 leading-relaxed">
           <li>Each piece is rigorously tested for durability and safety</li>
@@ -193,7 +192,7 @@ const AboutSection = () => (
           <li>Delivered with expert guidance and customer care</li>
         </ul>
         <p className="text-gray-700 text-[17px]">
-          With <strong>LUMENZA</strong>, you don't just get hardware—you join a family dedicated to beauty, strength and trust.
+          With <strong>LUMENZA</strong>, you don't just get hardware—you join a family dedicated to Aesthetic, Strength and Trust.
         </p>
       </div>
     </motion.div>
