@@ -1,85 +1,76 @@
 import React, { useState } from "react";
 
-// This is a new, reusable component for each menu item
-const MenuButton = ({
-  href,
-  onClick,
-  title,
-  icon,
-  isOpen,
-  positionClasses, // e.g., "bottom-20 right-0"
-}) => {
-  const baseStyle =
-    "absolute flex items-center justify-end w-48 h-14 transform transition-all duration-500 ease-in-out";
-  const closedStyle = "opacity-0 scale-75 pointer-events-none";
-
-  return (
+// A reusable component for each menu item for cleaner code
+const ActionButton = ({ href, title, icon, bgColor, delay, isOpen }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={`flex items-center justify-end transform transition-all duration-300 ease-in-out ${delay} ${
+      isOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8 pointer-events-none"
+    }`}
+  >
+    {/* Text Label */}
+    <span className="mr-4 text-sm font-medium text-gray-700 bg-white px-4 py-2 rounded-full shadow-sm whitespace-nowrap">
+      {title}
+    </span>
+    {/* Icon */}
     <div
-      className={`${baseStyle} ${isOpen ? "opacity-100 scale-100" : closedStyle} ${positionClasses}`}
+      className={`w-14 h-14 flex items-center justify-center rounded-full text-white shadow-lg ${bgColor}`}
     >
-      <span className="mr-4 text-sm font-medium text-gray-600 bg-white px-3 py-1 rounded-full shadow-md">
-        {title}
-      </span>
-      <a
-        href={href}
-        onClick={onClick}
-        target="_blank"
-        rel="noopener noreferrer"
-        title={title}
-        className="w-14 h-14 flex items-center justify-center rounded-full text-white shadow-lg bg-white"
-      >
-        <img src={icon} alt={title} draggable={false} className="w-7 h-7" />
-      </a>
+      <img src={icon} alt={title} className="w-7 h-7" />
     </div>
-  );
-};
+  </a>
+);
 
-const FloatingContactButtons = ({ onQueryClick }) => {
+const FloatingContactButtons = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      {/* Container for the menu buttons */}
-      <div className="relative w-14 h-14">
-        <MenuButton
+    <div className="fixed bottom-6 right-6 flex flex-col items-end z-50">
+      
+      {/* Container for the menu buttons that appear on click */}
+      <div className="flex flex-col items-end space-y-3 mb-4">
+        <ActionButton
+          href="https://instagram.com/yourprofile" // <-- EDIT YOUR INSTAGRAM LINK HERE
+          title="Instagram"
+          icon="https://img.icons8.com/color/48/instagram-new--v1.png"
+          bgColor="bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500"
+          delay="transition-delay-100"
+          isOpen={isOpen}
+        />
+        <ActionButton
+          href="https://linkedin.com/in/yourprofile" // <-- EDIT YOUR LINKEDIN LINK HERE
+          title="LinkedIn"
+          icon="https://img.icons8.com/color/48/linkedin.png"
+          bgColor="bg-blue-700"
+          delay="transition-delay-200"
+          isOpen={isOpen}
+        />
+        <ActionButton
           href="https://wa.me/+918989142281"
           title="WhatsApp"
           icon="https://img.icons8.com/color/48/whatsapp.png"
+          bgColor="bg-green-500"
+          delay="transition-delay-300"
           isOpen={isOpen}
-          positionClasses="bottom-0 right-20" // Fanned out to the left
         />
-        <MenuButton
+        <ActionButton
           href="tel:+917554422887"
           title="Call Us"
           icon="https://img.icons8.com/color/48/phone.png"
+          bgColor="bg-blue-500"
+          delay="transition-delay-400"
           isOpen={isOpen}
-          positionClasses="bottom-14 right-14" // Fanned out diagonally
         />
-        <MenuButton
+        <ActionButton
           href="mailto:support@lumenza.co.in"
           title="Email Us"
           icon="https://img.icons8.com/color/48/new-post.png"
+          bgColor="bg-red-500"
+          delay="transition-delay-500"
           isOpen={isOpen}
-          positionClasses="bottom-20 right-0" // Fanned out to the top
         />
-        {/* The query button is special as it uses an onClick prop */}
-        <div
-          className={`absolute flex items-center justify-end w-48 h-14 transform transition-all duration-500 ease-in-out ${
-            isOpen ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
-          } bottom-14 left-[-11.5rem]`} // Fanned out far left
-        >
-           <span className="mr-4 text-sm font-medium text-gray-600 bg-white px-3 py-1 rounded-full shadow-md">
-            Send Query
-          </span>
-          <button
-            type="button"
-            onClick={onQueryClick}
-            title="Send Query"
-            className="w-14 h-14 flex items-center justify-center rounded-full text-white shadow-lg bg-white"
-          >
-             <img src="https://img.icons8.com/color/48/help.png" alt="Query" draggable={false} className="w-7 h-7" />
-          </button>
-        </div>
       </div>
 
       {/* Main toggle button */}
@@ -89,6 +80,7 @@ const FloatingContactButtons = ({ onQueryClick }) => {
         className="w-16 h-16 bg-gradient-to-br from-gray-800 to-black text-white rounded-full shadow-2xl flex items-center justify-center transform transition-transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-gray-400"
         aria-label="Toggle Contact Menu"
       >
+        {/* This container smoothly transitions between the two icons */}
         <div className="relative w-7 h-7">
           {/* Contact Icon (visible when closed) */}
           <svg
