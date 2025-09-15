@@ -6,23 +6,23 @@ const ActionButton = ({ href, title, icon, bgColor, delay, isOpen }) => (
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className={`flex items-center justify-start w-auto transform-gpu transition-all duration-300 ease-in-out ${delay} ${
+    className={`flex items-center justify-end transform-gpu transition-all duration-300 ease-in-out ${delay} ${
       // Ternary operator controls the open/closed animation state
       isOpen
-        ? "opacity-100 scale-100 translate-x-0"
-        : "opacity-0 scale-90 -translate-x-4 pointer-events-none"
+        ? "opacity-100 scale-100 translate-y-0"
+        : "opacity-0 scale-90 translate-y-2 pointer-events-none"
     }`}
   >
-    {/* Icon (now on the left) */}
+    {/* Text Label */}
+    <span className="mr-4 text-sm font-medium text-gray-700 bg-white px-4 py-2 rounded-full shadow-sm whitespace-nowrap">
+      {title}
+    </span>
+    {/* Icon */}
     <div
       className={`w-12 h-12 flex items-center justify-center rounded-full text-white shadow-lg ${bgColor}`}
     >
       {icon}
     </div>
-    {/* Text Label (now on the right) */}
-    <span className="ml-4 text-sm font-medium text-gray-700 bg-white px-4 py-2 rounded-full shadow-sm whitespace-nowrap">
-      {title}
-    </span>
   </a>
 );
 
@@ -34,42 +34,6 @@ const FloatingContactButtons = () => {
 
   const contactLinks = [
     {
-      href: "mailto:support@lumenza.co.in",
-      title: "Email Us",
-      icon: (
-        <svg className={iconStyles} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-      ),
-      bgColor: "bg-gray-800",
-      delay: "delay-300",
-    },
-    {
-      href: "tel:+917554422887",
-      title: "Call Us",
-      icon: (
-        <svg className={iconStyles} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
-      ),
-      bgColor: "bg-gray-800",
-      delay: "delay-200",
-    },
-    {
-      href: "https://wa.me/+918989142281",
-      title: "WhatsApp",
-      icon: (
-        <svg className={iconStyles} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52s-.67-.166-.67.15c0 .316-.67 1.652-.67 1.652s-.67.766-1.339 1.064c-.67.298-1.339.223-1.339.223s-1.339-.075-1.339-.075-1.339-1.996-1.339-3.893c0-1.898 1.339-3.546 1.339-3.546s.67-.374 1.339-.374c.67 0 1.339.075 1.339.075s.67.767.67 1.652c0 .886.075 1.737.075 1.737s.075.075-.298.447c-.373.372-1.047.966-1.047.966s-.075.075.298.766c.373.691 1.047 1.652 2.39 2.893.67.67 1.339 1.064 1.339 1.064s.075-.15.298-.374c.223-.223.52-.766.52-.766s.075-.075.298-.075c.223 0 .67.298.67.298s.67.766.67 1.064c0 .298.075.373.075.373zM12 0A12 12 0 1 0 0 12 12 12 0 0 0 12 0z"/></svg>
-      ),
-      bgColor: "bg-gray-800",
-      delay: "delay-150",
-    },
-    {
-      href: "https://linkedin.com/in/yourprofile",
-      title: "LinkedIn",
-      icon: (
-        <svg className={iconStyles} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path></svg>
-      ),
-      bgColor: "bg-gray-800",
-      delay: "delay-100",
-    },
-    {
       href: "https://instagram.com/yourprofile",
       title: "Instagram",
       icon: (
@@ -78,10 +42,47 @@ const FloatingContactButtons = () => {
       bgColor: "bg-gray-800",
       delay: "delay-75",
     },
+    {
+      href: "https://linkedin.com/in/yourprofile",
+      title: "LinkedIn",
+      icon: (
+        <svg className={iconStyles} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path></svg>
+      ),
+      bgColor: "bg-gray-800",
+      delay: "delay-150",
+    },
+    {
+      href: "https://wa.me/+918989142281",
+      title: "WhatsApp",
+      icon: (
+        // --- NEW, CLEANER WHATSAPP ICON ---
+        <svg className={iconStyles} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.043 4.957a9.88 9.88 0 00-13.974 0 9.88 9.88 0 000 13.974c1.895 1.895 4.418 2.92 7.07 2.92s5.175-1.025 7.07-2.92a9.88 9.88 0 000-13.974zM12 20.375c-2.32 0-4.52-.893-6.188-2.562l-2.75 1.5L4.5 16.5c-1.21-1.58-1.813-3.52-1.813-5.592 0-4.83 3.93-8.75 8.75-8.75s8.75 3.92 8.75 8.75-3.92 8.75-8.75 8.75zM15.5 12.312c-.25-.125-1.5-.75-1.75-.812s-.438-.125-.625.125-.625.812-.75.937-.25.125-.5 0-.937-.312-1.875-1.125c-.75-.625-1.25-1.437-1.375-1.687s0-.375.125-.5.25-.312.375-.437.125-.187.187-.312.063-.25 0-.375-.625-1.5-.812-2s-.313-.188-.5-.188-.438 0-.625 0c-.188 0-.5.187-.625.437s-.625 1.5-.625 1.812.625 2.125.75 2.25c.125.125 1.25 2 3.063 2.687.437.188.812.25 1.062.312.438.125.812.062 1.125-.062.375-.125 1.125-.437 1.313-.812s.187-.688.125-.812-.187-.188-.437-.312z"></path></svg>
+      ),
+      bgColor: "bg-gray-800",
+      delay: "delay-200",
+    },
+    {
+      href: "tel:+917554422887",
+      title: "Call Us",
+      icon: (
+        <svg className={iconStyles} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+      ),
+      bgColor: "bg-gray-800",
+      delay: "delay-300",
+    },
+    {
+      href: "mailto:support@lumenza.co.in",
+      title: "Email Us",
+      icon: (
+        <svg className={iconStyles} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+      ),
+      bgColor: "bg-gray-800",
+      delay: "delay-400",
+    },
   ];
 
   return (
-    // The main container is now fixed to the bottom-left
+    // The main container is now fixed to the bottom-left to prevent overflow
     <div className="fixed bottom-6 left-6 z-50">
       <div className="flex flex-col items-start">
         
@@ -92,15 +93,15 @@ const FloatingContactButtons = () => {
           ))}
         </div>
 
-        {/* Main toggle button */}
+        {/* --- MAIN TOGGLE BUTTON (NOW SMALLER) --- */}
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="w-14 h-14 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full shadow-2xl flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:shadow-red-400/50 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-red-500"
+          className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full shadow-2xl flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:shadow-red-400/50 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-red-500"
           aria-label="Toggle Contact Menu"
         >
           <div className={`transform transition-transform duration-300 ease-in-out ${isOpen ? "rotate-45" : "rotate-0"}`}>
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
           </div>
         </button>
       </div>
