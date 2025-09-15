@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// This is a new, more robust component for each menu item
+// A reusable component for each menu item for cleaner code
 const ActionButton = ({ href, title, icon, bgColor, delay, isOpen }) => (
   <a
     href={href}
@@ -60,29 +60,51 @@ const FloatingContactButtons = () => {
       bgColor: "bg-gray-800",
       delay: "delay-200",
     },
+    // --- "CALL US" BUTTON ADDED BACK ---
+    {
+      href: "tel:+917554422887",
+      title: "Call Us",
+      icon: (
+        <svg className={iconStyles} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+      ),
+      bgColor: "bg-gray-800",
+      delay: "delay-300",
+    },
+    // --- "EMAIL US" BUTTON ADDED BACK ---
+    {
+      href: "mailto:support@lumenza.co.in",
+      title: "Email Us",
+      icon: (
+        <svg className={iconStyles} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+      ),
+      bgColor: "bg-gray-800",
+      delay: "delay-400",
+    },
   ];
 
   return (
-    <div className="fixed bottom-6 right-6 flex flex-col items-end z-50">
-      
-      {/* Container for the menu buttons */}
-      <div className="flex flex-col items-end space-y-3 mb-3">
-        {contactLinks.map(link => (
-          <ActionButton key={link.title} {...link} isOpen={isOpen} />
-        ))}
-      </div>
-
-      {/* Main toggle button */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-gradient-to-br from-red-600 to-red-700 text-white rounded-full shadow-2xl flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:shadow-red-400/50 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-red-500"
-        aria-label="Toggle Contact Menu"
-      >
-        <div className={`transform transition-transform duration-300 ease-in-out ${isOpen ? "rotate-90" : "rotate-0"}`}>
-            <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path></svg>
+    <div className="fixed bottom-6 right-6 z-50">
+      <div className="flex flex-col items-end">
+        
+        {/* Container for the menu buttons */}
+        <div className="flex flex-col items-end space-y-3 mb-3">
+          {contactLinks.map(link => (
+            <ActionButton key={link.title} {...link} isOpen={isOpen} />
+          ))}
         </div>
-      </button>
+
+        {/* Main toggle button */}
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-14 h-14 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full shadow-2xl flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:shadow-red-400/50 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-red-500"
+          aria-label="Toggle Contact Menu"
+        >
+          <div className={`transform transition-transform duration-300 ease-in-out ${isOpen ? "rotate-45" : "rotate-0"}`}>
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+          </div>
+        </button>
+      </div>
     </div>
   );
 };
