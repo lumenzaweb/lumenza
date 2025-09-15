@@ -7,6 +7,7 @@ const ActionButton = ({ href, title, icon, bgColor, delay, isOpen }) => (
     target="_blank"
     rel="noopener noreferrer"
     className={`flex items-center justify-start w-auto transform-gpu transition-all duration-300 ease-in-out ${delay} ${
+      // Ternary operator controls the open/closed animation state
       isOpen
         ? "opacity-100 scale-100 translate-x-0"
         : "opacity-0 scale-90 -translate-x-4 pointer-events-none"
@@ -51,15 +52,16 @@ const FloatingContactButtons = () => {
       delay: "delay-200",
     },
     {
-    href: "https://wa.me/+918989142281",
-    title: "WhatsApp",
-    icon: (
+      href: "https://wa.me/+918989142281",
+      title: "WhatsApp",
+      icon: (
+        // --- NEW, IMPROVED WHATSAPP ICON ---
         <svg className={iconStyles} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.77.46 3.48 1.34 5l-1.48 5.45 5.59-1.45c1.45.81 3.12 1.24 4.87 1.24 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zM12 20.15c-1.67 0-3.29-.44-4.68-1.28l-.34-.2-3.48.9.92-3.41-.22-.36A8.13 8.13 0 013.84 12c0-4.57 3.71-8.28 8.28-8.28s8.28 3.71 8.28 8.28-3.71 8.28-8.28 8.28zm4.53-5.92c-.27-.14-1.59-.78-1.84-.87-.25-.09-.43-.14-.62.14-.19.27-.7.87-.86 1.04-.16.17-.32.19-.59.05-.27-.14-1.14-.42-2.17-1.34-.81-.72-1.35-1.61-1.51-1.88-.16-.27-.02-.42.12-.56.13-.12.27-.32.41-.47.14-.16.19-.27.28-.46.09-.19.05-.36-.02-.5-.07-.14-.62-1.49-.85-2.04-.23-.55-.46-.48-.62-.48-.16 0-.35 0-.52 0-.17 0-.46.07-.7.34-.25.27-.95 1.11-.95 2.71 0 1.6 1 3.14 1.11 3.35.11.21 1.92 2.92 4.66 4.11.61.27 1.09.43 1.47.55.75.24 1.43.21 1.98.13.59-.09 1.59-.65 1.81-1.28.22-.63.22-1.17.15-1.28-.07-.11-.25-.17-.52-.31z"></path>
         </svg>
-    ),
-    bgColor: "bg-gray-800",
-    delay: "delay-150",
+      ),
+      bgColor: "bg-gray-800",
+      delay: "delay-150",
     },
     {
       href: "tel:+917554422887",
