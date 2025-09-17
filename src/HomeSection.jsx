@@ -6,18 +6,18 @@ import { useNavigate } from "react-router-dom";
 
 // Use your WIDE (e.g., 1920x1080) images here for desktop
 const desktopImages = [
-  "https://i.pinimg.com/736x/7d/9b/71/7d9b71b6567e084c47ec3816be66554e.jpg",
-  "https://i.pinimg.com/736x/0c/2e/ec/0c2eec5c7726a153435749cc87705283.jpg",
-  "https://i.pinimg.com/736x/d3/49/e6/d349e6117f269a274c1de24078ff49eb.jpg",
-  "https://i.pinimg.com/736x/39/b7/d5/39b7d5b6f6dbc01d4dee6641176d9fc0.jpg",
+  "https://i.pinimg.com/736x/b4/c0/c1/b4c0c10eeb95207a3cad3f70e38875af.jpg",
+  "https://i.pinimg.com/736x/b7/8a/e5/b78ae551b28d865d035737488c6dd105.jpg",
+  "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
+  "https://i.pinimg.com/736x/91/34/69/913469825fd5e4b0aa49720b39b7c267.jpg",
 ];
 
 // Use your TALL (e.g., 1080x1920) images here for mobile
 const mobileImages = [
-  "https://i.pinimg.com/564x/1b/30/91/1b30919763711af399558917e3ed630f.jpg", // Replace with your tall images
-  "https://i.pinimg.com/564x/b8/30/03/b83003b606c107a685c285ea9b02a22f.jpg", // Replace with your tall images
-  "https://i.pinimg.com/564x/e1/d7/29/e1d729c3132c569f443a5327c13abc3a.jpg", // Replace with your tall images
-  "https://i.pinimg.com/564x/8d/af/2e/8daf2e12811a4392fbc4b22c83c273de.jpg", // Replace with your tall images
+  "https://i.pinimg.com/736x/b4/c0/c1/b4c0c10eeb95207a3cad3f70e38875af.jpg",
+  "https://i.pinimg.com/736x/b7/8a/e5/b78ae551b28d865d035737488c6dd105.jpg",
+  "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
+  "https://i.pinimg.com/736x/91/34/69/913469825fd5e4b0aa49720b39b7c267.jpg", // Replace with your tall images
 ];
 
 // --- STEP 2: A helper to detect screen size ---
