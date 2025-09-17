@@ -6,7 +6,7 @@ const images = [
   "https://i.pinimg.com/736x/7d/9b/71/7d9b71b6567e084c47ec3816be66554e.jpg",
   "https://i.pinimg.com/736x/0c/2e/ec/0c2eec5c7726a153435749cc87705283.jpg",
   "https://i.pinimg.com/736x/d3/49/e6/d349e6117f269a274c1de24078ff49eb.jpg",
-  "https://i.pinimg.com/736x/2f/ff/29/2fff29293e9f142ff23ce47210db4fa8.jpg",
+  "https://i.pinimg.com/736x/08/cf/89/08cf89093f005fd7042e6ccfbb3134d0.jpg",
 ];
 
 function scrollToSection(id) {
