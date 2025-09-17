@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { CheckCircle, XCircle } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -19,17 +19,6 @@ const InquirySection = () => {
   const [loading, setLoading] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState(null);
   
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -84,17 +73,10 @@ const InquirySection = () => {
   return (
     <section
       id="inquiry"
-      className="py-20 px-4 sm:px-6 bg-gray-900 text-white scroll-mt-20 relative overflow-hidden"
+      className="py-20 px-4 sm:px-6 text-white scroll-mt-20 relative overflow-hidden"
     >
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full z-0"
-        style={{
-          transform: `translate(${mousePosition.x / -50}px, ${mousePosition.y / -50}px)`,
-        }}
-      >
-        <div className="absolute top-1/4 -left-64 w-96 h-96 bg-red-500/30 rounded-full filter blur-3xl opacity-50 animate-blob"></div>
-        <div className="absolute bottom-1/4 -right-64 w-96 h-96 bg-red-400/30 rounded-full filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
-      </motion.div>
+      {/* --- NEW: Animated Gradient Background --- */}
+      <div className="absolute inset-0 z-0 animated-gradient"></div>
       
       {popup.show && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-sm">
