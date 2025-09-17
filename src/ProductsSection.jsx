@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const products = [
   {
     name: "Security Solution",
-    img: "https://i.pinimg.com/736x/d3/eb/e8/d3ebe86f34d073fb7d19dd50f0ac17c3.jpg",
+    img: "https://i.pinimg.com/736x/21/47/b7/2147b788c548cf210d59b792a2133209.jpg",
   },
   {
     name: "Door Controls",

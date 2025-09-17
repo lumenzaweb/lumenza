@@ -46,14 +46,14 @@ const allProducts = {
     {
       slug: "Profile handle",
       name: "Profile handle",
-      img: "https://i.pinimg.com/736x/a7/7e/52/a77e52b4b892f38092ba5f7954e1d2c6.jpg",
+      img: "https://i.pinimg.com/736x/1a/7d/0f/1a7d0f38200ea3cfe3853a979086abc1.jpg",
     },
   ],
   "cabinet-fittings": [
     {
       slug: "Cabinet handle",
       name: "Cabinet handle",
-      img: "https://i.pinimg.com/736x/3b/1b/c1/3b1bc1ad75a6f5fa5d7ebc49f6aa9171.jpg",
+      img: "https://i.pinimg.com/736x/58/02/35/5802351522470e7e97abe26b7e43010a.jpg",
     },
     {
       slug: "Wardrobe Lock",
@@ -63,7 +63,7 @@ const allProducts = {
     {
       slug: "Knob",
       name: "Knob",
-      img: "https://i.pinimg.com/736x/44/1e/09/441e09a0cfa6cc5f6d7f87b47b3302a3.jpg",
+      img: "https://i.pinimg.com/736x/ba/dc/7a/badc7aa979675cebb55a042663f3dd55.jpg",
     },
   ],
   "sealants-and-adhesives": [

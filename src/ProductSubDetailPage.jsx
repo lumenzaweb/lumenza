@@ -312,8 +312,8 @@ const allSubProducts = {
         description:
             "Lumenza provides a diverse range of cabinet handles that suit various décor styles, from sleek minimalist bars to more decorative and geometric designs. These handles are crafted to provide a sturdy grip and elevate the visual appeal of cabinets while ensuring easy operation.",
         images: [
-            "https://i.pinimg.com/736x/3b/1b/c1/3b1bc1ad75a6f5fa5d7ebc49f6aa9171.jpg",
-            "https://i.pinimg.com/736x/e1/8d/1c/e18d1c5e683cc3fea1938976d70ccd79.jpg",
+            "https://i.pinimg.com/736x/98/60/b2/9860b22900eb8338f9996f674fce04f0.jpg",
+            "https://i.pinimg.com/736x/7b/fb/8b/7bfb8b5def33bb22f452f040910355f1.jpg",
             "https://i.pinimg.com/736x/70/49/5e/70495ebe76ff7bc4a8f7a362be37a44c.jpg",
         ],
         features: [
