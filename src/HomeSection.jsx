@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom"; // 👈 added
 
 const images = [
-  "https://i.pinimg.com/736x/c1/d8/f6/c1d8f664f0f9d4ca155f7653e29683d8.jpg",
+  "https://i.pinimg.com/736x/7d/9b/71/7d9b71b6567e084c47ec3816be66554e.jpg",
   "https://i.pinimg.com/736x/d6/c5/fd/d6c5fd2cf71a5a4724944a1b5dc9ac60.jpg",
   "https://i.pinimg.com/736x/cd/eb/8b/cdeb8bf6dc72ac7c58a4d215083672c9.jpg",
   "https://i.pinimg.com/736x/2f/ff/29/2fff29293e9f142ff23ce47210db4fa8.jpg",
