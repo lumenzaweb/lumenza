@@ -314,7 +314,7 @@ const allSubProducts = {
         images: [
             "https://i.pinimg.com/736x/3b/1b/c1/3b1bc1ad75a6f5fa5d7ebc49f6aa9171.jpg",
             "https://i.pinimg.com/736x/e1/8d/1c/e18d1c5e683cc3fea1938976d70ccd79.jpg",
-            "https://i.pinimg.com/736x/e2/87/ee/e287ee3a55788039abd5c7823f62ce00.jpg",
+            "https://i.pinimg.com/736x/70/49/5e/70495ebe76ff7bc4a8f7a362be37a44c.jpg",
         ],
         features: [
             "Variety of Designs: Available as bar handles, recessed pulls, and integrated pulls, catering to modern, classic, and transitional decor preferences.",

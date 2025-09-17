@@ -16,7 +16,7 @@ const products = [
   },
   {
     name: "Cabinet Fittings",
-    img: "https://i.pinimg.com/736x/95/5a/68/955a683318b8fe0984cd891188f14a7b.jpg",
+    img: "https://i.pinimg.com/736x/70/49/5e/70495ebe76ff7bc4a8f7a362be37a44c.jpg",
   },
   {
     name: "Sealants And Adhesives",
