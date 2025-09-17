@@ -8,7 +8,7 @@ const usefulLinks = [
   { title: "Our Products", href: "/products" },
   { title: "About Us", href: "/#about" },
   { title: "Career", href: "/career" },
-  { title: "FAQs", href: "/#faq" },
+  { title: "Partner With Us", href: "/partner-with-us" },
 ];
 
 const InquirySection = () => {

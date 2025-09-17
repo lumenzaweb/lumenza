@@ -19,6 +19,7 @@ import Login from "./Login";
 import Admin from "./Admin";
 import ContactForm from "./components/ContactForm";
 import ProductsPage from "./pages/ProductsPage.jsx";
+import PartnerForm from "./components/PartnerForm";
 
 // Helper: smooth scroll to specific section
 const scrollToSection = (id) => {
@@ -169,6 +170,7 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/contact" element={<ContactForm />} />
+              <Route path="/partner-with-us" element={<PartnerForm />} />
             </Routes>
           </main>
 
