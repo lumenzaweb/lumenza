@@ -6,6 +6,7 @@ const InquirySection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    contact: "", // <-- 1. ADDED 'contact' TO THE STATE
     message: "",
   });
 
@@ -53,7 +54,8 @@ const InquirySection = () => {
 
       if (res.ok && data.success) {
         showPopup("success", "Submitted !");
-        setFormData({ name: "", email: "", message: "" });
+        // <-- 3. RESET 'contact' FIELD ON SUCCESS
+        setFormData({ name: "", email: "", contact: "", message: "" });
         setRecaptchaToken(null);
         window.grecaptcha?.reset();
       } else {
@@ -119,6 +121,17 @@ const InquirySection = () => {
               className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-red-500"
             />
           </div>
+
+          {/* <-- 2. ADDED CONTACT NUMBER INPUT FIELD --> */}
+          <input
+            type="tel"
+            name="contact"
+            placeholder="Your Contact Number"
+            value={formData.contact}
+            onChange={handleChange}
+            required
+            className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-red-500"
+          />
 
           <textarea
             name="message"
