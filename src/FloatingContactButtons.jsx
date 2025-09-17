@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const FloatingContactButtons = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const iconStyles = "w-6 h-6";
+  // Icon size is now smaller
+  const iconStyles = "w-5 h-5";
 
   const contactLinks = [
     {
@@ -52,19 +53,21 @@ const FloatingContactButtons = () => {
     <div className="fixed bottom-6 right-6 z-50">
       <motion.div
         layout
-        transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+        // --- UPDATED: Smoother spring animation ---
+        transition={{ type: 'spring', stiffness: 350, damping: 25 }}
         className={`relative flex items-center shadow-2xl ${
-          isOpen ? 'flex-col-reverse bg-white/80 backdrop-blur-sm p-3 gap-3 rounded-3xl' : 'rounded-full'
+          isOpen ? 'flex-col-reverse bg-white/80 backdrop-blur-sm p-2 gap-2 rounded-[28px]' : 'rounded-full'
         }`}
       >
         <motion.button
           layout
           onClick={() => setIsOpen(!isOpen)}
-          className="w-14 h-14 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full flex items-center justify-center z-10"
+          // --- UPDATED: Main button is now smaller ---
+          className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full flex items-center justify-center z-10"
           aria-label="Toggle Contact Menu"
           whileHover={{ scale: 1.1 }}
         >
-          <div className="relative w-7 h-7">
+          <div className="relative w-6 h-6">
             <AnimatePresence initial={false} mode="wait">
               <motion.div
                 key={isOpen ? 'close' : 'open'}
@@ -86,7 +89,7 @@ const FloatingContactButtons = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="flex flex-col gap-3"
+              className="flex flex-col gap-2"
               variants={menuContainerVariants}
               initial="closed"
               animate="open"
@@ -98,7 +101,8 @@ const FloatingContactButtons = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-12 h-12 flex items-center justify-center rounded-full text-white shadow-lg ${link.bgColor}`}
+                   // --- UPDATED: Menu icons are now smaller ---
+                  className={`w-10 h-10 flex items-center justify-center rounded-full text-white shadow-lg ${link.bgColor}`}
                   variants={iconVariants}
                   whileHover={{ scale: 1.15 }}
                 >
