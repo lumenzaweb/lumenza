@@ -7,17 +7,17 @@ import { useNavigate } from "react-router-dom";
 // Use your WIDE (e.g., 1920x1080) images here for desktop
 const desktopImages = [
   "https://i.pinimg.com/736x/a1/92/d7/a192d7bcc2315d7047d57fe68d109fb8.jpg",
-  "https://i.pinimg.com/736x/76/d8/8a/76d88a23f47f16eee61ff58cc5371fb5.jpg",
+  "https://i.pinimg.com/736x/ab/d8/88/abd888e47aeda4c565ffb733fa53facd.jpg",
   "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
-  "https://i.pinimg.com/736x/79/21/6d/79216d594c1c8dd8e07f4261d0a9655e.jpg",
+  "https://i.pinimg.com/736x/cc/da/7d/ccda7d93c4785a536b25ae97e21fd406.jpg",
 ];
 
 // Use your TALL (e.g., 1080x1920) images here for mobile
 const mobileImages = [
   "https://i.pinimg.com/736x/a1/92/d7/a192d7bcc2315d7047d57fe68d109fb8.jpg",
-  "https://i.pinimg.com/736x/76/d8/8a/76d88a23f47f16eee61ff58cc5371fb5.jpg",
+  "https://i.pinimg.com/736x/ab/d8/88/abd888e47aeda4c565ffb733fa53facd.jpg",
   "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
-  "https://i.pinimg.com/736x/79/21/6d/79216d594c1c8dd8e07f4261d0a9655e.jpg",
+  "https://i.pinimg.com/736x/cc/da/7d/ccda7d93c4785a536b25ae97e21fd406.jpg",
 ];
 
 // --- STEP 2: A helper to detect screen size ---
