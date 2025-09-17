@@ -19,7 +19,7 @@ import Login from "./Login";
 import Admin from "./Admin";
 import ContactForm from "./components/ContactForm";
 import ProductsPage from "./pages/ProductsPage.jsx";
-import PartnerForm from "./components/PartnerForm";
+import PartnerForm from "./PartnerForm";
 
 // Helper: smooth scroll to specific section
 const scrollToSection = (id) => {
