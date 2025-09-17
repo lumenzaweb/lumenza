@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -9,20 +9,10 @@ const images = [
   "https://i.pinimg.com/736x/39/b7/d5/39b7d5b6f6dbc01d4dee6641176d9fc0.jpg",
 ];
 
-// --- NEW: Animation variants for the sliding effect ---
 const slideVariants = {
-  enter: {
-    x: "100%",
-    opacity: 0,
-  },
-  center: {
-    x: 0,
-    opacity: 1,
-  },
-  exit: {
-    x: "-100%",
-    opacity: 0,
-  },
+  enter: { x: "100%", opacity: 0 },
+  center: { x: 0, opacity: 1 },
+  exit: { x: "-100%", opacity: 0 },
 };
 
 const HomeSection = () => {
@@ -33,11 +23,9 @@ const HomeSection = () => {
   useEffect(() => {
     const nav = document.querySelector("nav");
     if (nav) setNavHeight(nav.offsetHeight);
-
     const handleResize = () => {
       if (nav) setNavHeight(nav.offsetHeight);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -45,7 +33,7 @@ const HomeSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 3000); // This duration should match the progress bar's transition
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
@@ -55,7 +43,7 @@ const HomeSection = () => {
       className="
         relative flex justify-center items-center text-center
         bg-black overflow-hidden
-        min-h-[420px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px]
+        min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] /* <-- UPDATED RESPONSIVE HEIGHT */
         px-4 sm:px-6
       "
       style={{
@@ -65,7 +53,6 @@ const HomeSection = () => {
       {/* Background Slider */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence>
-          {/* --- UPDATED: motion.div now uses slideVariants for horizontal sliding --- */}
           <motion.div
             key={current}
             variants={slideVariants}
@@ -76,10 +63,11 @@ const HomeSection = () => {
               x: { type: "spring", stiffness: 300, damping: 30 },
               opacity: { duration: 0.5 },
             }}
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-center" // `bg-cover` removed
             style={{
-              // --- UPDATED: Gradient is now more subtle and protects text ---
-              backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 100%), url('${images[current]}')`,
+              backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%), url('${images[current]}')`,
+              backgroundSize: 'contain', // <-- THIS GUARANTEES THE IMAGE IS NEVER CUT
+              backgroundRepeat: 'no-repeat',
             }}
           />
         </AnimatePresence>
@@ -108,6 +96,7 @@ const HomeSection = () => {
         {/* Tagline */}
         <motion.p
           className="text-sm md:text-xl text-white mb-6 max-w-lg md:max-w-2xl px-3"
+          style={{ textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)' }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
@@ -137,7 +126,7 @@ const HomeSection = () => {
         </motion.div>
       </div>
 
-      {/* --- UPDATED: Modern Progress Bar Navigation --- */}
+      {/* Slider Progress Bar Navigation */}
       <div
         className="absolute left-1/2 transform -translate-x-1/2 flex gap-2 md:gap-3 z-10 w-1/3 max-w-xs"
         style={{
@@ -156,7 +145,7 @@ const HomeSection = () => {
                 className="absolute top-0 left-0 h-full bg-red-600 rounded-full"
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
-                transition={{ duration: 3, ease: "linear" }}
+                transition={{ duration: 4, ease: "linear" }}
               />
             )}
           </button>
