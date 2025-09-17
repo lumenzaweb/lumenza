@@ -12,24 +12,12 @@ const SocialBar = () => (
   <section className="bg-white py-6 px-4 sm:px-6 border-t border-gray-200">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
       
-      {/* Left Column: Back to Top Button */}
-      <div className="w-full md:w-1/3 flex justify-center md:justify-start">
-        <button
-          onClick={scrollToTop}
-          className="px-4 py-2 bg-gray-100 text-gray-700 font-semibold text-sm rounded-lg shadow-sm hover:bg-gray-200 transition flex items-center"
-          aria-label="Scroll to top"
-        >
-          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 11l7-7 7 7M5 19l7-7 7 7"></path></svg>
-          Back to Top
-        </button>
-      </div>
-
-      {/* Center Column: Brand, Contact, and Timings */}
-      <div className="flex flex-col items-center text-center gap-4">
+      {/* Left & Center Column: Brand, Contact, and Timings */}
+      <div className="text-center md:text-left">
         <h3 className="inline-block bg-red-600 text-white text-2xl font-bold px-4 py-1 rounded-md shadow-sm">
           LUMENZA
         </h3>
-        <div className="flex justify-center items-center space-x-4 text-sm">
+        <div className="flex justify-center md:justify-start items-center space-x-4 mt-4 text-sm">
           <a
             href="mailto:support@lumenza.co.in"
             className="flex items-center text-gray-600 hover:text-red-600 transition-colors"
@@ -46,14 +34,22 @@ const SocialBar = () => (
             Call Us
           </a>
         </div>
-        <div className="flex items-center text-sm text-gray-600">
+        <div className="flex items-center justify-center md:justify-start text-sm text-gray-600 mt-2">
           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <span>Mon - Sat: 10:00 AM - 7:00 PM</span>
         </div>
       </div>
 
-      {/* Right Column: Copyright */}
-      <div className="w-full md:w-1/3">
+      {/* Right Column: Back to Top & Copyright */}
+      <div className="flex flex-col items-center md:items-end gap-4">
+        <button
+          onClick={scrollToTop}
+          className="px-4 py-2 bg-gray-100 text-gray-700 font-semibold text-sm rounded-lg shadow-sm hover:bg-gray-200 transition flex items-center"
+          aria-label="Scroll to top"
+        >
+          Back to Top
+          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 11l7-7 7 7M5 19l7-7 7 7"></path></svg>
+        </button>
         <p className="text-gray-500 text-xs text-center md:text-right select-none">
           &copy; {new Date().getFullYear()} LUMENZA. All Rights Reserved.
         </p>
