@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const FloatingContactButtons = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // Icon size is now smaller
-  const iconStyles = "w-5 h-5";
+  const iconStyles = "w-6 h-6";
 
   const contactLinks = [
     {
@@ -39,58 +38,56 @@ const FloatingContactButtons = () => {
     },
   ];
 
-  const menuContainerVariants = {
-    open: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
-    closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
+  const menuVariants = {
+    open: {
+      transition: { staggerChildren: 0.08, delayChildren: 0.2 }
+    },
+    closed: {
+      transition: { staggerChildren: 0.05, staggerDirection: -1 }
+    }
   };
 
   const iconVariants = {
-    open: { opacity: 1, y: 0 },
-    closed: { opacity: 0, y: 10 }
+    closed: { scale: 0, opacity: 0, y: 10 },
+    open: { scale: 1, opacity: 1, y: 0 }
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      <motion.div
-        layout
-        // --- UPDATED: Smoother spring animation ---
-        transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-        className={`relative flex items-center shadow-2xl ${
-          isOpen ? 'flex-col-reverse bg-white/80 backdrop-blur-sm p-2 gap-2 rounded-[28px]' : 'rounded-full'
-        }`}
-      >
+      {/* This container uses flex-col-reverse to place the main button at the bottom visually
+          but first in the DOM, allowing the menu to stack on top of it. */}
+      <div className="flex flex-col-reverse items-center gap-3">
+        {/* Main Toggle Button */}
         <motion.button
-          layout
           onClick={() => setIsOpen(!isOpen)}
-          // --- UPDATED: Main button is now smaller ---
-          className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full flex items-center justify-center z-10"
+          className="w-14 h-14 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full shadow-2xl flex items-center justify-center z-10"
           aria-label="Toggle Contact Menu"
           whileHover={{ scale: 1.1 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
         >
-          <div className="relative w-6 h-6">
-            <AnimatePresence initial={false} mode="wait">
-              <motion.div
-                key={isOpen ? 'close' : 'open'}
-                initial={{ rotate: -45, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 45, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                {isOpen ? (
-                  <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"></path></svg>
-                ) : (
-                  <svg className="w-full h-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path></svg>
-                )}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+          <AnimatePresence initial={false} mode="wait">
+            <motion.div
+              key={isOpen ? 'close' : 'open'}
+              initial={{ rotate: -45, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 45, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {isOpen ? (
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"></path></svg>
+              ) : (
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path></svg>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </motion.button>
 
+        {/* The menu icons that burst out */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="flex flex-col gap-2"
-              variants={menuContainerVariants}
+              className="flex flex-col gap-3"
+              variants={menuVariants}
               initial="closed"
               animate="open"
               exit="closed"
@@ -101,8 +98,7 @@ const FloatingContactButtons = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                   // --- UPDATED: Menu icons are now smaller ---
-                  className={`w-10 h-10 flex items-center justify-center rounded-full text-white shadow-lg ${link.bgColor}`}
+                  className={`w-12 h-12 flex items-center justify-center rounded-full text-white shadow-lg ${link.bgColor}`}
                   variants={iconVariants}
                   whileHover={{ scale: 1.15 }}
                 >
@@ -112,7 +108,7 @@ const FloatingContactButtons = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </div>
     </div>
   );
 };
