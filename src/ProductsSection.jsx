@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 const products = [
   {
     name: "Security Solution",
-    img: "https://i.pinimg.com/736x/fe/7a/ca/fe7aca1e867cb56a59cae237d72c591c.jpg",
+    img: "https://i.pinimg.com/736x/d3/eb/e8/d3ebe86f34d073fb7d19dd50f0ac17c3.jpg",
   },
   {
     name: "Door Controls",
-    img: "https://i.pinimg.com/736x/e1/46/aa/e146aa101dcb45b59fd1ab772f0e070b.jpg",
+    img: "https://i.pinimg.com/736x/0c/2e/ec/0c2eec5c7726a153435749cc87705283.jpg",
   },
   {
     name: "Kitchen Accessories",
-    img: "https://i.pinimg.com/736x/49/8b/27/498b27a8bfa3affb06fb31a6ec060546.jpg",
+    img: "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
   },
   {
     name: "Cabinet Fittings",
