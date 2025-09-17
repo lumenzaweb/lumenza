@@ -30,7 +30,10 @@ const HomeSection = () => {
   return (
     <section
       id="home"
-      className="relative flex items-center bg-black overflow-hidden min-h-screen text-white"
+      className="
+        relative flex items-center bg-black overflow-hidden
+        min-h-[420px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] /* <-- UPDATED RESPONSIVE HEIGHT */
+      "
     >
       {/* Background Slider */}
       <div className="absolute inset-0 z-0">
@@ -45,8 +48,12 @@ const HomeSection = () => {
               x: { type: "spring", stiffness: 300, damping: 30 },
               opacity: { duration: 0.5 },
             }}
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url('${images[current]}')` }}
+            className="absolute inset-0 bg-center" /* <-- bg-cover removed */
+            style={{
+              backgroundImage: `url('${images[current]}')`,
+              backgroundSize: 'contain', /* <-- IMAGE WILL NOT BE CROPPED */
+              backgroundRepeat: 'no-repeat',
+            }}
           />
         </AnimatePresence>
       </div>
@@ -54,19 +61,23 @@ const HomeSection = () => {
       {/* Content Aligned to the Left */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
         <div className="max-w-xl text-left">
+          
+          {/* "LUMENZA" TEXT WITH RED BOX RESTORED */}
           <motion.h1
-            className="text-5xl md:text-7xl font-extrabold"
-            style={{ textShadow: '3px 3px 6px rgba(0, 0, 0, 0.5)' }}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-4xl md:text-6xl font-bold mb-4"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, type: "spring", stiffness: 120 }}
           >
-            LUMENZA
+            <span className="relative inline-block px-4 md:px-6 py-2">
+              <span className="absolute inset-0 bg-red-600 rounded-lg -z-10 shadow-lg"></span>
+              <span className="text-white font-semibold tracking-wide">LUMENZA</span>
+            </span>
           </motion.h1>
 
           <motion.p
-            className="mt-4 text-lg md:text-xl max-w-lg"
-            style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}
+            className="mt-4 text-lg md:text-xl text-white max-w-lg"
+            style={{ textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)' }}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
@@ -110,7 +121,7 @@ const HomeSection = () => {
                 className="absolute top-0 left-0 h-full bg-red-600 rounded-full"
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
-                transition={{ duration: 4, ease: "linear" }} // Match the interval duration
+                transition={{ duration: 4, ease: "linear" }}
               />
             )}
           </button>
