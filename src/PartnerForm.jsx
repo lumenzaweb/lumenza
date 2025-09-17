@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, XCircle } from "lucide-react";
 import Select from "react-select";
-import { states, cities } from "../data/locations";
-import AnimatedGeometricBackground from "./AnimatedGeometricBackground";
+import { states, cities } from "./data/locations";
+import AnimatedGeometricBackground from "./components/AnimatedGeometricBackground";
 
 const PartnerForm = () => {
   const [step, setStep] = useState(1);
