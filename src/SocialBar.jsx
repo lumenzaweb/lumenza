@@ -10,8 +10,7 @@ const scrollToTop = () => {
 
 const SocialBar = () => (
   <section className="bg-white py-6 px-4 sm:px-6 border-t border-gray-200">
-    {/* 👇 PADDING ADDED HERE to create a "safe area" for the floating button */}
-    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 pb-24 md:pb-0 md:pl-24">
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
       
       {/* Left Column: Brand, Contact, and Timings */}
       <div className="text-center md:text-left">
@@ -41,8 +40,8 @@ const SocialBar = () => (
         </div>
       </div>
 
-      {/* Right Column: Back to Top & Copyright */}
-      <div className="flex flex-col items-center md:items-end gap-4">
+      {/* Right Column: Adjusted to avoid overlap */}
+      <div className="flex flex-col items-center md:items-end gap-4 pb-20 md:pb-0 md:pr-24">
         <button
           onClick={scrollToTop}
           className="px-4 py-2 bg-gray-100 text-gray-700 font-semibold text-sm rounded-lg shadow-sm hover:bg-gray-200 transition flex items-center"
