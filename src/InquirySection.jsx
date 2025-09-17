@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { CheckCircle, XCircle } from "lucide-react";
+import { Link } from "react-router-dom"; // Import Link for internal navigation
+
+// Array for the new "Useful Links" section
+const usefulLinks = [
+  { title: "Our Products", href: "/products" },
+  { title: "About Us", href: "/#about" },
+  { title: "Career", href: "/career" },
+  { title: "FAQs", href: "/#faq" }, // Example link, you can change this
+];
 
 const InquirySection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    contact: "", // <-- 1. ADDED 'contact' TO THE STATE
+    contact: "",
     message: "",
   });
 
@@ -31,14 +40,11 @@ const InquirySection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!recaptchaToken) {
       showPopup("error", "Please verify the captcha.");
       return;
     }
-
     setLoading(true);
-
     try {
       const res = await fetch("https://lumenza.onrender.com/api/forms", {
         method: "POST",
@@ -49,14 +55,10 @@ const InquirySection = () => {
           captchaToken: recaptchaToken,
         }),
       });
-
       const data = await res.json();
-
       if (res.ok && data.success) {
         showPopup("success", "Submitted !");
-        // <-- 3. RESET 'contact' FIELD ON SUCCESS
         setFormData({ name: "", email: "", contact: "", message: "" });
-        setRecaptchaToken(null);
         window.grecaptcha?.reset();
       } else {
         showPopup("error", data.message || "Submission failed");
@@ -72,7 +74,7 @@ const InquirySection = () => {
   return (
     <section
       id="inquiry"
-      className="py-20 px-6 bg-gradient-to-r from-red-600 via-red-500 to-red-700 text-white scroll-mt-20 relative"
+      className="py-20 px-4 sm:px-6 bg-gradient-to-r from-red-600 via-red-500 to-red-700 text-white scroll-mt-20 relative"
     >
       {/* Center Popup */}
       {popup.show && (
@@ -90,16 +92,37 @@ const InquirySection = () => {
         </div>
       )}
 
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl font-extrabold mb-4">Get in Touch</h2>
-        <p className="text-lg text-red-100 mb-12">
-          Have questions or ideas? We'd love to hear from you. Fill out the form
-          below and our team will get back to you.
-        </p>
+      {/* Main container with two-column layout on large screens */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        
+        {/* === Left Column (Info & Links) === */}
+        <div className="text-center lg:text-left">
+          <h2 className="text-4xl lg:text-5xl font-extrabold mb-4">Get in Touch</h2>
+          <p className="text-lg text-red-100 mb-10">
+            Have questions or ideas? We'd love to hear from you. Fill out the form
+            and our team will get back to you.
+          </p>
 
+          <h3 className="text-2xl font-bold mb-4 border-b border-red-400/50 pb-2">
+            Useful Links
+          </h3>
+          <div className="grid grid-cols-2 gap-4 text-left">
+            {usefulLinks.map((link) => (
+              <Link
+                key={link.title}
+                to={link.href}
+                className="text-red-100 hover:text-white hover:underline transition-colors"
+              >
+                {link.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* === Right Column (Inquiry Form) === */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white text-gray-800 shadow-2xl rounded-2xl p-10 max-w-3xl mx-auto space-y-6"
+          className="bg-white text-gray-800 shadow-2xl rounded-2xl p-8 lg:p-10 w-full space-y-6"
         >
           <div className="grid md:grid-cols-2 gap-6">
             <input
@@ -122,7 +145,6 @@ const InquirySection = () => {
             />
           </div>
 
-          {/* <-- 2. ADDED CONTACT NUMBER INPUT FIELD --> */}
           <input
             type="tel"
             name="contact"
@@ -142,7 +164,6 @@ const InquirySection = () => {
             className="w-full p-4 border rounded-xl h-40 resize-none focus:ring-2 focus:ring-red-500"
           />
 
-          {/* Google reCAPTCHA */}
           <div className="flex justify-center">
             <ReCAPTCHA
               sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt"
@@ -150,7 +171,6 @@ const InquirySection = () => {
             />
           </div>
 
-          {/* Modern Button */}
           <button
             type="submit"
             disabled={loading}
