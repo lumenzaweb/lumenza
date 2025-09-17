@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -18,7 +18,7 @@ import CareerSection from "./CareerSection";
 import Login from "./Login";
 import Admin from "./Admin";
 import ContactForm from "./components/ContactForm";
-import ProductsPage from "./pages/ProductsPage.jsx"; // ✅ use new page
+import ProductsPage from "./pages/ProductsPage.jsx";
 
 // Helper: smooth scroll to specific section
 const scrollToSection = (id) => {
@@ -32,12 +32,10 @@ const ScrollHandler = ({ children }) => {
 
   useEffect(() => {
     if (location.state?.scrollTarget) {
-      // Smooth scroll to a specific section if requested
       setTimeout(() => {
         scrollToSection(location.state.scrollTarget);
       }, 400);
     } else {
-      // Otherwise scroll smoothly to top on route change
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
   }, [location]);
@@ -83,92 +81,100 @@ const App = () => {
   return (
     <Router>
       <ScrollHandler>
-        <Navbar />
-        <FloatingContactButtons onQueryClick={() => setShowQuery(true)} />
+        {/* This div ensures the footer sticks to the bottom */}
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <FloatingContactButtons onQueryClick={() => setShowQuery(true)} />
 
-        {showQuery && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-xs relative">
-              <button
-                onClick={() => setShowQuery(false)}
-                className="absolute top-3 right-3 text-gray-400 hover:text-red-600"
-                aria-label="Close"
-              >
-                ✕
-              </button>
-              <h3 className="text-lg font-bold mb-3 text-center">
-                Send Your Query
-              </h3>
-              <form className="flex flex-col gap-2" onSubmit={handleQuerySubmit}>
-                <input
-                  type="text"
-                  name="name"
-                  value={queryForm.name}
-                  onChange={handleQueryChange}
-                  placeholder="Name"
-                  className="p-2 border rounded"
-                  required
-                />
-                <input
-                  type="tel"
-                  name="mobile"
-                  value={queryForm.mobile}
-                  onChange={handleQueryChange}
-                  placeholder="Mobile"
-                  className="p-2 border rounded"
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  value={queryForm.email}
-                  onChange={handleQueryChange}
-                  placeholder="Email"
-                  className="p-2 border rounded"
-                  required
-                />
-                <textarea
-                  name="message"
-                  value={queryForm.message}
-                  onChange={handleQueryChange}
-                  placeholder="Message"
-                  className="p-2 border rounded"
-                  required
-                />
+          {showQuery && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+              <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-xs relative">
                 <button
-                  type="submit"
-                  className="bg-yellow-500 text-white py-2 rounded font-semibold mt-2 hover:bg-yellow-600"
+                  onClick={() => setShowQuery(false)}
+                  className="absolute top-3 right-3 text-gray-400 hover:text-red-600"
+                  aria-label="Close"
                 >
-                  Submit
+                  ✕
                 </button>
-              </form>
-            </div>
-          </div>
-        )}
-
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="font-sans text-gray-800">
-                <HomeSection />
-                <AboutSection />
-                <InquirySection />
-                <SocialBar />
+                <h3 className="text-lg font-bold mb-3 text-center">
+                  Send Your Query
+                </h3>
+                <form className="flex flex-col gap-2" onSubmit={handleQuerySubmit}>
+                  <input
+                    type="text"
+                    name="name"
+                    value={queryForm.name}
+                    onChange={handleQueryChange}
+                    placeholder="Name"
+                    className="p-2 border rounded"
+                    required
+                  />
+                  <input
+                    type="tel"
+                    name="mobile"
+                    value={queryForm.mobile}
+                    onChange={handleQueryChange}
+                    placeholder="Mobile"
+                    className="p-2 border rounded"
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={queryForm.email}
+                    onChange={handleQueryChange}
+                    placeholder="Email"
+                    className="p-2 border rounded"
+                    required
+                  />
+                  <textarea
+                    name="message"
+                    value={queryForm.message}
+                    onChange={handleQueryChange}
+                    placeholder="Message"
+                    className="p-2 border rounded"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="bg-yellow-500 text-white py-2 rounded font-semibold mt-2 hover:bg-yellow-600"
+                  >
+                    Submit
+                  </button>
+                </form>
               </div>
-            }
-          />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/product/:productName" element={<ProductDetailsPage />} />
-          <Route
-            path="/product/:productName/:subProductSlug"
-            element={<ProductSubDetailPage />}
-          />
-          <Route path="/career" element={<CareerSection />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/contact" element={<ContactForm />} />
-        </Routes>
+            </div>
+          )}
+
+          {/* Main content area that will grow to fill space */}
+          <main className="flex-grow">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <div className="font-sans text-gray-800">
+                    <HomeSection />
+                    <AboutSection />
+                    <InquirySection />
+                  </div>
+                }
+              />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/product/:productName" element={<ProductDetailsPage />} />
+              <Route
+                path="/product/:productName/:subProductSlug"
+                element={<ProductSubDetailPage />}
+              />
+              <Route path="/career" element={<CareerSection />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/contact" element={<ContactForm />} />
+            </Routes>
+          </main>
+
+          {/* SocialBar is now here, outside the Routes, to appear on all pages */}
+          <SocialBar />
+        </div>
       </ScrollHandler>
     </Router>
   );
