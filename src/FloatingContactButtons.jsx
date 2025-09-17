@@ -13,13 +13,13 @@ const ActionButton = ({ href, title, icon, bgColor, delay, isOpen }) => (
         : "opacity-0 scale-90 -translate-x-4 pointer-events-none"
     }`}
   >
-    {/* Icon (now on the left) */}
+    {/* Icon (on the left) */}
     <div
       className={`w-12 h-12 flex items-center justify-center rounded-full text-white shadow-lg ${bgColor}`}
     >
       {icon}
     </div>
-    {/* Text Label (now on the right) */}
+    {/* Text Label (on the right) */}
     <span className="ml-4 text-sm font-medium text-gray-700 bg-white px-4 py-2 rounded-full shadow-sm whitespace-nowrap">
       {title}
     </span>
@@ -55,9 +55,9 @@ const FloatingContactButtons = () => {
       href: "https://wa.me/+918989142281",
       title: "WhatsApp",
       icon: (
-        // --- NEW, IMPROVED WHATSAPP ICON ---
-        <svg className={iconStyles} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.77.46 3.48 1.34 5l-1.48 5.45 5.59-1.45c1.45.81 3.12 1.24 4.87 1.24 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zM12 20.15c-1.67 0-3.29-.44-4.68-1.28l-.34-.2-3.48.9.92-3.41-.22-.36A8.13 8.13 0 013.84 12c0-4.57 3.71-8.28 8.28-8.28s8.28 3.71 8.28 8.28-3.71 8.28-8.28 8.28zm4.53-5.92c-.27-.14-1.59-.78-1.84-.87-.25-.09-.43-.14-.62.14-.19.27-.7.87-.86 1.04-.16.17-.32.19-.59.05-.27-.14-1.14-.42-2.17-1.34-.81-.72-1.35-1.61-1.51-1.88-.16-.27-.02-.42.12-.56.13-.12.27-.32.41-.47.14-.16.19-.27.28-.46.09-.19.05-.36-.02-.5-.07-.14-.62-1.49-.85-2.04-.23-.55-.46-.48-.62-.48-.16 0-.35 0-.52 0-.17 0-.46.07-.7.34-.25.27-.95 1.11-.95 2.71 0 1.6 1 3.14 1.11 3.35.11.21 1.92 2.92 4.66 4.11.61.27 1.09.43 1.47.55.75.24 1.43.21 1.98.13.59-.09 1.59-.65 1.81-1.28.22-.63.22-1.17.15-1.28-.07-.11-.25-.17-.52-.31z"></path>
+        // --- UPDATED WHATSAPP ICON ---
+        <svg className={iconStyles} fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
         </svg>
       ),
       bgColor: "bg-gray-800",
@@ -101,7 +101,6 @@ const FloatingContactButtons = () => {
           className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full shadow-2xl flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:shadow-red-400/50 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-red-500"
           aria-label="Toggle Contact Menu"
         >
-          {/* Container for the two icons to transition between */}
           <div className="relative w-6 h-6">
             {/* Info Icon (visible when closed) */}
             <svg
