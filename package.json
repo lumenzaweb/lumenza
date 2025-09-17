@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "country-state-city": "^3.2.1",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.542.0",
     "mongodb": "^6.19.0",
