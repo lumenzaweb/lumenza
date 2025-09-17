@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, XCircle } from "lucide-react";
 import Select from "react-select";
 import { Country, State, City } from "country-state-city";
-import AnimatedBubbleBackground from "./components/AnimatedBubbleBackground"; // Assuming this file exists from last step
+import AnimatedBubbleBackground from "./components/AnimatedBubbleBackground"; // Corrected path
 
 // Options for the select dropdowns
 const categoryOptions = [
@@ -61,15 +61,15 @@ const PartnerForm = () => {
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: null }));
   };
 
-  const validateStep = (stepToValidate) => {
+  const validateStep = () => {
     let newErrors = {};
-    if (stepToValidate === 1) {
+    if (step === 1) {
       if (!formData.name) newErrors.name = "Name is required.";
       if (!formData.firmName) newErrors.firmName = "Firm name is required.";
       if (!formData.contact) newErrors.contact = "Contact number is required.";
       if (!formData.email) newErrors.email = "Email is required.";
     }
-    if (stepToValidate === 2) {
+    if (step === 2) {
       if (!formData.address) newErrors.address = "Address is required.";
       if (!formData.country) newErrors.country = "Country is required.";
       if (!formData.state) newErrors.state = "State is required.";
@@ -77,18 +77,13 @@ const PartnerForm = () => {
       if (!formData.category) newErrors.category = "Category is required.";
       if (!formData.investment) newErrors.investment = "Investment level is required.";
     }
-    if (stepToValidate === 3) {
-      if (!formData.message) newErrors.message = "Message is required.";
-    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // --- BUG FIX: Only allow submission on the final step ---
-    if (step !== 3 || !validateStep(3)) return;
-    
+    if (!validateStep()) return;
     setLoading(true);
     const submissionData = {
       ...formData,
@@ -120,8 +115,7 @@ const PartnerForm = () => {
     setPopup({ show: true, type, message });
     setTimeout(() => { setPopup({ show: false, type: "", message: "" }); }, 3000);
   };
-
-  const nextStep = () => validateStep(step) && setStep(step + 1);
+  const nextStep = () => validateStep() && setStep(step + 1);
   const prevStep = () => setStep(step - 1);
   const stepVariants = { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -50 } };
   const customSelectStyles = {
@@ -134,7 +128,8 @@ const PartnerForm = () => {
   };
 
   return (
-    <section className="py-20 px-4 sm:px-6 bg-gray-900 min-h-screen relative overflow-hidden">
+    // --- PADDING-TOP (pt) ADDED HERE TO PREVENT NAVBAR OVERLAP ---
+    <section className="pt-28 sm:pt-32 pb-20 px-4 sm:px-6 bg-gray-900 min-h-screen relative overflow-hidden">
       <AnimatedBubbleBackground />
       {popup.show && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-sm">
@@ -220,19 +215,10 @@ const PartnerForm = () => {
             </AnimatePresence>
 
             <div className="mt-8 flex justify-between items-center">
-              {step > 1 ? (
-                <button type="button" onClick={prevStep} className="px-6 py-3 bg-white/10 text-white font-semibold rounded-lg shadow-sm hover:bg-white/20 transition">Previous</button>
-              ) : ( <div/> )}
-
-              {step < 3 && (
-                <button type="button" onClick={nextStep} className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition">Next</button>
-              )}
-
-              {step === 3 && (
-                // --- NEW: Professional Submit Button ---
+              {step > 1 ? (<button type="button" onClick={prevStep} className="px-6 py-3 bg-white/10 text-white font-semibold rounded-lg shadow-sm hover:bg-white/20 transition">Previous</button>) : ( <div/> )}
+              {step < 3 ? (<button type="button" onClick={nextStep} className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition">Next</button>) : (
                 <button
-                  type="submit"
-                  disabled={loading}
+                  type="submit" disabled={loading}
                   className="w-full text-center px-6 py-3 bg-red-600 text-white font-semibold rounded-xl shadow-md hover:bg-red-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? 'Submitting' : 'Submit Application'}
