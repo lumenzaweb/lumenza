@@ -28,7 +28,7 @@ const ContactForm = () => {
     }
 
     try {
-      setStatus("⏳ Sending...");
+      setStatus("Sending");
 
       const res = await fetch("https://lumenza.onrender.com/api/forms", {
         method: "POST",
