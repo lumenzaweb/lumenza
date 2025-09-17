@@ -12,11 +12,11 @@ const products = [
   },
   {
     name: "Kitchen Accessories",
-    img: "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
+    img: "https://i.pinimg.com/736x/b3/1a/34/b31a34dac39a5c6655cc4547c23609fd.jpg",
   },
   {
     name: "Cabinet Fittings",
-    img: "https://i.pinimg.com/736x/3b/1b/c1/3b1bc1ad75a6f5fa5d7ebc49f6aa9171.jpg",
+    img: "https://i.pinimg.com/736x/95/5a/68/955a683318b8fe0984cd891188f14a7b.jpg",
   },
   {
     name: "Sealants And Adhesives",
