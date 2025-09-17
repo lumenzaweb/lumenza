@@ -2,12 +2,39 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const images = [
+// --- STEP 1: Define two sets of images ---
+
+// Use your WIDE (e.g., 1920x1080) images here for desktop
+const desktopImages = [
   "https://i.pinimg.com/736x/7d/9b/71/7d9b71b6567e084c47ec3816be66554e.jpg",
   "https://i.pinimg.com/736x/0c/2e/ec/0c2eec5c7726a153435749cc87705283.jpg",
   "https://i.pinimg.com/736x/d3/49/e6/d349e6117f269a274c1de24078ff49eb.jpg",
   "https://i.pinimg.com/736x/39/b7/d5/39b7d5b6f6dbc01d4dee6641176d9fc0.jpg",
 ];
+
+// Use your TALL (e.g., 1080x1920) images here for mobile
+const mobileImages = [
+  "https://i.pinimg.com/564x/1b/30/91/1b30919763711af399558917e3ed630f.jpg", // Replace with your tall images
+  "https://i.pinimg.com/564x/b8/30/03/b83003b606c107a685c285ea9b02a22f.jpg", // Replace with your tall images
+  "https://i.pinimg.com/564x/e1/d7/29/e1d729c3132c569f443a5327c13abc3a.jpg", // Replace with your tall images
+  "https://i.pinimg.com/564x/8d/af/2e/8daf2e12811a4392fbc4b22c83c273de.jpg", // Replace with your tall images
+];
+
+// --- STEP 2: A helper to detect screen size ---
+function useMediaQuery(query) {
+    const [matches, setMatches] = useState(false);
+    useEffect(() => {
+        const media = window.matchMedia(query);
+        if (media.matches !== matches) {
+            setMatches(media.matches);
+        }
+        const listener = () => setMatches(media.matches);
+        window.addEventListener("resize", listener);
+        return () => window.removeEventListener("resize", listener);
+    }, [matches, query]);
+    return matches;
+}
+
 
 const slideVariants = {
   enter: { x: "100%", opacity: 0 },
@@ -19,6 +46,10 @@ const HomeSection = () => {
   const [current, setCurrent] = useState(0);
   const [navHeight, setNavHeight] = useState(64);
   const navigate = useNavigate();
+
+  // --- STEP 3: Choose the correct image array based on screen size ---
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const images = isMobile ? mobileImages : desktopImages;
 
   useEffect(() => {
     const nav = document.querySelector("nav");
@@ -35,7 +66,7 @@ const HomeSection = () => {
       setCurrent((prev) => (prev + 1) % images.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]); // useEffect depends on the length of the current image array
 
   return (
     <section
@@ -43,12 +74,8 @@ const HomeSection = () => {
       className="
         relative flex justify-center items-center text-center
         bg-black overflow-hidden
-        min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] /* <-- UPDATED RESPONSIVE HEIGHT */
-        px-4 sm:px-6
+        min-h-[500px] md:min-h-[600px] lg:min-h-[700px]
       "
-      style={{
-        paddingBottom: "calc(5rem + env(safe-area-inset-bottom))",
-      }}
     >
       {/* Background Slider */}
       <div className="absolute inset-0 z-0">
@@ -63,23 +90,16 @@ const HomeSection = () => {
               x: { type: "spring", stiffness: 300, damping: 30 },
               opacity: { duration: 0.5 },
             }}
-            className="absolute inset-0 bg-center" // `bg-cover` removed
+            className="absolute inset-0 bg-cover bg-center" // `bg-cover` now works perfectly
             style={{
-              backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%), url('${images[current]}')`,
-              backgroundSize: 'contain', // <-- THIS GUARANTEES THE IMAGE IS NEVER CUT
-              backgroundRepeat: 'no-repeat',
+              backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%), url('${images[current]}')`,
             }}
           />
         </AnimatePresence>
       </div>
 
       {/* Content wrapper */}
-      <div
-        className="relative z-10 flex flex-col items-center"
-        style={{
-          marginTop: `calc(${navHeight}px + 1rem + env(safe-area-inset-top))`,
-        }}
-      >
+      <div className="relative z-10 flex flex-col items-center px-4 sm:px-6">
         {/* LUMENZA with red box */}
         <motion.h1
           className="text-4xl md:text-6xl font-bold mb-4"
@@ -95,7 +115,7 @@ const HomeSection = () => {
 
         {/* Tagline */}
         <motion.p
-          className="text-sm md:text-xl text-white mb-6 max-w-lg md:max-w-2xl px-3"
+          className="text-sm md:text-xl text-white mb-6 max-w-lg md:max-w-2xl"
           style={{ textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)' }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -106,8 +126,7 @@ const HomeSection = () => {
             stiffness: 120,
           }}
         >
-          Premium hardware solutions for your home and business – Mortise
-          handles, lockers, cabinet handles, and stylish kitchen accessories.
+          Premium hardware solutions for your home and business.
         </motion.p>
 
         {/* Buttons */}
@@ -127,12 +146,7 @@ const HomeSection = () => {
       </div>
 
       {/* Slider Progress Bar Navigation */}
-      <div
-        className="absolute left-1/2 transform -translate-x-1/2 flex gap-2 md:gap-3 z-10 w-1/3 max-w-xs"
-        style={{
-          bottom: "calc(1rem + env(safe-area-inset-bottom))",
-        }}
-      >
+      <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-2 md:gap-3 z-10 w-1/3 max-w-xs bottom-5">
         {images.map((_, index) => (
           <button
             key={index}
