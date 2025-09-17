@@ -117,26 +117,8 @@ const AboutSection = () => (
 
         <Link to="/products">
           <img
-            src="https://i.pinimg.com/736x/5f/53/e0/5f53e07e9ec563358c7a444670af04a7.jpg"
-            alt="Door closer satin"
-            className="rounded-xl shadow-lg object-cover w-full h-52 cursor-pointer hover:scale-105 transition"
-            loading="lazy"
-          />
-        </Link>
-
-        <Link to="/products">
-          <img
             src="https://i.pinimg.com/736x/5c/7c/be/5c7cbe3dcaf990c3cf3ec47967c1b2f0.jpg"
             alt="Premium door mortise"
-            className="rounded-xl shadow-lg object-cover w-full h-52 cursor-pointer hover:scale-105 transition"
-            loading="lazy"
-          />
-        </Link>
-
-        <Link to="/products">
-          <img
-            src="https://i.pinimg.com/736x/fc/7a/42/fc7a4246426601ed91fffd1fd4813931.jpg"
-            alt="lockbody"
             className="rounded-xl shadow-lg object-cover w-full h-52 cursor-pointer hover:scale-105 transition"
             loading="lazy"
           />
@@ -159,6 +141,25 @@ const AboutSection = () => (
             loading="lazy"
           />
         </Link>
+        
+        <Link to="/products">
+          <img
+            src="https://i.pinimg.com/736x/5f/53/e0/5f53e07e9ec563358c7a444670af04a7.jpg"
+            alt="Door closer satin"
+            className="rounded-xl shadow-lg object-cover w-full h-52 cursor-pointer hover:scale-105 transition"
+            loading="lazy"
+          />
+        </Link>
+
+        <Link to="/products">
+          <img
+            src="https://i.pinimg.com/736x/fc/7a/42/fc7a4246426601ed91fffd1fd4813931.jpg"
+            alt="lockbody"
+            className="rounded-xl shadow-lg object-cover w-full h-52 cursor-pointer hover:scale-105 transition"
+            loading="lazy"
+          />
+        </Link>
+
       </div>
 
       {/* Join the Family block */}
