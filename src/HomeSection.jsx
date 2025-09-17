@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom"; // 👈 added
+import { useNavigate } from "react-router-dom";
 
 const images = [
   "https://i.pinimg.com/736x/7d/9b/71/7d9b71b6567e084c47ec3816be66554e.jpg",
@@ -9,16 +9,26 @@ const images = [
   "https://i.pinimg.com/736x/39/b7/d5/39b7d5b6f6dbc01d4dee6641176d9fc0.jpg",
 ];
 
-function scrollToSection(id) {
-  const section = document.getElementById(id);
-  if (section) section.scrollIntoView({ behavior: "smooth" });
-}
+// --- NEW: Animation variants for the sliding effect ---
+const slideVariants = {
+  enter: {
+    x: "100%",
+    opacity: 0,
+  },
+  center: {
+    x: 0,
+    opacity: 1,
+  },
+  exit: {
+    x: "-100%",
+    opacity: 0,
+  },
+};
 
 const HomeSection = () => {
   const [current, setCurrent] = useState(0);
   const [navHeight, setNavHeight] = useState(64);
-  const navRef = useRef(null);
-  const navigate = useNavigate(); // 👈 initialize
+  const navigate = useNavigate();
 
   useEffect(() => {
     const nav = document.querySelector("nav");
@@ -35,7 +45,7 @@ const HomeSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 3000);
+    }, 3000); // This duration should match the progress bar's transition
     return () => clearInterval(interval);
   }, []);
 
@@ -44,7 +54,7 @@ const HomeSection = () => {
       id="home"
       className="
         relative flex justify-center items-center text-center
-        bg-cover bg-center overflow-hidden
+        bg-black overflow-hidden
         min-h-[420px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px]
         px-4 sm:px-6
       "
@@ -54,22 +64,28 @@ const HomeSection = () => {
     >
       {/* Background Slider */}
       <div className="absolute inset-0 z-0">
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
+          {/* --- UPDATED: motion.div now uses slideVariants for horizontal sliding --- */}
           <motion.div
             key={current}
-            className="absolute inset-0 bg-cover bg-top md:bg-center"
-            style={{
-              backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${images[current]}')`,
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.5 },
             }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              // --- UPDATED: Gradient is now more subtle and protects text ---
+              backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 100%), url('${images[current]}')`,
+            }}
           />
         </AnimatePresence>
       </div>
 
-      {/* ✅ Content wrapper pushed down dynamically */}
+      {/* Content wrapper */}
       <div
         className="relative z-10 flex flex-col items-center"
         style={{
@@ -85,7 +101,7 @@ const HomeSection = () => {
         >
           <span className="relative inline-block px-4 md:px-6 py-2">
             <span className="absolute inset-0 bg-red-600 rounded-lg -z-10 shadow-lg"></span>
-            <span className="text-white font-semibold font-canvasans tracking-wide">LUMENZA</span>
+            <span className="text-white font-semibold tracking-wide">LUMENZA</span>
           </span>
         </motion.h1>
 
@@ -114,24 +130,16 @@ const HomeSection = () => {
         >
           <button
             className="px-5 py-2 md:px-6 md:py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition text-sm md:text-base"
-            onClick={() => navigate("/products")} // 👈 now opens Products page
+            onClick={() => navigate("/products")}
           >
             Explore Products
           </button>
-
-          {/*<button
-            className="px-5 py-2 md:px-6 md:py-3 bg-white border-2 border-red-600 text-red-600 font-semibold rounded-lg shadow hover:bg-red-50 transition text-sm md:text-base"
-            onClick={() => scrollToSection("inquiry")}
-          >
-            Contact Us
-          </button> */}
-          
         </motion.div>
       </div>
 
-      {/* Slider Dots */}
+      {/* --- UPDATED: Modern Progress Bar Navigation --- */}
       <div
-        className="absolute left-1/2 transform -translate-x-1/2 flex gap-2 md:gap-3 z-10"
+        className="absolute left-1/2 transform -translate-x-1/2 flex gap-2 md:gap-3 z-10 w-1/3 max-w-xs"
         style={{
           bottom: "calc(1rem + env(safe-area-inset-bottom))",
         }}
@@ -140,11 +148,18 @@ const HomeSection = () => {
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition cursor-pointer ${
-              current === index ? "bg-red-600 scale-110" : "bg-white/70"
-            }`}
-            aria-label={`Slide ${index + 1}`}
-          />
+            className="relative h-1.5 flex-1 bg-white/30 rounded-full overflow-hidden cursor-pointer"
+            aria-label={`Go to slide ${index + 1}`}
+          >
+            {current === index && (
+              <motion.div
+                className="absolute top-0 left-0 h-full bg-red-600 rounded-full"
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 3, ease: "linear" }}
+              />
+            )}
+          </button>
         ))}
       </div>
     </section>
