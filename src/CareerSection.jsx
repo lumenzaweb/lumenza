@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
-import { CheckCircle, XCircle, Briefcase, Megaphone, Users } from "lucide-react";
+import { CheckCircle, XCircle, Briefcase, Megaphone, Users, ArrowUpRight, UploadCloud, ChevronDown } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useDropzone } from "react-dropzone";
 import GridBackground from "./components/GridBackground"; // Assuming this file exists
 
 // Helper function to scroll to the form
@@ -12,21 +13,42 @@ const scrollToForm = () => {
 // Data for the new interactive role cards
 const departments = [
   {
-    icon: <Briefcase className="w-10 h-10 text-red-500" />,
+    icon: <Briefcase className="w-8 h-8 text-red-500" />,
     title: "Sales & Business Development",
     description: "Drive our growth by building relationships and expanding our market presence.",
+    responsibilities: [
+      "Build relationships with dealers, architects, and retailers",
+      "Product presentations and market visits",
+      "Area-wise target setting and achievement",
+    ],
   },
   {
-    icon: <Megaphone className="w-10 h-10 text-red-500" />,
+    icon: <Megaphone className="w-8 h-8 text-red-500" />,
     title: "Marketing & Brand",
     description: "Shape our brand's story and connect with customers through creative campaigns.",
+    responsibilities: [
+        "Develop creative campaigns to strengthen brand visibility",
+        "Work with digital & offline marketing channels",
+        "Plan exhibitions and trade shows",
+    ],
   },
   {
-    icon: <Users className="w-10 h-10 text-red-500" />,
+    icon: <Users className="w-8 h-8 text-red-500" />,
     title: "HR & Operations",
     description: "Support our team and streamline the processes that power our success.",
+    responsibilities: [
+        "Support daily business operations",
+        "Vendor coordination and documentation",
+        "Assist management with reports and compliance",
+    ],
   },
 ];
+
+const whyJoinUs = [
+    { icon: <motion.div />, title: "Innovate", description: "Work on cutting-edge products that redefine the industry." },
+    { icon: <motion.div />, title: "Grow", description: "We invest in your professional development and career path." },
+    { icon: <motion.div />, title: "Collaborate", description: "Join a supportive team where your ideas are valued." }
+]
 
 const CareerSection = () => {
   const [form, setForm] = useState({
@@ -36,10 +58,16 @@ const CareerSection = () => {
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState({ show: false, type: "", message: "" });
   const [captchaToken, setCaptchaToken] = useState(null);
-  const fileInputRef = useRef(null);
+  const [openDepartment, setOpenDepartment] = useState(null);
+
+  // react-dropzone hook
+  const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({
+    onDrop: accepted => setResume(accepted[0]),
+    accept: { 'application/pdf': ['.pdf'], 'application/msword': ['.doc'], 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'] },
+    maxFiles: 1,
+  });
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const handleFileChange = (e) => setResume(e.target.files[0]);
   const handleCaptcha = (token) => setCaptchaToken(token);
 
   const showPopup = (type, message) => {
@@ -75,7 +103,6 @@ const CareerSection = () => {
         showPopup("success", "Application submitted successfully!");
         setForm({ name: "", email: "", mobile: "", position: "", noticePeriod: "" });
         setResume(null);
-        if (fileInputRef.current) fileInputRef.current.value = "";
         setCaptchaToken(null);
         window.grecaptcha?.reset();
       } else {
@@ -116,32 +143,49 @@ const CareerSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {departments.map((dept, idx) => (
-            <motion.div
-              key={dept.title}
-              className="bg-white/5 border border-white/10 p-8 rounded-2xl shadow-lg hover:shadow-red-500/20 hover:border-red-500/30 backdrop-blur-sm group transition-all duration-300"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-            >
-              <div className="mb-4 transition-transform duration-300 group-hover:-translate-y-1">{dept.icon}</div>
-              <h3 className="text-2xl font-bold text-white mb-2">{dept.title}</h3>
-              <p className="text-gray-400 flex-grow mb-4">{dept.description}</p>
-              <button
-                onClick={scrollToForm}
-                className="mt-auto text-red-500 font-semibold group-hover:text-red-400 transition-colors"
-              >
-                Apply for this department →
-              </button>
-            </motion.div>
-          ))}
+        <div className="grid md:grid-cols-3 gap-8 mb-24">
+            {whyJoinUs.map((item, idx) => (
+                <motion.div key={item.title} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.15 }}>
+                    <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-gray-400">{item.description}</p>
+                </motion.div>
+            ))}
+        </div>
+
+        <div className="max-w-4xl mx-auto mb-20">
+            <h2 className="text-3xl font-bold text-center mb-10">Open Departments</h2>
+            <div className="space-y-4">
+                {departments.map((dept) => (
+                    <motion.div key={dept.title} layout className="bg-gray-900/50 border border-white/10 rounded-2xl transition-all duration-300 backdrop-blur-sm hover:border-red-500/50">
+                        <motion.div layout className="p-6 flex justify-between items-center cursor-pointer" onClick={() => setOpenDepartment(openDepartment === dept.title ? null : dept.title)}>
+                            <div className="flex items-center gap-4">
+                                {dept.icon}
+                                <h3 className="text-xl font-bold text-white">{dept.title}</h3>
+                            </div>
+                            <motion.div animate={{ rotate: openDepartment === dept.title ? 180 : 0 }}>
+                                <ChevronDown className="w-6 h-6 text-gray-400" />
+                            </motion.div>
+                        </motion.div>
+                        <AnimatePresence>
+                            {openDepartment === dept.title && (
+                                <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="px-6 pb-6 overflow-hidden">
+                                    <div className="border-t border-white/10 pt-4">
+                                        <h4 className="font-semibold text-gray-300 mb-2">Key Responsibilities:</h4>
+                                        <ul className="space-y-2 list-disc list-inside text-gray-400">
+                                            {dept.responsibilities.map(r => <li key={r}>{r}</li>)}
+                                        </ul>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </motion.div>
+                ))}
+            </div>
         </div>
 
         <motion.div 
           id="career-form" 
-          className="bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-2xl shadow-2xl max-w-4xl mx-auto"
+          className="bg-black/20 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-2xl shadow-2xl max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -162,7 +206,7 @@ const CareerSection = () => {
                 value={form.noticePeriod}
                 onChange={handleChange}
                 required
-                className="w-full p-4 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-red-500 outline-none transition-all duration-300"
+                className="w-full p-4 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-red-500 outline-none"
               >
                 <option value="" disabled className="text-gray-500 bg-gray-800">Select Notice Period...</option>
                 <option value="15 Days" className="bg-gray-800">15 Days</option>
@@ -171,14 +215,18 @@ const CareerSection = () => {
               </select>
             </div>
 
-            <div className="md:col-span-2">
-              <label className="block text-gray-300 mb-2 font-medium">Upload Resume (PDF/DOC)</label>
-              <input ref={fileInputRef} type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="block w-full text-sm text-gray-400 border border-white/20 rounded-lg cursor-pointer bg-white/5 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-600 file:text-white hover:file:bg-red-700" />
+            <div {...getRootProps()} className={`md:col-span-2 p-8 border-2 border-dashed rounded-2xl cursor-pointer transition-colors flex flex-col items-center justify-center text-center ${isDragActive ? 'border-red-500 bg-red-500/10' : 'border-white/20 hover:border-red-500/50'}`}>
+              <input {...getInputProps()} />
+              <UploadCloud className="w-10 h-10 text-gray-400 mb-2"/>
+              {acceptedFiles.length > 0 ? (
+                <p className="text-green-400">{acceptedFiles[0].name}</p>
+              ) : (
+                <p className="text-gray-400">Drag & drop your resume here, or click to select a file.</p>
+              )}
+              <p className="text-xs text-gray-500 mt-1">PDF, DOC, DOCX up to 5MB</p>
             </div>
 
-            <div className="flex justify-center md:col-span-2">
-              <ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} theme="dark" />
-            </div>
+            <div className="flex justify-center md:col-span-2"><ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} theme="dark" /></div>
 
             <button
               type="submit"
@@ -188,7 +236,7 @@ const CareerSection = () => {
               {loading ? 'Submitting...' : 'Submit Application'}
             </button>
           </form>
-        </motion.div> { /* <-- THIS CLOSING TAG WAS MISSING */ }
+        </motion.div>
       </div>
     </section>
   );
