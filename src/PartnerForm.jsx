@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, XCircle } from "lucide-react";
 import Select from "react-select";
 import { Country, State, City } from "country-state-city";
-import AnimatedBubbleBackground from "./AnimatedBubbleBackground";
+import AnimatedBubbleBackground from "./components/AnimatedBubbleBackground";
 
 // Options for the select dropdowns
 const categoryOptions = [
