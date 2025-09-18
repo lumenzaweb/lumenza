@@ -29,9 +29,10 @@ const whyJoinUs = [
     }
 ];
 
-// Data for the department tabs
+// Data for the department cards
 const departments = [
   {
+    icon: <Briefcase className="w-8 h-8 text-gray-700" />,
     title: "Sales & Business Development",
     responsibilities: [
       "Build relationships with dealers, architects, and retailers",
@@ -40,6 +41,7 @@ const departments = [
     ],
   },
   {
+    icon: <Megaphone className="w-8 h-8 text-gray-700" />,
     title: "Marketing & Brand",
     responsibilities: [
         "Develop creative campaigns to strengthen brand visibility",
@@ -48,6 +50,7 @@ const departments = [
     ],
   },
   {
+    icon: <Users className="w-8 h-8 text-gray-700" />,
     title: "HR & Operations",
     responsibilities: [
         "Support daily business operations",
@@ -75,12 +78,10 @@ const CareerSection = () => {
   });
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
   const handleNoticePeriodSelect = (option) => {
     setForm({ ...form, noticePeriod: option });
     setIsDropdownOpen(false);
   };
-
   const handleCaptcha = (token) => setCaptchaToken(token);
 
   const showPopup = (type, message) => {
@@ -137,7 +138,7 @@ const CareerSection = () => {
 
       {popup.show && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn">
+          <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center">
             {popup.type === "success" ? <CheckCircle className="w-12 h-12 text-green-600" /> : <XCircle className="w-12 h-12 text-red-600" />}
             <p className="text-lg font-semibold text-gray-800">{popup.message}</p>
           </div>
@@ -159,7 +160,7 @@ const CareerSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-24">
+        <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-10 mb-24">
             {whyJoinUs.map((item, idx) => (
                 <motion.div 
                   key={item.title} 
@@ -180,21 +181,33 @@ const CareerSection = () => {
 
         <div className="max-w-4xl mx-auto mb-20">
             <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">Open Departments</h2>
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {departments.map((dept) => (
-                    <motion.div key={dept.title} layout className="bg-white border border-gray-200 rounded-2xl shadow-sm transition-all duration-300 overflow-hidden hover:shadow-lg hover:border-gray-300">
-                        <motion.div layout className="p-6 flex justify-between items-center cursor-pointer" onClick={() => setOpenDepartment(openDepartment === dept.title ? null : dept.title)}>
-                            <h3 className="text-xl font-bold text-gray-800">{dept.title}</h3>
-                            <motion.div animate={{ rotate: openDepartment === dept.title ? 180 : 0 }}>
-                                <ChevronDown className="w-6 h-6 text-gray-500" />
-                            </motion.div>
+                    <motion.div
+                        key={dept.title}
+                        layout
+                        onClick={() => setOpenDepartment(openDepartment === dept.title ? null : dept.title)}
+                        className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 ${
+                            openDepartment === dept.title 
+                            ? 'bg-white shadow-2xl ring-2 ring-red-200' 
+                            : 'bg-white shadow-lg border border-gray-200 hover:shadow-xl'
+                        }`}
+                    >
+                        <motion.div layout="position" className="flex items-center gap-4 font-bold text-gray-800">
+                            {dept.icon}
+                            <h3 className="text-lg">{dept.title}</h3>
                         </motion.div>
                         <AnimatePresence>
                             {openDepartment === dept.title && (
-                                <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="px-6 pb-6">
-                                    <div className="border-t border-gray-200 pt-4">
-                                        <h4 className="font-semibold text-gray-700 mb-2">Key Responsibilities:</h4>
-                                        <ul className="space-y-2 list-disc list-inside text-gray-600">
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
+                                    exit={{ opacity: 0 }}
+                                    className="mt-4 pt-4 border-t border-gray-200"
+                                >
+                                    <div className="bg-red-600 text-white rounded-lg p-4">
+                                        <h4 className="font-semibold mb-2">Key Responsibilities:</h4>
+                                        <ul className="space-y-2 list-disc list-inside text-sm">
                                             {dept.responsibilities.map(r => <li key={r}>{r}</li>)}
                                         </ul>
                                     </div>
@@ -248,8 +261,8 @@ const CareerSection = () => {
               className="w-full md:col-span-2 flex items-center justify-center text-center px-6 py-4 bg-red-600 text-white font-semibold rounded-xl shadow-lg hover:bg-red-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-red-500/40 hover:-translate-y-1"
             >
               {loading ? (
-                <div className="flex items-center gap-3">
-                  <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white/50 border-t-white rounded-full animate-spin"></div>
                   <span>Submitting...</span>
                 </div>
               ) : (
