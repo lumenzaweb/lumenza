@@ -6,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 const desktopImages = [
   "https://i.pinimg.com/736x/a1/92/d7/a192d7bcc2315d7047d57fe68d109fb8.jpg",
   "https://i.pinimg.com/736x/ab/d8/88/abd888e47aeda4c565ffb733fa53facd.jpg",
-  "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e_584f1a601142fa42ee0.jpg",
+  "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
   "https://i.pinimg.com/736x/cc/da/7d/ccda7d93c4785a536b25ae97e21fd406.jpg",
 ];
 
 const mobileImages = [
   "https://i.pinimg.com/736x/a2/9f/33/a29f33e80072a05a057b52bf19c69ac6.jpg",
   "https://i.pinimg.com/736x/50/00/45/5000451e42fe371fc2164acaed53d471.jpg",
-  "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e_584f1a601142fa42ee0.jpg",
+  "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
   "https://i.pinimg.com/736x/0a/c8/79/0ac879f158282d46ab0e9c7b91c9041d.jpg",
 ];
 
