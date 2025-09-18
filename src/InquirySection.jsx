@@ -135,9 +135,9 @@ const InquirySection = () => {
         >
           <div className="grid md:grid-cols-2 gap-6">
             <input type="text" name="name" placeholder="Your Full Name" value={formData.name} onChange={handleChange} required className="w-full p-4 bg-white/5 border border-white/30 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-300" />
-            <input type="email" name="email" placeholder="Your Email Address" value={formData.email} onChange={handleChange} required className="w-full p-4 bg-white/5 border border-white/30 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-300" />
+            <input type="tel" name="contact" placeholder="Your Contact Number" value={formData.contact} onChange={handleChange} required className="w-full p-4 bg-white/5 border border-white/30 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-300" />
           </div>
-          <input type="tel" name="contact" placeholder="Your Contact Number" value={formData.contact} onChange={handleChange} required className="w-full p-4 bg-white/5 border border-white/30 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-300" />
+          <input type="email" name="email" placeholder="Your Email Address" value={formData.email} onChange={handleChange} required className="w-full p-4 bg-white/5 border border-white/30 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-300" />
           <textarea name="message" placeholder="Your Message..." value={formData.message} onChange={handleChange} required className="w-full p-4 bg-white/5 border border-white/30 rounded-xl h-32 resize-none placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all duration-300" />
           
           <div className="flex justify-center"><ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} theme="dark" /></div>
