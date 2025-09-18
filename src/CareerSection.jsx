@@ -135,6 +135,7 @@ const CareerSection = () => {
   return (
     <section className="bg-white text-gray-800 pt-28 sm:pt-32 pb-20 px-4 sm:px-6 relative overflow-hidden">
       <LightBackground />
+
       {popup.show && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn">
@@ -201,8 +202,8 @@ const CareerSection = () => {
                         <AnimatePresence>
                             {openDepartment === dept.title && (
                                 <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1, transition: { delay: 0.2 } }}
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
                                     exit={{ opacity: 0 }}
                                     className="mt-4 pt-4 border-t border-gray-200"
                                 >
@@ -212,6 +213,12 @@ const CareerSection = () => {
                                             {dept.responsibilities.map(r => <li key={r}>{r}</li>)}
                                         </ul>
                                     </div>
+                                    <button
+                                        onClick={scrollToForm}
+                                        className="mt-4 w-full text-center px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition"
+                                    >
+                                        Apply Now
+                                    </button>
                                 </motion.div>
                             )}
                         </AnimatePresence>
