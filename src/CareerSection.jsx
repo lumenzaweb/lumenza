@@ -135,10 +135,9 @@ const CareerSection = () => {
   return (
     <section className="bg-white text-gray-800 pt-28 sm:pt-32 pb-20 px-4 sm:px-6 relative overflow-hidden">
       <LightBackground />
-
       {popup.show && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center">
+          <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn">
             {popup.type === "success" ? <CheckCircle className="w-12 h-12 text-green-600" /> : <XCircle className="w-12 h-12 text-red-600" />}
             <p className="text-lg font-semibold text-gray-800">{popup.message}</p>
           </div>
@@ -179,7 +178,7 @@ const CareerSection = () => {
             ))}
         </div>
 
-        <div className="max-w-4xl mx-auto mb-20">
+        <div className="max-w-6xl mx-auto mb-20">
             <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">Open Departments</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {departments.map((dept) => (
@@ -189,25 +188,27 @@ const CareerSection = () => {
                         onClick={() => setOpenDepartment(openDepartment === dept.title ? null : dept.title)}
                         className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 ${
                             openDepartment === dept.title 
-                            ? 'bg-white shadow-2xl ring-2 ring-red-200' 
-                            : 'bg-white shadow-lg border border-gray-200 hover:shadow-xl'
+                            ? 'bg-white shadow-2xl ring-2 ring-red-300' 
+                            : 'bg-gray-50/50 border border-gray-200 hover:shadow-xl hover:border-gray-300'
                         }`}
+                        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                     >
                         <motion.div layout="position" className="flex items-center gap-4 font-bold text-gray-800">
                             {dept.icon}
                             <h3 className="text-lg">{dept.title}</h3>
                         </motion.div>
+                        
                         <AnimatePresence>
                             {openDepartment === dept.title && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1, transition: { delay: 0.2 } }}
                                     exit={{ opacity: 0 }}
                                     className="mt-4 pt-4 border-t border-gray-200"
                                 >
-                                    <div className="bg-red-600 text-white rounded-lg p-4">
+                                    <div className="bg-red-600 text-white rounded-xl p-4">
                                         <h4 className="font-semibold mb-2">Key Responsibilities:</h4>
-                                        <ul className="space-y-2 list-disc list-inside text-sm">
+                                        <ul className="space-y-2 list-disc list-inside text-sm text-red-100">
                                             {dept.responsibilities.map(r => <li key={r}>{r}</li>)}
                                         </ul>
                                     </div>
