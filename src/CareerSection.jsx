@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, ChevronDown, Zap, TrendingUp } from "lucide-react";
+import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, ChevronDown, Zap, TrendingUp, ArrowRight } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
@@ -12,52 +12,16 @@ const scrollToForm = () => {
 
 // Data for the "Why Join Us" section
 const whyJoinUs = [
-    {
-        icon: <Zap className="w-8 h-8 text-red-600" />,
-        title: "Innovate",
-        description: "Work on cutting-edge products that redefine the industry."
-    },
-    {
-        icon: <TrendingUp className="w-8 h-8 text-red-600" />,
-        title: "Grow",
-        description: "We invest in your professional development and career path."
-    },
-    {
-        icon: <Users className="w-8 h-8 text-red-600" />,
-        title: "Collaborate",
-        description: "Join a supportive team where your ideas are valued."
-    }
+    { icon: <Zap className="w-8 h-8 text-red-600" />, title: "Innovate", description: "Work on cutting-edge products that redefine the industry." },
+    { icon: <TrendingUp className="w-8 h-8 text-red-600" />, title: "Grow", description: "We invest in your professional development and career path." },
+    { icon: <Users className="w-8 h-8 text-red-600" />, title: "Collaborate", description: "Join a supportive team where your ideas are valued." }
 ];
 
 // Data for the department cards
 const departments = [
-  {
-    icon: <Briefcase className="w-8 h-8 text-gray-700" />,
-    title: "Sales & Business Development",
-    responsibilities: [
-      "Build relationships with dealers, architects, and retailers",
-      "Product presentations and market visits",
-      "Area-wise target setting and achievement",
-    ],
-  },
-  {
-    icon: <Megaphone className="w-8 h-8 text-gray-700" />,
-    title: "Marketing & Brand",
-    responsibilities: [
-        "Develop creative campaigns to strengthen brand visibility",
-        "Work with digital & offline marketing channels",
-        "Plan exhibitions and trade shows",
-    ],
-  },
-  {
-    icon: <Users className="w-8 h-8 text-gray-700" />,
-    title: "HR & Operations",
-    responsibilities: [
-        "Support daily business operations",
-        "Vendor coordination and documentation",
-        "Assist management with reports and compliance",
-    ],
-  },
+  { icon: <Briefcase className="w-8 h-8 text-gray-700" />, title: "Sales & Business Development", responsibilities: ["Build relationships with dealers, architects, and retailers", "Product presentations and market visits", "Area-wise target setting and achievement"] },
+  { icon: <Megaphone className="w-8 h-8 text-gray-700" />, title: "Marketing & Brand", responsibilities: ["Develop creative campaigns to strengthen brand visibility", "Work with digital & offline marketing channels", "Plan exhibitions and trade shows"] },
+  { icon: <Users className="w-8 h-8 text-gray-700" />, title: "HR & Operations", responsibilities: ["Support daily business operations", "Vendor coordination and documentation", "Assist management with reports and compliance"] },
 ];
 
 const noticePeriodOptions = ["15 Days", "30 Days", "90 Days"];
@@ -105,9 +69,7 @@ const CareerSection = () => {
       formData.append("message", `Notice Period: ${form.noticePeriod}`);
       formData.append("formType", "Career");
       formData.append("captchaToken", captchaToken);
-      if (resume) {
-        formData.append("resume", resume);
-      }
+      if (resume) formData.append("resume", resume);
 
       const res = await fetch("https://lumenza.onrender.com/api/forms", {
         method: "POST",
@@ -135,7 +97,6 @@ const CareerSection = () => {
   return (
     <section className="bg-white text-gray-800 pt-28 sm:pt-32 pb-20 px-4 sm:px-6 relative overflow-hidden">
       <LightBackground />
-
       {popup.show && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn">
@@ -185,16 +146,15 @@ const CareerSection = () => {
                 {departments.map((dept) => (
                     <motion.div
                         key={dept.title}
-                        layout
+                        layout="position"
                         onClick={() => setOpenDepartment(openDepartment === dept.title ? null : dept.title)}
                         className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 ${
                             openDepartment === dept.title 
                             ? 'bg-white shadow-2xl ring-2 ring-red-300' 
-                            : 'bg-white/50 border border-gray-200 hover:shadow-xl hover:border-gray-300'
+                            : 'bg-gray-50/80 border border-gray-200 hover:shadow-xl hover:border-gray-300'
                         }`}
-                        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                     >
-                        <motion.div layout="position" className="flex items-center gap-4 font-bold text-gray-800">
+                        <motion.div layout="position" className="flex flex-col items-center text-center gap-4 font-bold text-gray-800">
                             {dept.icon}
                             <h3 className="text-lg">{dept.title}</h3>
                         </motion.div>
@@ -204,10 +164,10 @@ const CareerSection = () => {
                                 <motion.div
                                     initial={{ opacity: 0, y: -10 }}
                                     animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
-                                    exit={{ opacity: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
                                     className="mt-4 pt-4 border-t border-gray-200"
                                 >
-                                    <div className="bg-red-50 text-red-900 rounded-xl p-4">
+                                    <div className="bg-red-50 text-red-900 rounded-xl p-4 text-left">
                                         <h4 className="font-semibold text-red-800 mb-2">Key Responsibilities:</h4>
                                         <ul className="space-y-2 list-disc list-inside text-sm text-red-700">
                                             {dept.responsibilities.map(r => <li key={r}>{r}</li>)}
@@ -215,9 +175,9 @@ const CareerSection = () => {
                                     </div>
                                     <button
                                         onClick={scrollToForm}
-                                        className="mt-4 w-full text-center px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition"
+                                        className="mt-4 w-full flex items-center justify-center gap-2 text-red-600 font-semibold hover:text-red-800 transition"
                                     >
-                                        Apply Now
+                                        Apply Now <ArrowRight className="w-4 h-4" />
                                     </button>
                                 </motion.div>
                             )}
