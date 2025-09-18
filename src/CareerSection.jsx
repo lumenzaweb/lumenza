@@ -3,19 +3,37 @@ import { CheckCircle, XCircle, Briefcase, Megaphone, Users, ArrowUpRight, Upload
 import ReCAPTCHA from "react-google-recaptcha";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
-import GridBackground from "./components/GridBackground"; // Assuming this file exists
+import GridBackground from "./components/GridBackground";
 
 // Helper function to scroll to the form
 const scrollToForm = () => {
   document.getElementById("career-form")?.scrollIntoView({ behavior: "smooth", block: "center" });
 };
 
-// Data for the new interactive role cards
+// Data for the "Why Join Us" section
+const whyJoinUs = [
+    {
+        icon: <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>,
+        title: "Innovate",
+        description: "Work on cutting-edge products that redefine the industry."
+    },
+    {
+        icon: <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>,
+        title: "Grow",
+        description: "We invest in your professional development and career path."
+    },
+    {
+        icon: <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.184-1.268-.5-1.857M7 20v-2c0-.653.184-1.268.5-1.857m0 0a5.002 5.002 0 019 0m-4.5 4.5a5.002 5.002 0 01-9 0m-4.5-4.5a5.002 5.002 0 019 0" /></svg>,
+        title: "Collaborate",
+        description: "Join a supportive team where your ideas are valued."
+    }
+];
+
+// Data for the department tabs
 const departments = [
   {
     icon: <Briefcase className="w-8 h-8 text-red-500" />,
     title: "Sales & Business Development",
-    description: "Drive our growth by building relationships and expanding our market presence.",
     responsibilities: [
       "Build relationships with dealers, architects, and retailers",
       "Product presentations and market visits",
@@ -25,7 +43,6 @@ const departments = [
   {
     icon: <Megaphone className="w-8 h-8 text-red-500" />,
     title: "Marketing & Brand",
-    description: "Shape our brand's story and connect with customers through creative campaigns.",
     responsibilities: [
         "Develop creative campaigns to strengthen brand visibility",
         "Work with digital & offline marketing channels",
@@ -35,7 +52,6 @@ const departments = [
   {
     icon: <Users className="w-8 h-8 text-red-500" />,
     title: "HR & Operations",
-    description: "Support our team and streamline the processes that power our success.",
     responsibilities: [
         "Support daily business operations",
         "Vendor coordination and documentation",
@@ -43,12 +59,6 @@ const departments = [
     ],
   },
 ];
-
-const whyJoinUs = [
-    { icon: <motion.div />, title: "Innovate", description: "Work on cutting-edge products that redefine the industry." },
-    { icon: <motion.div />, title: "Grow", description: "We invest in your professional development and career path." },
-    { icon: <motion.div />, title: "Collaborate", description: "Join a supportive team where your ideas are valued." }
-]
 
 const CareerSection = () => {
   const [form, setForm] = useState({
@@ -60,7 +70,6 @@ const CareerSection = () => {
   const [captchaToken, setCaptchaToken] = useState(null);
   const [openDepartment, setOpenDepartment] = useState(null);
 
-  // react-dropzone hook
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({
     onDrop: accepted => setResume(accepted[0]),
     accept: { 'application/pdf': ['.pdf'], 'application/msword': ['.doc'], 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'] },
@@ -143,9 +152,13 @@ const CareerSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-24">
+        <div className="grid md:grid-cols-3 gap-8 mb-24 text-center">
             {whyJoinUs.map((item, idx) => (
-                <motion.div key={item.title} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.15 }}>
+                <motion.div key={item.title} className="bg-white/5 border border-white/10 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:shadow-red-500/20"
+                initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.15 }}>
+                    <div className="inline-block p-4 bg-red-500/10 rounded-full mb-4">
+                        {item.icon}
+                    </div>
                     <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
                     <p className="text-gray-400">{item.description}</p>
                 </motion.div>
@@ -153,7 +166,7 @@ const CareerSection = () => {
         </div>
 
         <div className="max-w-4xl mx-auto mb-20">
-            <h2 className="text-3xl font-bold text-center mb-10">Open Departments</h2>
+            <h2 className="text-3xl font-bold text-center mb-10 text-white">Open Departments</h2>
             <div className="space-y-4">
                 {departments.map((dept) => (
                     <motion.div key={dept.title} layout className="bg-gray-900/50 border border-white/10 rounded-2xl transition-all duration-300 backdrop-blur-sm hover:border-red-500/50">
@@ -219,9 +232,9 @@ const CareerSection = () => {
               <input {...getInputProps()} />
               <UploadCloud className="w-10 h-10 text-gray-400 mb-2"/>
               {acceptedFiles.length > 0 ? (
-                <p className="text-green-400">{acceptedFiles[0].name}</p>
+                <p className="text-green-400 font-medium">{acceptedFiles[0].name}</p>
               ) : (
-                <p className="text-gray-400">Drag & drop your resume here, or click to select a file.</p>
+                <p className="text-gray-500">Drag & drop your resume here, or click to select.</p>
               )}
               <p className="text-xs text-gray-500 mt-1">PDF, DOC, DOCX up to 5MB</p>
             </div>
