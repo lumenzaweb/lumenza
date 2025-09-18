@@ -4,17 +4,17 @@ import { useNavigate } from "react-router-dom";
 
 // Define your desktop and mobile images
 const desktopImages = [
-  "https://i.pinimg.com/736x/af/37/ac/af37ac6fac8c9de0c8f85ca7fed7e38b.jpg",
-  "https://i.pinimg.com/736x/ab/d8/88/abd888e47aeda4c565ffb733fa53facd.jpg",
-  "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
-  "https://i.pinimg.com/736x/cc/da/7d/ccda7d93c4785a536b25ae97e21fd406.jpg",
+  "https://res-console.cloudinary.com/dgughhtvb/thumbnails/v1/image/upload/v1758216978/bHVtZW56YV93ZWJfaW1nXzRfbzV4dGF1/preview",
+  "https://res-console.cloudinary.com/dgughhtvb/thumbnails/v1/image/upload/v1758216978/M19jbXJsamI=/preview",
+  "https://res-console.cloudinary.com/dgughhtvb/thumbnails/v1/image/upload/v1758216978/Ml9sZGRpcnk=/preview",
+  "https://res-console.cloudinary.com/dgughhtvb/thumbnails/v1/image/upload/v1758216978/NF9lMW5jcmk=/preview",
 ];
 
 const mobileImages = [
-  "https://i.pinimg.com/736x/af/37/ac/af37ac6fac8c9de0c8f85ca7fed7e38b.jpg",
-  "https://i.pinimg.com/736x/50/00/45/5000451e42fe371fc2164acaed53d471.jpg",
-  "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
-  "https://i.pinimg.com/736x/0a/c8/79/0ac879f158282d46ab0e9c7b91c9041d.jpg",
+  "https://res-console.cloudinary.com/dgughhtvb/thumbnails/v1/image/upload/v1758216978/bHVtZW56YV93ZWJfaW1nXzRfbzV4dGF1/preview",
+  "https://res-console.cloudinary.com/dgughhtvb/thumbnails/v1/image/upload/v1758216978/M19jbXJsamI=/preview",
+  "https://res-console.cloudinary.com/dgughhtvb/thumbnails/v1/image/upload/v1758216978/Ml9sZGRpcnk=/preview",
+  "https://res-console.cloudinary.com/dgughhtvb/thumbnails/v1/image/upload/v1758216978/NF9lMW5jcmk=/preview",
 ];
 
 // A helper to detect screen size
