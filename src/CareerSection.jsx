@@ -1,22 +1,46 @@
 import React, { useState, useRef } from "react";
-import { CheckCircle, XCircle } from "lucide-react";
+import { CheckCircle, XCircle, Briefcase, Megaphone, Users } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { motion } from "framer-motion";
+
+// Helper function to scroll to the form
+const scrollToForm = () => {
+  const section = document.getElementById("career-form");
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+};
+
+// Data for the new interactive role cards
+const departments = [
+  {
+    icon: <Briefcase className="w-10 h-10 text-red-600" />,
+    title: "Sales & Business Development",
+    description: "Drive our growth by building relationships and expanding our market presence.",
+    roles: ["Field Sales Executive", "Area Sales Manager"],
+  },
+  {
+    icon: <Megaphone className="w-10 h-10 text-red-600" />,
+    title: "Marketing & Brand",
+    description: "Shape our brand's story and connect with customers through creative campaigns.",
+    roles: ["Digital Marketing Specialist", "Brand Manager"],
+  },
+  {
+    icon: <Users className="w-10 h-10 text-red-600" />,
+    title: "HR & Operations",
+    description: "Support our team and streamline the processes that power our success.",
+    roles: ["Operations Executive", "HR Generalist"],
+  },
+];
 
 const CareerSection = () => {
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    mobile: "",
-    position: "",
-    message: "",
+    name: "", email: "", mobile: "", position: "", noticePeriod: "",
   });
-
   const [resume, setResume] = useState(null);
-  const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState({ show: false, type: "", message: "" });
   const [captchaToken, setCaptchaToken] = useState(null);
-
   const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
@@ -40,21 +64,19 @@ const CareerSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!captchaToken) {
       showPopup("error", "Please verify the captcha.");
       return;
     }
-
     try {
       setLoading(true);
-
       const formData = new FormData();
       formData.append("name", form.name);
       formData.append("email", form.email);
       formData.append("mobile", form.mobile);
       formData.append("position", form.position);
-      formData.append("message", form.message);
+      // The backend expects a "message", so we send the notice period under that key.
+      formData.append("message", `Notice Period: ${form.noticePeriod}`);
       formData.append("formType", "Career");
       formData.append("captchaToken", captchaToken);
       if (resume) {
@@ -69,15 +91,8 @@ const CareerSection = () => {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        setSubmitted(true);
         showPopup("success", "Application submitted successfully!");
-        setForm({
-          name: "",
-          email: "",
-          mobile: "",
-          position: "",
-          message: "",
-        });
+        setForm({ name: "", email: "", mobile: "", position: "", noticePeriod: "" });
         setResume(null);
         if (fileInputRef.current) fileInputRef.current.value = "";
         setCaptchaToken(null);
@@ -93,293 +108,111 @@ const CareerSection = () => {
     }
   };
 
-  const sections = [
-    {
-      title: "Sales & Business Development",
-      subtitle: "Open Roles:",
-      responsibilities: [
-        "Build relationships with dealers, architects, builders, and retailers",
-        "Product presentations and market visits",
-        "Area-wise target setting and achievement",
-        "Competitive market analysis",
-      ],
-      roles: [
-        "Field Sales Executive",
-        "Business Development Officer",
-        "Area Sales Manager",
-      ],
-    },
-    {
-      title: "Customer Support & Service",
-      subtitle: "Open Roles:",
-      responsibilities: [
-        "Handle customer inquiries and complaints",
-        "Ensure timely resolution of issues",
-        "Assist sales team with client support",
-        "Build long-term client relationships",
-      ],
-      roles: ["Customer Support Executive", "Service Coordinator"],
-    },
-    {
-      title: "Marketing & Brand Development",
-      subtitle: "Open Roles:",
-      responsibilities: [
-        "Develop creative campaigns to strengthen brand visibility",
-        "Work with digital & offline marketing channels",
-        "Plan exhibitions and trade shows",
-        "Coordinate with designers and content creators",
-      ],
-      roles: ["Marketing Executive", "Digital Marketing Specialist"],
-    },
-    {
-      title: "Warehouse & Logistics",
-      subtitle: "Open Roles:",
-      responsibilities: [
-        "Inventory management and stock audits",
-        "Dispatch coordination",
-        "Supply chain optimization",
-        "Vendor and transport management",
-      ],
-      roles: ["Warehouse Supervisor", "Dispatch Coordinator"],
-    },
-    {
-      title: "Operations & Administration",
-      subtitle: "Open Roles:",
-      responsibilities: [
-        "Support daily business operations",
-        "Vendor coordination",
-        "Documentation and compliance",
-        "Assist management with reports",
-      ],
-      roles: ["Operations Executive", "Admin Officer"],
-    },
-    {
-      title: "Internships",
-      subtitle: "Open Roles:",
-      responsibilities: [
-        "Exciting internship opportunities in sales, marketing, and operations",
-        "Gain hands-on experience with India’s growing brand",
-        "Mentorship and career development",
-      ],
-      roles: ["Sales Intern", "Marketing Intern", "Operations Intern"],
-    },
-  ];
-
   return (
-    <section className="max-w-6xl mx-auto px-6 py-16 my-12 bg-gradient-to-br from-white via-red-50 to-red-100 rounded-3xl shadow-xl relative">
+    <section className="bg-gray-50 pt-28 sm:pt-32 pb-20 px-4 sm:px-6">
       {/* Center Popup */}
       {popup.show && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div
-            className={`bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn`}
-          >
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn">
             {popup.type === "success" ? (
               <CheckCircle className="w-12 h-12 text-green-600" />
             ) : (
               <XCircle className="w-12 h-12 text-red-600" />
             )}
-            <p className="text-lg font-semibold text-gray-800">
-              {popup.message}
-            </p>
+            <p className="text-lg font-semibold text-gray-800">{popup.message}</p>
           </div>
         </div>
       )}
 
-      {/* Header */}
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-center text-red-900 tracking-tight">
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-800">
-          Careers at Lumenza
-        </span>
-      </h1>
-      <p className="text-lg mb-12 text-center text-black max-w-2xl mx-auto">
-        Careers at Lumenza mean{" "}
-        <span className="font-semibold">more than just a job</span>. They're
-        about building futures with a trusted brand in{" "}
-        <span className="text-red-700 font-semibold">
-          Security, Hardware, and Lifestyle Accessories
-        </span>
-        .
-      </p>
-
-      {/* Intro paragraphs */}
-      <div className="mb-16 space-y-10">
-        <div className="bg-white/80 border-l-4 border-red-600 p-6 rounded-xl shadow-sm">
-          <p className="text-black text-lg leading-relaxed">
-            At <span className="font-semibold text-red-700">Lumenza</span>, we
-            create an environment where professionals can thrive, innovate, and
-            make a lasting impact. Our culture encourages{" "}
-            <span className="font-medium">teamwork, flexibility, and growth</span>
-            , empowering every individual to do their best work.
-          </p>
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <motion.h1 
+            className="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Join Our Team
+          </motion.h1>
+          <motion.p 
+            className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            We're building the future of hardware solutions, and we need passionate, talented people to help us achieve our mission. Explore our open departments below.
+          </motion.p>
         </div>
 
-        <div className="bg-white/80 border-l-4 border-red-600 p-6 rounded-xl shadow-sm">
-          <p className="text-black text-lg leading-relaxed">
-            At <span className="font-semibold text-red-700">Lumenza</span>, we're
-            on a mission to redefine how homes and workspaces look and feel — with
-            hardware that blends style, innovation, and performance. Behind every
-            flawless handle, smooth trolley, or secure locker, there's a team of
-            passionate individuals committed to quality and excellence. We're
-            looking for{" "}
-            <span className="font-medium">
-              visionaries, team players, and problem-solvers
-            </span>{" "}
-            ready to make an impact.
-          </p>
-        </div>
-
-        {/* Department blocks */}
-        {sections.map((section, idx) => (
-          <div
-            key={idx}
-            className="bg-white/90 border border-gray-100 p-8 rounded-2xl shadow-md hover:shadow-lg transition"
-          >
-            <h2 className="text-2xl font-bold text-red-800 mb-5">
-              {section.title}
-            </h2>
-
-            <h3 className="text-xl font-bold text-black mb-4">
-              Responsibilities
-            </h3>
-            <ul className="space-y-4 mb-6">
-              {section.responsibilities.map((point, i) => (
-                <li key={i} className="flex items-start gap-3 text-black">
-                  <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-1" />
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-
-            <h3 className="text-xl font-bold text-black mb-4">
-              {section.subtitle}
-            </h3>
-            <ul className="space-y-4">
-              {section.roles.map((role, i) => (
-                <li key={i} className="flex items-start gap-3 text-black">
-                  <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-1" />
-                  <span>{role}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      {/* Form Section */}
-      <div className="bg-white p-10 rounded-2xl border border-gray-100 shadow-lg">
-        <h3 className="text-3xl font-bold mb-6 text-center text-red-800">
-          Apply Now or Send Inquiry
-        </h3>
-
-        <form className="grid md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-            placeholder="Full Name"
-            className="p-3 border rounded-xl focus:ring-2 focus:ring-red-400 focus:outline-none shadow-sm"
-          />
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            placeholder="Email Address"
-            className="p-3 border rounded-xl focus:ring-2 focus:ring-red-400 focus:outline-none shadow-sm"
-          />
-          <input
-            type="tel"
-            name="mobile"
-            value={form.mobile}
-            onChange={handleChange}
-            pattern="[0-9]{10}"
-            title="Enter a valid 10-digit mobile number"
-            required
-            placeholder="Mobile Number"
-            className="p-3 border rounded-xl focus:ring-2 focus:ring-red-400 focus:outline-none shadow-sm"
-          />
-          <input
-            type="text"
-            name="position"
-            value={form.position}
-            onChange={handleChange}
-            required
-            placeholder="Position Applied / Inquiry"
-            className="p-3 border rounded-xl focus:ring-2 focus:ring-red-400 focus:outline-none shadow-sm"
-          />
-          <textarea
-            name="message"
-            value={form.message}
-            onChange={handleChange}
-            required
-            placeholder="Message / Brief Profile / Inquiry"
-            rows="4"
-            className="p-3 border rounded-xl focus:ring-2 focus:ring-red-400 focus:outline-none shadow-sm md:col-span-2"
-          />
-
-          {/* File Upload */}
-          <div className="md:col-span-2">
-            <label className="block text-gray-700 mb-2 font-medium">
-              Upload Resume (PDF/DOC)
-            </label>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".pdf,.doc,.docx"
-              onChange={handleFileChange}
-              className="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-400 p-2"
-            />
-          </div>
-
-          {/* Google reCAPTCHA */}
-          <div className="flex justify-center md:col-span-2">
-            <ReCAPTCHA
-              sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt"
-              onChange={handleCaptcha}
-            />
-          </div>
-
-          {/* Modern Button */}
-          <button
-            type="submit"
-            disabled={loading}
-            className={`relative flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-800 text-white py-3 px-6 rounded-xl font-semibold shadow-md transition md:col-span-2
-              ${
-                loading
-                  ? "opacity-80 cursor-not-allowed"
-                  : "hover:shadow-lg hover:scale-105"
-              }
-            `}
-          >
-            {loading ? (
-              <svg
-                className="w-5 h-5 animate-spin text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
+        {/* Department Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          {departments.map((dept, idx) => (
+            <motion.div
+              key={dept.title}
+              className="bg-white border border-gray-200 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+            >
+              <div className="mb-4">{dept.icon}</div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">{dept.title}</h3>
+              <p className="text-gray-600 flex-grow mb-4">{dept.description}</p>
+              <button
+                onClick={scrollToForm}
+                className="mt-auto text-red-600 font-semibold hover:underline"
               >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                ></path>
-              </svg>
-            ) : (
-              "Submit Application"
-            )}
-          </button>
-        </form>
+                Apply for this department
+              </button>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Form Section */}
+        <div id="career-form" className="bg-white p-8 md:p-12 rounded-2xl border border-gray-200 shadow-xl max-w-4xl mx-auto">
+          <h3 className="text-3xl font-bold mb-6 text-center text-gray-800">
+            Apply Now
+          </h3>
+          <form className="grid md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
+            <input type="text" name="name" value={form.name} onChange={handleChange} required placeholder="Full Name" className="p-3 border rounded-xl focus:ring-2 focus:ring-red-400 focus:outline-none shadow-sm" />
+            <input type="email" name="email" value={form.email} onChange={handleChange} required placeholder="Email Address" className="p-3 border rounded-xl focus:ring-2 focus:ring-red-400 focus:outline-none shadow-sm" />
+            <input type="tel" name="mobile" value={form.mobile} onChange={handleChange} pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number" required placeholder="Mobile Number" className="p-3 border rounded-xl focus:ring-2 focus:ring-red-400 focus:outline-none shadow-sm" />
+            <input type="text" name="position" value={form.position} onChange={handleChange} required placeholder="Position You're Applying For" className="p-3 border rounded-xl focus:ring-2 focus:ring-red-400 focus:outline-none shadow-sm" />
+            
+            <div className="md:col-span-2">
+              <select
+                name="noticePeriod"
+                value={form.noticePeriod}
+                onChange={handleChange}
+                required
+                className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-red-400 focus:outline-none shadow-sm bg-white"
+              >
+                <option value="" disabled>Select Notice Period...</option>
+                <option value="15 Days">15 Days</option>
+                <option value="30 Days">30 Days</option>
+                <option value="90 Days">90 Days</option>
+              </select>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-gray-700 mb-2 font-medium">Upload Resume (PDF/DOC)</label>
+              <input ref={fileInputRef} type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} className="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-400 p-2" />
+            </div>
+
+            <div className="flex justify-center md:col-span-2">
+              <ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full md:col-span-2 text-center px-6 py-3 bg-red-600 text-white font-semibold rounded-xl shadow-md hover:bg-red-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Submitting...' : 'Submit Application'}
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );
