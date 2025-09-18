@@ -45,7 +45,6 @@ const HomeSection = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const images = isMobile ? mobileImages : desktopImages;
 
-  // This useEffect for the auto-slider is correct
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
@@ -60,7 +59,7 @@ const HomeSection = () => {
         relative flex justify-center items-center text-center
         bg-black overflow-hidden
         min-h-[500px] md:min-h-[600px] lg:min-h-[700px]
-        pt-28 sm:pt-32 /* <-- FIX: Added padding-top to prevent overlap with navbar */
+        pt-28 sm:pt-32
       "
     >
       {/* Background Slider */}
@@ -84,7 +83,7 @@ const HomeSection = () => {
         </AnimatePresence>
       </div>
 
-      {/* Content wrapper - Removed the dynamic style that caused the glitch */}
+      {/* Content wrapper */}
       <div className="relative z-10 flex flex-col items-center px-4 sm:px-6">
         <motion.h1
           className="text-4xl md:text-6xl font-bold mb-4"
