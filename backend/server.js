@@ -2,19 +2,18 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import nodemailer from "nodemailer";
-// ❌ removed "node-fetch" – use global fetch instead
 import cors from "cors";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
 import testEmailRoute from "./routes/testEmail.js";
 
-
 dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/", testEmailRoute);
+
 // ✅ ENV check
 console.log("✅ ENV check:", {
   PORT: process.env.PORT,
@@ -31,14 +30,14 @@ mongoose
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// ✅ Mongoose schema (flexible for any form)
+// ✅ Mongoose schema
 const formSchema = new mongoose.Schema(
   {
     formType: { type: String, required: true },
     name: String,
     email: String,
     message: String,
-    resume: String, // file path for uploaded CV
+    resume: String,
     extra: Object,
   },
   { timestamps: true }
@@ -46,7 +45,7 @@ const formSchema = new mongoose.Schema(
 
 const Form = mongoose.model("Form", formSchema);
 
-// ✅ File upload config (store in /uploads)
+// ✅ File upload config
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadPath = "uploads/";
@@ -54,7 +53,7 @@ const storage = multer.diskStorage({
     cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // unique filename
+    cb(null, Date.now() + path.extname(file.originalname));
   },
 });
 
@@ -73,54 +72,47 @@ const upload = multer({
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
   port: 465,
-  secure: true, // true for 465, false for 587
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
 });
 
-export const sendMail = async ({ to, subject, html }) => {
-  try {
-    const info = await transporter.sendMail({
-      from: `"Lumenza Support" <${process.env.EMAIL_USER}>`,
-      to,
-      subject,
-      html,
-    });
-    console.log("✅ Email sent:", info.messageId);
-    return true;
-  } catch (err) {
-    console.error("❌ Email sending failed:", err);
-    return false;
-  }
-};
-
-// ✅ Route: handle ALL forms (with optional file upload)
+// ✅ Route: handle ALL forms
 app.post("/api/forms", upload.single("resume"), async (req, res) => {
   try {
     const { formType, name, email, message, captchaToken, ...extra } = req.body;
     const resumeFile = req.file ? req.file.path : null;
 
-    // ✅ reCAPTCHA verification (using built-in fetch)
-    const captchaVerify = await fetch(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
-      { method: "POST" }
-    ).then((res) => res.json());
+    // --- ✅ FIX APPLIED HERE ---
+    // Only perform reCAPTCHA verification for specific forms that send a token.
+    if (formType === "Inquiry") {
+      if (!captchaToken) {
+        return res.status(400).json({ success: false, message: "Captcha verification is required for this form." });
+      }
 
-    if (!captchaVerify.success) {
-      return res.status(400).json({ error: "Captcha verification failed" });
+      const captchaVerify = await fetch(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
+        { method: "POST" }
+      ).then((res) => res.json());
+
+      if (!captchaVerify.success) {
+        console.error("❌ Captcha verification failed:", captchaVerify['error-codes']);
+        return res.status(400).json({ success: false, message: "Captcha verification failed." });
+      }
     }
+    // For other formTypes like "Partner", this entire block is skipped.
 
-    // ✅ Save to DB
+    // ✅ Save to DB (This part runs for all forms)
     const newForm = new Form({ formType, name, email, message, resume: resumeFile, extra });
     await newForm.save();
 
     // ✅ Email subject per form
-    let subject = `New ${formType} Submission`;
-    if (formType === "Inquiry") subject = "📩 New Inquiry Received";
-    if (formType === "Career") subject = "💼 New Career Application";
-    if (formType === "Newsletter") subject = "📰 New Newsletter Subscription";
+    let subject = `New ${formType} Submission from ${name}`;
+    if (formType === "Inquiry") subject = `📩 New Inquiry from ${name}`;
+    if (formType === "Career") subject = `💼 New Career Application from ${name}`;
+    if (formType === "Partner") subject = `🤝 New Partner Application from ${name}`;
 
     // ✅ Email body
     const mailOptions = {
@@ -129,7 +121,6 @@ app.post("/api/forms", upload.single("resume"), async (req, res) => {
       subject,
       html: `
         <div style="font-family:Arial,sans-serif;padding:20px;border:1px solid #eee;border-radius:10px;">
-          <img src="${process.env.COMPANY_LOGO}" alt="Company Logo" style="width:120px;margin-bottom:20px;" />
           <h2 style="color:#d32f2f;">${subject}</h2>
           <p><strong>Name:</strong> ${name || "N/A"}</p>
           <p><strong>Email:</strong> ${email || "N/A"}</p>
@@ -137,10 +128,8 @@ app.post("/api/forms", upload.single("resume"), async (req, res) => {
           ${resumeFile ? `<p><strong>Resume attached</strong></p>` : ""}
           ${
             Object.keys(extra).length
-              ? `<pre style="background:#f8f8f8;padding:10px;border-radius:5px;">${JSON.stringify(
-                  extra,
-                  null,
-                  2
+              ? `<hr><h3 style="color:#333;">Additional Details:</h3><pre style="background:#f8f8f8;padding:10px;border-radius:5px;">${JSON.stringify(
+                  extra, null, 2
                 )}</pre>`
               : ""
           }
@@ -148,12 +137,7 @@ app.post("/api/forms", upload.single("resume"), async (req, res) => {
         </div>
       `,
       attachments: resumeFile
-        ? [
-            {
-              filename: path.basename(resumeFile),
-              path: resumeFile,
-            },
-          ]
+        ? [{ filename: path.basename(resumeFile), path: resumeFile }]
         : [],
     };
 
@@ -164,13 +148,12 @@ app.post("/api/forms", upload.single("resume"), async (req, res) => {
       await transporter.sendMail({
         from: `"LUMENZA" <${process.env.EMAIL_USER}>`,
         to: email,
-        subject: "✅ We received your submission",
+        subject: "✅ We've received your submission",
         html: `
           <div style="font-family:Arial,sans-serif;padding:20px;">
-            <img src="${process.env.COMPANY_LOGO}" alt="Logo" style="width:100px;margin-bottom:20px;" />
-            <h3>Thank you for contacting us!</h3>
-            <p>Your ${formType} details has been received. Our team will get back to you soon.</p>
-            <p style="color:#555;">Best regards,<br/>Lumenza Team</p>
+            <h3>Thank you for contacting us, ${name}!</h3>
+            <p>Your ${formType} submission has been received. Our team will get back to you soon.</p>
+            <p style="color:#555;">Best regards,<br/>The Lumenza Team</p>
           </div>
         `,
       });
@@ -178,8 +161,8 @@ app.post("/api/forms", upload.single("resume"), async (req, res) => {
 
     res.status(200).json({ success: true, message: "Form submitted successfully" });
   } catch (err) {
-    console.error("❌ Form submit error:", err.message, err.stack);
-    res.status(500).json({ error: err.message });
+    console.error("❌ Form submit error:", err.message);
+    res.status(500).json({ success: false, message: "An internal server error occurred." });
   }
 });
 
