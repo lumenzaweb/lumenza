@@ -143,13 +143,36 @@ const InquirySection = () => {
           <div className="flex justify-center"><ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} theme="dark" /></div>
           
           <button
-            type="submit" disabled={loading}
-            className={`group relative flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-800 text-white py-4 px-6 rounded-xl text-lg font-semibold shadow-md transition-all duration-300 w-full overflow-hidden
-              ${loading ? "opacity-70 cursor-not-allowed" : "hover:shadow-lg hover:shadow-red-500/50 hover:scale-105"}`}
-          >
-            <span className="transition-transform duration-300 group-hover:-translate-x-3">{loading ? 'Submitting...' : 'Send Message'}</span>
-            <svg className={`w-5 h-5 absolute right-6 transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 ${loading ? 'hidden' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </button>
+  type="submit"
+  disabled={loading}
+  className={`flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-800 text-white py-4 px-6 rounded-xl text-lg font-semibold shadow-md transition-all duration-300 w-full
+    ${
+      loading
+        ? "opacity-70 cursor-not-allowed"
+        : "hover:shadow-lg hover:shadow-red-500/50 hover:scale-105 group overflow-hidden"
+    }`}
+>
+  {loading ? (
+    // Loading state: Show a spinner
+    <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+  ) : (
+    // Default state: Show text and arrow icon
+    <>
+      <span className="transition-transform duration-300 group-hover:-translate-x-3">
+        Send Message
+      </span>
+      <svg
+        className="w-5 h-5 absolute right-6 transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+      </svg>
+    </>
+  )}
+</button>
         </motion.form>
       </div>
     </section>

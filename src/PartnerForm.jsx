@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, XCircle } from "lucide-react";
 import Select from "react-select";
 import { Country, State, City } from "country-state-city";
-import AnimatedBubbleBackground from "./components/AnimatedBubbleBackground"; // Corrected path
+import AnimatedBubbleBackground from "./AnimatedBubbleBackground";
 
 // Options for the select dropdowns
 const categoryOptions = [
@@ -61,15 +61,15 @@ const PartnerForm = () => {
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: null }));
   };
 
-  const validateStep = () => {
+  const validateStep = (stepToValidate) => {
     let newErrors = {};
-    if (step === 1) {
+    if (stepToValidate === 1) {
       if (!formData.name) newErrors.name = "Name is required.";
       if (!formData.firmName) newErrors.firmName = "Firm name is required.";
       if (!formData.contact) newErrors.contact = "Contact number is required.";
       if (!formData.email) newErrors.email = "Email is required.";
     }
-    if (step === 2) {
+    if (stepToValidate === 2) {
       if (!formData.address) newErrors.address = "Address is required.";
       if (!formData.country) newErrors.country = "Country is required.";
       if (!formData.state) newErrors.state = "State is required.";
@@ -77,13 +77,18 @@ const PartnerForm = () => {
       if (!formData.category) newErrors.category = "Category is required.";
       if (!formData.investment) newErrors.investment = "Investment level is required.";
     }
+    if (stepToValidate === 3) {
+        if (!formData.message) newErrors.message = "Message is required.";
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateStep()) return;
+    // --- BUG FIX: Only allow submission on the final step ---
+    if (step !== 3 || !validateStep(3)) return;
+    
     setLoading(true);
     const submissionData = {
       ...formData,
@@ -115,9 +120,16 @@ const PartnerForm = () => {
     setPopup({ show: true, type, message });
     setTimeout(() => { setPopup({ show: false, type: "", message: "" }); }, 3000);
   };
-  const nextStep = () => validateStep() && setStep(step + 1);
+
+  const nextStep = () => {
+    if (validateStep(step)) {
+      setStep(step + 1);
+    }
+  };
   const prevStep = () => setStep(step - 1);
+
   const stepVariants = { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -50 } };
+  
   const customSelectStyles = {
     control: (provided, state) => ({ ...provided, backgroundColor: 'rgba(255, 255, 255, 0.05)', borderColor: errors[state.selectProps.name] ? '#EF4444' : 'rgba(255, 255, 255, 0.3)', borderRadius: '0.75rem', padding: '0.5rem', boxShadow: 'none', '&:hover': { borderColor: 'rgba(255, 255, 255, 0.5)' } }),
     singleValue: (provided) => ({ ...provided, color: 'white' }),
@@ -128,7 +140,6 @@ const PartnerForm = () => {
   };
 
   return (
-    // --- PADDING-TOP (pt) ADDED HERE TO PREVENT NAVBAR OVERLAP ---
     <section className="pt-28 sm:pt-32 pb-20 px-4 sm:px-6 bg-gray-900 min-h-screen relative overflow-hidden">
       <AnimatedBubbleBackground />
       {popup.show && (
@@ -204,10 +215,10 @@ const PartnerForm = () => {
                 </motion.div>
               )}
               {step === 3 && (
-                <motion.div key="step3" variants={stepVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4">
+                <motion.div key="step3" variants={stepVariants} initial="hidden" animate="visible" exit="exit" className="space-y-6">
                   <h3 className="text-2xl font-bold text-white">Message</h3>
                   <div>
-                    <textarea name="message" placeholder="Tell us about your interest or any questions..." value={formData.message} onChange={handleChange} className={`w-full p-4 bg-white/5 border rounded-xl h-40 resize-none placeholder-gray-400 focus:ring-2 focus:ring-red-500 ${errors.message ? 'border-red-500' : 'border-white/30'}`} />
+                    <textarea name="message" placeholder="Tell us about your interest or any questions..." value={formData.message} onChange={handleChange} className="w-full p-4 bg-white/5 border border-white/30 rounded-xl h-40 resize-none placeholder-gray-400 focus:ring-2 focus:ring-red-500" />
                     {errors.message && <p className="text-red-400 text-xs mt-1 px-1">{errors.message}</p>}
                   </div>
                 </motion.div>
@@ -215,13 +226,28 @@ const PartnerForm = () => {
             </AnimatePresence>
 
             <div className="mt-8 flex justify-between items-center">
-              {step > 1 ? (<button type="button" onClick={prevStep} className="px-6 py-3 bg-white/10 text-white font-semibold rounded-lg shadow-sm hover:bg-white/20 transition">Previous</button>) : ( <div/> )}
-              {step < 3 ? (<button type="button" onClick={nextStep} className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition">Next</button>) : (
+              {step > 1 ? (
+                <button type="button" onClick={prevStep} className="px-6 py-3 bg-white/10 text-white font-semibold rounded-lg shadow-sm hover:bg-white/20 transition">Previous</button>
+              ) : ( <div/> )}
+
+              {step < 3 && (
+                <button type="button" onClick={nextStep} className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition">Next</button>
+              )}
+
+              {step === 3 && (
                 <button
-                  type="submit" disabled={loading}
+                  type="submit"
+                  disabled={loading}
                   className="w-full text-center px-6 py-3 bg-red-600 text-white font-semibold rounded-xl shadow-md hover:bg-red-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {loading ? 'Submitting' : 'Submit Application'}
+                  {loading ? (
+                      <div className="flex items-center justify-center">
+                          <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></span>
+                          Submitting...
+                      </div>
+                  ) : (
+                    'Submit Application'
+                  )}
                 </button>
               )}
             </div>
