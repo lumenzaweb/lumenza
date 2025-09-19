@@ -119,22 +119,24 @@ const transporter = nodemailer.createTransport({
 });
 
 
-// --- 2. UPDATED ROUTE: Responds instantly and works in the background ---
-// The order is now: 1. Verify Captcha -> 2. Upload File -> 3. Process Form
+// ✅ UPDATED ROUTE: Responds instantly and handles all form fields consistently
 app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
   // --- A. SEND RESPONSE IMMEDIATELY ---
-  // This tells the user's browser "We got it, thank you!" right away.
   res.status(200).json({ success: true, message: "Form submission received and is being processed." });
 
   // --- B. DO SLOW TASKS IN THE BACKGROUND ---
-  // The server will now continue with these tasks after the user has gotten their response.
   const processFormSubmission = async () => {
     try {
-      const { formType, name, email, message, captchaToken, ...extra } = req.body;
+      // --- CHANGE 1: We now explicitly pull out 'contact' from the form body ---
+      const { formType, name, email, contact, message, captchaToken, ...extra } = req.body;
       const resumeFile = req.file ? req.file.path : null;
 
-      // ✅ Save to DB
-      const newForm = new Form({ formType, name, email, message, resume: resumeFile, extra });
+      // --- CHANGE 2: Create a complete object of all additional details ---
+      // This ensures the contact number is always included in the 'Additional Details' section.
+      const allDetails = { contact, ...extra };
+
+      // ✅ Save to DB (now using the complete 'allDetails' object for the 'extra' field)
+      const newForm = new Form({ formType, name, email, message, resume: resumeFile, extra: allDetails });
       await newForm.save();
       console.log(`✅ Form (${formType}) from ${name} saved to DB.`);
 
@@ -144,7 +146,7 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
       if (formType === "Career") subject = `💼 New Career Application from ${name}`;
       if (formType === "Partner") subject = `🤝 New Partner Application from ${name}`;
 
-      // ✅ Email body
+      // ✅ Email body (now using the complete 'allDetails' object)
       const mailOptions = {
         from: `"${formType} Form" <${process.env.EMAIL_USER}>`,
         to: process.env.EMAIL_USER,
@@ -157,9 +159,10 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
             ${message ? `<p><strong>Message:</strong> ${message}</p>` : ""}
             ${resumeFile ? `<p><strong>Resume attached</strong></p>` : ""}
             ${
-              Object.keys(extra).length
+              // We check the length of 'allDetails' to see if we should show this section
+              Object.keys(allDetails).filter(k => allDetails[k]).length > 0
                 ? `<hr><h3 style="color:#333;">Additional Details:</h3><pre style="background:#f8f8f8;padding:10px;border-radius:5px;">${JSON.stringify(
-                    extra, null, 2
+                    allDetails, null, 2
                   )}</pre>`
                 : ""
             }
@@ -174,7 +177,7 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
       await transporter.sendMail(mailOptions);
       console.log(`✅ Main notification email sent for ${formType} from ${name}.`);
 
-      // ✅ Auto-reply to user
+      // ✅ Auto-reply to user (This logic remains the same and will work correctly)
       if (email) {
         await transporter.sendMail({
           from: `"Support Team LUMENZA" <${process.env.EMAIL_USER}>`,
@@ -183,7 +186,7 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
           html: `
             <div style="font-family:Arial,sans-serif;padding:20px;">
               <h3>Thank you for contacting us, ${name}!</h3>
-              <p>Your ${formType} details submission has been received. Our team will get back to you soon.</p>
+              <p>Your ${formType} submission has been received. Our team will get back to you soon.</p>
               <p style="color:#555;">Best regards,<br/> Support Team, LUMENZA </p>
             </div>
           `,

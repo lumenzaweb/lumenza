@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, ChevronDown, Zap, TrendingUp, ArrowRight } from "lucide-react";
+import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, ChevronDown, Zap, TrendingUp, ArrowRight, Contact } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
@@ -27,7 +27,7 @@ const departments = [
 const noticePeriodOptions = ["15 Days", "30 Days", "90 Days"];
 
 const CareerSection = () => {
-  const [form, setForm] = useState({ name: "", email: "", mobile: "", position: "", noticePeriod: "" });
+  const [form, setForm] = useState({ name: "", email: "", contact: "", position: "", noticePeriod: "" });
   const [resume, setResume] = useState(null);
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState({ show: false, type: "", message: "" });
@@ -64,7 +64,7 @@ const CareerSection = () => {
       const formData = new FormData();
       formData.append("name", form.name);
       formData.append("email", form.email);
-      formData.append("mobile", form.mobile);
+      formData.append("contact", form.contact);
       formData.append("position", form.position);
       formData.append("message", `Notice Period: ${form.noticePeriod}`);
       formData.append("formType", "Career");
@@ -79,7 +79,7 @@ const CareerSection = () => {
 
       if (res.ok && data.success) {
         showPopup("success", "Application submitted successfully!");
-        setForm({ name: "", email: "", mobile: "", position: "", noticePeriod: "" });
+        setForm({ name: "", email: "", contact: "", position: "", noticePeriod: "" });
         setResume(null);
         setCaptchaToken(null);
         window.grecaptcha?.reset();
@@ -193,7 +193,7 @@ const CareerSection = () => {
           <form className="grid md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
             <input type="text" name="name" value={form.name} onChange={handleChange} required placeholder="Full Name" className="p-4 bg-gray-50 border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none"/>
             <input type="email" name="email" value={form.email} onChange={handleChange} required placeholder="Email Address" className="p-4 bg-gray-50 border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none"/>
-            <input type="tel" name="mobile" value={form.mobile} onChange={handleChange} pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number" required placeholder="Mobile Number" className="p-4 bg-gray-50 border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none"/>
+            <input type="tel" name="contact" value={form.contact} onChange={handleChange} pattern="[0-9]{10}" title="Enter a valid 10-digit contact number" required placeholder="Contact Number" className="p-4 bg-gray-50 border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none"/>
             <input type="text" name="position" value={form.position} onChange={handleChange} required placeholder="Position You're Applying For" className="p-4 bg-gray-50 border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none"/>
             
             <div className="md:col-span-2 relative">
