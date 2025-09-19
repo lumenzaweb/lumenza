@@ -130,7 +130,7 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
   // The server will now continue with these tasks after the user has gotten their response.
   const processFormSubmission = async () => {
     try {
-      const { formType, name, email, message, ...extra } = req.body;
+      const { formType, name, email, message, captchaToken, ...extra } = req.body;
       const resumeFile = req.file ? req.file.path : null;
 
       // ✅ Save to DB
@@ -177,14 +177,14 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
       // ✅ Auto-reply to user
       if (email) {
         await transporter.sendMail({
-          from: `"LUMENZA" <${process.env.EMAIL_USER}>`,
+          from: `"Support Team LUMENZA" <${process.env.EMAIL_USER}>`,
           to: email,
           subject: "✅ We've received your submission",
           html: `
             <div style="font-family:Arial,sans-serif;padding:20px;">
               <h3>Thank you for contacting us, ${name}!</h3>
-              <p>Your ${formType} submission has been received. Our team will get back to you soon.</p>
-              <p style="color:#555;">Best regards,<br/>The Lumenza Team</p>
+              <p>Your ${formType} details submission has been received. Our team will get back to you soon.</p>
+              <p style="color:#555;">Best regards,<br/> Support Team, LUMENZA </p>
             </div>
           `,
         });
