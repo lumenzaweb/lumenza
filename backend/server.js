@@ -6,6 +6,7 @@ import cors from "cors";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import fetch from "node-fetch"; // Added for reCAPTCHA verification
 import testEmailRoute from "./routes/testEmail.js";
 
 dotenv.config();
@@ -23,6 +24,44 @@ console.log("✅ ENV check:", {
   EMAIL_PORT: process.env.EMAIL_PORT,
   RECAPTCHA_SECRET: !!process.env.RECAPTCHA_SECRET,
 });
+
+// --- 1. NEW: reCAPTCHA Verification Middleware ---
+// This function runs FIRST, before any slow tasks like file uploads.
+const verifyRecaptcha = async (req, res, next) => {
+  const { formType, captchaToken } = req.body;
+
+  // Define which forms require captcha verification
+  const requireCaptcha = ["Inquiry", "Career"]; // Add other formTypes if needed
+
+  if (requireCaptcha.includes(formType)) {
+    if (!captchaToken) {
+      return res.status(400).json({ success: false, message: "Captcha token is required." });
+    }
+
+    try {
+      const response = await fetch(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
+        { method: "POST" }
+      );
+      const data = await response.json();
+
+      if (!data.success) {
+        console.error("❌ Captcha verification failed:", data['error-codes']);
+        // Stop the request here if captcha fails
+        return res.status(400).json({ success: false, message: "Captcha verification failed." });
+      }
+      
+      // If successful, proceed to the next step (file upload and form processing)
+      next(); 
+    } catch (error) {
+      console.error("❌ Captcha middleware error:", error);
+      return res.status(500).json({ success: false, message: "Error during captcha verification." });
+    }
+  } else {
+    // If the form type doesn't require captcha, just skip this step.
+    next();
+  }
+};
 
 // ✅ MongoDB connect
 mongoose
@@ -79,91 +118,85 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// ✅ Route: handle ALL forms
-app.post("/api/forms", upload.single("resume"), async (req, res) => {
-  try {
-    const { formType, name, email, message, captchaToken, ...extra } = req.body;
-    const resumeFile = req.file ? req.file.path : null;
 
-    // --- ✅ FIX APPLIED HERE ---
-    // Only perform reCAPTCHA verification for specific forms that send a token.
-    if (formType === "Inquiry") {
-      if (!captchaToken) {
-        return res.status(400).json({ success: false, message: "Captcha verification is required for this form." });
-      }
+// --- 2. UPDATED ROUTE: Responds instantly and works in the background ---
+// The order is now: 1. Verify Captcha -> 2. Upload File -> 3. Process Form
+app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
+  // --- A. SEND RESPONSE IMMEDIATELY ---
+  // This tells the user's browser "We got it, thank you!" right away.
+  res.status(200).json({ success: true, message: "Form submission received and is being processed." });
 
-      const captchaVerify = await fetch(
-        `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
-        { method: "POST" }
-      ).then((res) => res.json());
+  // --- B. DO SLOW TASKS IN THE BACKGROUND ---
+  // The server will now continue with these tasks after the user has gotten their response.
+  const processFormSubmission = async () => {
+    try {
+      const { formType, name, email, message, ...extra } = req.body;
+      const resumeFile = req.file ? req.file.path : null;
 
-      if (!captchaVerify.success) {
-        console.error("❌ Captcha verification failed:", captchaVerify['error-codes']);
-        return res.status(400).json({ success: false, message: "Captcha verification failed." });
-      }
-    }
-    // For other formTypes like "Partner", this entire block is skipped.
+      // ✅ Save to DB
+      const newForm = new Form({ formType, name, email, message, resume: resumeFile, extra });
+      await newForm.save();
+      console.log(`✅ Form (${formType}) from ${name} saved to DB.`);
 
-    // ✅ Save to DB (This part runs for all forms)
-    const newForm = new Form({ formType, name, email, message, resume: resumeFile, extra });
-    await newForm.save();
+      // ✅ Email subject per form
+      let subject = `New ${formType} Submission from ${name}`;
+      if (formType === "Inquiry") subject = `📩 New Inquiry from ${name}`;
+      if (formType === "Career") subject = `💼 New Career Application from ${name}`;
+      if (formType === "Partner") subject = `🤝 New Partner Application from ${name}`;
 
-    // ✅ Email subject per form
-    let subject = `New ${formType} Submission from ${name}`;
-    if (formType === "Inquiry") subject = `📩 New Inquiry from ${name}`;
-    if (formType === "Career") subject = `💼 New Career Application from ${name}`;
-    if (formType === "Partner") subject = `🤝 New Partner Application from ${name}`;
-
-    // ✅ Email body
-    const mailOptions = {
-      from: `"${formType} Form" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
-      subject,
-      html: `
-        <div style="font-family:Arial,sans-serif;padding:20px;border:1px solid #eee;border-radius:10px;">
-          <h2 style="color:#d32f2f;">${subject}</h2>
-          <p><strong>Name:</strong> ${name || "N/A"}</p>
-          <p><strong>Email:</strong> ${email || "N/A"}</p>
-          ${message ? `<p><strong>Message:</strong> ${message}</p>` : ""}
-          ${resumeFile ? `<p><strong>Resume attached</strong></p>` : ""}
-          ${
-            Object.keys(extra).length
-              ? `<hr><h3 style="color:#333;">Additional Details:</h3><pre style="background:#f8f8f8;padding:10px;border-radius:5px;">${JSON.stringify(
-                  extra, null, 2
-                )}</pre>`
-              : ""
-          }
-          <p style="margin-top:20px;color:#555;font-size:12px;">Submitted on ${new Date().toLocaleString()}</p>
-        </div>
-      `,
-      attachments: resumeFile
-        ? [{ filename: path.basename(resumeFile), path: resumeFile }]
-        : [],
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    // ✅ Auto-reply to user
-    if (email) {
-      await transporter.sendMail({
-        from: `"LUMENZA" <${process.env.EMAIL_USER}>`,
-        to: email,
-        subject: "✅ We've received your submission",
+      // ✅ Email body
+      const mailOptions = {
+        from: `"${formType} Form" <${process.env.EMAIL_USER}>`,
+        to: process.env.EMAIL_USER,
+        subject,
         html: `
-          <div style="font-family:Arial,sans-serif;padding:20px;">
-            <h3>Thank you for contacting us, ${name}!</h3>
-            <p>Your ${formType} submission has been received. Our team will get back to you soon.</p>
-            <p style="color:#555;">Best regards,<br/>The Lumenza Team</p>
+          <div style="font-family:Arial,sans-serif;padding:20px;border:1px solid #eee;border-radius:10px;">
+            <h2 style="color:#d32f2f;">${subject}</h2>
+            <p><strong>Name:</strong> ${name || "N/A"}</p>
+            <p><strong>Email:</strong> ${email || "N/A"}</p>
+            ${message ? `<p><strong>Message:</strong> ${message}</p>` : ""}
+            ${resumeFile ? `<p><strong>Resume attached</strong></p>` : ""}
+            ${
+              Object.keys(extra).length
+                ? `<hr><h3 style="color:#333;">Additional Details:</h3><pre style="background:#f8f8f8;padding:10px;border-radius:5px;">${JSON.stringify(
+                    extra, null, 2
+                  )}</pre>`
+                : ""
+            }
+            <p style="margin-top:20px;color:#555;font-size:12px;">Submitted on ${new Date().toLocaleString()}</p>
           </div>
         `,
-      });
-    }
+        attachments: resumeFile
+          ? [{ filename: path.basename(resumeFile), path: resumeFile }]
+          : [],
+      };
 
-    res.status(200).json({ success: true, message: "Form submitted successfully" });
-  } catch (err) {
-    console.error("❌ Form submit error:", err.message);
-    res.status(500).json({ success: false, message: "An internal server error occurred." });
-  }
+      await transporter.sendMail(mailOptions);
+      console.log(`✅ Main notification email sent for ${formType} from ${name}.`);
+
+      // ✅ Auto-reply to user
+      if (email) {
+        await transporter.sendMail({
+          from: `"LUMENZA" <${process.env.EMAIL_USER}>`,
+          to: email,
+          subject: "✅ We've received your submission",
+          html: `
+            <div style="font-family:Arial,sans-serif;padding:20px;">
+              <h3>Thank you for contacting us, ${name}!</h3>
+              <p>Your ${formType} submission has been received. Our team will get back to you soon.</p>
+              <p style="color:#555;">Best regards,<br/>The Lumenza Team</p>
+            </div>
+          `,
+        });
+        console.log(`✅ Auto-reply sent to ${email}.`);
+      }
+    } catch (err) {
+      console.error("❌ Error during background form processing:", err.message);
+    }
+  };
+  
+  // Start the background processing
+  processFormSubmission();
 });
 
 // ✅ Start server
