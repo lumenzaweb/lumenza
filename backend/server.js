@@ -177,7 +177,7 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
       await transporter.sendMail(mailOptions);
       console.log(`✅ Main notification email sent for ${formType} from ${name}.`);
 
-      // ✅ Auto-reply to user (This logic remains the same and will work correctly)
+      // ✅ Auto-reply to user
       if (email) {
         await transporter.sendMail({
           from: `"Support Team LUMENZA" <${process.env.EMAIL_USER}>`,
@@ -186,7 +186,7 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
           html: `
             <div style="font-family:Arial,sans-serif;padding:20px;">
               <h3>Thank you for contacting us, ${name}!</h3>
-              <p>Your ${formType} submission has been received. Our team will get back to you soon.</p>
+              <p>Your ${formType} details submission has been received. Our team will get back to you soon.</p>
               <p style="color:#555;">Best regards,<br/> Support Team, LUMENZA </p>
             </div>
           `,
