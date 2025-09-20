@@ -1,5 +1,6 @@
 import React from "react";
 import ProductsSection from "../ProductsSection";
+import SEO from "./components/SEO";
 
 const ProductsPage = () => {
   return (
