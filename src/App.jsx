@@ -22,7 +22,7 @@ import Admin from "./Admin";
 import ContactForm from "./components/ContactForm";
 import ProductsPage from "./pages/ProductsPage.jsx";
 import PartnerForm from "./PartnerForm";
-import SEO from "./components/SEO"; // ✅ SEO: Import your new SEO component
+import SEO from "./components/SEO";
 
 // Helper: smooth scroll to specific section
 const scrollToSection = (id) => {

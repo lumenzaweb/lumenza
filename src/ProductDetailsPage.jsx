@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import SEO from "../components/SEO";
+import SEO from "./components/SEO";
 
 const allProducts = {
   "security-solution": [
