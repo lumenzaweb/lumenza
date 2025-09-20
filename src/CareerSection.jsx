@@ -4,6 +4,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
 import LightBackground from "./components/LightBackground";
+import SEO from "./components/SEO";
 
 // Helper function to scroll to the form
 const scrollToForm = () => {
@@ -96,6 +97,12 @@ const CareerSection = () => {
 
   return (
     <section className="bg-white text-gray-800 pt-28 sm:pt-32 pb-20 px-4 sm:px-6 relative overflow-hidden">
+      
+      <SEO 
+      title="Careers"
+      description="Join the LUMENZA team and build your future with us. Explore open roles in sales, marketing, operations, and more."
+    />
+
       <LightBackground />
       {popup.show && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">

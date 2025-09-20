@@ -4,6 +4,7 @@ import { CheckCircle, XCircle } from "lucide-react";
 import Select from "react-select";
 import { Country, State, City } from "country-state-city";
 import AnimatedBubbleBackground from "./components/AnimatedBubbleBackground";
+import SEO from "./components/SEO";
 
 // Options for the select dropdowns
 const categoryOptions = [
@@ -141,6 +142,12 @@ const PartnerForm = () => {
 
   return (
     <section className="pt-28 sm:pt-32 pb-20 px-4 sm:px-6 bg-gray-900 min-h-screen relative overflow-hidden">
+      
+      <SEO 
+      title="Partner With Us"
+      description="Become a LUMENZA partner. Join our network of successful dealers, distributors, and galleries to grow your business."
+    />
+    
       <AnimatedBubbleBackground />
       {popup.show && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-sm">

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductVariants from "./ProductVariants";
+import SEO from "./components/SEO";
 
 // ==================== Product Data ====================
 const allSubProducts = {
@@ -460,6 +461,10 @@ const ProductSubDetailPage = () => {
     if (product.images) {
         return (
             <main className="min-h-screen bg-gray-50 text-black pt-28 lg:pt-32">
+                <SEO 
+                 title={product.name} 
+                 description={product.description} 
+                />
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {BackButton}
                     <section className="flex flex-col lg:flex-row gap-8 lg:gap-12">
