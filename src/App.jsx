@@ -159,7 +159,7 @@ const App = () => {
                     <div className="font-sans text-gray-800">
                       {/* ✅ SEO: Add unique title and description to your Home Page */}
                       <SEO 
-                        title="LUMENZA | The Art Of Smooth Living" 
+                        title="LUMENZA | The art of smooth living" 
                         description="Discover LUMENZA's range of premium home hardware, including safes, door handles, kitchen accessories, and more. The art of smooth living." 
                       />
                       <HomeSection />
