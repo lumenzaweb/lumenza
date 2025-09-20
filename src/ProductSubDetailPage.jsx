@@ -551,6 +551,12 @@ const ProductSubDetailPage = () => {
         // ... Layout 2 for Mortise, which remains unchanged ...
         return (
             <main className="min-h-screen bg-gray-50 text-black pt-28 lg:pt-32">
+                
+                <SEO 
+                  title={product.name} 
+                  description={product.description || `Explore the ${product.name} collection and other premium hardware solutions from LUMENZA.`} 
+                />
+
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {BackButton}
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-12 text-center">
