@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import SEO from "../components/SEO";
 
 const allProducts = {
   "security-solution": [
@@ -90,6 +91,12 @@ const ProductDetailsPage = () => {
 
   return (
     <section className="py-40 sm:py-40 px-8 sm:px-14 bg-gray-50 text-center max-w-6xl mx-auto">
+    
+    <SEO 
+      title="Our Products"
+      description="Explore the full range of LUMENZA's premium hardware solutions, including safes, door handles, kitchen accessories, and more." 
+    />
+
     <button
         onClick={() => navigate(-1)}
         aria-label="Go back"
