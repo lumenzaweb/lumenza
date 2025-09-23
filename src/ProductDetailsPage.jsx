@@ -82,7 +82,7 @@ const allProducts = {
     },
     {
       slug: "Table Bracket",
-      name: "table bracket",
+      name: "table bracket", 
       img: "https://i.pinimg.com/736x/b4/2e/7b/b42e7b357e34a729b27614ace2443d99.jpg",
     },
   ],

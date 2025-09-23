@@ -379,6 +379,51 @@ const allSubProducts = {
             "For any info fill query form and submit",
         ],
     },
+    "Bed Fittings": {
+        name: "Bed Fittings",
+       /* description: (
+            <li>
+                <strong>GP300</strong> is one part acetic cure silicone sealant. A strong, fast curing, general purpose & is unaffected by rain, sunlight, snow etc. It is formulated with years if experience on a wide range of applications. It is a silicone sealant with high UV & water resistance.
+            </li>
+        ),
+        */
+        images: [
+            "https://i.pinimg.com/736x/28/e7/f7/28e7f7d9cdb4651030153a5d06093a71.jpg",
+            "https://i.pinimg.com/736x/58/2e/fe/582efe311f863f94da14d7c7601f4fb7.jpg",
+            "https://i.pinimg.com/736x/2d/6b/3f/2d6b3f43e6ed417a3687af0ab3a61c6a.jpg",
+        ],
+        /*features: [
+            "GP-300",
+            "Premium Grade Acetoxy Silicone Sealant",
+            "Superior Adhesion On Glass",
+            "Durable Sealing",
+            "Good Elasticity",
+            "Excellent UV Resistance",
+            "For any info fill query form and submit",
+        ],*/
+    },
+    "Table Brackets": {
+        name: "Table Brackets",
+       /* description: (
+            <li>
+                <strong>GP300</strong> is one part acetic cure silicone sealant. A strong, fast curing, general purpose & is unaffected by rain, sunlight, snow etc. It is formulated with years if experience on a wide range of applications. It is a silicone sealant with high UV & water resistance.
+            </li>
+        ),
+        */
+        images: [
+            "https://i.pinimg.com/736x/f1/67/db/f167dba4ab07f8e0e6d69eec692cd279.jpg",
+            "https://i.pinimg.com/736x/b4/2e/7b/b42e7b357e34a729b27614ace2443d99.jpg",
+        ],
+        /*features: [
+            "GP-300",
+            "Premium Grade Acetoxy Silicone Sealant",
+            "Superior Adhesion On Glass",
+            "Durable Sealing",
+            "Good Elasticity",
+            "Excellent UV Resistance",
+            "For any info fill query form and submit",
+        ],*/
+    },
 };
 
 
