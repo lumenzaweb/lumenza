@@ -22,6 +22,10 @@ const products = [
     name: "Sealants And Adhesives",
     img: "https://i.pinimg.com/736x/59/cd/f7/59cdf7db5d3f53706935203f059ce9b6.jpg",
   },
+  {
+    name: "Furniture Fittings",
+    img: "https://i.pinimg.com/736x/58/2e/fe/582efe311f863f94da14d7c7601f4fb7.jpg",
+  },
 ];
 
 const ProductsSection = () => (

@@ -74,6 +74,18 @@ const allProducts = {
       img: "https://i.pinimg.com/736x/87/f4/92/87f49227a0c3fd69502837ad63de622c.jpg",
     },
   ],
+  "furniture-fittings": [
+    {
+      slug: "Bed Fittings",
+      name: "bed fittings",
+      img: "https://i.pinimg.com/736x/58/2e/fe/582efe311f863f94da14d7c7601f4fb7.jpg",
+    },
+    {
+      slug: "Table Bracket",
+      name: "table bracket",
+      img: "https://i.pinimg.com/736x/b4/2e/7b/b42e7b357e34a729b27614ace2443d99.jpg",
+    },
+  ],
 };
 
 const gridConfig = {
