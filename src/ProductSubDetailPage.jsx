@@ -402,8 +402,8 @@ const allSubProducts = {
             "For any info fill query form and submit",
         ],*/
     },
-    "Table Brackets": {
-        name: "Table Brackets",
+    "Table Bracket": { 
+        name: "Table Bracket",
        /* description: (
             <li>
                 <strong>GP300</strong> is one part acetic cure silicone sealant. A strong, fast curing, general purpose & is unaffected by rain, sunlight, snow etc. It is formulated with years if experience on a wide range of applications. It is a silicone sealant with high UV & water resistance.
