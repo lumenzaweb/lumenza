@@ -17,19 +17,28 @@ const mobileImages = [
   "https://i.pinimg.com/736x/0a/c8/79/0ac879f158282d46ab0e9c7b91c9041d.jpg",
 ];
 
-// A helper to detect screen size
+// ✅ A more robust hook that initializes correctly on the client
 function useMediaQuery(query) {
-    const [matches, setMatches] = useState(false);
-    useEffect(() => {
-        const media = window.matchMedia(query);
-        if (media.matches !== matches) {
-            setMatches(media.matches);
-        }
-        const listener = () => setMatches(media.matches);
-        window.addEventListener("resize", listener);
-        return () => window.removeEventListener("resize", listener);
-    }, [matches, query]);
-    return matches;
+  const [matches, setMatches] = useState(() => {
+    // Get the initial value on the client-side
+    if (typeof window !== 'undefined') {
+      return window.matchMedia(query).matches;
+    }
+    return false; // Default to false on the server
+  });
+
+  useEffect(() => {
+    const mediaQueryList = window.matchMedia(query);
+    const listener = (event) => setMatches(event.matches);
+    
+    // Use the modern addEventListener for media queries
+    mediaQueryList.addEventListener('change', listener);
+    return () => {
+      mediaQueryList.removeEventListener('change', listener);
+    };
+  }, [query]);
+
+  return matches;
 }
 
 const slideVariants = {
@@ -41,15 +50,13 @@ const slideVariants = {
 const HomeSection = () => {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
-
-  // ✅ FIX 1: State to prevent hydration mismatch
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
   }, []);
-
-  // ✅ FIX 2: Preload images to prevent flash on slide change
+  
+  // This effect for preloading is still good practice
   useEffect(() => {
     const allImages = [...desktopImages, ...mobileImages];
     allImages.forEach((src) => {
@@ -61,20 +68,16 @@ const HomeSection = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const images = isMobile ? mobileImages : desktopImages;
 
-  // Auto-slider functionality
   useEffect(() => {
-    // Don't run the slider until the component has mounted in the browser
     if (!hasMounted) return;
-
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
     }, 4000);
     return () => clearInterval(interval);
   }, [images.length, hasMounted]);
-
-  // ✅ FIX 1 (Continued): Render nothing on the server to avoid mismatch
+  
+  // The hasMounted guard is still essential for SSR safety
   if (!hasMounted) {
-    // You can also return a loading skeleton here for a better user experience
     return null;
   }
 
