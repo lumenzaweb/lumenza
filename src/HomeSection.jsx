@@ -2,36 +2,32 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-// Define your desktop and mobile images
+// Image arrays remain the same
 const desktopImages = [
   "https://i.pinimg.com/736x/a1/92/d7/a192d7bcc2315d7047d57fe68d109fb8.jpg",
   "https://i.pinimg.com/736x/ab/d8/88/abd888e47aeda4c565ffb733fa53facd.jpg",
   "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
   "https://i.pinimg.com/736x/cc/da/7d/ccda7d93c4785a536b25ae97e21fd406.jpg",
 ];
-
 const mobileImages = [
   "https://i.pinimg.com/736x/a2/9f/33/a29f33e80072a05a057b52bf19c69ac6.jpg",
   "https://i.pinimg.com/736x/50/00/45/5000451e42fe371fc2164acaed53d471.jpg",
-  "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
+  "https://i.pinimg.com/736x/cf/0d_51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
   "https://i.pinimg.com/736x/0a/c8/79/0ac879f158282d46ab0e9c7b91c9041d.jpg",
 ];
 
-// ✅ A more robust hook that initializes correctly on the client
+// The robust useMediaQuery hook
 function useMediaQuery(query) {
   const [matches, setMatches] = useState(() => {
-    // Get the initial value on the client-side
     if (typeof window !== 'undefined') {
       return window.matchMedia(query).matches;
     }
-    return false; // Default to false on the server
+    return false;
   });
 
   useEffect(() => {
     const mediaQueryList = window.matchMedia(query);
     const listener = (event) => setMatches(event.matches);
-    
-    // Use the modern addEventListener for media queries
     mediaQueryList.addEventListener('change', listener);
     return () => {
       mediaQueryList.removeEventListener('change', listener);
@@ -55,13 +51,11 @@ const HomeSection = () => {
   useEffect(() => {
     setHasMounted(true);
   }, []);
-  
-  // This effect for preloading is still good practice
+
+  // Preloading is still a good idea
   useEffect(() => {
-    const allImages = [...desktopImages, ...mobileImages];
-    allImages.forEach((src) => {
-      const img = new Image();
-      img.src = src;
+    [...desktopImages, ...mobileImages].forEach((src) => {
+      new Image().src = src;
     });
   }, []);
 
@@ -75,27 +69,20 @@ const HomeSection = () => {
     }, 4000);
     return () => clearInterval(interval);
   }, [images.length, hasMounted]);
-  
-  // The hasMounted guard is still essential for SSR safety
+
   if (!hasMounted) {
     return null;
   }
 
   return (
-    <section
-      id="home"
-      className="
-        relative flex justify-center items-center text-center
-        bg-black overflow-hidden
-        min-h-[500px] md:min-h-[600px] lg:min-h-[700px]
-        pt-28 sm:pt-32
-      "
-    >
+    <section id="home" className="relative flex justify-center items-center text-center bg-black overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[700px] pt-28 sm:pt-32">
+      
       {/* Background Slider */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence>
+          {/* ✅ KEY CHANGE 1: Use the image URL for the key. This is crucial. */}
           <motion.div
-            key={current}
+            key={images[current]} 
             variants={slideVariants}
             initial="enter"
             animate="center"
@@ -104,17 +91,30 @@ const HomeSection = () => {
               x: { type: "spring", stiffness: 300, damping: 30 },
               opacity: { duration: 0.5 },
             }}
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%), url('${images[current]}')`,
-            }}
-          />
+            className="absolute inset-0"
+          >
+            {/* ✅ KEY CHANGE 2: Use an <img> tag for the image itself. */}
+            <img
+              src={images[current]}
+              alt="Promotional background"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            {/* ✅ KEY CHANGE 3: Use a separate div for the gradient overlay. */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%)",
+              }}
+            />
+          </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Content wrapper */}
+      {/* Content (No changes needed here) */}
       <div className="relative z-10 flex flex-col items-center px-4 sm:px-6">
-        <motion.h1
+        {/* ... your h1, p, and button JSX ... */}
+         <motion.h1
           className="text-4xl md:text-6xl font-bold mb-4"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -156,7 +156,7 @@ const HomeSection = () => {
         </motion.div>
       </div>
 
-      {/* Slider Progress Bar Navigation */}
+      {/* Progress Bar (No changes needed here) */}
       <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-2 md:gap-3 z-10 w-1/3 max-w-xs bottom-5">
         {images.map((_, index) => (
           <button
