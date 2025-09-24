@@ -178,6 +178,13 @@ nav div.md\\:hidden.bg-white\\90 {
     background-position: -200% center;
   }
 }
-body {
+/* In src/index.css */
+
+html, body, #root {
+  /* This prevents any element from being wider than the screen */
+  width: 100%;
   overflow-x: hidden;
+
+  /* This establishes a containing block for positioning, which can help trap rogue elements */
+  position: relative; 
 }
