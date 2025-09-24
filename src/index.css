@@ -178,6 +178,6 @@ nav div.md\\:hidden.bg-white\\90 {
     background-position: -200% center;
   }
 }
-* {
-  outline: 1px solid red !important;
+body {
+  overflow-x: hidden;
 }
