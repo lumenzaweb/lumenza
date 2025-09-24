@@ -5,7 +5,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async"; // ✅ SEO: Import Helmet Provider
+import { HelmetProvider } from "react-helmet-async";
 
 // Import all your components
 import Navbar from "./Navbar";
@@ -56,6 +56,28 @@ const App = () => {
     message: "",
   });
 
+  // ✅ START: JAVASCRIPT VIEWPORT FIX
+  useEffect(() => {
+    // This function calculates the actual window height and sets it as a CSS variable
+    const setVh = () => {
+      // We check for window to ensure this doesn't run on the server
+      if (typeof window !== 'undefined') {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+    };
+
+    // Set the value on initial load
+    setVh();
+
+    // Also set it when the window is resized (e.g., orientation change)
+    window.addEventListener('resize', setVh);
+
+    // Clean up the event listener when the component unmounts to prevent memory leaks
+    return () => window.removeEventListener('resize', setVh);
+  }, []);
+  // ✅ END: JAVASCRIPT VIEWPORT FIX
+
   const handleQueryChange = (e) => {
     setQueryForm({ ...queryForm, [e.target.name]: e.target.value });
   };
@@ -83,11 +105,11 @@ const App = () => {
   };
 
   return (
-    // ✅ SEO: Wrap your entire app in the HelmetProvider
     <HelmetProvider>
       <Router>
         <ScrollHandler>
-          <div className="flex flex-col min-h-[100dvh]">
+          {/* ✅ UPDATED: Use the calculated height variable */}
+          <div className="flex flex-col min-h-[calc(var(--vh,1vh)*100)]">
             <Navbar />
             <FloatingContactButtons onQueryClick={() => setShowQuery(true)} />
 
@@ -157,7 +179,6 @@ const App = () => {
                   path="/"
                   element={
                     <div className="font-sans text-gray-800">
-                      {/* ✅ SEO: Add unique title and description to your Home Page */}
                       <SEO 
                         title="LUMENZA | The art of smooth living" 
                         description="Discover LUMENZA's range of premium home hardware, including safes, door handles, kitchen accessories, and more. The art of smooth living." 
