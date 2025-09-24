@@ -87,7 +87,7 @@ const App = () => {
     <HelmetProvider>
       <Router>
         <ScrollHandler>
-          <div className="flex flex-col min-h-screen">
+          <div className="flex flex-col min-h-[100dvh]">
             <Navbar />
             <FloatingContactButtons onQueryClick={() => setShowQuery(true)} />
 
