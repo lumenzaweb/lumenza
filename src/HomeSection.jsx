@@ -12,7 +12,7 @@ const desktopImages = [
 const mobileImages = [
   "https://i.pinimg.com/736x/a2/9f/33/a29f33e80072a05a057b52bf19c69ac6.jpg",
   "https://i.pinimg.com/736x/50/00/45/5000451e42fe371fc2164acaed53d471.jpg",
-  "https://i.pinimg.com/736x/cf/0d_51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
+  "https://i.pinimg.com/736x/cf/0d/51/cf0d513b59a8e584f1a601142fa42ee0.jpg",
   "https://i.pinimg.com/736x/0a/c8/79/0ac879f158282d46ab0e9c7b91c9041d.jpg",
 ];
 
