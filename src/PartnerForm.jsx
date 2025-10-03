@@ -101,7 +101,7 @@ const PartnerForm = () => {
         if (!formData.contact) {
             newErrors.contact = "Contact number is required.";
         } else if (!isValidContact(formData.contact)) {
-            newErrors.contact = "Invalid contact format (e.g., +12 345 67890).";
+            newErrors.contact = "Invalid contact format (e.g., +91 1234567890).";
         }
 
         // --- UPDATED VALIDATION FOR EMAIL ---
