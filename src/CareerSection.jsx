@@ -274,7 +274,7 @@ const CareerSection = () => {
          initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <h3 className="text-3xl font-bold mb-6 text-center text-gray-800">Apply Now</h3>
           
-          {/* CRITICAL LAYOUT FIX: Using gap-6 for consistent spacing, removing all vertical margins */}
+          {/* CRITICAL LAYOUT FIX: Relying on GAP-6 for spacing, removing external margins */}
           <form className="grid md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
             
             {/* Input Wrapper 1: Full Name */}
