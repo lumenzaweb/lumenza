@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, ChevronDown, Zap, TrendingUp, ArrowRight, Contact, Loader2 } from "lucide-react";
-import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha"; // <- Relying on your environment for this import
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
 // Assuming these components are available in your environment
@@ -274,7 +274,7 @@ const CareerSection = () => {
          initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <h3 className="text-3xl font-bold mb-6 text-center text-gray-800">Apply Now</h3>
           
-          {/* CRITICAL LAYOUT FIX: Using gap-6 for spacing, removing external margins */}
+          {/* Using gap-6 for consistent spacing, removing external margins */}
           <form className="grid md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
             
             {/* Input Wrapper 1: Full Name */}
@@ -323,7 +323,7 @@ const CareerSection = () => {
 
             {/* Resume Upload (Full Width) */}
             <div className="md:col-span-2 relative">
-                <div {...getRootProps()} className={`p-8 border-2 border-dashed rounded-2xl cursor-pointer transition-colors flex flex-col items-center justify-center text-center ${isDragActive ? 'border-red-500 bg-red-50' : (errors.resume ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-red-400')}`}>
+                <div {...getRootProps()} className={`p-8 border-2 border-dashed rounded-2xl cursor-pointer transition-colors flex flex-col items-center justify-center text-center ${errors.resume ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-red-400'}`}>
                     <input {...getInputProps()} />
                     <UploadCloud className="w-10 h-10 text-gray-400 mb-2"/>
                     {acceptedFiles.length > 0 ? <p className="text-green-600 font-medium">{acceptedFiles[0].name}</p> : <p className="text-gray-500">Drag & drop your resume here, or click to select.</p>}
@@ -334,8 +334,8 @@ const CareerSection = () => {
 
             {/* Captcha (Full Width, Centered) */}
             <div className="flex justify-center md:col-span-2 relative">
-                {/* FINAL FIX: Ensure the CAPTCHA and its errors are wrapped in a container that aligns vertically */}
-                <div className="flex flex-col items-center relative self-start mt-2">
+                {/* FINAL FIX: The pt-4 class is used to vertically align the CAPTCHA with the inputs' top edge. */}
+                <div className="flex flex-col items-center relative pt-4"> 
                 <ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} />
                 {errors.captcha && <p className="text-red-500 text-xs mt-2 px-1 absolute -bottom-5 left-1/2 transform -translate-x-1/2">{errors.captcha}</p>}
                 </div>
