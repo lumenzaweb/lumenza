@@ -110,15 +110,22 @@ const upload = multer({
 // ✅ Email transporter
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
-  port: 587,
+  port: 80,
   secure: false,
-  requireTLS: true, // Recommended for port 587
+  // requireTLS: true, // Recommended for port 587
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
 });
 
+transporter.verify(function (error, success) {
+    if (error) {
+        console.error("Nodemailer connection failed. Port 80 test error:", error);
+    } else {
+        console.log("Nodemailer connection successful on port 80!");
+    }
+});
 
 // ✅ UPDATED ROUTE: Responds instantly and handles all form fields consistently
 app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
