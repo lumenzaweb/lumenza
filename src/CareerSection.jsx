@@ -3,22 +3,24 @@ import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, Chevron
 import ReCAPTCHA from "react-google-recaptcha";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
-// Assuming external components are available
+// Assuming these components are available in your environment
 // import LightBackground from "./components/LightBackground";
 // import SEO from "./components/SEO";
 
-// --- VALIDATION HELPERS (Restored) ---
+// --- VALIDATION HELPER FUNCTIONS ---
 const isValidEmail = (email) => {
+    // Basic regex for email format
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
 
 const isValidContact = (contact) => {
+    // Allows 7 to 15 digits, optionally with +, spaces, or dashes for international numbers.
     return /^\+?[\d\s\-]{7,15}$/.test(contact);
 };
-// --- END VALIDATION HELPERS ---
+// --- END VALIDATION HELPER FUNCTIONS ---
 
 
-// --- INLINED MINIMAL COMPONENTS ---
+// --- INLINED MINIMAL COMPONENTS (Kept for single-file presentation) ---
 
 // Minimal SEO Component
 const SEO = ({ title, description }) => {
@@ -65,14 +67,14 @@ const CareerSection = () => {
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState({ show: false, type: "", message: "" });
   const [captchaToken, setCaptchaToken] = useState(null);
-  const [errors, setErrors] = useState({}); // State for validation errors (Restored)
+  const [errors, setErrors] = useState({}); // State for validation errors
   const [openDepartment, setOpenDepartment] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({
     onDrop: accepted => {
         setResume(accepted[0]);
-        if (errors.resume) setErrors(prev => ({ ...prev, resume: null })); 
+        if (errors.resume) setErrors(prev => ({ ...prev, resume: null })); // Clear resume error
     },
     accept: { 'application/pdf': ['.pdf'], 'application/msword': ['.doc'], 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'] },
     maxFiles: 1,
@@ -81,7 +83,7 @@ const CareerSection = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: null }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: null })); // Clear error on change
   };
 
   const handleNoticePeriodSelect = (option) => {
@@ -266,13 +268,13 @@ const CareerSection = () => {
                     </motion.div>
                 ))}
             </div>
-          </div>
+        </div>
 
         <motion.div id="career-form" className="bg-white p-8 md:p-12 rounded-2xl border border-gray-200 shadow-2xl max-w-4xl mx-auto"
          initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <h3 className="text-3xl font-bold mb-6 text-center text-gray-800">Apply Now</h3>
           
-          {/* CRITICAL LAYOUT FIX: Replaced margin on divs with consistent GAP-6 */}
+          {/* CRITICAL LAYOUT FIX: Using gap-6 for consistent spacing, removing all vertical margins */}
           <form className="grid md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
             
             {/* Input Wrapper 1: Full Name */}
@@ -331,7 +333,7 @@ const CareerSection = () => {
             </div>
 
             {/* Captcha (Full Width, Centered) */}
-            <div className="flex justify-center md:col-span-2">
+            <div className="flex justify-center md:col-span-2 relative">
                 <div className="flex flex-col items-center relative">
                 <ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} />
                 {errors.captcha && <p className="text-red-500 text-xs mt-2 px-1 absolute -bottom-5 left-1/2 transform -translate-x-1/2">{errors.captcha}</p>}
