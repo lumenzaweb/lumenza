@@ -40,46 +40,6 @@ const LocalLightBackground = () => (
 );
 // --- END INLINED MINIMAL COMPONENTS ---
 
-
-// --- Custom ReCAPTCHA Component (Workaround for dependency error) ---
-const ReCAPTCHA = ({ sitekey, onChange }) => {
-    const recaptchaRef = useRef(null);
-    const widgetId = useRef(null);
-
-    useEffect(() => {
-        const renderRecaptcha = () => {
-            if (recaptchaRef.current && window.grecaptcha && !widgetId.current) {
-                widgetId.current = window.grecaptcha.render(recaptchaRef.current, {
-                    sitekey: sitekey,
-                    callback: onChange,
-                    'expired-callback': () => onChange(null),
-                    'error-callback': () => onChange(null)
-                });
-                window.grecaptcha.reset = () => {
-                    window.grecaptcha.reset(widgetId.current);
-                    onChange(null);
-                };
-            }
-        };
-
-        if (!window.grecaptcha) {
-            const script = document.createElement('script');
-            script.src = `https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit`;
-            script.async = true;
-            script.defer = true;
-            document.body.appendChild(script);
-
-            window.onloadCallback = renderRecaptcha;
-        } else {
-            renderRecaptcha();
-        }
-    }, [sitekey, onChange]);
-
-    return <div ref={recaptchaRef} className="g-recaptcha"></div>;
-};
-// ---------------------------------------------------
-
-
 // Helper function to scroll to the form
 const scrollToForm = () => {
   document.getElementById("career-form")?.scrollIntoView({ behavior: "smooth", block: "center" });
