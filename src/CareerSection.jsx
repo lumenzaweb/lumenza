@@ -274,7 +274,7 @@ const CareerSection = () => {
          initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <h3 className="text-3xl font-bold mb-6 text-center text-gray-800">Apply Now</h3>
           
-          {/* CRITICAL LAYOUT FIX: Relying on GAP-6 for spacing, removing external margins */}
+          {/* CRITICAL LAYOUT FIX: Using gap-6 for spacing, removing external margins */}
           <form className="grid md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
             
             {/* Input Wrapper 1: Full Name */}
@@ -334,7 +334,8 @@ const CareerSection = () => {
 
             {/* Captcha (Full Width, Centered) */}
             <div className="flex justify-center md:col-span-2 relative">
-                <div className="flex flex-col items-center relative">
+                {/* FINAL FIX: Ensure the CAPTCHA and its errors are wrapped in a container that aligns vertically */}
+                <div className="flex flex-col items-center relative self-start mt-2">
                 <ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} />
                 {errors.captcha && <p className="text-red-500 text-xs mt-2 px-1 absolute -bottom-5 left-1/2 transform -translate-x-1/2">{errors.captcha}</p>}
                 </div>
