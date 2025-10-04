@@ -293,7 +293,7 @@ const CareerSection = () => {
         <motion.div id="career-form" className="bg-white p-8 md:p-12 rounded-2xl border border-gray-200 shadow-2xl max-w-4xl mx-auto"
          initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <h3 className="text-3xl font-bold mb-6 text-center text-gray-800">Apply Now</h3>
-          {/* IMPORTANT: Changed gap-6 to gap-x-6 gap-y-8 for improved vertical spacing */}
+          {/* Grid modified for better vertical rhythm */}
           <form className="grid md:grid-cols-2 gap-x-6 gap-y-8" onSubmit={handleSubmit}>
             
             {/* Name Input */}
@@ -309,7 +309,6 @@ const CareerSection = () => {
             <InputField name="position" placeholder="Position You're Applying For" value={form.position} onChange={handleChange} error={errors.position} />
             
             {/* Notice Period Dropdown */}
-            {/* Note: No bottom margin needed here since the form container handles the vertical gap */}
             <div className="md:col-span-2 relative flex flex-col min-h-[65px]">
                 <button type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={`w-full p-4 bg-gray-50 rounded-xl text-left flex justify-between items-center transition-all ${errors.noticePeriod ? 'border-red-500 border-2' : 'border-gray-200 border'}`}>
                     <span className={form.noticePeriod ? "text-gray-800" : "text-gray-500"}>
@@ -346,7 +345,7 @@ const CareerSection = () => {
             </div>
 
             {/* Captcha */}
-            {/* Reduced vertical margin here, letting gap-y-8 handle the spacing */}
+            {/* Added flex and align-items: center equivalent for centering the fixed-height Captcha in the flow */}
             <div className="flex flex-col items-center justify-center md:col-span-2">
                 <ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} />
                 {errors.captcha && <p className="text-red-500 text-xs mt-2 px-1">{errors.captcha}</p>}
