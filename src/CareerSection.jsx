@@ -172,25 +172,6 @@ const CareerSection = () => {
     }
   };
 
-  // Component to display the input field and its error message
-  const InputField = ({ name, type = 'text', placeholder, value, onChange, error, pattern = null, title = null }) => (
-    // min-h-[65px] ensures consistent vertical space for input + error message on mobile stacking
-    <div className="relative flex flex-col min-h-[65px]"> 
-      <input 
-        type={type} 
-        name={name} 
-        value={value} 
-        onChange={onChange} 
-        placeholder={placeholder} 
-        pattern={pattern}
-        title={title}
-        className={`w-full p-4 bg-gray-50 rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition duration-150 ${error ? 'border-red-500 border-2' : 'border-gray-200 border'}`}
-      />
-      {/* Error message positioned absolutely below the input, ensuring it doesn't push the next element down */}
-      {error && <p className="text-red-500 text-xs mt-1 px-1 absolute bottom-0 transform translate-y-full">{error}</p>}
-    </div>
-  );
-
   return (
     <section className="bg-white text-gray-800 pt-28 sm:pt-32 pb-20 px-4 sm:px-6 relative overflow-hidden font-sans">
       
@@ -293,38 +274,46 @@ const CareerSection = () => {
         <motion.div id="career-form" className="bg-white p-8 md:p-12 rounded-2xl border border-gray-200 shadow-2xl max-w-4xl mx-auto"
          initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <h3 className="text-3xl font-bold mb-6 text-center text-gray-800">Apply Now</h3>
-          {/* Grid modified for better vertical rhythm */}
-          <form className="grid md:grid-cols-2 gap-x-6 gap-y-8" onSubmit={handleSubmit}>
+          
+          {/* Grid modified for robust alignment: added mb-6 to inputs and wrapper divs */}
+          <form className="grid md:grid-cols-2 gap-x-6" onSubmit={handleSubmit}>
             
-            {/* Name Input */}
-            <InputField name="name" placeholder="Full Name" value={form.name} onChange={handleChange} error={errors.name} />
+            {/* Input Wrapper 1: Full Name */}
+            <div className="relative mb-6">
+              <input type="text" name="name" value={form.name} onChange={handleChange} required placeholder="Full Name" className={`w-full p-4 bg-gray-50 rounded-xl focus:ring-2 focus:ring-red-500 outline-none ${errors.name ? 'border-red-500 border-2' : 'border-gray-200 border'}`}/>
+              {errors.name && <p className="text-red-500 text-xs mt-1 px-1 absolute -bottom-5 left-0">{errors.name}</p>}
+            </div>
             
-            {/* Email Input */}
-            <InputField name="email" type="email" placeholder="Email Address (user@example.com)" value={form.email} onChange={handleChange} error={errors.email} />
+            {/* Input Wrapper 2: Email */}
+            <div className="relative mb-6">
+              <input type="email" name="email" value={form.email} onChange={handleChange} required placeholder="Email Address (user@example.com)" className={`w-full p-4 bg-gray-50 rounded-xl focus:ring-2 focus:ring-red-500 outline-none ${errors.email ? 'border-red-500 border-2' : 'border-gray-200 border'}`}/>
+              {errors.email && <p className="text-red-500 text-xs mt-1 px-1 absolute -bottom-5 left-0">{errors.email}</p>}
+            </div>
 
-            {/* Contact Input */}
-            <InputField name="contact" type="tel" placeholder="Contact Number (e.g., +1 555 123 4567)" value={form.contact} onChange={handleChange} error={errors.contact} />
+            {/* Input Wrapper 3: Contact */}
+            <div className="relative mb-6">
+              <input type="tel" name="contact" value={form.contact} onChange={handleChange} required placeholder="Contact Number (e.g., +1 555 123 4567)" className={`w-full p-4 bg-gray-50 rounded-xl focus:ring-2 focus:ring-red-500 outline-none ${errors.contact ? 'border-red-500 border-2' : 'border-gray-200 border'}`}/>
+              {errors.contact && <p className="text-red-500 text-xs mt-1 px-1 absolute -bottom-5 left-0">{errors.contact}</p>}
+            </div>
 
-            {/* Position Input */}
-            <InputField name="position" placeholder="Position You're Applying For" value={form.position} onChange={handleChange} error={errors.position} />
+            {/* Input Wrapper 4: Position */}
+            <div className="relative mb-6">
+              <input type="text" name="position" value={form.position} onChange={handleChange} required placeholder="Position You're Applying For" className={`w-full p-4 bg-gray-50 rounded-xl focus:ring-2 focus:ring-red-500 outline-none ${errors.position ? 'border-red-500 border-2' : 'border-gray-200 border'}`}/>
+              {errors.position && <p className="text-red-500 text-xs mt-1 px-1 absolute -bottom-5 left-0">{errors.position}</p>}
+            </div>
             
-            {/* Notice Period Dropdown */}
-            <div className="md:col-span-2 relative flex flex-col min-h-[65px]">
+            {/* Notice Period Dropdown (Full Width) */}
+            <div className="md:col-span-2 relative mb-6">
                 <button type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={`w-full p-4 bg-gray-50 rounded-xl text-left flex justify-between items-center transition-all ${errors.noticePeriod ? 'border-red-500 border-2' : 'border-gray-200 border'}`}>
                     <span className={form.noticePeriod ? "text-gray-800" : "text-gray-500"}>
                         {form.noticePeriod || "Select Notice Period..."}
                     </span>
                     <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
-                {errors.noticePeriod && <p className="text-red-500 text-xs mt-1 px-1 absolute bottom-0 transform translate-y-full">{errors.noticePeriod}</p>}
+                {errors.noticePeriod && <p className="text-red-500 text-xs mt-1 px-1 absolute -bottom-5 left-0">{errors.noticePeriod}</p>}
                 <AnimatePresence>
                     {isDropdownOpen && (
-                        <motion.ul 
-                            initial={{ opacity: 0, y: -10 }} 
-                            animate={{ opacity: 1, y: 0 }} 
-                            exit={{ opacity: 0, y: -10 }} 
-                            className="absolute z-30 w-full top-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg list-none p-0 overflow-hidden"
-                        >
+                        <motion.ul initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="absolute z-30 w-full top-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg list-none p-0 overflow-hidden">
                             {noticePeriodOptions.map(option => (
                                 <li key={option} onClick={() => handleNoticePeriodSelect(option)} className="px-4 py-3 hover:bg-red-50 cursor-pointer text-gray-800 transition-colors">{option}</li>
                             ))}
@@ -333,23 +322,24 @@ const CareerSection = () => {
                 </AnimatePresence>
             </div>
 
-            {/* Resume Upload */}
-            <div className="md:col-span-2 relative flex flex-col min-h-[140px]">
-                <div {...getRootProps()} className={`p-8 border-2 border-dashed rounded-2xl cursor-pointer transition-colors flex flex-col items-center justify-center text-center h-full ${isDragActive ? 'border-red-500 bg-red-50' : (errors.resume ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-red-400')}`}>
+            {/* Resume Upload (Full Width) */}
+            <div className="md:col-span-2 relative mb-6">
+                <div {...getRootProps()} className={`p-8 border-2 border-dashed rounded-2xl cursor-pointer transition-colors flex flex-col items-center justify-center text-center ${isDragActive ? 'border-red-500 bg-red-50' : (errors.resume ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-red-400')}`}>
                     <input {...getInputProps()} />
                     <UploadCloud className="w-10 h-10 text-gray-400 mb-2"/>
                     {acceptedFiles.length > 0 ? <p className="text-green-600 font-medium">{acceptedFiles[0].name}</p> : <p className="text-gray-500">Drag & drop your resume here, or click to select.</p>}
                     <p className="text-xs text-gray-400 mt-1">PDF, DOC, DOCX up to 5MB</p>
                 </div>
-               {errors.resume && <p className="text-red-500 text-xs mt-1 px-1 absolute bottom-0 transform translate-y-full">{errors.resume}</p>}
+               {errors.resume && <p className="text-red-500 text-xs mt-1 px-1 absolute -bottom-5 left-0">{errors.resume}</p>}
             </div>
 
-            {/* Captcha */}
-            {/* Added flex and align-items: center equivalent for centering the fixed-height Captcha in the flow */}
-            <div className="flex flex-col items-center justify-center md:col-span-2">
+            {/* Captcha (Full Width, Centered) */}
+            <div className="flex justify-center md:col-span-2 mb-6">
+                <div className="flex flex-col items-center relative">
                 <ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} />
-                {errors.captcha && <p className="text-red-500 text-xs mt-2 px-1">{errors.captcha}</p>}
-            </div>
+                {errors.captcha && <p className="text-red-500 text-xs mt-2 px-1 absolute -bottom-5 left-1/2 transform -translate-x-1/2">{errors.captcha}</p>}
+                </div>
+            </div>
 
             <button
               type="submit"
