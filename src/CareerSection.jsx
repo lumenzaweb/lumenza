@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, ChevronDown, Zap, TrendingUp, ArrowRight, Contact, Loader2 } from "lucide-react";
-import ReCAPTCHA from "react-google-recaptcha"; 
+import ReCAPTCHA from "react-google-recaptcha"; // <-- Using your installed dependency
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
 // Assuming these components are available in your environment
@@ -9,10 +9,12 @@ import { useDropzone } from "react-dropzone";
 
 // --- VALIDATION HELPER FUNCTIONS ---
 const isValidEmail = (email) => {
+    // Basic regex for email format
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
 
 const isValidContact = (contact) => {
+    // Allows 7 to 15 digits, optionally with +, spaces, or dashes for international numbers.
     return /^\+?[\d\s\-]{7,15}$/.test(contact);
 };
 // --- END VALIDATION HELPER FUNCTIONS ---
