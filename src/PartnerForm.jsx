@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, ChevronDown, Zap, TrendingUp, ArrowRight, Contact, Loader2 } from "lucide-react";
-import ReCAPTCHA from "react-google-recaptcha"; // <-- Commented out to fix build error
+import ReCAPTCHA from "react-google-recaptcha"; // <-- Preserved as requested
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
 // Assuming these components are available in your environment
-import LightBackground from "./components/LightBackground";
-import SEO from "./components/SEO";
+// import LightBackground from "./components/LightBackground";
+// import SEO from "./components/SEO";
 
 // --- VALIDATION HELPER FUNCTIONS ---
 const isValidEmail = (email) => {
@@ -23,7 +23,7 @@ const isValidContact = (contact) => {
 // --- INLINED MINIMAL COMPONENTS (Kept for single-file presentation) ---
 
 // Minimal SEO Component
-const LocalSEO = ({ title, description }) => {
+const SEO = ({ title, description }) => {
   useEffect(() => {
     document.title = title || "Careers";
     document.querySelector('meta[name="description"]')?.setAttribute('content', description || "Join our team.");
@@ -32,13 +32,14 @@ const LocalSEO = ({ title, description }) => {
 };
 
 // Minimal Aesthetic Background Placeholder
-const LocalLightBackground = () => (
+const LightBackground = () => (
     <div className="absolute inset-0 overflow-hidden opacity-5">
         <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse"/>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-red-600/15 rounded-full blur-3xl animate-pulse delay-500"/>
     </div>
 );
 // --- END INLINED MINIMAL COMPONENTS ---
+
 
 // Helper function to scroll to the form
 const scrollToForm = () => {
@@ -173,12 +174,12 @@ const CareerSection = () => {
   return (
     <section className="bg-white text-gray-800 pt-28 sm:pt-32 pb-20 px-4 sm:px-6 relative overflow-hidden font-sans">
       
-      <LocalSEO 
+      <SEO 
       title="Careers"
       description="Join the LUMENZA team and build your future with us. Explore open roles in sales, marketing, operations, and more."
     />
 
-      <LocalLightBackground />
+      <LightBackground />
       {popup.show && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn">
