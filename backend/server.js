@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import nodemailer from "nodemailer"; // NOTE: Now unused, but kept for clarity
+import nodemailer from "nodemailer"; // NOTE: Now unused, kept for clarity
 import cors from "cors";
 import multer from "multer";
 import path from "path";
@@ -16,45 +16,52 @@ app.use(cors());
 app.use("/", testEmailRoute);
 
 // --- BREVO API CONFIGURATION ---
-// We use these ENV variables for the API call instead of SMTP transport
 const SENDER_EMAIL = process.env.EMAIL_USER; 
 const BREVO_API_KEY = process.env.BREVO_API_KEY; 
 // -------------------------------
 
-// ✅ ENV check
+// ✅ ENV check (Simplified)
 console.log("✅ ENV check:", {
   PORT: process.env.PORT,
   MONGO_URI: !!process.env.MONGO_URI,
-  EMAIL_USER: SENDER_EMAIL, // Brevo Login/Sender
-  EMAIL_HOST: process.env.EMAIL_HOST, // Now irrelevant (SMTP)
-  EMAIL_PORT: process.env.EMAIL_PORT, // Now irrelevant (SMTP)
+  EMAIL_USER: SENDER_EMAIL, 
+  EMAIL_HOST: process.env.EMAIL_HOST, 
+  EMAIL_PORT: process.env.EMAIL_PORT, 
   RECAPTCHA_SECRET: !!process.env.RECAPTCHA_SECRET,
-  BREVO_API_KEY: !!BREVO_API_KEY // Check for the API Key
+  BREVO_API_KEY: !!BREVO_API_KEY
 });
 
-// --- Brevo API Email Sender Function ---
-const sendEmailViaBrevo = async (toEmail, subject, htmlContent, attachments = []) => {
+// --- Brevo API Email Sender Function (Attachment Logic Corrected) ---
+const sendEmailViaBrevo = async (toEmail, subject, htmlContent, attachmentPath = null) => {
     if (!BREVO_API_KEY) {
         console.error("❌ BREVO_API_KEY is not set. Cannot send email.");
         return;
     }
 
-    // Attachments must be base64 encoded for the Brevo API
-    const apiAttachments = attachments.map(att => {
-        // Read file content and encode it to base64
-        const content = fs.readFileSync(att.path).toString('base64');
-        return {
-            content,
-            name: att.filename
-        };
-    });
+    const apiAttachments = [];
+
+    // ONLY process the attachment if a valid path is provided
+    if (attachmentPath && fs.existsSync(attachmentPath)) {
+        try {
+            // Read file content and encode it to base64
+            const content = fs.readFileSync(attachmentPath).toString('base64');
+            apiAttachments.push({
+                content,
+                name: path.basename(attachmentPath)
+            });
+        } catch (err) {
+            console.error(`❌ Failed to read or encode attachment file: ${attachmentPath}`, err.message);
+            // We can still proceed without the attachment if reading fails, but log the error.
+        }
+    }
 
     const payload = {
-        sender: { email: SENDER_EMAIL }, // Uses your verified support@lumenza.co.in
+        sender: { email: SENDER_EMAIL },
         to: [{ email: toEmail }],
         subject: subject,
         htmlContent: htmlContent,
-        attachment: apiAttachments,
+        // Include attachments only if the array is populated
+        ...(apiAttachments.length > 0 && { attachment: apiAttachments }),
     };
 
     try {
@@ -63,7 +70,7 @@ const sendEmailViaBrevo = async (toEmail, subject, htmlContent, attachments = []
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'api-key': BREVO_API_KEY, // Uses the secure API key
+                'api-key': BREVO_API_KEY,
             },
             body: JSON.stringify(payload),
         });
@@ -84,9 +91,8 @@ const sendEmailViaBrevo = async (toEmail, subject, htmlContent, attachments = []
 // ------------------------------------------
 
 
-// --- 2. OLD: ReCAPTCHA Verification Middleware ---
+// --- 3. OLD: ReCAPTCHA Verification Middleware ---
 const verifyRecaptcha = async (req, res, next) => {
-  // ... (recaptcha verification logic remains unchanged, as it uses fetch)
     const { formType, captchaToken } = req.body;
     const requireCaptcha = ["Inquiry", "Career", "Partner", "Contact"];
     
@@ -171,7 +177,6 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
   // --- B. DO SLOW TASKS IN THE BACKGROUND ---
   const processFormSubmission = async () => {
     const resumeFile = req.file ? req.file.path : null;
-    const resumeAttachment = resumeFile ? [{ filename: path.basename(resumeFile), path: resumeFile }] : [];
 
     try {
         const { formType, name, email, contact, message, captchaToken, ...extra } = req.body;
@@ -213,7 +218,8 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
 
 
         // ✅ 1. Send Main notification email (to your support address)
-        await sendEmailViaBrevo(SENDER_EMAIL, subject, mainEmailHtml, resumeAttachment);
+        // Pass resumeFile path directly
+        await sendEmailViaBrevo(SENDER_EMAIL, subject, mainEmailHtml, resumeFile);
         console.log(`✅ Main notification email sent for ${formType} from ${name}.`);
 
         // ✅ 2. Auto-reply to user (if email provided)
@@ -225,6 +231,7 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
                 <p style="color:#555;">Best regards,<br/> Support Team, LUMENZA </p>
               </div>
             `;
+            // Do NOT pass resumeFile path to the auto-reply
             await sendEmailViaBrevo(email, "✅ We've received your submission", autoReplyHtml);
             console.log(`✅ Auto-reply sent to ${email}.`);
         }
@@ -235,6 +242,7 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
         // Clean up the uploaded resume file if it exists
         if (resumeFile && fs.existsSync(resumeFile)) {
             fs.unlinkSync(resumeFile);
+            console.log(`🗑️ Deleted temporary file: ${resumeFile}`);
         }
     }
   };
