@@ -91,35 +91,43 @@ const sendEmailViaBrevo = async (toEmail, subject, htmlContent, attachmentPath =
 // ------------------------------------------
 
 
-// --- 3. OLD: ReCAPTCHA Verification Middleware ---
+// --- 1. NEW: reCAPTCHA Verification Middleware ---
+// This function now skips verification for the "Partner" form type.
 const verifyRecaptcha = async (req, res, next) => {
-    const { formType, captchaToken } = req.body;
-    const requireCaptcha = ["Inquiry", "Career", "Partner", "Contact"];
-    
-    if (requireCaptcha.includes(formType)) {
-        if (!captchaToken) {
-            return res.status(400).json({ success: false, message: "Captcha token is required." });
-        }
+  const { formType, captchaToken } = req.body;
 
-        try {
-            const response = await fetch(
-                `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
-                { method: "POST" }
-            );
-            const data = await response.json();
+  // Define which forms require captcha verification
+  // CHANGE: Removed "Partner" from this list.
+  const requireCaptcha = ["Inquiry", "Career", "Contact"]; 
 
-            if (!data.success) {
-                console.error("❌ Captcha verification failed:", data['error-codes']);
-                return res.status(400).json({ success: false, message: "Captcha verification failed." });
-            }
-            next(); 
-        } catch (error) {
-            console.error("❌ Captcha middleware error:", error);
-            return res.status(500).json({ success: false, message: "Error during captcha verification." });
-        }
-    } else {
-        next();
-    }
+  if (requireCaptcha.includes(formType)) {
+    if (!captchaToken) {
+      // Specific message for missing captcha token
+      return res.status(400).json({ success: false, message: "Captcha token is required for this form type." });
+    }
+
+    try {
+      const response = await fetch(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`,
+        { method: "POST" }
+      );
+      const data = await response.json();
+
+      if (!data.success) {
+        console.error("❌ Captcha verification failed:", data['error-codes']);
+        return res.status(400).json({ success: false, message: "Captcha verification failed." });
+      }
+      
+      // If successful, proceed
+      next(); 
+    } catch (error) {
+      console.error("❌ Captcha middleware error:", error);
+      return res.status(500).json({ success: false, message: "Error during captcha verification." });
+    }
+  } else {
+    // If the form type is "Partner" (or any other excluded form), just skip and proceed.
+    next();
+  }
 };
 
 
