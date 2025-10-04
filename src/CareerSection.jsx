@@ -3,24 +3,22 @@ import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, Chevron
 import ReCAPTCHA from "react-google-recaptcha";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
-// Assuming these components are available in your environment
+// Assuming external components are available
 // import LightBackground from "./components/LightBackground";
 // import SEO from "./components/SEO";
 
-// --- VALIDATION HELPER FUNCTIONS ---
+// --- VALIDATION HELPERS (Restored) ---
 const isValidEmail = (email) => {
-    // Basic regex for email format
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
 
 const isValidContact = (contact) => {
-    // Allows 7 to 15 digits, optionally with +, spaces, or dashes for international numbers.
     return /^\+?[\d\s\-]{7,15}$/.test(contact);
 };
-// --- END VALIDATION HELPER FUNCTIONS ---
+// --- END VALIDATION HELPERS ---
 
 
-// --- INLINED MINIMAL COMPONENTS (Kept for single-file presentation) ---
+// --- INLINED MINIMAL COMPONENTS ---
 
 // Minimal SEO Component
 const SEO = ({ title, description }) => {
@@ -46,14 +44,13 @@ const scrollToForm = () => {
   document.getElementById("career-form")?.scrollIntoView({ behavior: "smooth", block: "center" });
 };
 
-// Data for the "Why Join Us" section
+// Data (Unchanged)
 const whyJoinUs = [
     { icon: <Zap className="w-8 h-8 text-red-600" />, title: "Innovate", description: "Work on cutting-edge products that redefine the industry." },
     { icon: <TrendingUp className="w-8 h-8 text-red-600" />, title: "Grow", description: "We invest in your professional development and career path." },
     { icon: <Users className="w-8 h-8 text-red-600" />, title: "Collaborate", description: "Join a supportive team where your ideas are valued." }
 ];
 
-// Data for the department cards
 const departments = [
   { icon: <Briefcase className="w-8 h-8 text-gray-700" />, title: "Sales & Business Development", responsibilities: ["Build relationships with dealers, architects, and retailers", "Product presentations and market visits", "Area-wise target setting and achievement"] },
   { icon: <Megaphone className="w-8 h-8 text-gray-700" />, title: "Marketing & Brand", responsibilities: ["Develop creative campaigns to strengthen brand visibility", "Work with digital & offline marketing channels", "Plan exhibitions and trade shows"] },
@@ -68,14 +65,14 @@ const CareerSection = () => {
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState({ show: false, type: "", message: "" });
   const [captchaToken, setCaptchaToken] = useState(null);
-  const [errors, setErrors] = useState({}); // State for validation errors
+  const [errors, setErrors] = useState({}); // State for validation errors (Restored)
   const [openDepartment, setOpenDepartment] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({
     onDrop: accepted => {
         setResume(accepted[0]);
-        if (errors.resume) setErrors(prev => ({ ...prev, resume: null })); // Clear resume error
+        if (errors.resume) setErrors(prev => ({ ...prev, resume: null })); 
     },
     accept: { 'application/pdf': ['.pdf'], 'application/msword': ['.doc'], 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'] },
     maxFiles: 1,
@@ -84,7 +81,7 @@ const CareerSection = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: null })); // Clear error on change
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: null }));
   };
 
   const handleNoticePeriodSelect = (option) => {
@@ -269,41 +266,41 @@ const CareerSection = () => {
                     </motion.div>
                 ))}
             </div>
-        </div>
+          </div>
 
         <motion.div id="career-form" className="bg-white p-8 md:p-12 rounded-2xl border border-gray-200 shadow-2xl max-w-4xl mx-auto"
          initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <h3 className="text-3xl font-bold mb-6 text-center text-gray-800">Apply Now</h3>
           
-          {/* Grid modified for robust alignment: added mb-6 to inputs and wrapper divs */}
-          <form className="grid md:grid-cols-2 gap-x-6" onSubmit={handleSubmit}>
+          {/* CRITICAL LAYOUT FIX: Replaced margin on divs with consistent GAP-6 */}
+          <form className="grid md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
             
             {/* Input Wrapper 1: Full Name */}
-            <div className="relative mb-6">
+            <div className="relative">
               <input type="text" name="name" value={form.name} onChange={handleChange} required placeholder="Full Name" className={`w-full p-4 bg-gray-50 rounded-xl focus:ring-2 focus:ring-red-500 outline-none ${errors.name ? 'border-red-500 border-2' : 'border-gray-200 border'}`}/>
               {errors.name && <p className="text-red-500 text-xs mt-1 px-1 absolute -bottom-5 left-0">{errors.name}</p>}
             </div>
             
             {/* Input Wrapper 2: Email */}
-            <div className="relative mb-6">
+            <div className="relative">
               <input type="email" name="email" value={form.email} onChange={handleChange} required placeholder="Email Address (user@example.com)" className={`w-full p-4 bg-gray-50 rounded-xl focus:ring-2 focus:ring-red-500 outline-none ${errors.email ? 'border-red-500 border-2' : 'border-gray-200 border'}`}/>
               {errors.email && <p className="text-red-500 text-xs mt-1 px-1 absolute -bottom-5 left-0">{errors.email}</p>}
             </div>
 
             {/* Input Wrapper 3: Contact */}
-            <div className="relative mb-6">
+            <div className="relative">
               <input type="tel" name="contact" value={form.contact} onChange={handleChange} required placeholder="Contact Number (e.g., +1 555 123 4567)" className={`w-full p-4 bg-gray-50 rounded-xl focus:ring-2 focus:ring-red-500 outline-none ${errors.contact ? 'border-red-500 border-2' : 'border-gray-200 border'}`}/>
               {errors.contact && <p className="text-red-500 text-xs mt-1 px-1 absolute -bottom-5 left-0">{errors.contact}</p>}
             </div>
 
             {/* Input Wrapper 4: Position */}
-            <div className="relative mb-6">
+            <div className="relative">
               <input type="text" name="position" value={form.position} onChange={handleChange} required placeholder="Position You're Applying For" className={`w-full p-4 bg-gray-50 rounded-xl focus:ring-2 focus:ring-red-500 outline-none ${errors.position ? 'border-red-500 border-2' : 'border-gray-200 border'}`}/>
               {errors.position && <p className="text-red-500 text-xs mt-1 px-1 absolute -bottom-5 left-0">{errors.position}</p>}
             </div>
             
             {/* Notice Period Dropdown (Full Width) */}
-            <div className="md:col-span-2 relative mb-6">
+            <div className="md:col-span-2 relative">
                 <button type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={`w-full p-4 bg-gray-50 rounded-xl text-left flex justify-between items-center transition-all ${errors.noticePeriod ? 'border-red-500 border-2' : 'border-gray-200 border'}`}>
                     <span className={form.noticePeriod ? "text-gray-800" : "text-gray-500"}>
                         {form.noticePeriod || "Select Notice Period..."}
@@ -323,7 +320,7 @@ const CareerSection = () => {
             </div>
 
             {/* Resume Upload (Full Width) */}
-            <div className="md:col-span-2 relative mb-6">
+            <div className="md:col-span-2 relative">
                 <div {...getRootProps()} className={`p-8 border-2 border-dashed rounded-2xl cursor-pointer transition-colors flex flex-col items-center justify-center text-center ${isDragActive ? 'border-red-500 bg-red-50' : (errors.resume ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-red-400')}`}>
                     <input {...getInputProps()} />
                     <UploadCloud className="w-10 h-10 text-gray-400 mb-2"/>
@@ -334,7 +331,7 @@ const CareerSection = () => {
             </div>
 
             {/* Captcha (Full Width, Centered) */}
-            <div className="flex justify-center md:col-span-2 mb-6">
+            <div className="flex justify-center md:col-span-2">
                 <div className="flex flex-col items-center relative">
                 <ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} />
                 {errors.captcha && <p className="text-red-500 text-xs mt-2 px-1 absolute -bottom-5 left-1/2 transform -translate-x-1/2">{errors.captcha}</p>}
