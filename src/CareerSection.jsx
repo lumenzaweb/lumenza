@@ -174,7 +174,8 @@ const CareerSection = () => {
 
   // Component to display the input field and its error message
   const InputField = ({ name, type = 'text', placeholder, value, onChange, error, pattern = null, title = null }) => (
-    <div className="relative flex flex-col min-h-[70px]"> {/* min-h ensures consistent vertical space */}
+    // min-h-[65px] ensures consistent vertical space for input + error message
+    <div className="relative flex flex-col min-h-[65px]"> 
       <input 
         type={type} 
         name={name} 
@@ -306,7 +307,7 @@ const CareerSection = () => {
             <InputField name="position" placeholder="Position You're Applying For" value={form.position} onChange={handleChange} error={errors.position} />
             
             {/* Notice Period Dropdown */}
-            <div className="md:col-span-2 relative flex flex-col min-h-[70px]"> {/* min-h for alignment */}
+            <div className="md:col-span-2 relative flex flex-col min-h-[65px]"> {/* min-h for alignment */}
                 <button type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={`w-full p-4 bg-gray-50 rounded-xl text-left flex justify-between items-center transition-all ${errors.noticePeriod ? 'border-red-500 border-2' : 'border-gray-200 border'}`}>
                     <span className={form.noticePeriod ? "text-gray-800" : "text-gray-500"}>
                         {form.noticePeriod || "Select Notice Period..."}
@@ -320,7 +321,8 @@ const CareerSection = () => {
                             initial={{ opacity: 0, y: -10 }} 
                             animate={{ opacity: 1, y: 0 }} 
                             exit={{ opacity: 0, y: -10 }} 
-                            className="absolute z-20 w-full top-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg list-none p-0 overflow-hidden"
+                            // Adjusted z-index to 30 to avoid conflicts with other elements if any
+                            className="absolute z-30 w-full top-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg list-none p-0 overflow-hidden"
                         >
                             {noticePeriodOptions.map(option => (
                                 <li key={option} onClick={() => handleNoticePeriodSelect(option)} className="px-4 py-3 hover:bg-red-50 cursor-pointer text-gray-800 transition-colors">{option}</li>
@@ -331,6 +333,7 @@ const CareerSection = () => {
             </div>
 
             {/* Resume Upload */}
+            {/* Height is controlled by p-8 padding */}
             <div className="md:col-span-2 relative flex flex-col min-h-[140px]">
                 <div {...getRootProps()} className={`p-8 border-2 border-dashed rounded-2xl cursor-pointer transition-colors flex flex-col items-center justify-center text-center h-full ${isDragActive ? 'border-red-500 bg-red-50' : (errors.resume ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-red-400')}`}>
                     <input {...getInputProps()} />
@@ -342,7 +345,7 @@ const CareerSection = () => {
             </div>
 
             {/* Captcha */}
-            <div className="flex flex-col items-center md:col-span-2 min-h-[90px] mt-2">
+            <div className="flex flex-col items-center md:col-span-2 mt-4 mb-2">
                 <ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} />
                 {errors.captcha && <p className="text-red-500 text-xs mt-2 px-1">{errors.captcha}</p>}
             </div>
