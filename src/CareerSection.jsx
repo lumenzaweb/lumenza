@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, ChevronDown, Zap, TrendingUp, ArrowRight, Contact, Loader2 } from "lucide-react";
-import ReCAPTCHA from "react-google-recaptcha"; // <- Relying on your environment for this import
+import ReCAPTCHA from "react-google-recaptcha"; // Relying on your environment for this import
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
 // Assuming these components are available in your environment
