@@ -186,7 +186,7 @@ const CareerSection = () => {
         title={title}
         className={`w-full p-4 bg-gray-50 rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition duration-150 ${error ? 'border-red-500 border-2' : 'border-gray-200 border'}`}
       />
-      {/* Error message positioned absolutely below the input */}
+      {/* Error message positioned absolutely below the input, ensuring it doesn't push the next element down */}
       {error && <p className="text-red-500 text-xs mt-1 px-1 absolute bottom-0 transform translate-y-full">{error}</p>}
     </div>
   );
@@ -293,7 +293,8 @@ const CareerSection = () => {
         <motion.div id="career-form" className="bg-white p-8 md:p-12 rounded-2xl border border-gray-200 shadow-2xl max-w-4xl mx-auto"
          initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <h3 className="text-3xl font-bold mb-6 text-center text-gray-800">Apply Now</h3>
-          <form className="grid md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
+          {/* IMPORTANT: Changed gap-6 to gap-x-6 gap-y-8 for improved vertical spacing */}
+          <form className="grid md:grid-cols-2 gap-x-6 gap-y-8" onSubmit={handleSubmit}>
             
             {/* Name Input */}
             <InputField name="name" placeholder="Full Name" value={form.name} onChange={handleChange} error={errors.name} />
@@ -308,7 +309,8 @@ const CareerSection = () => {
             <InputField name="position" placeholder="Position You're Applying For" value={form.position} onChange={handleChange} error={errors.position} />
             
             {/* Notice Period Dropdown */}
-            <div className="md:col-span-2 relative flex flex-col min-h-[65px]"> {/* min-h for alignment */}
+            {/* Note: No bottom margin needed here since the form container handles the vertical gap */}
+            <div className="md:col-span-2 relative flex flex-col min-h-[65px]">
                 <button type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className={`w-full p-4 bg-gray-50 rounded-xl text-left flex justify-between items-center transition-all ${errors.noticePeriod ? 'border-red-500 border-2' : 'border-gray-200 border'}`}>
                     <span className={form.noticePeriod ? "text-gray-800" : "text-gray-500"}>
                         {form.noticePeriod || "Select Notice Period..."}
@@ -322,7 +324,6 @@ const CareerSection = () => {
                             initial={{ opacity: 0, y: -10 }} 
                             animate={{ opacity: 1, y: 0 }} 
                             exit={{ opacity: 0, y: -10 }} 
-                            // z-index ensures the dropdown is above all other form elements
                             className="absolute z-30 w-full top-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg list-none p-0 overflow-hidden"
                         >
                             {noticePeriodOptions.map(option => (
@@ -334,7 +335,6 @@ const CareerSection = () => {
             </div>
 
             {/* Resume Upload */}
-            {/* Height is maintained by min-h, not just padding */}
             <div className="md:col-span-2 relative flex flex-col min-h-[140px]">
                 <div {...getRootProps()} className={`p-8 border-2 border-dashed rounded-2xl cursor-pointer transition-colors flex flex-col items-center justify-center text-center h-full ${isDragActive ? 'border-red-500 bg-red-50' : (errors.resume ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-red-400')}`}>
                     <input {...getInputProps()} />
@@ -346,8 +346,8 @@ const CareerSection = () => {
             </div>
 
             {/* Captcha */}
-            {/* Added a container with flex and min-h for consistent bottom alignment */}
-            <div className="flex flex-col items-center justify-center md:col-span-2 min-h-[90px] mt-2">
+            {/* Reduced vertical margin here, letting gap-y-8 handle the spacing */}
+            <div className="flex flex-col items-center justify-center md:col-span-2">
                 <ReCAPTCHA sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} />
                 {errors.captcha && <p className="text-red-500 text-xs mt-2 px-1">{errors.captcha}</p>}
             </div>
