@@ -4,8 +4,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
 // Assuming these components are available in your environment
-// import LightBackground from "./components/LightBackground";
-// import SEO from "./components/SEO";
+import LightBackground from "./components/LightBackground";
+import SEO from "./components/SEO";
 
 // --- VALIDATION HELPER FUNCTIONS ---
 const isValidEmail = (email) => {
@@ -18,7 +18,7 @@ const isValidContact = (contact) => {
 // --- END VALIDATION HELPER FUNCTIONS ---
 
 
-// --- INLINED MINIMAL COMPONENTS (Kept for single-file presentation) ---
+// --- INLINED MINIMAL COMPONENTS (Kept for stability) ---
 
 // Minimal SEO Component
 const SEO = ({ title, description }) => {
