@@ -233,12 +233,12 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
             const autoReplyHtml = `
               <div style="font-family:Arial,sans-serif;padding:20px;color:#333;line-height:1.6;">
                 <h3 style="color:#1a73e8;">Thank you for your submission, ${name}!</h3>
-                <p>We have successfully received your ${formType.toLowerCase()} submission.</p>
-                <p>Our team will review the details and get back to you as soon as possible. We appreciate your interest in LUMENZA.</p>
+                <p>We have successfully received your ${formType.toLowerCase()} details submission.</p>
+                <p>Our team will review the details and get back to you as soon as possible. We appreciate your interest with LUMENZA.</p>
                 
                 <p style="margin-top:25px;padding-top:15px;border-top:1px solid #eee;">
                   Best regards,<br/> 
-                  <strong style="color:#d32f2f;">The LUMENZA Team</strong>
+                  <strong style="color:#d32f2f;">support Team, LUMENZA</strong>
                 </p>
               </div>
             `;
