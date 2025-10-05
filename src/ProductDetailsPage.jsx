@@ -50,7 +50,14 @@ const allProducts = {
       img: "https://i.pinimg.com/736x/1a/7d/0f/1a7d0f38200ea3cfe3853a979086abc1.jpg",
     },
   ],
-  "cabinet-fittings": [
+  "sealants-and-adhesives": [
+    {
+      slug: "Silicone",
+      name: "Silicone",
+      img: "https://i.pinimg.com/736x/87/f4/92/87f49227a0c3fd69502837ad63de622c.jpg",
+    },
+  ],
+  "furniture-fittings": [
     {
       slug: "Cabinet handle",
       name: "Cabinet handle",
@@ -66,15 +73,6 @@ const allProducts = {
       name: "Knob",
       img: "https://i.pinimg.com/736x/ba/dc/7a/badc7aa979675cebb55a042663f3dd55.jpg",
     },
-  ],
-  "sealants-and-adhesives": [
-    {
-      slug: "Silicone",
-      name: "Silicone",
-      img: "https://i.pinimg.com/736x/87/f4/92/87f49227a0c3fd69502837ad63de622c.jpg",
-    },
-  ],
-  "furniture-fittings": [
     {
       slug: "Bed Fittings",
       name: "bed fittings",
