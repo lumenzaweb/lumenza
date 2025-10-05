@@ -1,29 +1,25 @@
 import React, { useState, useRef, useEffect } from "react";
 import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, ChevronDown, Zap, TrendingUp, ArrowRight, Contact, Loader2 } from "lucide-react";
-import ReCAPTCHA from "react-google-recaptcha"; // <-- Using your installed dependency
+import ReCAPTCHA from "react-google-recaptcha"; // <-- Preserved as requested
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
-// Assuming these components are available in your environment
-// import LightBackground from "./components/LightBackground";
-// import SEO from "./components/SEO";
+// NOTE: External imports for these components are commented out, but your local definitions were causing the compiler error.
 
 // --- VALIDATION HELPER FUNCTIONS ---
 const isValidEmail = (email) => {
-    // Basic regex for email format
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
 
 const isValidContact = (contact) => {
-    // Allows 7 to 15 digits, optionally with +, spaces, or dashes for international numbers.
     return /^\+?[\d\s\-]{7,15}$/.test(contact);
 };
 // --- END VALIDATION HELPER FUNCTIONS ---
 
 
-// --- INLINED MINIMAL COMPONENTS (Kept for single-file presentation) ---
+// --- COMPONENT DEFINITIONS (Renamed for Build Stability) ---
 
 // Minimal SEO Component
-const SEO = ({ title, description }) => {
+const LocalSEO = ({ title, description }) => {
   useEffect(() => {
     document.title = title || "Careers";
     document.querySelector('meta[name="description"]')?.setAttribute('content', description || "Join our team.");
@@ -32,13 +28,13 @@ const SEO = ({ title, description }) => {
 };
 
 // Minimal Aesthetic Background Placeholder
-const LightBackground = () => (
+const LocalLightBackground = () => (
     <div className="absolute inset-0 overflow-hidden opacity-5">
         <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse"/>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-red-600/15 rounded-full blur-3xl animate-pulse delay-500"/>
     </div>
 );
-// --- END INLINED MINIMAL COMPONENTS ---
+// --- END COMPONENT DEFINITIONS ---
 
 
 // Helper function to scroll to the form
@@ -174,12 +170,12 @@ const CareerSection = () => {
   return (
     <section className="bg-white text-gray-800 pt-28 sm:pt-32 pb-20 px-4 sm:px-6 relative overflow-hidden font-sans">
       
-      <SEO 
+      <LocalSEO 
       title="Careers"
       description="Join the LUMENZA team and build your future with us. Explore open roles in sales, marketing, operations, and more."
     />
 
-      <LightBackground />
+      <LocalLightBackground />
       {popup.show && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center gap-4 w-[90%] max-w-md text-center animate-fadeIn">

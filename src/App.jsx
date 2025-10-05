@@ -22,7 +22,7 @@ import Admin from "./Admin";
 import ContactForm from "./components/ContactForm";
 import ProductsPage from "./pages/ProductsPage.jsx";
 import PartnerForm from "./PartnerForm";
-import SEO from "./components/SEO";
+import SEO from "./components/SEO"; // Keep this import for root SEO
 
 // Helper: smooth scroll to specific section
 const scrollToSection = (id) => {
@@ -56,24 +56,17 @@ const App = () => {
     message: "",
   });
 
-  // ✅ START: JAVASCRIPT VIEWPORT FIX
+  // ✅ START: JAVASCRIPT VIEWPORT FIX (Unchanged)
   useEffect(() => {
-    // This function calculates the actual window height and sets it as a CSS variable
     const setVh = () => {
-      // We check for window to ensure this doesn't run on the server
       if (typeof window !== 'undefined') {
         const vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
       }
     };
 
-    // Set the value on initial load
     setVh();
-
-    // Also set it when the window is resized (e.g., orientation change)
     window.addEventListener('resize', setVh);
-
-    // Clean up the event listener when the component unmounts to prevent memory leaks
     return () => window.removeEventListener('resize', setVh);
   }, []);
   // ✅ END: JAVASCRIPT VIEWPORT FIX
@@ -195,6 +188,10 @@ const App = () => {
                   path="/product/:productName/:subProductSlug"
                   element={<ProductSubDetailPage />}
                 />
+                {/* PROBLEM: Your CareerSection.jsx file defines its own SEO/Background locally.
+                  This causes conflicts if the main application imports global SEO/Background. 
+                  We handle the routing here.
+                */}
                 <Route path="/career" element={<CareerSection />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/admin" element={<Admin />} />
