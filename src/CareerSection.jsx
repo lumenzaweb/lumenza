@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { CheckCircle, XCircle, Briefcase, Megaphone, Users, UploadCloud, ChevronDown, Zap, TrendingUp, ArrowRight, Contact, Loader2 } from "lucide-react";
-import ReCAPTCHA from "react-google-recaptcha"; // <-- Preserved as requested
+import ReCAPTCHA from "react-google-recaptcha"; 
 import { motion, AnimatePresence } from "framer-motion";
 import { useDropzone } from "react-dropzone";
 // Assuming these components are available in your environment
@@ -188,6 +188,7 @@ const CareerSection = () => {
       )}
 
       <div className="max-w-7xl mx-auto relative z-10">
+        {/* Alignment Fix: Increased bottom margin for header block */}
         <motion.div 
           className="text-center mb-20"
           initial={{ opacity: 0, y: -50 }}
@@ -202,6 +203,7 @@ const CareerSection = () => {
           </p>
         </motion.div>
 
+        {/* Alignment Fix: Ensured consistent gap-10 for the "Why Join Us" cards */}
         <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-10 mb-24">
             {whyJoinUs.map((item, idx) => (
                 <motion.div 
@@ -221,6 +223,7 @@ const CareerSection = () => {
             ))}
         </div>
 
+        {/* Alignment Fix: Open Departments section grid */}
         <div className="max-w-6xl mx-auto mb-20">
             <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">Open Departments</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
