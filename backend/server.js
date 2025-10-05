@@ -18,6 +18,8 @@ app.use("/", testEmailRoute);
 // --- BREVO API CONFIGURATION ---
 const SENDER_EMAIL = process.env.EMAIL_USER; 
 const BREVO_API_KEY = process.env.BREVO_API_KEY; 
+// FIX APPLIED HERE: Read the new sender name from environment variables
+const SENDER_NAME = process.env.SENDER_NAME || 'LUMENZA Support';
 // -------------------------------
 
 // ✅ ENV check (Simplified)
@@ -25,6 +27,7 @@ console.log("✅ ENV check:", {
   PORT: process.env.PORT,
   MONGO_URI: !!process.env.MONGO_URI,
   EMAIL_USER: SENDER_EMAIL, 
+  SENDER_NAME: SENDER_NAME, // Log the new variable
   EMAIL_HOST: process.env.EMAIL_HOST, 
   EMAIL_PORT: process.env.EMAIL_PORT, 
   RECAPTCHA_SECRET: !!process.env.RECAPTCHA_SECRET,
@@ -33,76 +36,74 @@ console.log("✅ ENV check:", {
 
 // --- Brevo API Email Sender Function (Attachment Logic Corrected) ---
 const sendEmailViaBrevo = async (toEmail, subject, htmlContent, attachmentPath = null) => {
-    if (!BREVO_API_KEY) {
-        console.error("❌ BREVO_API_KEY is not set. Cannot send email.");
-        return;
-    }
+    if (!BREVO_API_KEY) {
+        console.error("❌ BREVO_API_KEY is not set. Cannot send email.");
+        return;
+    }
 
-    const apiAttachments = [];
+    const apiAttachments = [];
 
-    // ONLY process the attachment if a valid path is provided
-    if (attachmentPath && fs.existsSync(attachmentPath)) {
-        try {
-            // Read file content and encode it to base64
-            const content = fs.readFileSync(attachmentPath).toString('base64');
-            apiAttachments.push({
-                content,
-                name: path.basename(attachmentPath)
-            });
-        } catch (err) {
-            console.error(`❌ Failed to read or encode attachment file: ${attachmentPath}`, err.message);
-            // We can still proceed without the attachment if reading fails, but log the error.
-        }
-    }
+    // ONLY process the attachment if a valid path is provided
+    if (attachmentPath && fs.existsSync(attachmentPath)) {
+        try {
+            // Read file content and encode it to base64
+            const content = fs.readFileSync(attachmentPath).toString('base64');
+            apiAttachments.push({
+                content,
+                name: path.basename(attachmentPath)
+            });
+        } catch (err) {
+            console.error(`❌ Failed to read or encode attachment file: ${attachmentPath}`, err.message);
+            // We can still proceed without the attachment if reading fails, but log the error.
+        }
+    }
 
-    const payload = {
-        sender: { email: SENDER_EMAIL },
-        to: [{ email: toEmail }],
-        subject: subject,
-        htmlContent: htmlContent,
-        // Include attachments only if the array is populated
-        ...(apiAttachments.length > 0 && { attachment: apiAttachments }),
-    };
+    const payload = {
+        // FIX APPLIED HERE: Added the SENDER_NAME to the payload
+        sender: { name: SENDER_NAME, email: SENDER_EMAIL }, 
+        to: [{ email: toEmail }],
+        subject: subject,
+        htmlContent: htmlContent,
+        // Include attachments only if the array is populated
+        ...(apiAttachments.length > 0 && { attachment: apiAttachments }),
+    };
 
-    try {
-        const response = await fetch('https://api.brevo.com/v3/smtp/email', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'api-key': BREVO_API_KEY,
-            },
-            body: JSON.stringify(payload),
-        });
+    try {
+        const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'api-key': BREVO_API_KEY,
+            },
+            body: JSON.stringify(payload),
+        });
 
-        const data = await response.json();
+        const data = await response.json();
 
-        if (!response.ok) {
-            console.error(`❌ Brevo API Error (${response.status}):`, data.message || 'Unknown API error');
-            throw new Error(`Brevo API failed: ${data.message || response.status}`);
-        }
-        
-        console.log(`✅ Email sent successfully via Brevo API. Message ID: ${data.messageId}`);
-    } catch (error) {
-        console.error("❌ Error sending email via Brevo API:", error.message);
-        throw error;
-    }
+        if (!response.ok) {
+            console.error(`❌ Brevo API Error (${response.status}):`, data.message || 'Unknown API error');
+            throw new Error(`Brevo API failed: ${data.message || response.status}`);
+        }
+        
+        console.log(`✅ Email sent successfully via Brevo API. Message ID: ${data.messageId}`);
+    } catch (error) {
+        console.error("❌ Error sending email via Brevo API:", error.message);
+        throw error;
+    }
 };
 // ------------------------------------------
 
 
 // --- 1. NEW: reCAPTCHA Verification Middleware ---
-// This function now skips verification for the "Partner" form type.
 const verifyRecaptcha = async (req, res, next) => {
   const { formType, captchaToken } = req.body;
 
   // Define which forms require captcha verification
-  // CHANGE: Removed "Partner" from this list.
   const requireCaptcha = ["Inquiry", "Career", "Contact"]; 
 
   if (requireCaptcha.includes(formType)) {
     if (!captchaToken) {
-      // Specific message for missing captcha token
       return res.status(400).json({ success: false, message: "Captcha token is required for this form type." });
     }
 
@@ -118,14 +119,12 @@ const verifyRecaptcha = async (req, res, next) => {
         return res.status(400).json({ success: false, message: "Captcha verification failed." });
       }
       
-      // If successful, proceed
       next(); 
     } catch (error) {
       console.error("❌ Captcha middleware error:", error);
       return res.status(500).json({ success: false, message: "Error during captcha verification." });
     }
   } else {
-    // If the form type is "Partner" (or any other excluded form), just skip and proceed.
     next();
   }
 };
@@ -188,11 +187,11 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
 
     try {
         const { formType, name, email, contact, message, captchaToken, ...extra } = req.body;
-        
-        // Prepare data for DB and Email
+        
+        // Prepare data for DB and Email
         const allDetails = Object.fromEntries(
-            Object.entries({ contact: contact || '', ...extra }).filter(([_, v]) => v)
-        );
+            Object.entries({ contact: contact || '', ...extra }).filter(([_, v]) => v)
+        );
 
         // ✅ Save to DB
         const newForm = new Form({ formType, name, email, contact: contact || '', message, resume: resumeFile, extra: allDetails });
@@ -204,14 +203,14 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
         if (formType === "Inquiry" || formType === "Contact") subject = `📩 New Inquiry from ${name}`;
         if (formType === "Career") subject = `💼 New Career Application from ${name}`;
         if (formType === "Partner") subject = `🤝 New Partner Application from ${name}`;
-        
-        const detailsHtml = Object.keys(allDetails).length > 0
-        ? `<hr><h3 style="color:#333;">Additional Details:</h3><pre style="background:#f8f8f8;padding:10px;border-radius:5px;">${JSON.stringify(
+        
+        const detailsHtml = Object.keys(allDetails).length > 0
+        ? `<hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;"><h3 style="color:#333;">Additional Details:</h3><pre style="background:#f8f8f8;padding:10px;border-radius:5px;white-space: pre-wrap;">${JSON.stringify(
             allDetails, null, 2
           )}</pre>`
         : "";
 
-        const mainEmailHtml = `
+        const mainEmailHtml = `
           <div style="font-family:Arial,sans-serif;padding:20px;border:1px solid #eee;border-radius:10px;">
             <h2 style="color:#d32f2f;">${subject}</h2>
             <p><strong>Name:</strong> ${name || "N/A"}</p>
@@ -226,20 +225,24 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
 
 
         // ✅ 1. Send Main notification email (to your support address)
-        // Pass resumeFile path directly
         await sendEmailViaBrevo(SENDER_EMAIL, subject, mainEmailHtml, resumeFile);
         console.log(`✅ Main notification email sent for ${formType} from ${name}.`);
 
         // ✅ 2. Auto-reply to user (if email provided)
         if (email) {
-            const autoReplyHtml = `
-              <div style="font-family:Arial,sans-serif;padding:20px;">
-                <h3>Thank you for contacting us, ${name}!</h3>
-                <p>Your ${formType} details submission has been received. Our team will get back to you soon.</p>
-                <p style="color:#555;">Best regards,<br/> Support Team, LUMENZA </p>
+            const autoReplyHtml = `
+              <div style="font-family:Arial,sans-serif;padding:20px;color:#333;line-height:1.6;">
+                <h3 style="color:#1a73e8;">Thank you for your submission, ${name}!</h3>
+                <p>We have successfully received your ${formType.toLowerCase()} submission.</p>
+                <p>Our team will review the details and get back to you as soon as possible. We appreciate your interest in LUMENZA.</p>
+                
+                <p style="margin-top:25px;padding-top:15px;border-top:1px solid #eee;">
+                  Best regards,<br/> 
+                  <strong style="color:#d32f2f;">The LUMENZA Team</strong>
+                </p>
               </div>
             `;
-            // Do NOT pass resumeFile path to the auto-reply
+            // Do NOT pass resumeFile path to the auto-reply
             await sendEmailViaBrevo(email, "✅ We've received your submission", autoReplyHtml);
             console.log(`✅ Auto-reply sent to ${email}.`);
         }
@@ -247,12 +250,12 @@ app.post("/api/forms", verifyRecaptcha, upload.single("resume"), (req, res) => {
     } catch (err) {
         console.error("❌ Error during background form processing:", err.message);
     } finally {
-        // Clean up the uploaded resume file if it exists
-        if (resumeFile && fs.existsSync(resumeFile)) {
-            fs.unlinkSync(resumeFile);
-            console.log(`🗑️ Deleted temporary file: ${resumeFile}`);
-        }
-    }
+        // Clean up the uploaded resume file if it exists
+        if (resumeFile && fs.existsSync(resumeFile)) {
+            fs.unlinkSync(resumeFile);
+            console.log(`🗑️ Deleted temporary file: ${resumeFile}`);
+        }
+    }
   };
   
   // Start the background processing
