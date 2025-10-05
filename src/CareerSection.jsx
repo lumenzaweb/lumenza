@@ -175,8 +175,8 @@ const CareerSection = () => {
   };
 
   return (
-    // ADJUSTED: Increased vertical padding for better visual spacing
-    <section className="bg-white text-gray-800 py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden font-sans">
+    // FIX APPLIED HERE: Using pt-32 (128px) and pt-40 (160px) for a large safe top margin
+    <section className="bg-white text-gray-800 pt-32 sm:pt-40 pb-20 px-4 sm:px-6 relative overflow-hidden font-sans">
       
       <LocalSEO 
       title="Careers"
@@ -211,7 +211,7 @@ const CareerSection = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Header Block: Better alignment and responsive margin */}
+        {/* Header Block: Now safely positioned below the navbar */}
         <motion.div 
           className="text-center mb-16 md:mb-24"
           initial={{ opacity: 0, y: -50 }}
@@ -257,13 +257,13 @@ const CareerSection = () => {
                         onClick={() => setOpenDepartment(openDepartment === dept.title ? null : dept.title)}
                         className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 ${
                             openDepartment === dept.title 
-                            ? 'bg-white shadow-2xl ring-4 ring-red-200' // Increased ring size for focus
+                            ? 'bg-white shadow-2xl ring-4 ring-red-200' 
                             : 'bg-gray-50/80 border border-gray-200 hover:shadow-xl hover:border-red-100'
                         }`}
                     >
                         <motion.div layout="position" className="flex flex-col items-center text-center gap-4 font-bold text-gray-800">
                             {dept.icon}
-                            <h3 className="text-xl">{dept.title}</h3> {/* Increased font size */}
+                            <h3 className="text-xl">{dept.title}</h3> 
                         </motion.div>
                         
                         <AnimatePresence initial={false}>
@@ -296,23 +296,23 @@ const CareerSection = () => {
             </div>
         </div>
 
-        {/* Career Form Section: Fixed layout, better mobile spacing, consistent error positioning */}
+        {/* Career Form Section */}
         <motion.div 
           id="career-form" 
-          className="bg-white p-6 sm:p-8 md:p-12 rounded-3xl border border-gray-100 shadow-3xl max-w-4xl mx-auto" // Slightly nicer border/shadow
+          className="bg-white p-6 sm:p-8 md:p-12 rounded-3xl border border-gray-100 shadow-3xl max-w-4xl mx-auto" 
           initial={{ opacity: 0, y: 50 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.8 }}
         >
-          <h3 className="text-3xl font-bold mb-8 text-center text-gray-800">Submit Your Application</h3> {/* Adjusted margin */}
+          <h3 className="text-3xl font-bold mb-8 text-center text-gray-800">Submit Your Application</h3> 
           
-          <form className="grid md:grid-cols-2 gap-y-7 gap-x-6" onSubmit={handleSubmit}> {/* Increased vertical gap (gap-y) */}
+          <form className="grid md:grid-cols-2 gap-y-7 gap-x-6" onSubmit={handleSubmit}> 
             
             {/* Input Wrapper 1: Full Name */}
             <div className="relative">
               <input type="text" name="name" value={form.name} onChange={handleChange} required placeholder="Full Name" className={`w-full p-4 bg-gray-50 rounded-xl focus:ring-2 focus:ring-red-500 outline-none placeholder-gray-500 ${errors.name ? 'border-red-500 border-2' : 'border-gray-200 border'}`}/>
-              {errors.name && <p className="text-red-500 text-xs mt-1 px-1 absolute top-[calc(100%+2px)] left-0">{errors.name}</p>} {/* Error fixed below input */}
+              {errors.name && <p className="text-red-500 text-xs mt-1 px-1 absolute top-[calc(100%+2px)] left-0">{errors.name}</p>} 
             </div>
             
             {/* Input Wrapper 2: Email */}
@@ -359,11 +359,10 @@ const CareerSection = () => {
             </div>
 
             {/* Resume Upload (Full Width) */}
-            <div className="md:col-span-2 relative mt-2"> {/* Added slight top margin for better spacing */}
+            <div className="md:col-span-2 relative mt-2"> 
                 <div {...getRootProps()} className={`p-8 border-2 border-dashed rounded-2xl cursor-pointer transition-colors flex flex-col items-center justify-center text-center ${errors.resume ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-red-400 bg-gray-50'}`}>
                     <input {...getInputProps()} />
                     <UploadCloud className="w-10 h-10 text-gray-400 mb-2"/>
-                    {/* Adjusted content based on upload status */}
                     {resume ? <p className="text-green-600 font-medium">{resume.name}</p> : isDragActive ? <p className="text-red-600 font-medium">Drop the resume here...</p> : <p className="text-gray-500">Drag & drop your resume here, or click to select.</p>}
                     <p className="text-xs text-gray-400 mt-1">PDF, DOC, DOCX up to 5MB</p>
                 </div>
@@ -371,10 +370,10 @@ const CareerSection = () => {
             </div>
 
             {/* Captcha (Full Width, Centered) */}
-            <div className="flex justify-center md:col-span-2 relative pt-6"> {/* Increased top padding for vertical alignment and added a bottom padding to match button margin */}
+            <div className="flex justify-center md:col-span-2 relative pt-6"> 
                 <div className="flex flex-col items-center relative"> 
                 <ReCAPTCHA ref={captchaRef} sitekey="6LdW9LgrAAAAAGz7TLHCaOOWYRWAw6GDYH5XFlvt" onChange={handleCaptcha} />
-                {errors.captcha && <p className="text-red-500 text-xs mt-2 px-1 absolute top-[calc(100%+2px)] left-1/2 transform -translate-x-1/2">{errors.captcha}</p>} {/* Fixed error text positioning */}
+                {errors.captcha && <p className="text-red-500 text-xs mt-2 px-1 absolute top-[calc(100%+2px)] left-1/2 transform -translate-x-1/2">{errors.captcha}</p>} 
                 </div>
             </div>
 
@@ -382,7 +381,7 @@ const CareerSection = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full md:col-span-2 flex items-center justify-center text-center mt-6 px-6 py-4 bg-red-600 text-white font-semibold rounded-xl shadow-xl hover:bg-red-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-red-500/40 hover:-translate-y-0.5" // Nicer button effects
+              className="w-full md:col-span-2 flex items-center justify-center text-center mt-6 px-6 py-4 bg-red-600 text-white font-semibold rounded-xl shadow-xl hover:bg-red-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-red-500/40 hover:-translate-y-0.5" 
             >
               {loading ? (
                 <div className="flex items-center gap-2">
